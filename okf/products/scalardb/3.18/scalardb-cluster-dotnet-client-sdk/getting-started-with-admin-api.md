@@ -1,0 +1,153 @@
+---
+type: Tutorial
+title: Getting Started with the Administrative API in the ScalarDB Cluster .NET Client SDK
+description: The ScalarDB Cluster .NET Client SDK supports the Administrative API of ScalarDB Cluster. By using this API, you can manage ScalarDB Cluster from .NET applications.
+resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster-dotnet-client-sdk/getting-started-with-admin-api/
+tags:
+- scalardb
+- v3.18
+- phase:implement
+- edition:enterprise-standard
+- edition:enterprise-premium
+status: stable
+product: scalardb
+product_title: ScalarDB
+version: '3.18'
+patch_version: 3.18.0
+doc_id: scalardb-cluster-dotnet-client-sdk/getting-started-with-admin-api
+lifecycle_phase: implement
+editions:
+- Enterprise Standard
+- Enterprise Premium
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:24Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-cluster-dotnet-client-sdk/getting-started-with-admin-api.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-07-27T12:09:14Z'
+---
+
+# Getting Started with the Administrative API in the ScalarDB Cluster .NET Client SDK
+
+The ScalarDB Cluster .NET Client SDK supports the Administrative API of ScalarDB Cluster. By using this API, you can manage ScalarDB Cluster from .NET applications.
+
+:::note
+
+Although we recommend using asynchronous methods as in the following examples, you can use synchronous methods instead.
+
+:::
+
+## Install the SDK
+
+Install the same major and minor version of the [SDK](https://www.nuget.org/packages/ScalarDB.Client) as ScalarDB Cluster into the .NET project. You can do this by using the built-in NuGet package manager, replacing `<MAJOR>.<MINOR>` with the version that you're using:
+
+```console
+dotnet add package ScalarDB.Client --version '<MAJOR>.<MINOR>.*'
+```
+
+## Create a settings file
+
+Create a `scalardb-options.json` file and add the following, replacing `<HOSTNAME_OR_IP_ADDRESS>` with the FQDN or the IP address, and `<PORT>` with the port number (`60053` by default) of your cluster:
+
+```json
+{
+  "ScalarDbOptions": {
+    "Address": "http://<HOSTNAME_OR_IP_ADDRESS>:<PORT>",
+    "HopLimit": 10
+  }
+}
+```
+
+For details about settings files and other ways to configure the client, see [Client configuration](./common-reference.md#client-configuration).
+
+## Get a transaction manager
+
+You need to get an object for interacting with the Administrative API. To get the object, you can use `TransactionFactory` as follows:
+
+```c#
+// Pass the path to the settings file created in the previous step.
+var factory = TransactionFactory.Create("scalardb-options.json");
+
+using var admin = factory.GetTransactionAdmin();
+```
+
+## Manage ScalarDB Cluster
+
+The following operations can be performed by using the ScalarDB Cluster .NET Client SDK.
+
+### Create a new namespace
+
+```c#
+await admin.CreateNamespaceAsync("ns", ifNotExists: true);
+```
+
+### Drop a namespace
+
+```c#
+await admin.DropNamespaceAsync("ns", ifExists: true);
+```
+
+### Check if a namespace exists
+
+```c#
+var namespaceExists = await admin.IsNamespacePresentAsync("ns");
+```
+
+### Create a new table
+
+```c#
+// ...
+using ScalarDB.Client.Builders.Admin;
+using ScalarDB.Client.Core;
+
+// ...
+
+var tableMetadata =
+    new TableMetadataBuilder()
+        .AddPartitionKey("pk", DataType.Int)
+        .AddClusteringKey("ck", DataType.Double)
+        .AddSecondaryIndex("index", DataType.Float)
+        .AddColumn("ordinary", DataType.Text)
+        .Build();
+
+await admin.CreateTableAsync("ns", "table_name", tableMetadata, ifNotExists: true);
+```
+
+### Drop a table
+
+```c#
+await admin.DropTableAsync("ns", "table_name", ifExists: true);
+```
+
+### Checking if a table exists
+
+```c#
+var tableExists = await admin.IsTablePresentAsync("ns", "table_name");
+```
+
+### Get the names of existing tables
+
+```c#
+var tablesList = await admin.GetTableNamesAsync("ns");
+```
+
+### Create the Coordinator table
+
+```c#
+await admin.CreateCoordinatorTablesAsync();
+```
+
+### Drop the Coordinator table
+
+```c#
+await admin.DropCoordinatorTablesAsync();
+```
+
+### Check if the Coordinator table exist
+
+```c#
+var exists = await admin.AreCoordinatorTablesPresentAsync();
+```

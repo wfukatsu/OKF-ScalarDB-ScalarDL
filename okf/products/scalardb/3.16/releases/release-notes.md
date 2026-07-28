@@ -1,0 +1,343 @@
+---
+type: Concept
+title: ScalarDB 3.16 Release Notes
+description: This page includes a list of release notes for ScalarDB 3.16.
+resource: https://scalardb.scalar-labs.com/docs/3.16/releases/release-notes/
+tags:
+- scalardb
+- v3.16
+- phase:design
+- section:about-scalardb
+- edition:community
+- edition:enterprise-standard
+- edition:enterprise-premium
+status: stable
+product: scalardb
+product_title: ScalarDB
+version: '3.16'
+patch_version: 3.16.5
+doc_id: releases/release-notes
+lifecycle_phase: design
+breadcrumb:
+- About ScalarDB
+editions:
+- Community
+- Enterprise Standard
+- Enterprise Premium
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:29Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.16/releases/release-notes.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-07-27T12:09:14Z'
+---
+
+# ScalarDB 3.16 Release Notes
+
+This page includes a list of release notes for ScalarDB 3.16.
+
+## v3.16.5
+
+**Release date:** April 15, 2026
+
+### Summary
+
+This release includes improvements and bug fixes.
+
+:::warning Backward-incompatible changes
+
+- **Existing tables require `repairTable()` to create the new before-image secondary index.** Index-based `Get`, `Scan`, and `ScanAll` in Consensus Commit now rely on a companion `before_<col>` index. Until you run `repairTable()` on each existing table, ScalarDB logs a warning at startup and index-based reads fall back to the previous behavior, which may miss records whose indexed column is being concurrently updated. The configuration `scalar.db.consensus_commit.index.eventually_consistent_read.enabled` is provided as an opt-out but is not recommended for new workloads.
+- **MySQL Connector/J replaced with MariaDB Connector/J.** SSL is no longer enabled by default. If you connect to MySQL 8.0 or later with `caching_sha2_password` authentication, add `sslMode=REQUIRED` or `allowPublicKeyRetrieval=true` to your JDBC URL. No action is required for `jdbc:mysql://` URLs because ScalarDB automatically appends `permitMysqlScheme` for compatibility.
+
+:::
+
+### Community edition
+
+#### Improvements
+
+- Replaced MySQL Connector/J with MariaDB Connector/J due to licensing concerns. ([#3428](https://github.com/scalar-labs/scalardb/pull/3428))
+- Extended the applicability of one-phase commit optimization in the Consensus Commit protocol. This allows one-phase commit to be used even in SERIALIZABLE isolation level when the transaction only reads records that it subsequently updates, improving performance for read-modify-write workloads. ([#3295](https://github.com/scalar-labs/scalardb/pull/3295))
+- Added support for setting null values on secondary index columns in DynamoDB. When a null value is set, the attribute is removed from the item and the record will not appear in secondary index scans. ([#3326](https://github.com/scalar-labs/scalardb/pull/3326))
+- Inserting or updating records with TIME (microsecond precision), TIMESTAMP (millisecond precision), and TIMESTAMPTZ (millisecond precision) column values will truncate out-of-range precision rather than throwing an exception. ([#3393](https://github.com/scalar-labs/scalardb/pull/3393))
+- Fixed an issue where index-based Get and Scan operations in Consensus Commit could miss records in PREPARED or DELETED state, by adding before-image secondary index check. ([#3419](https://github.com/scalar-labs/scalardb/pull/3419))
+- Added support for the SERIALIZABLE isolation level for index-based Get, Scan, and ScanAll operations in Consensus Commit when before-image indexes are present. Run `repairTable()` to create before-image indexes for existing tables. ([#3463](https://github.com/scalar-labs/scalardb/pull/3463))
+- Shortened JDBC index names using a hash when they exceed the maximum identifier length supported by the underlying database. ([#3481](https://github.com/scalar-labs/scalardb/pull/3481))
+
+#### Bug fixes
+
+- Upgraded the Netty library to fix security issues: [CVE-2026-33870](https://github.com/advisories/GHSA-pwqr-wmgm-9rr8 "CVE-2026-33870") and [CVE-2026-33871](https://github.com/advisories/GHSA-w9fj-cfpg-grvv "CVE-2026-33871") ([#3452](https://github.com/scalar-labs/scalardb/pull/3452))
+- Fixed a bug where index-based Get and Scan operations could return incorrect results after lazy recovery rolled back a PREPARED record whose after-image index value matched the query but whose before-image (restored) value did not. ([#3488](https://github.com/scalar-labs/scalardb/pull/3488))
+
+### Enterprise edition
+
+#### Improvements
+
+##### ScalarDB SQL
+
+- Updated the TIMESTAMPTZ literal to make optional the space character before the UTC timezone `Z` character. For example, `2021-03-04 12:30:45.123Z` is now accepted, in addition to the current format `2021-03-04 12:30:45.123 Z`. Also, when selecting a TIMESTAMPTZ column, the value is printed without a space before the `Z`.
+- Fixed an issue where the shadow jar was unnecessarily published to GitHub Packages for the CLI module.
+- Inserting or updating records with TIME (microsecond precision), TIMESTAMP (millisecond precision), and TIMESTAMPTZ (millisecond precision) column values will truncate out-of-range precision rather than throwing an exception.
+
+#### Bug fixes
+
+##### ScalarDB Cluster
+
+- Upgraded `grpc_health_probe` to fix security issues: [CVE-2025-59250](https://github.com/advisories/GHSA-m494-w24q-6f7w "CVE-2025-59250") and [CVE-2026-25679](https://github.com/advisories/GHSA-j3gx-2473-5fp8 "CVE-2026-25679")
+- Upgraded the Netty library to fix security issues: [CVE-2026-33870](https://github.com/advisories/GHSA-pwqr-wmgm-9rr8 "CVE-2026-33870") and [CVE-2026-33871](https://github.com/advisories/GHSA-w9fj-cfpg-grvv "CVE-2026-33871")
+- Upgraded `grpc_health_probe` to fix a security issue: [CVE-2026-34986](https://github.com/advisories/GHSA-78h2-9frx-2jm8 "CVE-2026-34986").
+
+##### ScalarDB SQL
+
+- Fixed a bug where duplicate column names were allowed in CREATE TABLE statements.
+- Fixed missing strict date validation on time-related type formatters, which could allow invalid dates (e.g., February 30) to be silently accepted instead of rejected.
+
+## v3.16.4
+
+**Release date:** March 6, 2026
+
+### Summary
+
+This release includes several bug fixes.
+
+### Community edition
+
+#### Bug fixes
+
+- Upgraded the Jackson library to fix a security issue: [GHSA-72hv-8253-57qq](https://github.com/advisories/GHSA-72hv-8253-57qq "GHSA-72hv-8253-57qq") ([#3394](https://github.com/scalar-labs/scalardb/pull/3394))
+
+### Enterprise edition
+
+#### Bug fixes
+
+##### ScalarDB Cluster
+
+- Upgraded `grpc_health_probe` to fix security issues: [CVE-2025-68121](https://github.com/advisories/GHSA-h355-32pf-p2xm "CVE-2025-68121"), [CVE-2025-61726](https://github.com/advisories/GHSA-gm9r-q53w-2gh4 "CVE-2025-61726"), [CVE-2025-61728](https://github.com/advisories/GHSA-g9q4-qjx4-2v7q "CVE-2025-61728"), [CVE-2025-61729](https://github.com/advisories/GHSA-7c64-f9jr-v9h2 "CVE-2025-61729"), and [CVE-2025-61730](https://github.com/advisories/GHSA-gr56-3gp6-6gmj "CVE-2025-61730")
+- Upgraded the Kubernetes Java Client to fix a security issue: [CVE-2024-29371](https://github.com/advisories/GHSA-3677-xxcr-wjqv "CVE-2024-29371")
+- Excluded `com.microsoft.azure:adal4j` from the Kubernetes Java Client to fix security issues: [CVE-2023-52428](https://github.com/advisories/GHSA-gvpg-vgmx-xg6w "CVE-2023-52428"), [CVE-2021-31684](https://github.com/advisories/GHSA-fg2v-w576-w4v3 "CVE-2021-31684"), and [CVE-2023-1370](https://github.com/advisories/GHSA-493p-pfq6-5258 "CVE-2023-1370")
+- Upgraded the Jackson library to fix a security issue: [GHSA-72hv-8253-57qq](https://github.com/advisories/GHSA-72hv-8253-57qq "GHSA-72hv-8253-57qq")
+
+##### ScalarDB SQL
+
+- Fixed a `ClassCastException` that occurred in `StatementUtils.appendTerm()` when handling `DATE`, `TIME`, `TIMESTAMP`, and `TIMESTAMPTZ` values. These values are now correctly formatted as string literals instead of being incorrectly cast to String.
+
+## v3.16.3
+
+**Release date:** December 9, 2025
+
+### Summary
+
+This release mainly consists of several minor bug fixes and small improvements.
+
+### Community edition
+
+#### Improvements
+
+- Added the `scalar.db.active_transaction_management.enabled` configuration option to enable/disable the active transaction management (default: `true`). ([#3233](https://github.com/scalar-labs/scalardb/pull/3233))
+
+#### Bug fixes
+
+- On Oracle, when importing a table with a column using the `NUMBER(1)` data type, which is usually used for BOOLEAN data, that column can now be mapped to ScalarDB BOOLEAN by using the ScalarDB Schema Loader `override-columns-type` setting. ([#3239](https://github.com/scalar-labs/scalardb/pull/3239))
+
+### Enterprise edition
+
+#### Bug fixes
+
+##### ScalarDB Cluster
+
+- Fixed a bug where the pause functionality did not work correctly when transactions expired.
+- Fixed a bug where ScalarDB Cluster cannot be deployed in the Omnistrate environment by upgrading scalar-metering.
+
+## v3.16.2
+
+**Release date:** November 26, 2025
+
+### Summary
+
+This release includes several bug fixes and vulnerability fixes.
+
+:::warning Backward-incompatible changes
+
+- **`Get` and `Scan` operations using a secondary index under the SERIALIZABLE isolation level now throw `IllegalArgumentException`** because such operations cannot guarantee the strict consistency that SERIALIZABLE requires. To restore SERIALIZABLE support for index-based reads, upgrade to 3.16.5 or later, which adds it back via a companion before-image secondary index. Otherwise, switch to a non-SERIALIZABLE isolation level (reads become eventually consistent and may return slightly stale data) or rewrite the operation to use the primary key.
+
+:::
+
+### Community edition
+
+#### Enhancements
+
+- Add integration tests for Cassandra 4 and 5. ([#3143](https://github.com/scalar-labs/scalardb/pull/3143))
+
+#### Bug fixes
+
+- Fixed `--no-header` option being ignored in data loader CSV exports ([#2924](https://github.com/scalar-labs/scalardb/pull/2924))
+- Upgraded the Cosmos DB library to fix a security issue. [CVE-2025-55163](https://github.com/advisories/GHSA-prj3-ccx8-p6x4 "CVE-2025-55163") ([#3105](https://github.com/scalar-labs/scalardb/pull/3105))
+- Fixed an inconsistency where Get and Scan operations were prepared differently for transaction reads and Serializable validation, which could result in inconsistent ordering and cause Serializable validation failures. ([#3113](https://github.com/scalar-labs/scalardb/pull/3113))
+- Deprecated `--log-success` argument and introduced a new replacement option `--enable-log-success` ([#3117](https://github.com/scalar-labs/scalardb/pull/3117))
+- Fixed incorrect validation causing maxThreads to be treated as required ([#3128](https://github.com/scalar-labs/scalardb/pull/3128))
+- Prohibited Get and Scan operations using secondary indexes when the isolation level is SERIALIZABLE in the Consensus Commit transaction manager, as these operations are now defined as eventually consistent and cannot guarantee the strict consistency required by SERIALIZABLE isolation. ([#3133](https://github.com/scalar-labs/scalardb/pull/3133))
+- Updated the import command help text to include default values for four CLI arguments. ([#3059](https://github.com/scalar-labs/scalardb/pull/3059))
+- Fixed data-loader to properly handle unexpected exceptions during transaction processing for importing, ensuring transactions are aborted and errors are logged with proper context. ([#3183](https://github.com/scalar-labs/scalardb/pull/3183))
+- Fixed failure log writing issue in storage mode for Data Loader imports ([#3189](https://github.com/scalar-labs/scalardb/pull/3189))
+- Fixed handling of "null" values for non-TEXT columns in CSV imports ([#3160](https://github.com/scalar-labs/scalardb/pull/3160))
+- Upgraded the SQLServer driver to fix a security issue. [CVE-2025-59250](https://github.com/advisories/GHSA-m494-w24q-6f7w "CVE-2025-59250") ([#3223](https://github.com/scalar-labs/scalardb/pull/3223))
+
+### Enterprise edition
+
+#### Bug fixes
+
+##### ScalarDB Cluster
+
+- Fixed a bug where `ResultSet` in SQL API returned incorrect results when duplicate column names were present.
+- Upgraded the gRPC library to fix a security issue. [CVE-2025-55163](https://github.com/advisories/GHSA-prj3-ccx8-p6x4 "CVE-2025-55163")
+- Upgraded `grpc_health_probe` to fix security issues: [CVE-2025-47907](https://github.com/advisories/GHSA-j5pm-7495-qmr3 "CVE-2025-47907"), [CVE-2025-58183](https://github.com/advisories/GHSA-9gcr-gp5f-jw27 "CVE-2025-58183"), [CVE-2025-58186](https://github.com/advisories/GHSA-rjcg-56ph-3qvg "CVE-2025-58186"), [CVE-2025-58187](https://github.com/advisories/GHSA-frhw-mqj2-wxw2 "CVE-2025-58187"), and [CVE-2025-58188](https://github.com/advisories/GHSA-7wwx-xj66-r44x "CVE-2025-58188").
+
+### Enterprise Options
+
+#### ScalarDB Analytics
+
+##### Enhancements
+
+- Metering service with AWS Marketplace integration.
+
+##### Bug fixes
+
+- Fix deserialization for Databricks and Snowflake providers.
+- Add missing Databricks JDBC dialect registration.
+- Add TLS support for metering collector.
+
+## v3.16.1
+
+**Release date:** July 16, 2025
+
+### Summary
+
+This release includes several bug fixes and vulnerability fixes.
+
+### Community edition
+
+#### Bug fixes
+
+- Fixed a bug where a CommitException was thrown when committing a transaction, even though the transaction was actually committed. ([#2826](https://github.com/scalar-labs/scalardb/pull/2826))
+- Fixed error handling for mutations in Cassandra. ([#2827](https://github.com/scalar-labs/scalardb/pull/2827))
+- Fixed a bug where group commit did not work correctly with one-phase commit. ([#2832](https://github.com/scalar-labs/scalardb/pull/2832))
+
+### Enterprise edition
+
+#### Bug fixes
+
+##### ScalarDB Cluster
+
+- Fixed a bug where the data tag was updated even when it was not specified in update or upsert operations.
+- Added missing metrics for the remote replication features.
+- Released missing Jar file of `replication-cli`
+- Fixed a bug where an `UnsupportedOperationException` was thrown when executing put operations on tables without ABAC policies, when ABAC was enabled.
+- Upgraded `grpc_health_probe` to fix a security issue. [CVE-2025-22874](https://github.com/advisories/GHSA-6f52-wpx2-hvf2 "CVE-2025-22874")
+- Added validation to prevent the replication feature from starting if the one-phase commit optimization is enabled.
+
+### Enterprise Options
+
+#### ScalarDB Analytics
+
+##### Enhancements
+
+- Spark resource usage collection module for PAYG support.
+- Client fat jar support.
+
+## v3.16.0
+
+**Release date:** June 20, 2025
+
+### Summary
+
+This release includes many enhancements, improvements, bug fixes, and performance optimizations.
+
+### Community edition
+
+#### Enhancements
+
+- Added support for IBM Db2 LUV 11 and 12. ([#2598](https://github.com/scalar-labs/scalardb/pull/2598))
+- Added a scanner API to the transaction abstraction for iteratively retrieving results. ([#2729](https://github.com/scalar-labs/scalardb/pull/2729))
+- Added support for scan fetch size in the storage adapters. You can control the number of records fetched by the scan API in the storage layer by configuring the `scalar.db.scan_fetch_size` property. ([#2731](https://github.com/scalar-labs/scalardb/pull/2731))
+- Added `replication-tables` option to the Schema Loader. ([#2747](https://github.com/scalar-labs/scalardb/pull/2747))
+- Added support for beginning transactions in read-only mode. ([#2749](https://github.com/scalar-labs/scalardb/pull/2749))
+- Fixed warnings for Javadoc and errorprone. ([#2614](https://github.com/scalar-labs/scalardb/pull/2614))
+- Introduced `StorageInfo`, which provides metadata about the storage. You can obtain a `StorageInfo` instance via the `DistributedStorageAdmin.getStorageInfo()` method. ([#2756](https://github.com/scalar-labs/scalardb/pull/2756))
+- Added Docker support for the ScalarDB Data Loader CLI, enabling containerized deployment of the data loading functionality. ([#2758](https://github.com/scalar-labs/scalardb/pull/2758))
+- Added a CI workflow for the Data Loader CLI build. ([#2761](https://github.com/scalar-labs/scalardb/pull/2761))
+- Added the `READ_COMMITTED` isolation level, which offers better performance, especially for low-contention workloads. ([#2803](https://github.com/scalar-labs/scalardb/pull/2803))
+- Added support for one-phase commit optimization in Consensus Commit, significantly improving performance by skipping prepare-records and commit-state when all mutations can be committed atomically. Enable this optimization with the `scalar.db.consensus_commit.one_phase_commit.enabled` property. ([#2811](https://github.com/scalar-labs/scalardb/pull/2811))
+
+#### Improvements
+
+- Made changes so that the ScalarDB BIGINT data type will now be mapped to Oracle's `NUMBER(16)`. ([#2566](https://github.com/scalar-labs/scalardb/pull/2566))
+- Removed the `EXTRA_WRITE` strategy from Consensus Commit. After this change, if the `EXTRA_WRITE` strategy is specified when using Consensus Commit, the `EXTRA_READ` strategy will be used instead. ([#2597](https://github.com/scalar-labs/scalardb/pull/2597))
+- Changed to disallow scan operations after a delete on the same record in Consensus Commit to prevent inconsistent behavior and align with the existing restriction on scans after writes. ([#2610](https://github.com/scalar-labs/scalardb/pull/2610))
+- Changed to omit commit-state for read-only transactions in Consensus Commit to improve performance. This behavior is enabled by default but can be disabled by setting the property `scalar.db.consensus_commit.coordinator.write_omission_on_read_only.enabled` to `false`. ([#2765](https://github.com/scalar-labs/scalardb/pull/2765))
+- Updated the code to remove before images after committing or rolling back records in Consensus Commit to reduce disk usage. ([#2787](https://github.com/scalar-labs/scalardb/pull/2787))
+- Improved the read algorithm in Consensus Commit to reduce unnecessary retries. ([#2798](https://github.com/scalar-labs/scalardb/pull/2798))
+
+#### Bug fixes
+
+- Upgraded the Netty library to fix a security issue. [CVE-2025-24970](https://github.com/advisories/GHSA-4g8c-wm8x-jfhw "CVE-2025-24970") ([#2552](https://github.com/scalar-labs/scalardb/pull/2552))
+- Fixed a bug in Consensus Commit with `SERIALIZABLE` isolation level where a transaction consistently aborts if a record was inserted into the scan range after executing a scan with a limit. ([#2621](https://github.com/scalar-labs/scalardb/pull/2621))
+- Fixed an issue with `DistributedStorageAdmin.getNamespaceNames()` API when using the DynamoDB storage with the namespace prefix setting `scalar.db.dynamo.namespace.prefix`. The namespace names returned by this method wrongly contained the prefix. ([#2641](https://github.com/scalar-labs/scalardb/pull/2641))
+- Added exception handling for `DateTimeParseException` on column value conversion ([#2662](https://github.com/scalar-labs/scalardb/pull/2662))
+- Fixed an issue where `Get` operations using secondary indexes could throw `IllegalArgumentException` in `SERIALIZABLE` transactions by converting them to `Scan` operations during validation. ([#2683](https://github.com/scalar-labs/scalardb/pull/2683))
+- Fixed a bug that caused unnecessary implicit pre-reads when updating records retrieved by a secondary-index `Get` operation within a transaction. ([#2700](https://github.com/scalar-labs/scalardb/pull/2700))
+- Fixed minor bugs and issues in Data Loader core. ([#2752](https://github.com/scalar-labs/scalardb/pull/2752))
+- Fixed a bug where records could be missed when executing `Get` or `Scan` with conjunctions in Consensus Commit. ([#2786](https://github.com/scalar-labs/scalardb/pull/2786))
+- Fixed an issue in Consensus Commit where reading the same record multiple times from storage could cause anomalies like lost updates. The read set is no longer updated on repeated reads to resolve this issue. ([#2797](https://github.com/scalar-labs/scalardb/pull/2797))
+- Fixed potential connection leak when using `jdbc` storage and `Scan` operation fails because the target table doesn't exist ([#2766](https://github.com/scalar-labs/scalardb/pull/2766))
+
+### Enterprise edition
+
+#### Enhancements
+
+##### ScalarDB Cluster
+
+- Added a configuration option (`scalar.db.transaction.enabled`) to enable or disable the transaction feature in ScalarDB Cluster. The default value is `true`.
+- Added support for the scanner API in the transaction abstraction to iteratively retrieve results in ScalarDB Cluster.
+- Added support for beginning transactions in read-only mode in ScalarDB Cluster.
+- Added support for beginning transactions in read-only mode using SQL in ScalarDB Cluster.
+- Added the remote replication feature in ScalarDB Cluster.
+
+##### ScalarDB SQL
+
+- Added support for beginning transactions in read-only mode in ScalarDB SQL.
+
+#### Improvements
+
+##### ScalarDB Cluster
+
+- Added support for the Omnistrate service. Now, you can run ScalarDB Cluster in the Omnistrate service.
+- Made changes to prevent pausing of read-only transactions when a pause command is issued to ScalarDB Cluster.
+
+#### Bug fixes
+
+##### ScalarDB Cluster
+
+- Fixed a bug related to the metadata cache behavior when using auth in the SQL interface.
+- Fixed configurations for the embedding feature.
+- Fixed a bug that allowed superusers to execute ABAC administrative operations for non-existing users.
+- Fixed a bug a table-not-found error occurs when dropping empty ABAC system tables.
+- Fixed a memory leak issue when the coordinator group commit feature is enabled.
+
+### Enterprise Options
+
+#### ScalarDB Analytics
+
+##### Enhancements
+
+- gRPC catalog server with client-server architecture.
+- Command line client for catalog server.
+- Snowflake data source.
+- Databricks data source.
+
+##### Bug fixes
+
+- MySQL data source: only resolve tables of configured database.
+- SQL Server data source: only resolve schemas of configured database.
+- Databricks data source: fix type mapping for unsupported "interval" types.

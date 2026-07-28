@@ -1,0 +1,240 @@
+---
+type: Development Guide
+title: ScalarDB Analytics CLI Command Reference
+description: 'The ScalarDB Analytics CLI uses a hierarchical command structure:'
+resource: https://scalardb.scalar-labs.com/docs/3.16/scalardb-analytics/reference-cli-command/
+tags:
+- scalardb
+- v3.16
+- phase:implement
+- section:develop
+- edition:enterprise-option
+status: stable
+product: scalardb
+product_title: ScalarDB
+version: '3.16'
+patch_version: 3.16.5
+doc_id: scalardb-analytics/reference-cli-command
+lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Analytical Queries
+- Reference
+editions:
+- Enterprise Option
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:29Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.16/scalardb-analytics/reference-cli-command.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-07-27T12:09:14Z'
+---
+
+# ScalarDB Analytics CLI Command Reference
+
+The ScalarDB Analytics CLI uses a hierarchical command structure:
+
+```
+scalardb-analytics-cli <resource> <operation> [options]
+```
+
+Available resources:
+
+- **catalog:** Top-level containers for organizing data sources
+- **data-source:** External databases registered within catalogs
+- **namespace:** Database-specific organizational units
+- **table:** Database tables within namespaces
+
+## Catalog operations
+
+This section describes how to create a new catalog, list all catalogs, show catalog details, and delete a catalog.
+
+### Create a new catalog
+
+Creating a new catalog can be done as follows. Please replace `<catalog-name>` with the name of a catalog you create.
+
+```
+scalardb-analytics-cli catalog create --catalog <catalog-name>
+```
+
+### List all catalogs
+
+Display all existing catalogs in the system.
+
+```
+scalardb-analytics-cli catalog list
+```
+
+### Show catalog details
+
+Display detailed information about a specific catalog. You can specify the catalog either by its name or by its UUID.
+
+To specify by catalog name:
+```
+scalardb-analytics-cli catalog describe --catalog <catalog-name>
+```
+
+Please replace `<catalog-name>` with the name of the catalog you want to describe.
+
+To specify by catalog ID:
+```
+scalardb-analytics-cli catalog describe --catalog-id <catalog-uuid>
+```
+
+Please replace `<catalog-uuid>` with the UUID of the catalog you want to describe.
+
+### Delete a catalog
+
+Remove a catalog from the system. The operation fails if the catalog contains data sources unless you use the `--cascade` option to delete all contents.
+
+To delete an empty catalog:
+```
+scalardb-analytics-cli catalog delete --catalog <catalog-name>
+```
+
+Please replace `<catalog-name>` with the name of the catalog you want to delete.
+
+To delete a catalog and all its contents:
+```
+scalardb-analytics-cli catalog delete --catalog <catalog-name> --cascade
+```
+
+## Data source operations
+
+This section describes how to register a new data source, list all data sources, show data source details, and delete a data source
+
+### Register a new data source
+
+Add a new data source to a catalog using a data source registration file.
+
+```
+scalardb-analytics-cli data-source register --data-source-json <path-to-json>
+```
+
+Please replace `<path-to-json>` with the file path to your data source registration file.
+
+The `register` command requires a data source registration file. The file format is described in the [Data source registration file format](./reference-data-source.md#data-source-registration-file-format) section below.
+
+### List all data sources
+
+Display all data sources within a specific catalog.
+
+```
+scalardb-analytics-cli data-source list --catalog <catalog-name>
+```
+
+Please replace `<catalog-name>` with the name of the catalog whose data sources you want to list.
+
+### Show data source details
+
+Display detailed information about a specific data source. You can specify the data source either by its name within a catalog or by its UUID.
+
+To specify by catalog and data source name:
+```
+scalardb-analytics-cli data-source describe --catalog <catalog-name> --data-source <data-source-name>
+```
+
+Please replace:
+- `<catalog-name>` with the name of the catalog containing the data source
+- `<data-source-name>` with the name of the data source you want to describe
+
+To specify by data source ID:
+```
+scalardb-analytics-cli data-source describe --data-source-id <data-source-uuid>
+```
+
+Please replace `<data-source-uuid>` with the UUID of the data source you want to describe.
+
+### Delete a data source
+
+Remove a data source from a catalog. The operation fails if the data source contains namespaces unless you use the `--cascade` option to delete all contents.
+
+To delete an empty data source:
+```
+scalardb-analytics-cli data-source delete --catalog <catalog-name> --data-source <data-source-name>
+```
+
+Please replace:
+- `<catalog-name>` with the name of the catalog containing the data source
+- `<data-source-name>` with the name of the data source you want to delete
+
+To delete a data source and all its contents:
+```
+scalardb-analytics-cli data-source delete --catalog <catalog-name> --data-source <data-source-name> --cascade
+```
+
+## Namespace operations
+
+This section describes how to list all namespaces and show namespace details.
+
+### List all namespaces
+
+Display all namespaces within a specific catalog.
+
+```
+scalardb-analytics-cli namespace list --catalog <catalog-name>
+```
+
+Please replace:
+- `<catalog-name>` with the name of the catalog whose namespaces you want to list
+
+### Show namespace details
+
+Display detailed information about a specific namespace. You can specify the namespace either by its name within a data source or by its UUID. For nested namespaces, use `.` as a separator (for example, `--namespace parent.child`).
+
+To specify by catalog, data source, and namespace name:
+```
+scalardb-analytics-cli namespace describe --catalog <catalog-name> --data-source <data-source-name> --namespace <namespace-name>
+```
+
+Please replace:
+- `<catalog-name>` with the name of the catalog containing the data source
+- `<data-source-name>` with the name of the data source containing the namespace
+- `<namespace-name>` with the name of the namespace you want to describe
+
+To specify by namespace ID:
+```
+scalardb-analytics-cli namespace describe --namespace-id <namespace-uuid>
+```
+
+Please replace `<namespace-uuid>` with the UUID of the namespace you want to describe.
+
+## Table operations
+
+This section describes how to list all tables and show the table schema.
+
+### List all tables
+
+Display all tables within a specific catalog.
+
+```
+scalardb-analytics-cli table list --catalog <catalog-name>
+```
+
+Please replace:
+- `<catalog-name>` with the name of the catalog containing the data source
+
+### Show the table schema
+
+Display the schema information including all columns for a specific table. You can specify the table either by its name within a namespace or by its UUID. For nested namespaces, use `.` as a separator (for example, `--namespace parent.child`).
+
+To specify by catalog, data source, namespace, and table name:
+```
+scalardb-analytics-cli table describe --catalog <catalog-name> --data-source <data-source-name> --namespace <namespace-name> --table <table-name>
+```
+
+Please replace:
+- `<catalog-name>` with the name of the catalog containing the data source
+- `<data-source-name>` with the name of the data source containing the namespace
+- `<namespace-name>` with the name of the namespace containing the table
+- `<table-name>` with the name of the table you want to describe
+
+To specify by table ID:
+```
+scalardb-analytics-cli table describe --table-id <table-uuid>
+```
+
+Please replace `<table-uuid>` with the UUID of the table you want to describe.

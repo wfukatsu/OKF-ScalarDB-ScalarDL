@@ -1,0 +1,170 @@
+{
+  "products": {
+    "scalardb": {
+      "repo": "docs-scalardb",
+      "repo_sha": "dc5c112650d1543275b5c9de1bf3d1dd6d2d777a",
+      "repo_committed_at": "2026-07-27T12:09:14Z",
+      "latest": "3.18",
+      "version_order": [
+        "3.18",
+        "3.17",
+        "3.16",
+        "3.15",
+        "3.14"
+      ],
+      "versions": {
+        "3.18": {
+          "patch": "3.18.0",
+          "url_path": "latest",
+          "maintenance": "supported",
+          "concepts": 206
+        },
+        "3.17": {
+          "patch": "3.17.3",
+          "url_path": "3.17",
+          "maintenance": "supported",
+          "concepts": 202
+        },
+        "3.16": {
+          "patch": "3.16.5",
+          "url_path": "3.16",
+          "maintenance": "supported",
+          "concepts": 204
+        },
+        "3.15": {
+          "patch": "3.15.8",
+          "url_path": "3.15",
+          "maintenance": "unmaintained",
+          "concepts": 193
+        },
+        "3.14": {
+          "patch": "3.14.6",
+          "url_path": "3.14",
+          "maintenance": "unmaintained",
+          "concepts": 178
+        }
+      }
+    },
+    "scalardl": {
+      "repo": "docs-scalardl",
+      "repo_sha": "eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4",
+      "repo_committed_at": "2026-07-24T17:50:50Z",
+      "latest": "3.13",
+      "version_order": [
+        "3.13",
+        "3.12",
+        "3.11",
+        "3.10"
+      ],
+      "versions": {
+        "3.13": {
+          "patch": "3.13.0",
+          "url_path": "latest",
+          "maintenance": "supported",
+          "concepts": 143
+        },
+        "3.12": {
+          "patch": "3.12.3",
+          "url_path": "3.12",
+          "maintenance": "supported",
+          "concepts": 141
+        },
+        "3.11": {
+          "patch": "3.11.3",
+          "url_path": "3.11",
+          "maintenance": "supported",
+          "concepts": 132
+        },
+        "3.10": {
+          "patch": "3.10.5",
+          "url_path": "3.10",
+          "maintenance": "unmaintained",
+          "concepts": 132
+        }
+      }
+    },
+    "scalardb-community": {
+      "repo": "docs-scalardb-community",
+      "repo_sha": "71d199cb0df1c638bd7e305b64fa09fc7236e5c4",
+      "repo_committed_at": "2025-04-07T11:32:02Z",
+      "latest": "3.13",
+      "version_order": [
+        "3.13",
+        "3.12",
+        "3.11",
+        "3.10",
+        "3.9",
+        "3.8",
+        "3.7",
+        "3.6",
+        "3.5",
+        "3.4"
+      ],
+      "versions": {
+        "3.13": {
+          "patch": null,
+          "url_path": "latest",
+          "maintenance": "supported",
+          "concepts": 35
+        },
+        "3.12": {
+          "patch": null,
+          "url_path": "3.12",
+          "maintenance": "supported",
+          "concepts": 34
+        },
+        "3.11": {
+          "patch": null,
+          "url_path": "3.11",
+          "maintenance": "supported",
+          "concepts": 29
+        },
+        "3.10": {
+          "patch": null,
+          "url_path": "3.10",
+          "maintenance": "supported",
+          "concepts": 28
+        },
+        "3.9": {
+          "patch": null,
+          "url_path": "3.9",
+          "maintenance": "supported",
+          "concepts": 28
+        },
+        "3.8": {
+          "patch": null,
+          "url_path": "3.8",
+          "maintenance": "supported",
+          "concepts": 24
+        },
+        "3.7": {
+          "patch": null,
+          "url_path": "3.7",
+          "maintenance": "unmaintained",
+          "concepts": 22
+        },
+        "3.6": {
+          "patch": null,
+          "url_path": "3.6",
+          "maintenance": "unmaintained",
+          "concepts": 23
+        },
+        "3.5": {
+          "patch": null,
+          "url_path": "3.5",
+          "maintenance": "unmaintained",
+          "concepts": 22
+        },
+        "3.4": {
+          "patch": null,
+          "url_path": "3.4",
+          "maintenance": "unmaintained",
+          "concepts": 24
+        }
+      }
+    }
+  },
+  "okf_version": "0.2",
+  "generator": "process:okf-build/1.0.0",
+  "last_run": "2026-07-28T00:57:31Z"
+}

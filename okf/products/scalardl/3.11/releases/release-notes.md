@@ -1,0 +1,129 @@
+---
+type: Concept
+title: ScalarDL 3.11 Release Notes
+description: This page includes a list of release notes for ScalarDL 3.11.
+resource: https://scalardl.scalar-labs.com/docs/3.11/releases/release-notes/
+tags:
+- scalardl
+- v3.11
+- phase:design
+- section:about-scalardl
+- edition:community
+- edition:enterprise
+status: stable
+product: scalardl
+product_title: ScalarDL
+version: '3.11'
+patch_version: 3.11.3
+doc_id: releases/release-notes
+lifecycle_phase: design
+breadcrumb:
+- About ScalarDL
+editions:
+- Community
+- Enterprise
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:08Z'
+sources:
+- id: docs-scalardl
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4/versioned_docs/version-3.11/releases/release-notes.mdx
+  title: ScalarDL documentation source (MDX)
+  author: process:scalar-labs/docs-scalardl
+  last_modified: '2026-07-24T17:50:50Z'
+---
+
+# ScalarDL 3.11 Release Notes
+
+This page includes a list of release notes for ScalarDL 3.11.
+
+## v3.11.3
+
+**Release date:** March 26, 2026
+
+### Summary
+
+This release includes several bug fixes and vulnerability fixes.
+
+### Community and Enterprise editions
+
+#### Bug fixes
+
+- Fixed the parameter name for the client entity ID. ([#376](https://github.com/scalar-labs/scalardl/pull/376))
+- Fixed a bug where users cannot register a custom ValidateLedger contract after bootstrapping. ([#404](https://github.com/scalar-labs/scalardl/pull/404))
+- Fixed [CVE-2025-61726](https://github.com/advisories/GHSA-gm9r-q53w-2gh4 "CVE-2025-61726"), [CVE-2025-61728](https://github.com/advisories/GHSA-g9q4-qjx4-2v7q "CVE-2025-61728"), [CVE-2025-61729](https://github.com/advisories/GHSA-7c64-f9jr-v9h2 "CVE-2025-61729") and [CVE-2025-68121](https://github.com/advisories/GHSA-h355-32pf-p2xm "CVE-2025-68121"). ([#472](https://github.com/scalar-labs/scalardl/pull/472))
+
+### Enterprise edition
+
+#### Bug fixes
+
+- Fixed Gateway exception handling.
+- Fixed a SLF4J version conflict in BYOL Docker images.
+
+## v3.11.2
+
+**Release date:** December 26, 2025
+
+### Summary
+
+This release includes several bug fixes and vulnerability fixes.
+
+### Community and Enterprise editions
+
+#### Bug fixes
+
+- Fixed bugs to handle FLOAT and BLOB data types in the PutToMutable function. ([#297](https://github.com/scalar-labs/scalardl/pull/297))
+- Fixed NullPointerException when a client is misconfigured with a digital signature. ([#302](https://github.com/scalar-labs/scalardl/pull/302))
+- Fixed status code handling. ([#323](https://github.com/scalar-labs/scalardl/pull/323))
+- Fixed [CVE-2025-47907](https://github.com/advisories/GHSA-j5pm-7495-qmr3 "CVE-2025-47907") and [CVE-2025-58183](https://github.com/advisories/GHSA-9gcr-gp5f-jw27 "CVE-2025-58183"). ([#364](https://github.com/scalar-labs/scalardl/pull/364))
+- Fixed [CVE-2025-55163](https://github.com/advisories/GHSA-prj3-ccx8-p6x4 "CVE-2025-55163"). ([#366](https://github.com/scalar-labs/scalardl/pull/366))
+
+## v3.11.1
+
+**Release date:** October 8, 2025
+
+### Summary
+
+This release has several improvements, bug fixes, and vulnerability fixes.
+
+### Community edition
+
+#### Improvements
+
+- Supported time-related data types in the generic function. ([#200](https://github.com/scalar-labs/scalardl/pull/200))
+
+#### Bug fixes
+
+- Fixed the state management behavior for read-only transactions. ([#181](https://github.com/scalar-labs/scalardl/pull/181))
+- Fixed certificate and secret key version check and messages. ([#202](https://github.com/scalar-labs/scalardl/pull/202))
+- Fixed Ledger configuration validation for correct authentication settings. ([#222](https://github.com/scalar-labs/scalardl/pull/222))
+- Fixed `IS NULL` and `IS NOT NULL` conditions handling in table-oriented generic contracts. ([#238](https://github.com/scalar-labs/scalardl/pull/238))
+- Fixed [CVE-2025-22874](https://github.com/advisories/GHSA-6f52-wpx2-hvf2 "CVE-2025-22874"). ([#262](https://github.com/scalar-labs/scalardl/pull/262))
+- Fixed [CVE-2025-49146](https://github.com/advisories/GHSA-hq9p-pm7w-8p54 "CVE-2025-49146"). ([#286](https://github.com/scalar-labs/scalardl/pull/286))
+
+### Enterprise edition
+
+#### Bug fixes
+
+- Fixed Auditor configuration validation for correct authentication settings.
+- Fixed duplicated read lock.
+- Fixed [CVE-2025-22874](https://github.com/advisories/GHSA-6f52-wpx2-hvf2 "CVE-2025-22874").
+- Fixed [CVE-2025-49146](https://github.com/advisories/GHSA-hq9p-pm7w-8p54 "CVE-2025-49146").
+
+## v3.11.0
+
+**Release date:** June 18, 2025
+
+### Summary
+
+This release introduces enhancements, such as table-oriented generic contracts, and includes several bug fixes. For detailed changes, see the following.
+
+### Enhancements
+
+- Added table-oriented generic contracts. ([#108](https://github.com/scalar-labs/scalardl/pull/108), [#119](https://github.com/scalar-labs/scalardl/pull/119), [#124](https://github.com/scalar-labs/scalardl/pull/124), [#127](https://github.com/scalar-labs/scalardl/pull/127), [#138](https://github.com/scalar-labs/scalardl/pull/138), [#139](https://github.com/scalar-labs/scalardl/pull/139), [#141](https://github.com/scalar-labs/scalardl/pull/141), [#149](https://github.com/scalar-labs/scalardl/pull/149), [#150](https://github.com/scalar-labs/scalardl/pull/150), [#165](https://github.com/scalar-labs/scalardl/pull/165))
+
+### Bug fixes
+
+- Fixed [CVE-2024-45337](https://github.com/advisories/GHSA-v778-237x-gjrc "CVE-2024-45337"). ([#107](https://github.com/scalar-labs/scalardl/pull/107))
+- Fixed [CVE-2025-22869](https://github.com/advisories/GHSA-hcg3-q754-cr77 "CVE-2025-22869"). ([#142](https://github.com/scalar-labs/scalardl/pull/142))
+- Fixed the parameter name for the authentication method. ([#148](https://github.com/scalar-labs/scalardl/pull/148))

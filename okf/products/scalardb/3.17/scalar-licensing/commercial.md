@@ -1,0 +1,62 @@
+---
+type: Reference
+title: How to Configure a Commercial License Key
+description: To run ScalarDB Enterprise Standard/Premium or ScalarDB Analytics, you must create a .properties file and add your commercial license key and a certificate to the file. In your .properties file, copy one of the following configurations,...
+resource: https://scalardb.scalar-labs.com/docs/3.17/scalar-licensing/commercial/
+tags:
+- scalardb
+- v3.17
+- phase:implement
+- section:reference
+- edition:enterprise-standard
+- edition:enterprise-premium
+- edition:enterprise-option
+status: stable
+product: scalardb
+product_title: ScalarDB
+version: '3.17'
+patch_version: 3.17.3
+doc_id: scalar-licensing/commercial
+lifecycle_phase: implement
+breadcrumb:
+- Reference
+- Configure a License Key
+editions:
+- Enterprise Standard
+- Enterprise Premium
+- Enterprise Option
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:26Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.17/scalar-licensing/commercial.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-07-27T12:09:14Z'
+---
+
+# How to Configure a Commercial License Key
+
+To run ScalarDB Enterprise Standard/Premium or ScalarDB Analytics, you must create a `.properties` file and add your commercial license key and a certificate to the file. In your `.properties` file, copy one of the following configurations, based on the product you're using, and paste the contents in the `.properties` file, replacing `<YOUR_LICENSE_KEY>` with your license key.
+
+:::note
+
+- If you don't have a license key, please see [How to Configure a Trial License Key](./trial.md) for ready-to-use keys or [contact us](https://www.scalar-labs.com/contact) to obtain a commercial license.
+- The licensing mechanism for ScalarDB verifies the signature, expiration date, and edition of your license key. However, it doesn't check deployment details such as the number of running Pods or contract-specific limits. Because of this, you may technically be able to deploy more Pods than your contract allows, so make sure you use the number you are allowed.
+
+:::
+
+## ScalarDB Enterprise Standard/Premium
+
+```properties
+scalar.db.cluster.node.licensing.license_key=<YOUR_LICENSE_KEY>
+scalar.db.cluster.node.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
+```
+
+## ScalarDB Analytics
+
+```apacheconf
+spark.sql.catalog.scalardb_catalog.license.key <YOUR_LICENSE_KEY>
+spark.sql.catalog.scalardb_catalog.license.cert_pem -----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
+```

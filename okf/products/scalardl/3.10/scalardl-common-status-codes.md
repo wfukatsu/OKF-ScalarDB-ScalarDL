@@ -1,0 +1,843 @@
+---
+type: Troubleshooting
+title: ScalarDL Common Error Codes
+description: This page provides a list of error codes common across ScalarDL.
+resource: https://scalardl.scalar-labs.com/docs/3.10/scalardl-common-status-codes/
+tags:
+- scalardl
+- v3.10
+- phase:operate
+- section:troubleshoot
+- edition:community
+- edition:enterprise
+- unmaintained
+status: deprecated
+product: scalardl
+product_title: ScalarDL
+version: '3.10'
+patch_version: 3.10.5
+doc_id: scalardl-common-status-codes
+lifecycle_phase: operate
+breadcrumb:
+- Troubleshoot
+editions:
+- Community
+- Enterprise
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:09Z'
+sources:
+- id: docs-scalardl
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4/versioned_docs/version-3.10/scalardl-common-status-codes.mdx
+  title: ScalarDL documentation source (MDX)
+  author: process:scalar-labs/docs-scalardl
+  last_modified: '2026-07-24T17:50:50Z'
+---
+
+# ScalarDL Common Error Codes
+
+This page provides a list of error codes common across ScalarDL.
+
+## Error code classes and descriptions
+
+| Class             | Description                              |
+|:------------------|:-----------------------------------------|
+| `DL-COMMON-3xxxx` | Errors for the validation error category |
+| `DL-COMMON-4xxxx` | Errors for the user error category       |
+| `DL-COMMON-5xxxx` | Errors for the internal error category   |
+
+## `DL-COMMON-3xxxx` status codes
+
+The following are status codes and messages for the validation error category.
+
+### `DL-COMMON-302001`
+
+**Message**
+
+```markdown
+The format of the contract ID is invalid.
+```
+
+**Solution**
+
+```markdown
+Data or program tampering, or a software bug, may have occurred. Contact your system administrator to check for any signs of malicious activity.
+```
+
+### `DL-COMMON-302002`
+
+**Message**
+
+```markdown
+Contract validation failed. A bug might exist, or tampering might have occurred.
+```
+
+**Solution**
+
+```markdown
+Data or program tampering, or a software bug, may have occurred. Contact your system administrator to check for any signs of malicious activity.
+```
+
+### `DL-COMMON-305001`
+
+**Message**
+
+```markdown
+An unexpected record value is observed. A bug might exist, or tampering might have occurred. Details: %s
+```
+
+**Solution**
+
+```markdown
+Data or program tampering, or a software bug, may have occurred. Contact your system administrator to check for any signs of malicious activity.
+```
+
+## `DL-COMMON-4xxxx` status codes
+
+The following are status codes and messages for the user error category.
+
+### `DL-COMMON-400001`
+
+**Message**
+
+```markdown
+Signing failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Verify that your private key is valid and accessible. Check the error details for specific issues.
+```
+
+### `DL-COMMON-400002`
+
+**Message**
+
+```markdown
+Validating signature failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Verify that the certificate matches the private key used for signing and that both are valid.
+```
+
+### `DL-COMMON-400003`
+
+**Message**
+
+```markdown
+The request signature can't be validated.
+```
+
+**Solution**
+
+```markdown
+Verify that the certificate used for signing the request is registered and matches the private key.
+```
+
+### `DL-COMMON-400004`
+
+**Message**
+
+```markdown
+The proof signature can't be validated.
+```
+
+**Solution**
+
+```markdown
+Verify that the proof configuration is correct and that the certificate used for signing is valid.
+```
+
+### `DL-COMMON-401001`
+
+**Message**
+
+```markdown
+Loading the key failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+If using a key file, verify that it exists at the specified path, is readable, and has the correct format. If using a PEM-formatted string, verify that the key has the correct format.
+```
+
+### `DL-COMMON-401002`
+
+**Message**
+
+```markdown
+Loading the certificate failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+If using a certificate file, verify that it exists at the specified path, is readable, and has the correct format. If using a PEM-formatted string, verify that the certificate has the correct format.
+```
+
+### `DL-COMMON-401003`
+
+**Message**
+
+```markdown
+Creating a cipher key failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Verify that the cipher configuration is correct and that the key material is valid.
+```
+
+### `DL-COMMON-401004`
+
+**Message**
+
+```markdown
+Invalid private key. File: %s
+```
+
+**Solution**
+
+```markdown
+Provide a valid private key file in PEM format at the specified path.
+```
+
+### `DL-COMMON-401005`
+
+**Message**
+
+```markdown
+Invalid certificate. File: %s
+```
+
+**Solution**
+
+```markdown
+Provide a valid certificate file in PEM format at the specified path.
+```
+
+### `DL-COMMON-401006`
+
+**Message**
+
+```markdown
+Reading the private key failed. File: %s; Details: %s
+```
+
+**Solution**
+
+```markdown
+Verify that the private key file exists, is readable, and has the correct permissions and format.
+```
+
+### `DL-COMMON-401007`
+
+**Message**
+
+```markdown
+Reading the certificate failed. File: %s; Details: %s
+```
+
+**Solution**
+
+```markdown
+Verify that the certificate file exists, is readable, and has the correct permissions and format.
+```
+
+### `DL-COMMON-401008`
+
+**Message**
+
+```markdown
+Creating a key store failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Verify that the key store configuration is correct and that all required files are accessible.
+```
+
+### `DL-COMMON-402001`
+
+**Message**
+
+```markdown
+Loading the contract failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Verify that the contract class is valid and all dependencies are available. Check the error details for specific issues.
+```
+
+### `DL-COMMON-403001`
+
+**Message**
+
+```markdown
+The specified certificate is not found.
+```
+
+**Solution**
+
+```markdown
+Before using the certificate, register it by using the register-cert command.
+```
+
+### `DL-COMMON-404001`
+
+**Message**
+
+```markdown
+The specified contract is not found.
+```
+
+**Solution**
+
+```markdown
+Before executing the contract, register it by using the register-contract command.
+```
+
+### `DL-COMMON-405001`
+
+**Message**
+
+```markdown
+The specified certificate is already registered.
+```
+
+**Solution**
+
+```markdown
+Use the existing certificate or register it with a new version number.
+```
+
+### `DL-COMMON-406001`
+
+**Message**
+
+```markdown
+The specified contract is already registered.
+```
+
+**Solution**
+
+```markdown
+Use the existing contract or register it with a different contract ID.
+```
+
+### `DL-COMMON-406002`
+
+**Message**
+
+```markdown
+The specified contract binary name has been already registered with a different byte code.
+```
+
+**Solution**
+
+```markdown
+Use a different contract ID or class name to register this version of the contract.
+```
+
+### `DL-COMMON-413001`
+
+**Message**
+
+```markdown
+The specified secret is already registered.
+```
+
+**Solution**
+
+```markdown
+Use the existing secret or register it with a new version number.
+```
+
+### `DL-COMMON-414001`
+
+**Message**
+
+```markdown
+The specified value of the property '%s' is not a number. Value: %s
+```
+
+**Solution**
+
+```markdown
+Set the property to a valid numeric value in your configuration.
+```
+
+### `DL-COMMON-414002`
+
+**Message**
+
+```markdown
+The specified value of the property '%s' is not a boolean. Value: %s
+```
+
+**Solution**
+
+```markdown
+Set the property to 'true' or 'false' in your configuration.
+```
+
+### `DL-COMMON-414003`
+
+**Message**
+
+```markdown
+Reading the file failed. File: %s
+```
+
+**Solution**
+
+```markdown
+Verify that the file exists at the specified path and is readable.
+```
+
+### `DL-COMMON-414004`
+
+**Message**
+
+```markdown
+Please set your license key to %s.
+```
+
+**Solution**
+
+```markdown
+Set your license key to the specified configuration property.
+```
+
+### `DL-COMMON-414005`
+
+**Message**
+
+```markdown
+Please set your certificate for checking the corresponding license key to %s or %s.
+```
+
+**Solution**
+
+```markdown
+Set your certificate to one of the specified configuration properties.
+```
+
+### `DL-COMMON-414006`
+
+**Message**
+
+```markdown
+The license key is not for the product '%s'. Please set the correct license key.
+```
+
+**Solution**
+
+```markdown
+Set the correct license key for the product in your configuration.
+```
+
+### `DL-COMMON-414007`
+
+**Message**
+
+```markdown
+The license type of the license key must be ENTERPRISE or TRIAL. Please set the correct license key.
+```
+
+**Solution**
+
+```markdown
+Set a valid ENTERPRISE or TRIAL license key in your configuration.
+```
+
+### `DL-COMMON-414008`
+
+**Message**
+
+```markdown
+The port and privileged port must be greater than or equal to zero.
+```
+
+**Solution**
+
+```markdown
+Set the port and privileged port to valid values (>= 0) in your configuration.
+```
+
+### `DL-COMMON-414009`
+
+**Message**
+
+```markdown
+The private key and certificate are required.
+```
+
+**Solution**
+
+```markdown
+Provide both the private key and certificate in your configuration.
+```
+
+### `DL-COMMON-414010`
+
+**Message**
+
+```markdown
+The certificate version must be greater than or equal to zero.
+```
+
+**Solution**
+
+```markdown
+Set the certificate version to a value greater than zero.
+```
+
+### `DL-COMMON-414011`
+
+**Message**
+
+```markdown
+A secret key is required for HMAC authentication.
+```
+
+**Solution**
+
+```markdown
+Provide a secret key in your configuration for HMAC authentication.
+```
+
+### `DL-COMMON-414012`
+
+**Message**
+
+```markdown
+The secret version for HMAC authentication must be greater than or equal to zero.
+```
+
+**Solution**
+
+```markdown
+Set the secret version to a value greater than zero.
+```
+
+### `DL-COMMON-414013`
+
+**Message**
+
+```markdown
+The grpc deadline duration must be greater than or equal to zero.
+```
+
+**Solution**
+
+```markdown
+Set the gRPC deadline duration to a value greater than or equal to zero in your configuration.
+```
+
+### `DL-COMMON-414014`
+
+**Message**
+
+```markdown
+The grpc max inbound message size must be greater than or equal to zero.
+```
+
+**Solution**
+
+```markdown
+Set the gRPC max inbound message size to a value greater than or equal to zero in your configuration.
+```
+
+### `DL-COMMON-414015`
+
+**Message**
+
+```markdown
+The grpc max inbound metadata size must be greater than or equal to zero.
+```
+
+**Solution**
+
+```markdown
+Set the gRPC max inbound metadata size to a value greater than or equal to zero in your configuration.
+```
+
+### `DL-COMMON-414016`
+
+**Message**
+
+```markdown
+The authentication method name is invalid. Name: %s
+```
+
+**Solution**
+
+```markdown
+Set the authentication method to a valid value (like 'digital-signature' or 'hmac') in your configuration.
+```
+
+### `DL-COMMON-414017`
+
+**Message**
+
+```markdown
+The argument format is illegal.
+```
+
+**Solution**
+
+```markdown
+Provide the argument in the correct format. Check the documentation for the expected format.
+```
+
+### `DL-COMMON-414018`
+
+**Message**
+
+```markdown
+The deserialization type is not supported. Type: %s
+```
+
+**Solution**
+
+```markdown
+Use a supported deserialization type. Check the documentation for valid types.
+```
+
+### `DL-COMMON-415001`
+
+**Message**
+
+```markdown
+The specified secret is not found.
+```
+
+**Solution**
+
+```markdown
+Before using the secret, register it by using the register-secret command.
+```
+
+## `DL-COMMON-5xxxx` status codes
+
+The following are status codes and messages for the internal error category.
+
+### `DL-COMMON-500001`
+
+**Message**
+
+```markdown
+Binding the certificate failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500002`
+
+**Message**
+
+```markdown
+Unbinding the certificate failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500003`
+
+**Message**
+
+```markdown
+Getting the certificate failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500004`
+
+**Message**
+
+```markdown
+Binding the secret key failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500005`
+
+**Message**
+
+```markdown
+Unbinding the secret key failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500006`
+
+**Message**
+
+```markdown
+Getting the secret key failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500007`
+
+**Message**
+
+```markdown
+Binding the contract failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500008`
+
+**Message**
+
+```markdown
+Getting the contract failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-500009`
+
+**Message**
+
+```markdown
+Scanning the contracts failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the database connection and ensure the database is accessible. Review the error details for more information.
+```
+
+### `DL-COMMON-502001`
+
+**Message**
+
+```markdown
+Serializing the specified json failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the error details and verify that the data structure is valid for JSON serialization.
+```
+
+### `DL-COMMON-502002`
+
+**Message**
+
+```markdown
+Deserializing the specified json string failed. Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the error details and verify that the JSON string is valid and well-formed.
+```
+
+### `DL-COMMON-502003`
+
+**Message**
+
+```markdown
+The required fields are not specified.
+```
+
+**Solution**
+
+```markdown
+Provide all required fields in your request.
+```
+
+### `DL-COMMON-502004`
+
+**Message**
+
+```markdown
+The metadata is not available since the asset has not been committed yet.
+```
+
+**Solution**
+
+```markdown
+Commit the asset before accessing its metadata.
+```
+
+### `DL-COMMON-502005`
+
+**Message**
+
+```markdown
+The specified transaction state is invalid.
+```
+
+**Solution**
+
+```markdown
+Check the error details in the logs and verify the transaction state.
+```
+
+### `DL-COMMON-502006`
+
+**Message**
+
+```markdown
+The contract type or instance is not supported.
+```
+
+**Solution**
+
+```markdown
+Check the error details in the logs and verify that the contract type is supported.
+```

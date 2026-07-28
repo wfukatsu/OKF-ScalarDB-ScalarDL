@@ -1,0 +1,278 @@
+---
+type: Development Guide
+title: ScalarDL Benchmarking Tools
+description: This tutorial describes how to run benchmarking tools for ScalarDL. Benchmarking is helpful for evaluating how a system performs against a set of standards.
+resource: https://scalardl.scalar-labs.com/docs/3.11/scalardl-benchmarks/README/
+tags:
+- scalardl
+- v3.11
+- phase:implement
+- section:develop
+- edition:community
+- edition:enterprise
+status: stable
+product: scalardl
+product_title: ScalarDL
+version: '3.11'
+patch_version: 3.11.3
+doc_id: scalardl-benchmarks/README
+lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Advanced Configurations and Operations
+editions:
+- Community
+- Enterprise
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:08Z'
+sources:
+- id: docs-scalardl
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4/versioned_docs/version-3.11/scalardl-benchmarks/README.mdx
+  title: ScalarDL documentation source (MDX)
+  author: process:scalar-labs/docs-scalardl
+  last_modified: '2026-07-24T17:50:50Z'
+---
+
+# ScalarDL Benchmarking Tools
+
+This tutorial describes how to run benchmarking tools for ScalarDL. Benchmarking is helpful for evaluating how a system performs against a set of standards.
+
+## Benchmark workloads
+
+- SmallBank
+- TPC-C (New-Order and Payment transactions only)
+- YCSB (Workloads A, C, and F)
+
+## Prerequisites
+
+- One of the following Java Development Kits (JDKs):
+
+- **[Oracle JDK](https://www.oracle.com/java/):** 8 (LTS versions)
+- **OpenJDK distribution ([Eclipse Temurin](https://adoptium.net/temurin/), [Amazon Corretto](https://aws.amazon.com/corretto/), or [Microsoft Build of OpenJDK](https://learn.microsoft.com/en-us/java/openjdk/)):** 8 (LTS versions)
+
+- Gradle
+- [Kelpie](https://github.com/scalar-labs/kelpie)
+  - Kelpie is a framework for performing end-to-end testing, such as system benchmarking and verification. Get the latest version from [Kelpie Releases](https://github.com/scalar-labs/kelpie/releases), and unzip the archive file.
+
+### Set up your environment
+
+The benchmarking tools require the following:
+
+- A client to execute benchmarking
+- A target Ledger server
+- A target Auditor server (optional)
+
+Set up the above components, and then configure the properties for client, Ledger, and Auditor (optional) according to the following guides:
+
+- [Get Started with ScalarDL Ledger](../getting-started.md)
+- [Run a ScalarDL Application Through ScalarDL Ledger and Auditor](../how-to-run-applications-with-auditor.md)
+
+:::note
+
+You don't need to download the client SDK and manually register your certificate. As described later in this tutorial, the benchmarking tools will automatically register the required certificate and contracts.
+
+:::
+
+## Set up the benchmarking tools
+
+The following sections describe how to set up the benchmarking tools.
+
+### Clone the ScalarDL benchmarks repository
+
+Open **Terminal**, then clone the ScalarDL benchmarks repository by running the following command:
+
+```console
+git clone https://github.com/scalar-labs/scalardl-benchmarks
+```
+
+Then, go to the directory that contains the benchmarking files by running the following command:
+
+```console
+cd scalardl-benchmarks
+```
+
+### Change the client SDK version
+
+Check the `build.gradle` file to see if the ScalarDL Java Client SDK version is a supported version for the target ScalarDL Ledger and Auditor, based on [ScalarDL compatibility with client SDKs](../compatibility.md). If it is not supported, change `<VERSION>` in the following part of the `build.gradle` file to a version like `X.Y.Z` (for example, `3.11.0`).
+
+```gradle
+dependencies {
+    implementation group: 'com.google.inject', name: 'guice', version: '5.0.1'
+    implementation group: 'com.scalar-labs', name: 'kelpie', version: '1.2.3'
+    implementation group: 'com.scalar-labs', name: 'scalardl-java-client-sdk', version: '<VERSION>'
+    implementation group: 'io.github.resilience4j', name: 'resilience4j-retry', version: '1.3.1'
+}
+```
+
+### Build the tools
+
+To build the benchmarking tools, run the following command:
+
+```console
+./gradlew shadowJar
+```
+
+### Prepare a benchmarking configuration file
+
+To run a benchmark, you must prepare a benchmarking configuration file. The configuration file requires at least the locations of the workload modules to run and the client configuration.
+
+The following is an example configuration for running the TPC-C benchmark. The configurations under `client_config` should match the [benchmarking environment that you previously set up](#set-up-your-environment).
+
+:::note
+
+Alternatively, instead of specifying each client configuration item in the `.toml` file, you can use the ScalarDL client properties file. If `config_file` is specified (commented out below), all other configurations under `client_config` will be ignored.
+
+:::
+
+```toml
+[modules]
+[modules.preprocessor]
+name = "com.scalar.dl.benchmarks.tpcc.TpccLoader"
+path = "./build/libs/scalardl-benchmarks-all.jar"
+[modules.processor]
+name = "com.scalar.dl.benchmarks.tpcc.TpccBench"
+path = "./build/libs/scalardl-benchmarks-all.jar"
+[modules.postprocessor]
+name = "com.scalar.dl.benchmarks.tpcc.TpccReporter"
+path = "./build/libs/scalardl-benchmarks-all.jar"
+
+[client_config]
+config_file = "/<PATH_TO>/client.properties"
+#ledger_host = "localhost"
+#auditor_host = "localhost"
+#auditor_enabled = "true"
+#cert_holder_id = "test_holder"
+#certificate = "/<PATH_TO>/client.pem"
+#private_key = "/<PATH_TO>/client-key.pem"
+```
+
+You can define parameters to pass to modules in the configuration file. For details, see the sample configuration files below and available parameters in [Common parameters](#common-parameters):
+
+- **SmallBank:** [`smallbank-benchmark-config.toml`](https://github.com/scalar-labs/scalardl-benchmarks/blob/master/smallbank-benchmark-config.toml)
+- **TPC-C:** [`tpcc-benchmark-config.toml`](https://github.com/scalar-labs/scalardl-benchmarks/blob/master/tpcc-benchmark-config.toml)
+- **YCSB:** [`ycsb-benchmark-config.toml`](https://github.com/scalar-labs/scalardl-benchmarks/blob/master/ycsb-benchmark-config.toml)
+
+## Run a benchmark
+
+Select a benchmark, and follow the instructions to run the benchmark.
+
+**SmallBank**
+
+To run the SmallBank benchmark, run the following command, replacing `<PATH_TO_KELPIE>` with the path to the Kelpie directory:
+
+```console
+/<PATH_TO_KELPIE>/bin/kelpie --config smallbank-benchmark-config.toml
+```
+
+**TPC-C**
+
+To run the TPC-C benchmark, run the following command, replacing `<PATH_TO_KELPIE>` with the path to the Kelpie directory:
+
+```console
+/<PATH_TO_KELPIE>/bin/kelpie --config tpcc-benchmark-config.toml
+```
+
+**YCSB**
+
+To run the YCSB benchmark, run the following command, replacing `<PATH_TO_KELPIE>` with the path to the Kelpie directory:
+
+```console
+/<PATH_TO_KELPIE>/bin/kelpie --config ycsb-benchmark-config.toml
+```
+
+In addition, the following options are available:
+
+- `--only-pre`. Only registers certificates and contracts and loads the data.
+- `--except-pre` Runs a job without registering certificates and contracts and loading the data.
+
+You can run the benchmark several times by using the `--except-pre` option after the initialization is done by using the `--only-pre` option.
+
+## Common parameters
+
+The following parameters are common to all workloads.
+
+### `concurrency`
+
+- **Description:** Number of worker threads that concurrently execute benchmark transactions against the database. This parameter controls the level of parallelism during the actual benchmark execution phase. Increasing this value simulates more concurrent client accesses and higher workload intensity.
+- **Default value:** `1`
+
+### `run_for_sec`
+
+- **Description:** Duration of the benchmark execution phase (in seconds). This parameter defines how long the benchmark will run and submit transactions to the database.
+- **Default value:** `60`
+
+### `ramp_for_sec`
+
+- **Description:** Duration of the ramp-up period before the benchmark measurement phase begins (in seconds). During this warm-up period, the system executes transactions but does not record performance metrics. This allows the system to reach a steady state before collecting benchmark results.
+- **Default value:** `0`
+
+## Workload-specific parameters
+
+Select a workload to see its available parameters.
+
+**SmallBank**
+
+### `num_accounts`
+
+- **Description:** Number of bank accounts to create for the benchmark workload. This parameter determines the size of the dataset and affects the working-set size.
+- **Default value:** `100000`
+
+### `load_concurrency`
+
+- **Description:** Number of parallel threads used to load initial benchmark data into the database. This parameter controls how fast the data-loading phase completes. Increasing this value can significantly reduce data-loading time for large datasets. This is separate from the `concurrency` parameter used during benchmark execution.
+- **Default value:** `1`
+
+### `load_batch_size`
+
+- **Description:** Number of accounts to insert within a single transaction during the initial data-loading phase. Larger batch sizes can improve loading performance by reducing the number of transactions, but may increase the execution time of each transaction.
+- **Default value:** `1`
+
+**TPC-C**
+
+### `num_warehouses`
+
+- **Description:** Number of warehouses to create for the TPC-C benchmark workload. This value is the scale factor that determines the dataset size. Increasing this value creates a larger working set and enables various enterprise-scale testing.
+- **Default value:** `1`
+
+### `rate_payment`
+
+- **Description:** Percentage of Payment transactions in the transaction mix, with the remainder being New-Order transactions. For example, a value of `50` means 50% of transactions will be Payment transactions and 50% will be New-Order transactions.
+- **Default value:** `50`
+
+### `load_concurrency`
+
+- **Description:** Number of parallel threads used to load initial benchmark data into the database. This parameter controls how fast the data-loading phase completes. Increasing this value can significantly reduce data-loading time, especially for larger numbers of warehouses. This is separate from the `concurrency` parameter used during benchmark execution.
+- **Default value:** `1`
+
+**YCSB**
+
+### `record_count`
+
+- **Description:** Number of records to create for the YCSB benchmark workload. This parameter determines the size of the dataset and affects the working-set size during benchmark execution.
+- **Default value:** `1000`
+
+### `payload_size`
+
+- **Description:** Size of the payload data (in bytes) for each record. This parameter controls the amount of data stored per record and affects database storage, memory usage, and I/O characteristics.
+- **Default value:** `1000`
+
+### `ops_per_tx`
+
+- **Description:** Number of read or write operations to execute within a single transaction. This parameter affects transaction size and execution time. Higher values create longer-running transactions.
+- **Default value:** `2`
+
+### `workload`
+
+- **Description:** YCSB workload type that defines the operation mix: **A** (50% reads, 50% read-modify-write operations), **C** (100% reads), or **F** (100% read-modify-write operations). Note that the workload A in this benchmark uses read-modify-write operations instead of pure blind writes because ScalarDL prohibits the blind writes. Each workload type simulates different application access patterns.
+- **Default value:** `A`
+
+### `load_concurrency`
+
+- **Description:** Number of parallel threads used to load initial benchmark data into the database. This parameter controls how fast the data-loading phase completes. Increasing this value can significantly reduce data-loading time for large datasets. This is separate from the `concurrency` parameter used during benchmark execution.
+- **Default value:** `1`
+
+### `load_batch_size`
+
+- **Description:** Number of records to insert within a single transaction during the initial data-loading phase. Larger batch sizes can improve loading performance by reducing the number of transactions, but may increase the execution time of each transaction.
+- **Default value:** `1`

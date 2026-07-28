@@ -1,0 +1,178 @@
+---
+type: Deployment Guide
+title: How to Create Private Key and Certificate Files for TLS Connections in Scalar Products
+description: This guide explains how to create private key and certificate files for TLS connections in ScalarDB Cluster and ScalarDL. When you enable the TLS feature, you must prepare private key and certificate files.
+resource: https://scalardl.scalar-labs.com/docs/3.11/scalar-kubernetes/HowToCreateKeyAndCertificateFiles/
+tags:
+- scalardl
+- v3.11
+- phase:operate
+- section:deploy
+- edition:enterprise-standard
+- edition:enterprise-premium
+status: stable
+product: scalardl
+product_title: ScalarDL
+version: '3.11'
+patch_version: 3.11.3
+doc_id: scalar-kubernetes/HowToCreateKeyAndCertificateFiles
+lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
+- Configuration Guides
+editions:
+- Enterprise Standard
+- Enterprise Premium
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:08Z'
+sources:
+- id: docs-scalardl
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4/versioned_docs/version-3.11/scalar-kubernetes/HowToCreateKeyAndCertificateFiles.mdx
+  title: ScalarDL documentation source (MDX)
+  author: process:scalar-labs/docs-scalardl
+  last_modified: '2026-07-24T17:50:50Z'
+---
+
+# How to Create Private Key and Certificate Files for TLS Connections in Scalar Products
+
+This guide explains how to create private key and certificate files for TLS connections in ScalarDB Cluster and ScalarDL. When you enable the TLS feature, you must prepare private key and certificate files.
+
+## Certificate requirements
+
+* You can use only `RSA` or `ECDSA` as an algorithm for private key and certificate files.
+* For ScalarDB Analytics server, you must use `PKCS #8` as the private key format based on the default setting of gRPC.
+
+## Example steps to create sample private key and certificate files
+
+In this example, you'll create sample private key and certificate files by using `cfssl` and `cfssljson`. If you don't have those tools installed, please install `cfssl` and `cfssljson` to run this example.
+
+:::note
+
+* You can use other tools, like `openssl`, to create the private key and certificate files. Alternatively, you can ask a third-party CA or the administrator of your private CA to create the private key and certificate for your production environment.
+* This example creates a self-signed certificate. However, it is strongly recommended that these certificates **not** be used in production. Please ask trusted issuers (a public CA or your private CA) to create certificate files for your production environment based on your security requirements.
+
+:::
+
+1. Create a working directory.
+
+```console
+mkdir -p ${HOME}/scalar/example/certs/
+```
+
+1. Change the working directory to `${HOME}/scalar/example/certs/`.
+
+```console
+cd ${HOME}/scalar/example/certs/
+```
+
+1. Create a JSON file that includes CA information.
+
+```console
+cat << 'EOF' > ${HOME}/scalar/example/certs/ca.json
+{
+    "CN": "scalar-example-ca",
+    "key": {
+        "algo": "ecdsa",
+        "size": 256
+    },
+    "names": [
+        {
+            "C": "JP",
+            "ST": "Tokyo",
+            "L": "Shinjuku",
+            "O": "Scalar Example CA"
+        }
+    ]
+}
+EOF
+```
+
+1. Create the CA private key and certificate files.
+
+```console
+cfssl gencert -initca ca.json | cfssljson -bare ca
+```
+
+1. Create a JSON file that includes CA configurations.
+
+```console
+cat << 'EOF' > ${HOME}/scalar/example/certs/ca-config.json
+{
+    "signing": {
+        "default": {
+            "expiry": "87600h"
+        },
+        "profiles": {
+            "scalar-example-ca": {
+                "expiry": "87600h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            }
+        }
+    }
+}
+EOF
+```
+
+1. Create a JSON file that includes server information.
+
+```console
+cat << 'EOF' > ${HOME}/scalar/example/certs/server.json
+{
+    "CN": "scalar-example-server",
+    "hosts": [
+        "server.scalar.example.com",
+        "localhost"
+    ],
+    "key": {
+        "algo": "ecdsa",
+        "size": 256
+    },
+    "names": [
+        {
+            "C": "JP",
+            "ST": "Tokyo",
+            "L": "Shinjuku",
+            "O": "Scalar Example Server"
+        }
+    ]
+}
+EOF
+```
+
+1. Create the private key and certificate files for the server.
+
+```console
+cfssl gencert -ca ca.pem -ca-key ca-key.pem -config ca-config.json -profile scalar-example-ca server.json | cfssljson -bare server
+```
+
+1. Confirm that the private key and certificate files were created.
+
+```console
+ls -1
+```
+
+   [Command execution result]
+
+```console
+ca-config.json
+ca-key.pem
+ca.csr
+ca.json
+ca.pem
+server-key.pem
+server.csr
+server.json
+server.pem
+```
+
+   In this case:
+
+   * `server-key.pem` is the private key file.
+   * `server.pem` is the certificate file.
+   * `ca.pem` is the root CA certificate file.

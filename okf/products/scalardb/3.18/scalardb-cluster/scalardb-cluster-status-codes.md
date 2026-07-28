@@ -1,0 +1,511 @@
+---
+type: Troubleshooting
+title: ScalarDB Cluster Error Codes
+description: This page provides a list of error codes in ScalarDB Cluster.
+resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/scalardb-cluster-status-codes/
+tags:
+- scalardb
+- v3.18
+- phase:operate
+- edition:enterprise-standard
+- edition:enterprise-premium
+status: stable
+product: scalardb
+product_title: ScalarDB
+version: '3.18'
+patch_version: 3.18.0
+doc_id: scalardb-cluster/scalardb-cluster-status-codes
+lifecycle_phase: operate
+editions:
+- Enterprise Standard
+- Enterprise Premium
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:24Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-cluster/scalardb-cluster-status-codes.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-07-27T12:09:14Z'
+---
+
+# ScalarDB Cluster Error Codes
+
+This page provides a list of error codes in ScalarDB Cluster.
+
+## Error code classes and descriptions
+
+| Class              | Description                               |
+|:-------------------|:------------------------------------------|
+| `DB-CLUSTER-1xxxx` | Errors for the user error category        |
+| `DB-CLUSTER-2xxxx` | Errors for the concurrency error category |
+| `DB-CLUSTER-3xxxx` | Errors for the internal error category    |
+
+## `DB-CLUSTER-1xxxx` status codes
+
+The following are status codes and messages for the user error category.
+
+### `DB-CLUSTER-10000`
+
+**Message**
+
+```markdown
+The namespace does not exist. Namespace: %s
+```
+
+### `DB-CLUSTER-10001`
+
+**Message**
+
+```markdown
+The table does not exist. Table: %s
+```
+
+### `DB-CLUSTER-10002`
+
+**Message**
+
+```markdown
+The user does not exist. User: %s
+```
+
+### `DB-CLUSTER-10004`
+
+**Message**
+
+```markdown
+The get type is unspecified
+```
+
+### `DB-CLUSTER-10005`
+
+**Message**
+
+```markdown
+The get type is unrecognized
+```
+
+### `DB-CLUSTER-10006`
+
+**Message**
+
+```markdown
+The value of the column is not set. Column: %s
+```
+
+### `DB-CLUSTER-10007`
+
+**Message**
+
+```markdown
+The scan type is unspecified
+```
+
+### `DB-CLUSTER-10008`
+
+**Message**
+
+```markdown
+The scan type is unrecognized
+```
+
+### `DB-CLUSTER-10009`
+
+**Message**
+
+```markdown
+The order is unspecified
+```
+
+### `DB-CLUSTER-10010`
+
+**Message**
+
+```markdown
+The order is unrecognized
+```
+
+### `DB-CLUSTER-10011`
+
+**Message**
+
+```markdown
+The clustering order is unspecified
+```
+
+### `DB-CLUSTER-10012`
+
+**Message**
+
+```markdown
+The clustering order is unrecognized
+```
+
+### `DB-CLUSTER-10013`
+
+**Message**
+
+```markdown
+The put condition type is unspecified
+```
+
+### `DB-CLUSTER-10014`
+
+**Message**
+
+```markdown
+The put condition type is unrecognized
+```
+
+### `DB-CLUSTER-10015`
+
+**Message**
+
+```markdown
+The delete condition type is unspecified
+```
+
+### `DB-CLUSTER-10016`
+
+**Message**
+
+```markdown
+The delete condition type is unrecognized
+```
+
+### `DB-CLUSTER-10017`
+
+**Message**
+
+```markdown
+The operator is unspecified
+```
+
+### `DB-CLUSTER-10018`
+
+**Message**
+
+```markdown
+The operator is unrecognized
+```
+
+### `DB-CLUSTER-10019`
+
+**Message**
+
+```markdown
+The mutation is not set
+```
+
+### `DB-CLUSTER-10020`
+
+**Message**
+
+```markdown
+The data type is unspecified
+```
+
+### `DB-CLUSTER-10021`
+
+**Message**
+
+```markdown
+The data type is unrecognized
+```
+
+### `DB-CLUSTER-10022`
+
+**Message**
+
+```markdown
+The user option is unspecified
+```
+
+### `DB-CLUSTER-10023`
+
+**Message**
+
+```markdown
+The user option is unrecognized
+```
+
+### `DB-CLUSTER-10024`
+
+**Message**
+
+```markdown
+The privilege is unspecified
+```
+
+### `DB-CLUSTER-10025`
+
+**Message**
+
+```markdown
+The privilege is unrecognized
+```
+
+### `DB-CLUSTER-10026`
+
+**Message**
+
+```markdown
+The username is not set
+```
+
+### `DB-CLUSTER-10027`
+
+**Message**
+
+```markdown
+This feature is not supported in ScalarDB Cluster
+```
+
+### `DB-CLUSTER-10028`
+
+**Message**
+
+```markdown
+The property 'scalar.db.contact_points' must not be empty
+```
+
+### `DB-CLUSTER-10029`
+
+**Message**
+
+```markdown
+The property 'scalar.db.contact_points' must be prefixed with 'indirect:' or 'direct-kubernetes:'
+```
+
+### `DB-CLUSTER-10030`
+
+**Message**
+
+```markdown
+The format of the property 'scalar.db.contact_points' for direct-kubernetes client mode is 'direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>' or 'direct-kubernetes:<ENDPOINT_NAME>'
+```
+
+### `DB-CLUSTER-10031`
+
+**Message**
+
+```markdown
+The property 'scalar.db.sql.cluster_mode.contact_points' must not be empty
+```
+
+### `DB-CLUSTER-10032`
+
+**Message**
+
+```markdown
+The property 'scalar.db.sql.cluster_mode.contact_points' must be prefixed with 'indirect:' or 'direct-kubernetes:'
+```
+
+### `DB-CLUSTER-10033`
+
+**Message**
+
+```markdown
+The format of the property 'scalar.db.sql.cluster_mode.contact_points' for direct-kubernetes client mode is 'direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>' or 'direct-kubernetes:<ENDPOINT_NAME>'
+```
+
+### `DB-CLUSTER-10035`
+
+**Message**
+
+```markdown
+The update condition type is unspecified
+```
+
+### `DB-CLUSTER-10036`
+
+**Message**
+
+```markdown
+The update condition type is unrecognized
+```
+
+### `DB-CLUSTER-10037`
+
+**Message**
+
+```markdown
+The two-phase commit interface is not supported
+```
+
+### `DB-CLUSTER-10039`
+
+**Message**
+
+```markdown
+The policy state is unspecified
+```
+
+### `DB-CLUSTER-10040`
+
+**Message**
+
+```markdown
+The policy state is unrecognized
+```
+
+### `DB-CLUSTER-10041`
+
+**Message**
+
+```markdown
+The access mode is unspecified
+```
+
+### `DB-CLUSTER-10042`
+
+**Message**
+
+```markdown
+The access mode is unrecognized
+```
+
+### `DB-CLUSTER-10043`
+
+**Message**
+
+```markdown
+The service does not exist. Service Class: %s
+```
+
+### `DB-CLUSTER-10044`
+
+**Message**
+
+```markdown
+The policy does not exist. Policy: %s
+```
+
+### `DB-CLUSTER-10057`
+
+**Message**
+
+```markdown
+The operation is not set
+```
+
+### `DB-CLUSTER-10058`
+
+**Message**
+
+```markdown
+The batch result is not set
+```
+
+### `DB-CLUSTER-10059`
+
+**Message**
+
+```markdown
+Resuming a transaction is not allowed when piggyback-begin is enabled
+```
+
+### `DB-CLUSTER-10060`
+
+**Message**
+
+```markdown
+Resuming a transaction is not allowed when write-buffering is enabled
+```
+
+### `DB-CLUSTER-10061`
+
+**Message**
+
+```markdown
+The transaction has not begun yet. This situation may occur when piggyback-begin is enabled
+```
+
+## `DB-CLUSTER-2xxxx` status codes
+
+The following are status codes and messages for the concurrency error category.
+
+### `DB-CLUSTER-20000`
+
+**Message**
+
+```markdown
+The hop limit is exceeded
+```
+
+### `DB-CLUSTER-20001`
+
+**Message**
+
+```markdown
+A transaction associated with the specified transaction ID is not found. The transaction might have expired, or the cluster node that handled the transaction might have been restarted. Transaction ID: %s
+```
+
+### `DB-CLUSTER-20002`
+
+**Message**
+
+```markdown
+A scanner associated with the specified scanner ID is not found. The scanner might have expired, or the cluster node that handled the scanner might have been restarted. Transaction ID: %s; Scanner ID: %s
+```
+
+## `DB-CLUSTER-3xxxx` status codes
+
+The following are status codes and messages for the internal error category.
+
+### `DB-CLUSTER-30000`
+
+**Message**
+
+```markdown
+Getting local IP addresses failed
+```
+
+### `DB-CLUSTER-30001`
+
+**Message**
+
+```markdown
+Getting a cluster node object from the cache failed. Cluster Node IP Address: %s
+```
+
+### `DB-CLUSTER-30002`
+
+**Message**
+
+```markdown
+The ring is empty
+```
+
+### `DB-CLUSTER-30003`
+
+**Message**
+
+```markdown
+Getting the Kubernetes API client failed
+```
+
+### `DB-CLUSTER-30004`
+
+**Message**
+
+```markdown
+Reading the Kubernetes endpoint failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
+```
+
+### `DB-CLUSTER-30005`
+
+**Message**
+
+```markdown
+Configuring TLS failed
+```
+
+### `DB-CLUSTER-30006`
+
+**Message**
+
+```markdown
+No nearest cluster nodes are found
+```

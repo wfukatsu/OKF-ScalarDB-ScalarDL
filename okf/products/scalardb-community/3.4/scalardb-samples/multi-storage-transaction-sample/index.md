@@ -1,0 +1,24 @@
+---
+type: Documentation Section
+title: ScalarDB Community 3.4 — Multi Storage Transaction Sample
+description: Directory listing for the `scalardb-samples/multi-storage-transaction-sample` section of the ScalarDB Community 3.4 documentation.
+resource: https://scalardb-community.scalar-labs.com/docs/3.4/scalardb-samples/multi-storage-transaction-sample/
+tags:
+- scalardb-community
+- v3.4
+- index
+status: deprecated
+product: scalardb-community
+version: '3.4'
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:10Z'
+---
+
+# Multi Storage Transaction Sample
+
+ScalarDB Community 3.4 documentation under `scalardb-samples/multi-storage-transaction-sample/`.
+
+## Concepts
+
+- [Multi-storage Transaction Sample](./README.md) — This tutorial describes how to create a sample application by using ScalarDB with Multi-storage Transactions.

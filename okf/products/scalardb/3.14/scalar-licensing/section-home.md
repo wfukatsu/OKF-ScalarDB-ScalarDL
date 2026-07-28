@@ -1,0 +1,90 @@
+---
+type: Reference
+title: How to Configure a Product License Key
+description: To run Scalar products, you must create a .properties file and add your product license key and a certificate to the file. In your .properties file, copy one of the following configurations, based on the product you're using, and paste the...
+resource: https://scalardb.scalar-labs.com/docs/3.14/scalar-licensing/
+tags:
+- scalardb
+- v3.14
+- phase:implement
+- section:reference
+- edition:enterprise-standard
+- edition:enterprise-premium
+- unmaintained
+status: deprecated
+product: scalardb
+product_title: ScalarDB
+version: '3.14'
+patch_version: 3.14.6
+doc_id: scalar-licensing/index
+lifecycle_phase: implement
+breadcrumb:
+- Reference
+editions:
+- Enterprise Standard
+- Enterprise Premium
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:04Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.14/scalar-licensing/index.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-07-27T12:09:14Z'
+---
+
+# How to Configure a Product License Key
+
+To run Scalar products, you must create a `.properties` file and add your product license key and a certificate to the file. In your `.properties` file, copy one of the following configurations, based on the product you're using, and paste the contents in the `.properties` file, replacing `<YOUR_LICENSE_KEY>` with your license key.
+
+:::note
+
+If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact).
+
+:::
+
+:::warning
+
+If you're using a trial license, ScalarDB must be connected to the Internet. An Internet connection is required to check if the trial license is valid and hasn't expired.
+
+:::
+
+## ScalarDB Enterprise Edition
+
+**ScalarDB Enterprise Edition (Standard)**
+
+```properties
+scalar.db.cluster.node.licensing.license_key=<YOUR_LICENSE_KEY>
+scalar.db.cluster.node.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
+```
+
+**ScalarDB Enterprise Edition (Premium)**
+
+```properties
+scalar.db.cluster.node.licensing.license_key=<YOUR_LICENSE_KEY>
+scalar.db.cluster.node.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
+```
+
+**ScalarDB Enterprise Edition (Trial License)**
+
+```properties
+scalar.db.cluster.node.licensing.license_key=<YOUR_LICENSE_KEY>
+scalar.db.cluster.node.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
+```
+
+## ScalarDB Analytics with Spark
+
+**ScalarDB Analytics with Spark**
+
+```apacheconf
+spark.sql.catalog.scalardb_catalog.license.key <YOUR_LICENSE_KEY>
+spark.sql.catalog.scalardb_catalog.license.cert_pem -----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
+```
+
+**ScalarDB Analytics with Spark (Trial License)**
+
+```apacheconf
+spark.sql.catalog.scalardb_catalog.license.key <YOUR_LICENSE_KEY>
+spark.sql.catalog.scalardb_catalog.license.cert_pem -----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
+```

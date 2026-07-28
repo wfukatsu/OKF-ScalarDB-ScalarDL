@@ -1,0 +1,221 @@
+---
+type: Concept
+title: Requirements
+description: This page describes the required tools and their versions to use ScalarDB correctly.
+resource: https://scalardb-community.scalar-labs.com/docs/3.10/requirements/
+tags:
+- scalardb-community
+- v3.10
+- phase:design
+- section:about-scalardb
+status: stable
+product: scalardb-community
+product_title: ScalarDB Community
+version: '3.10'
+doc_id: requirements
+lifecycle_phase: design
+breadcrumb:
+- About ScalarDB
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:09Z'
+sources:
+- id: docs-scalardb-community
+  resource: https://github.com/scalar-labs/docs-scalardb-community/blob/71d199cb0df1c638bd7e305b64fa09fc7236e5c4/versioned_docs/version-3.10/requirements.mdx
+  title: ScalarDB Community documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb-community
+  last_modified: '2025-04-07T11:32:02Z'
+---
+
+# Requirements
+
+This page describes the required tools and their versions to use ScalarDB correctly.
+
+## Client SDK
+
+Because ScalarDB is written in Java, the easiest way to interact with ScalarDB is to use the [Java client SDK](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/developer-guide-for-scalardb-cluster-with-java-api/#add-scalardb-cluster-java-client-sdk-to-your-build).
+The following Java Development Kits (JDKs) are verified and supported.
+
+### Java
+
+The following Java Development Kits (JDKs) are verified and supported.
+
+- **[Oracle JDK](https://www.oracle.com/java/):** 8, 11, 17 or 21 (LTS versions)
+- **[OpenJDK](https://openjdk.org/) ([Eclipse Temurin](https://adoptium.net/temurin/), [Amazon Corretto](https://aws.amazon.com/corretto/), or [Microsoft Build of OpenJDK](https://learn.microsoft.com/en-us/java/openjdk/)):** 8, 11, 17, or 21 (LTS versions)
+
+### .NET
+
+ScalarDB is provided as a gRPC server called ScalarDB Cluster, which also has a [.NET client SDK](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster-dotnet-client-sdk/overview/) that wraps the .NET client generated from the proto file. The SDK is a .NET Standard 2.0 library, so it should work with every implementation and its version that is supported by .NET Standard 2.0. However, the detailed supported implementations and their versions are to be decided.
+
+### Other languages
+
+ScalarDB Cluster uses gRPC version 1.65.0, so you can create your own client by using the generated clients of your preferred languages.
+
+## Databases
+
+ScalarDB is middleware that runs on top of the following databases and their versions.
+
+### Relational databases
+
+**Oracle Database**
+
+| Version           | Oracle Database 23ai  | Oracle Database 21c  | Oracle Database 19c  |
+|:------------------|:--------------------|:------------------|:------------------|
+| **ScalarDB 3.13** | ✅                  | ✅                | ✅                |
+| **ScalarDB 3.12** | ✅                  | ✅                | ✅                |
+| **ScalarDB 3.11** | ✅                  | ✅                | ✅                |
+| **ScalarDB 3.10** | ✅                  | ✅                | ✅                |
+| **ScalarDB 3.9**  | ✅                  | ✅                | ✅                |
+| **ScalarDB 3.8**  | ✅                  | ✅                | ✅                |
+| **ScalarDB 3.7**  | ✅                  | ✅                | ✅                |
+
+**MySQL**
+
+| Version           | MySQL 8.1  | MySQL 8.0  | MySQL 5.7  |
+|:------------------|:-----------|:-----------|:-----------|
+| **ScalarDB 3.13** | ✅         | ✅         | ✅         |
+| **ScalarDB 3.12** | ✅         | ✅         | ✅         |
+| **ScalarDB 3.11** | ✅         | ✅         | ✅         |
+| **ScalarDB 3.10** | ✅         | ✅         | ✅         |
+| **ScalarDB 3.9**  | ✅         | ✅         | ✅         |
+| **ScalarDB 3.8**  | ✅         | ✅         | ✅         |
+| **ScalarDB 3.7**  | ✅         | ✅         | ✅         |
+
+**PostgreSQL**
+
+| Version           | PostgreSQL 15  | PostgreSQL 14  | PostgreSQL 13  | PostgreSQL 12  |
+|:------------------|:---------------|:---------------|:---------------|:---------------|
+| **ScalarDB 3.13** | ✅             | ✅             | ✅             | ✅             |
+| **ScalarDB 3.12** | ✅             | ✅             | ✅             | ✅             |
+| **ScalarDB 3.11** | ✅             | ✅             | ✅             | ✅             |
+| **ScalarDB 3.10** | ✅             | ✅             | ✅             | ✅             |
+| **ScalarDB 3.9**  | ✅             | ✅             | ✅             | ✅             |
+| **ScalarDB 3.8**  | ✅             | ✅             | ✅             | ✅             |
+| **ScalarDB 3.7**  | ✅             | ✅             | ✅             | ✅             |
+
+**Amazon Aurora MySQL**
+
+| Version           | Aurora MySQL 3  | Aurora MySQL 2  |
+|:------------------|:----------------|:----------------|
+| **ScalarDB 3.13** | ✅              | ✅              |
+| **ScalarDB 3.12** | ✅              | ✅              |
+| **ScalarDB 3.11** | ✅              | ✅              |
+| **ScalarDB 3.10** | ✅              | ✅              |
+| **ScalarDB 3.9**  | ✅              | ✅              |
+| **ScalarDB 3.8**  | ✅              | ✅              |
+| **ScalarDB 3.7**  | ✅              | ✅              |
+
+**Amazon Aurora PostgreSQL**
+
+| Version           | Aurora PostgreSQL 15  | Aurora PostgreSQL 14  | Aurora PostgreSQL 13  | Aurora PostgreSQL 12  |
+|:------------------|:----------------------|:----------------------|:----------------------|:----------------------|
+| **ScalarDB 3.13** | ✅                    | ✅                    | ✅                    | ✅                    |
+| **ScalarDB 3.12** | ✅                    | ✅                    | ✅                    | ✅                    |
+| **ScalarDB 3.11** | ✅                    | ✅                    | ✅                    | ✅                    |
+| **ScalarDB 3.10** | ✅                    | ✅                    | ✅                    | ✅                    |
+| **ScalarDB 3.9**  | ✅                    | ✅                    | ✅                    | ✅                    |
+| **ScalarDB 3.8**  | ✅                    | ✅                    | ✅                    | ✅                    |
+| **ScalarDB 3.7**  | ✅                    | ✅                    | ✅                    | ✅                    |
+
+**MariaDB**
+
+| Version           | MariaDB 11.4  | MariaDB 10.11 |
+|:------------------|:--------------|:--------------|
+| **ScalarDB 3.13** | ✅            | ✅            |
+| **ScalarDB 3.12** | ✅            | ✅            |
+| **ScalarDB 3.11** | ✅            | ✅            |
+| **ScalarDB 3.10** | ✅            | ✅            |
+| **ScalarDB 3.9**  | ✅            | ✅            |
+| **ScalarDB 3.8**  | ✅            | ✅            |
+| **ScalarDB 3.7**  | ✅            | ✅            |
+
+**SQL Server**
+
+| Version           | SQL Server 2022  | SQL Server 2019  | SQL Server 2017  |
+|:------------------|:-----------------|:-----------------|:-----------------|
+| **ScalarDB 3.13** | ✅               | ✅               | ✅               |
+| **ScalarDB 3.12** | ✅               | ✅               | ✅               |
+| **ScalarDB 3.11** | ✅               | ✅               | ✅               |
+| **ScalarDB 3.10** | ✅               | ✅               | ✅               |
+| **ScalarDB 3.9**  | ✅               | ✅               | ✅               |
+| **ScalarDB 3.8**  | ✅               | ✅               | ✅               |
+| **ScalarDB 3.7**  | ✅               | ✅               | ✅               |
+
+**SQLite**
+
+| Version           | SQLite 3  |
+|:------------------|:----------|
+| **ScalarDB 3.13** | ✅        |
+| **ScalarDB 3.12** | ✅        |
+| **ScalarDB 3.11** | ✅        |
+| **ScalarDB 3.10** | ✅        |
+| **ScalarDB 3.9**  | ✅        |
+| **ScalarDB 3.8**  | ❌        |
+| **ScalarDB 3.7**  | ❌        |
+
+**YugabyteDB**
+
+| Version           | YugabyteDB 2 |
+|:------------------|:-------------|
+| **ScalarDB 3.13** | ✅           |
+| **ScalarDB 3.12** | ❌           |
+| **ScalarDB 3.11** | ❌           |
+| **ScalarDB 3.10** | ❌           |
+| **ScalarDB 3.9**  | ❌           |
+| **ScalarDB 3.8**  | ❌           |
+| **ScalarDB 3.7**  | ❌           |
+
+### NoSQL databases
+
+**Amazon DynamoDB**
+
+| Version           | DynamoDB  |
+|:------------------|:----------|
+| **ScalarDB 3.13** | ✅        |
+| **ScalarDB 3.12** | ✅        |
+| **ScalarDB 3.11** | ✅        |
+| **ScalarDB 3.10** | ✅        |
+| **ScalarDB 3.9**  | ✅        |
+| **ScalarDB 3.8**  | ✅        |
+| **ScalarDB 3.7**  | ✅        |
+
+**Apache Cassandra**
+
+| Version           | Cassandra 4.1  | Cassandra 4.0  | Cassandra 3.11  | Cassandra 3.0  |
+|:------------------|:---------------|:---------------|:----------------|:---------------|
+| **ScalarDB 3.13** | ❌             | ❌             | ✅              | ✅             |
+| **ScalarDB 3.12** | ❌             | ❌             | ✅              | ✅             |
+| **ScalarDB 3.11** | ❌             | ❌             | ✅              | ✅             |
+| **ScalarDB 3.10** | ❌             | ❌             | ✅              | ✅             |
+| **ScalarDB 3.9**  | ❌             | ❌             | ✅              | ✅             |
+| **ScalarDB 3.8**  | ❌             | ❌             | ✅              | ✅             |
+| **ScalarDB 3.7**  | ❌             | ❌             | ✅              | ✅             |
+
+**Azure Cosmos DB for NoSQL**
+
+| Version           | Cosmos DB for NoSQL  |
+|:------------------|:---------------------|
+| **ScalarDB 3.13** | ✅                   |
+| **ScalarDB 3.12** | ✅                   |
+| **ScalarDB 3.11** | ✅                   |
+| **ScalarDB 3.10** | ✅                   |
+| **ScalarDB 3.9**  | ✅                   |
+| **ScalarDB 3.8**  | ✅                   |
+| **ScalarDB 3.7**  | ✅                   |
+
+:::note
+
+For details on how to configure each database, see [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md).
+
+:::
+
+## Kubernetes
+
+ScalarDB is provided as a Pod on the Kubernetes platform in production environments. ScalarDB supports the following platforms and tools.
+
+### Platform
+- **[Kubernetes](https://kubernetes.io/):** 1.26 - 1.30
+- **[Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift):** TBD
+
+### Package manager
+- **[Helm](https://helm.sh/):** 3.5+

@@ -1,0 +1,81 @@
+---
+type: Development Guide
+title: ScalarDL Compatibility Matrix
+description: This document shows the compatibility of ScalarDL Ledger and Auditor versions among ScalarDL Java Client SDK versions and ScalarDB Cluster.
+resource: https://scalardl.scalar-labs.com/docs/3.11/compatibility/
+tags:
+- scalardl
+- v3.11
+- phase:implement
+- section:develop
+- edition:community
+- edition:enterprise
+status: stable
+product: scalardl
+product_title: ScalarDL
+version: '3.11'
+patch_version: 3.11.3
+doc_id: compatibility
+lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Reference
+editions:
+- Community
+- Enterprise
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-07-28T00:57:08Z'
+sources:
+- id: docs-scalardl
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4/versioned_docs/version-3.11/compatibility.mdx
+  title: ScalarDL documentation source (MDX)
+  author: process:scalar-labs/docs-scalardl
+  last_modified: '2026-07-24T17:50:50Z'
+---
+
+# ScalarDL Compatibility Matrix
+
+This document shows the compatibility of ScalarDL Ledger and Auditor versions among ScalarDL Java Client SDK versions and ScalarDB Cluster.
+
+:::note
+
+Versions are expressed as `x.y.z`, where `x` represents the major version, `y` represents the minor version, and `z` represents the patch version. This format follows [Semantic Versioning](https://semver.org/).
+
+:::
+
+## ScalarDL compatibility with client SDKs
+
+| ScalarDL Ledger/Auditor version | ScalarDL Java Client SDK version |
+|:--------------------------------|:---------------------------------|
+| 3.11                            | 3.10 - 3.11                      |
+| 3.10                            | 3.10                             |
+
+:::note
+
+- You can consider the client tools ([ScalarDL Client Command](./scalardl-command-reference.md) and [ScalarDL Schema Loader](./schema-loader.md)) to be the same as the ScalarDL Java Client SDK. In other words, you can apply the same compatibility rules to client tools as the ScalarDL Java Client SDK.
+- When you create a new deployment of ScalarDL, using the same version of ScalarDL Schema Loader as the version of ScalarDL is recommended.
+- When you upgrade the minor or patch version of ScalarDL, basically, you don't need to update the existing schemas. In other words, basically, you don't need to re-run ScalarDL Schema Loader when you upgrade a minor or patch version of ScalarDL.
+- If you use a new feature that ScalarDL provides in a new minor version, you may need to use the same or a later version of the client tools or re-create (or update) existing schemas. For details, please refer to the relevant documentation about each feature.
+- For Scalar Admin and Scalar Admin for Kubernetes, using the latest versions of these tools is recommended to ensure compatibility with the version of ScalarDL that you are using.
+
+:::
+
+### Version skew policy
+
+- If the **major** versions are different between ScalarDL and the client SDK, they are **not** compatible and are **not** supported.
+- If the **major** versions are the same and the **minor** versions are different between ScalarDL and the client SDK, the version of ScalarDL must be greater than or equal to the client SDK version. For example:
+  - **Supported:** Combination of ScalarDL 3.9 and client SDK 3.8
+  - **Not supported:** Combination of ScalarDL 3.8 and client SDK 3.9
+- If the **major** versions and the **minor** versions are the same, you can use different **patch** versions between ScalarDL and the client SDK. For example:
+  - **Supported:** Combination of ScalarDL 3.9.2 and client SDK 3.9.0
+  - **Supported:** Combination of ScalarDL 3.9.0 and client SDK 3.9.2
+
+## ScalarDL compatibility with ScalarDB Cluster
+
+If you use ScalarDB Cluster with ScalarDL, you can use the following combinations of versions.
+
+| ScalarDL version | ScalarDB Cluster version                                      |
+|:-----------------|:--------------------------------------------------------------|
+| 3.11             | 3.15 or later minor (3.X) version (like 3.15, 3.16, and 3.17) |
+| 3.10             | 3.14 or later minor (3.X) version (like 3.14, 3.15, and 3.16) |
