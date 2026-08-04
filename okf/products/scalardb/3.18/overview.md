@@ -2,11 +2,12 @@
 type: Concept
 title: ScalarDB Overview
 description: This page describes what ScalarDB is and its primary use cases.
-resource: https://scalardb.scalar-labs.com/docs/latest/overview/
+resource: https://scalardb.scalar-labs.com/docs/3.18/overview/
 tags:
 - scalardb
 - v3.18
 - phase:design
+- section:about-scalardb
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,24 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: overview
 lifecycle_phase: design
+breadcrumb:
+- About ScalarDB
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/overview.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/overview.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB Overview
@@ -40,7 +43,7 @@ This page describes what ScalarDB is and its primary use cases.
 
 ScalarDB is a universal hybrid transaction/analytical processing (HTAP) engine for diverse databases. It runs as middleware on databases and virtually unifies diverse databases by achieving ACID transactions and real-time analytics across them to simplify the complexity of managing multiple databases or multiple instances of a single database.
 
-![How ScalarDB simplifies complex data management architecture.](https://scalardb.scalar-labs.com/docs/latest/images/scalardb.png)
+![How ScalarDB simplifies complex data management architecture.](https://scalardb.scalar-labs.com/docs/3.18/images/scalardb.png)
 
 As a versatile solution, ScalarDB supports a range of databases, including:
 

@@ -1,38 +1,45 @@
 ---
-type: Documentation Page
+type: Development Guide
 title: Guide of Spring Data JDBC for ScalarDB
 description: Directly using the ScalarDB API may be difficult because you need to write a lot of code and consider how and when to call the APIs (e.g., rollback() and commit()) for transactions. Since we assume most ScalarDB users develop their...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-sql/spring-data-guide/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-sql/spring-data-guide/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-sql/spring-data-guide
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
+- SQL Interface Guides
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-sql/spring-data-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-sql/spring-data-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Guide of Spring Data JDBC for ScalarDB
 
 Directly using the ScalarDB API may be difficult because you need to write a lot of code and consider how and when to call the APIs (e.g., `rollback()` and `commit()`) for transactions. Since we assume most ScalarDB users develop their applications in Java, you can take advantage of the Spring Framework, which is one of the most popular application frameworks for developing in Java. By using Spring Data JDBC for ScalarDB, you can streamline development by using a familiar framework.
 
-![Rough overall architecture of Spring Data JDBC for ScalarDB](https://scalardb.scalar-labs.com/docs/latest/scalardb-sql/images/spring_data_ingegration_overall_arch.png)
+![Rough overall architecture of Spring Data JDBC for ScalarDB](https://scalardb.scalar-labs.com/docs/3.18/scalardb-sql/images/spring_data_ingegration_overall_arch.png)
 
 The usage of Spring Data JDBC for ScalarDB basically follows [Spring Data JDBC - Reference Documentation](https://docs.spring.io/spring-data/jdbc/docs/3.0.x/reference/html/).
 This guide describes several important topics to use Spring Data JDBC for ScalarDB and its limitations.
@@ -1030,4 +1037,4 @@ In order to use Spring Data JDBC for ScalarDB, the following features are implem
 
 - [Spring Data JDBC - Reference Documentation](https://docs.spring.io/spring-data/jdbc/docs/3.0.x/reference/html/)
 - [ScalarDB JDBC Guide](./jdbc-guide.md)
-- [Javadoc for Spring Data JDBC for ScalarDB](https://javadoc.io/doc/com.scalar-labs/scalardb-sql-spring-data/3.18.0/index.html)
+- [Javadoc for Spring Data JDBC for ScalarDB](https://javadoc.io/doc/com.scalar-labs/scalardb-sql-spring-data/3.18.1/index.html)

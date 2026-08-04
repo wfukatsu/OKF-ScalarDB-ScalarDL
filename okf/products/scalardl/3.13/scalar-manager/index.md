@@ -12,7 +12,7 @@ product: scalardl
 version: '3.13'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:30Z'
+  at: '2026-08-04T23:50:59Z'
 ---
 
 # Scalar Manager

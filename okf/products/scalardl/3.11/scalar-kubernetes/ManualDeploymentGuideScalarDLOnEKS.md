@@ -23,13 +23,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:08Z'
+  at: '2026-08-04T23:51:02Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4/versioned_docs/version-3.11/scalar-kubernetes/ManualDeploymentGuideScalarDLOnEKS.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/versioned_docs/version-3.11/scalar-kubernetes/ManualDeploymentGuideScalarDLOnEKS.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-07-24T17:50:50Z'
+  last_modified: '2026-08-04T15:05:14Z'
 ---
 
 # Deploy ScalarDL Ledger on Amazon Elastic Kubernetes Service (EKS)

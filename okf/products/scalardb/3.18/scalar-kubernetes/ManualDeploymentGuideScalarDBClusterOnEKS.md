@@ -2,32 +2,36 @@
 type: Deployment Guide
 title: Deploy ScalarDB Cluster on Amazon Elastic Kubernetes Service (EKS)
 description: This guide explains how to deploy ScalarDB Cluster on Amazon Elastic Kubernetes Service (EKS).
-resource: https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/ManualDeploymentGuideScalarDBClusterOnEKS/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalar-kubernetes/ManualDeploymentGuideScalarDBClusterOnEKS/
 tags:
 - scalardb
 - v3.18
 - phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalar-kubernetes/ManualDeploymentGuideScalarDBClusterOnEKS
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Deploy ScalarDB Cluster
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalar-kubernetes/ManualDeploymentGuideScalarDBClusterOnEKS.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalar-kubernetes/ManualDeploymentGuideScalarDBClusterOnEKS.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Deploy ScalarDB Cluster on Amazon Elastic Kubernetes Service (EKS)
@@ -38,11 +42,11 @@ In this guide, you will create one of the following two environments in your AWS
 
 * **[`direct-kubernetes` client mode](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/developer-guide-for-scalardb-cluster-with-java-api#direct-kubernetes-client-mode).** In this mode, you deploy your application in the same EKS cluster as your ScalarDB Cluster deployment.
 
-  ![image](https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/images/png/EKS_ScalarDB_Cluster_Direct_Kubernetes_Mode.drawio.png)
+  ![image](https://scalardb.scalar-labs.com/docs/3.18/scalar-kubernetes/images/png/EKS_ScalarDB_Cluster_Direct_Kubernetes_Mode.drawio.png)
 
 * **[`indirect` client mode](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/developer-guide-for-scalardb-cluster-with-java-api#indirect-client-mode).** In this mode, you deploy your application in an environment that is different from the EKS cluster that contains your ScalarDB Cluster deployment.
 
-  ![image](https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/images/png/EKS_ScalarDB_Cluster_Indirect_Mode.drawio.png)
+  ![image](https://scalardb.scalar-labs.com/docs/3.18/scalar-kubernetes/images/png/EKS_ScalarDB_Cluster_Indirect_Mode.drawio.png)
 
 ## Step 1. Subscribe to ScalarDB Cluster in AWS Marketplace
 

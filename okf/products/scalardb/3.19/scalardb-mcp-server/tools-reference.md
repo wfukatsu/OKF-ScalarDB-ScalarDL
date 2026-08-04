@@ -1,0 +1,124 @@
+---
+type: Reference
+title: ScalarDB MCP Server Tools Reference
+description: The ScalarDB MCP Server provides comprehensive database operations through more than 20 specialized MCP tools. You can interact with the LLM by using natural language, and the LLM automatically selects and uses the appropriate tools to...
+resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-mcp-server/tools-reference/
+tags:
+- scalardb
+- v3.19
+- phase:implement
+- edition:community
+- edition:enterprise-standard
+- edition:enterprise-premium
+status: stable
+product: scalardb
+product_title: ScalarDB
+version: '3.19'
+patch_version: 3.19.0
+doc_id: scalardb-mcp-server/tools-reference
+lifecycle_phase: implement
+editions:
+- Community
+- Enterprise Standard
+- Enterprise Premium
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-08-04T23:50:47Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/docs/scalardb-mcp-server/tools-reference.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-08-04T15:05:02Z'
+---
+
+# ScalarDB MCP Server Tools Reference
+
+The ScalarDB MCP Server provides comprehensive database operations through more than 20 specialized MCP tools. You can interact with the LLM by using natural language, and the LLM automatically selects and uses the appropriate tools to fulfill requests. Understanding these tools helps you know what database operations the LLM can perform on your behalf.
+
+## Connection tools
+
+Monitor and verify your ScalarDB connection status and configuration. The following tool is available in both CRUD and SQL mode.
+
+| Tool | Description |
+|------|-------------|
+| `scalardb_connection_info` | Get the current connection status, configuration details, and health check results. |
+
+## Schema management tools
+
+Create, modify, and inspect database structures including namespaces, tables, and indexes. The following tools are available in CRUD mode.
+
+| Tool | Description |
+|------|-------------|
+| `scalardb_create_namespace` | Create a new namespace/keyspace for organizing tables. |
+| `scalardb_drop_namespace` | Drop an existing namespace and all its tables. |
+| `scalardb_list_namespaces` | List all available namespaces in the database. |
+| `scalardb_create_table` | Create a new table with complete schema definition including partition keys, clustering keys, and columns. |
+| `scalardb_drop_table` | Drop an existing table and all its data. |
+| `scalardb_truncate_table` | Remove all data from a table while keeping the schema. |
+| `scalardb_describe_table` | Get detailed table schema including columns, keys, and metadata. |
+| `scalardb_list_tables` | List all tables within a specific namespace. |
+| `scalardb_add_new_column` | Add a new column to an existing table schema. |
+| `scalardb_create_index` | Create secondary indexes on table columns for faster queries. |
+| `scalardb_drop_index` | Drop an existing secondary index. |
+
+## CRUD operation tools
+
+Perform data manipulation operations by using the ScalarDB Java client SDK for granular control and type safety. The following tools are available in CRUD mode.
+
+| Tool | Description |
+|------|-------------|
+| `scalardb_get` | Retrieve specific records by using partition keys, clustering keys, or secondary indexes. |
+| `scalardb_scan` | Scan records with flexible filtering, ordering, and pagination capabilities. |
+| `scalardb_insert` | Insert new records with automatic conflict detection. |
+| `scalardb_update` | Update existing records with conditional operations. |
+| `scalardb_upsert` | Insert new records or update existing ones (insert if they don't exist; update if they do exist). |
+| `scalardb_delete` | Delete records by using primary keys or conditional logic. |
+
+## Transaction management tools
+
+Control ACID transactions by using the ScalarDB Java client SDK with proper isolation and consistency guarantees. Available in CRUD mode.
+
+| Tool | Description |
+|------|-------------|
+| `scalardb_begin_transaction` | Start a new read-write transaction with ACID guarantees. |
+| `scalardb_begin_readonly_transaction` | Start an optimized read-only transaction for queries. |
+| `scalardb_commit_transaction` | Commit a transaction and make all changes permanent. |
+| `scalardb_rollback_transaction` | Roll back a transaction and undo all changes. |
+
+## SQL tools (ScalarDB Cluster only)
+
+Execute SQL commands directly through the ScalarDB SQL interface. The following tool is available in SQL mode.
+
+| Tool | Description |
+|------|-------------|
+| `scalardb_execute_sql` | Execute SQL queries directly (`SELECT`, `INSERT`, `UPDATE`, `DELETE`) with full SQL syntax support. |
+
+## Coordinator tools
+
+Manage distributed transaction Coordinator tables for multi-database consistency. These tools are available in CRUD mode.
+
+| Tool | Description |
+|------|-------------|
+| `scalardb_create_coordinator_tables` | Create Coordinator tables required for distributed transactions. |
+| `scalardb_drop_coordinator_tables` | Drop Coordinator tables when no longer needed. |
+| `scalardb_truncate_coordinator_tables` | Clear Coordinator tables while preserving structure. |
+
+## Tool availability by mode
+
+Different tools are available depending on the operational mode you choose.
+
+### SQL mode
+
+- **Connection tools:** Monitor connection status and health.
+- **SQL tools:** Execute SQL queries directly through the ScalarDB SQL interface.
+- **Use case:** Best for ScalarDB Cluster deployments when you prefer using SQL syntax.
+
+### CRUD mode
+
+- **Connection tools:** Monitor connection status and health.
+- **Schema management tools:** Create and manage namespaces, tables, and indexes.
+- **CRUD operation tools:** Perform data manipulation with the ScalarDB Java client SDK.
+- **Transaction management tools:** Control ACID transactions programmatically.
+- **Coordinator tools:** Manage distributed transaction coordination.
+- **Use case:** Required for ScalarDB Core.

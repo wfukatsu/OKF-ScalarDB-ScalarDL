@@ -2,7 +2,7 @@
 type: Documentation Section
 title: ScalarDB 3.18 — Microservice Transactions Sample With Shared Cluster With Jdbc
 description: Directory listing for the `scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc` section of the ScalarDB 3.18 documentation.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/
 tags:
 - scalardb
 - v3.18
@@ -12,7 +12,7 @@ product: scalardb
 version: '3.18'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 ---
 
 # Microservice Transactions Sample With Shared Cluster With Jdbc

@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.17'
-patch_version: 3.17.3
+patch_version: 3.17.4
 doc_id: manage-monitor-overview
 lifecycle_phase: operate
 breadcrumb:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:26Z'
+  at: '2026-08-04T23:50:51Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.17/manage-monitor-overview.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/manage-monitor-overview.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Monitor Overview
@@ -40,8 +40,8 @@ Scalar Manager is a centralized management and monitoring solution for ScalarDB 
 - Schedule or execute pausing jobs that create transactionally consistent periods in the databases used by ScalarDB.
 - Check the time-series metrics and logs of ScalarDB through Grafana dashboards.
 
-## Deploy Scalar Manager
+:::note
 
-You can deploy Scalar Manager by using a Helm Chart.
+If you haven't already deployed Scalar Manager, you can do so with a Helm Chart. For details, see [Deploy Scalar Manager](./helm-charts/getting-started-scalar-manager.md).
 
-For details on how to deploy Scalar Manager, see [Deploy Scalar Manager](./helm-charts/getting-started-scalar-manager.md).
+:::

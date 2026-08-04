@@ -1,33 +1,37 @@
 ---
-type: Documentation Page
+type: Deployment Guide
 title: ScalarDB Cluster Standalone Mode
 description: Instead of setting up a Kubernetes cluster and deploying ScalarDB Cluster on top of it by using a Helm Chart, you can run ScalarDB Cluster in standalone mode, which simplifies development and testing processes. A primary use case for this...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/standalone-mode/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/standalone-mode/
 tags:
 - scalardb
 - v3.18
-- phase:implement
+- phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-cluster/standalone-mode
-lifecycle_phase: implement
+lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-cluster/standalone-mode.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-cluster/standalone-mode.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB Cluster Standalone Mode

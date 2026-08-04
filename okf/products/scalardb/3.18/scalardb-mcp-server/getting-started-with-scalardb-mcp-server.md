@@ -1,12 +1,13 @@
 ---
-type: Tutorial
+type: Development Guide
 title: Getting Started with ScalarDB MCP Server
 description: ScalarDB MCP Server is a Model Context Protocol (MCP) implementation that enables LLMs to access and manage your data through ScalarDB. By leveraging LLMs, you can use natural language to search and update across multiple, potentially...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-mcp-server/getting-started-with-scalardb-mcp-server/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-mcp-server/getting-started-with-scalardb-mcp-server/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,27 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-mcp-server/getting-started-with-scalardb-mcp-server
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- ScalarDB MCP Server
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-mcp-server/getting-started-with-scalardb-mcp-server.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-mcp-server/getting-started-with-scalardb-mcp-server.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Getting Started with ScalarDB MCP Server
@@ -42,7 +48,7 @@ ScalarDB MCP Server works with both single and multiple storage configurations. 
 
 The following diagram shows how ScalarDB MCP Server differs from traditional approaches. Instead of requiring separate MCP servers for each database, you connect once to ScalarDB MCP Server to access all your databases through ScalarDB.
 
-![ScalarDB MCP server architecture](https://scalardb.scalar-labs.com/docs/latest/images/scalardb-mcp-server-architecture.png)
+![ScalarDB MCP server architecture](https://scalardb.scalar-labs.com/docs/3.18/images/scalardb-mcp-server-architecture.png)
 
 At its core, ScalarDB MCP Server provides the following capabilities.
 

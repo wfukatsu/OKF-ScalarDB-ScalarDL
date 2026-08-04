@@ -1,8 +1,8 @@
 ---
 type: Product Version
 title: ScalarDB 3.18
-description: Documentation set for ScalarDB 3.18 (newest patch 3.18.0).
-resource: https://scalardb.scalar-labs.com/docs/latest/
+description: Documentation set for ScalarDB 3.18 (newest patch 3.18.1).
+resource: https://scalardb.scalar-labs.com/docs/3.18/
 tags:
 - scalardb
 - v3.18
@@ -11,20 +11,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
-url_path: latest
+patch_version: 3.18.1
+url_path: '3.18'
 maintenance: supported
-is_latest: true
+is_latest: false
 concept_count: 206
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/6126dfe2f56389351d88b134752618641f9771dd
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB 3.18
@@ -35,41 +35,39 @@ Supported release.
 |---|---|
 | Product | ScalarDB |
 | Documentation version | 3.18 |
-| Newest patch release described | 3.18.0 |
-| Docs site | https://scalardb.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `dc5c112650d1` |
+| Newest patch release described | 3.18.1 |
+| Docs site | https://scalardb.scalar-labs.com/docs/3.18/ |
+| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `6126dfe2f563` |
 | Concepts in this version | 206 |
 
 ## By lifecycle phase
 
 Start here when you know which phase of the project you are in.
 
-### 設計 / Design (11)
+### 設計 / Design (9)
 
-- [Consensus Commit Protocol](./consensus-commit.md)
 - [Glossary](./glossary.md)
-- [Model Your Data](./data-modeling.md)
 - [Requirements](./requirements.md)
 - [ScalarDB Design](./design.md)
 - [ScalarDB Features](./features.md)
 - [ScalarDB Learning Paths](./learning-paths.md)
 - [ScalarDB Overview](./overview.md)
 - [ScalarDB Roadmap](./roadmap.md)
-- [ScalarDB Analytics Design and Implementation](./scalardb-analytics/design.md)
-- [ScalarDB Cluster Compatibility Matrix](./scalardb-cluster/compatibility.md)
+- [Release Support Policy](./releases/release-support-policy.md)
+- [ScalarDB 3.18 Release Notes](./releases/release-notes.md)
 
-### 実装 / Implement (90)
+### 実装 / Implement (92)
 
 - [Add ScalarDB to Your Build](./add-scalardb-to-your-build.md)
 - [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md)
+- [Consensus Commit Protocol](./consensus-commit.md)
 - [Database Adapters](./database-adapters.md)
 - [Develop Overview](./develop-overview.md)
 - [Getting Started with Benchmarking ScalarDB](./getting-started-with-benchmarking-scalardb.md)
 - [Getting Started with ScalarDB](./getting-started-with-scalardb.md)
 - [Getting Started with ScalarDB by Using Kotlin](./getting-started-with-scalardb-by-using-kotlin.md)
-- [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](./schema-loader-import.md)
 - [Libraries and Tools for ScalarDB](./libraries-and-tools.md)
-- [Migrate Overview](./migrate-overview.md)
+- [Model Your Data](./data-modeling.md)
 - [Multi-Storage Transactions](./multi-storage-transactions.md)
 - [Quickstart Overview](./quickstart-overview.md)
 - [Run Analytical Queries Overview](./develop-run-analytical-queries-overview.md)
@@ -86,6 +84,9 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB Java API Guide](./api-guide.md)
 - [ScalarDB Schema Loader](./schema-loader.md)
 - [Transactions with a Two-Phase Commit Interface](./two-phase-commit-transactions.md)
+- [How to Configure a Commercial License Key](./scalar-licensing/commercial.md)
+- [How to Configure a Trial License Key](./scalar-licensing/trial.md)
+- [License Key Configuration Overview](./scalar-licensing/section-home.md)
 - [Authenticate and Authorize Users in ScalarDB Analytics](./scalardb-analytics/authentication-and-authorization.md)
 - [Create a ScalarDB Analytics Catalog](./scalardb-analytics/create-scalardb-analytics-catalog.md)
 - [Data Source Reference](./scalardb-analytics/reference-data-source.md)
@@ -93,6 +94,8 @@ Start here when you know which phase of the project you are in.
 - [Run Analytical Queries Through ScalarDB Analytics](./scalardb-analytics/run-analytical-queries.md)
 - [ScalarDB Analytics CLI Command Reference](./scalardb-analytics/reference-cli-command.md)
 - [ScalarDB Analytics Configurations](./scalardb-analytics/configurations.md)
+- [ScalarDB Analytics Design and Implementation](./scalardb-analytics/design.md)
+- [ScalarDB Benchmarking Tools](./scalardb-benchmarks/README.md)
 - [Authenticate and Authorize Users](./scalardb-cluster/scalardb-auth-with-sql.md)
 - [Control User Access in a Fine-Grained Manner](./scalardb-cluster/authorize-with-abac.md)
 - [Control User Access via OIDC-Based JWT Access Tokens](./scalardb-cluster/control-access-via-oidc-based-jwt-tokens.md)
@@ -109,17 +112,15 @@ Start here when you know which phase of the project you are in.
 - [Getting Started with ScalarDB Cluster via .NET](./scalardb-cluster/getting-started-with-scalardb-cluster-dotnet.md)
 - [Getting Started with Using Go for ScalarDB Cluster](./scalardb-cluster/getting-started-with-using-go-for-scalardb-cluster.md)
 - [Getting Started with Using Python for ScalarDB Cluster](./scalardb-cluster/getting-started-with-using-python-for-scalardb-cluster.md)
-- [How to Deploy ScalarDB Cluster Locally](./scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.md)
-- [Replicate Data for High Availability](./scalardb-cluster/remote-replication.md)
 - [Run Non-Transactional Storage Operations Through ScalarDB Cluster](./scalardb-cluster/run-non-transactional-storage-operations-through-scalardb-cluster.md)
 - [Run Non-Transactional Storage Operations Through the SQL Interface](./scalardb-cluster/run-non-transactional-storage-operations-through-sql-interface.md)
 - [Run Transactions Through ScalarDB Cluster](./scalardb-cluster/run-transactions-through-scalardb-cluster.md)
 - [Run Transactions Through ScalarDB Cluster SQL](./scalardb-cluster/run-transactions-through-scalardb-cluster-sql.md)
 - [ScalarDB Cluster](./scalardb-cluster/section-home.md)
+- [ScalarDB Cluster Compatibility Matrix](./scalardb-cluster/compatibility.md)
 - [ScalarDB Cluster Configurations](./scalardb-cluster/scalardb-cluster-configurations.md)
 - [ScalarDB Cluster gRPC API Guide](./scalardb-cluster/scalardb-cluster-grpc-api-guide.md)
 - [ScalarDB Cluster SQL gRPC API Guide](./scalardb-cluster/scalardb-cluster-sql-grpc-api-guide.md)
-- [ScalarDB Cluster Standalone Mode](./scalardb-cluster/standalone-mode.md)
 - [Exception Handling in the ScalarDB Cluster .NET Client SDK](./scalardb-cluster-dotnet-client-sdk/exception-handling.md)
 - [Getting Started with ASP.NET Core and Dependency Injection in the ScalarDB Cluster .NET Client SDK](./scalardb-cluster-dotnet-client-sdk/getting-started-with-aspnet-and-di.md)
 - [Getting Started with Authentication and Authorization by Using ScalarDB Cluster .NET Client SDK](./scalardb-cluster-dotnet-client-sdk/getting-started-with-auth.md)
@@ -145,7 +146,6 @@ Start here when you know which phase of the project you are in.
 - [Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions](./scalardb-samples/spring-data-microservice-transaction-sample/README.md)
 - [Sample application of Spring Data JDBC for ScalarDB with Multi-storage Transactions](./scalardb-samples/spring-data-multi-storage-transaction-sample/README.md)
 - [Guide of Spring Data JDBC for ScalarDB](./scalardb-sql/spring-data-guide.md)
-- [How to Migrate Your Applications and Databases into a ScalarDB-Based Environment](./scalardb-sql/migration-guide.md)
 - [ScalarDB JDBC Guide](./scalardb-sql/jdbc-guide.md)
 - [ScalarDB SQL API Guide](./scalardb-sql/sql-api-guide.md)
 - [ScalarDB SQL Grammar](./scalardb-sql/grammar.md)
@@ -156,7 +156,9 @@ Start here when you know which phase of the project you are in.
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore.md)
 - [Deploy Overview](./deploy-overview.md)
 - [How to Back Up and Restore Databases Used Through ScalarDB](./backup-restore.md)
+- [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](./schema-loader-import.md)
 - [Manage Overview](./manage-overview.md)
+- [Migrate Overview](./migrate-overview.md)
 - [Monitor Overview](./manage-monitor-overview.md)
 - [ScalarDB Core Error Codes](./scalardb-core-status-codes.md)
 - [ScalarDB Data Loader Error Codes](./scalardb-data-loader-status-codes.md)
@@ -192,8 +194,6 @@ Start here when you know which phase of the project you are in.
 - [How to deploy ScalarDL Ledger](./helm-charts/how-to-deploy-scalardl-ledger.md)
 - [How to use Secret resources to pass credentials as environment variables into the properties file](./helm-charts/use-secret-for-credentials.md)
 - [Mount any files or volumes on Scalar product pods](./helm-charts/mount-files-or-volumes-on-scalar-pods.md)
-- [Release Support Policy](./releases/release-support-policy.md)
-- [ScalarDB 3.18 Release Notes](./releases/release-notes.md)
 - [(Deprecated) Guidelines for creating an EKS cluster for ScalarDB Server](./scalar-kubernetes/CreateEKSClusterForScalarDB.md)
 - [[Deprecated] Deploy ScalarDB Server on Azure Kubernetes Service (AKS)](./scalar-kubernetes/ManualDeploymentGuideScalarDBServerOnAKS.md)
 - [Back up a NoSQL database in a Kubernetes environment](./scalar-kubernetes/BackupNoSQL.md)
@@ -238,25 +238,25 @@ Start here when you know which phase of the project you are in.
 - [Envoy Alerts](./scalar-kubernetes/alerts/Envoy.md)
 - [Ledger Alerts](./scalar-kubernetes/alerts/Ledger.md)
 - [Scalar Alerts](./scalar-kubernetes/alerts/README.md)
-- [How to Configure a Commercial License Key](./scalar-licensing/commercial.md)
-- [How to Configure a Trial License Key](./scalar-licensing/trial.md)
-- [License Key Configuration Overview](./scalar-licensing/section-home.md)
 - [How to Use Scalar Manager](./scalar-manager/how-to-use-scalar-manager.md)
 - [Scalar Manager Metrics Reference](./scalar-manager/metrics-reference.md)
 - [Scalar Manager Overview](./scalar-manager/overview.md)
 - [Deploy a ScalarDB Analytics server](./scalardb-analytics/deploy-scalardb-analytics-server.md)
 - [Deploy ScalarDB Analytics in Public Cloud Environments](./scalardb-analytics/deployment.md)
 - [Deploy ScalarDB Analytics Locally](./scalardb-analytics/deployment-local.md)
-- [ScalarDB Benchmarking Tools](./scalardb-benchmarks/README.md)
 - [Attribute-Based Access Control Error Codes](./scalardb-cluster/scalardb-abac-status-codes.md)
 - [Authentication and Authorization Error Codes](./scalardb-cluster/scalardb-auth-status-codes.md)
 - [Deploy ScalarDB Cluster Through Google Cloud Marketplace](./scalardb-cluster/deploy-scalardb-cluster-google-cloud-marketplace.md)
 - [Embedding Store Error Codes](./scalardb-cluster/scalardb-embedding-store-status-codes.md)
 - [Encryption Error Codes](./scalardb-cluster/scalardb-encryption-status-codes.md)
+- [How to Deploy ScalarDB Cluster Locally](./scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.md)
 - [Remote Replication Error Codes](./scalardb-cluster/scalardb-remote-replication-status-codes.md)
+- [Replicate Data for High Availability](./scalardb-cluster/remote-replication.md)
 - [ScalarDB Cluster Deployment Patterns for Microservices](./scalardb-cluster/deployment-patterns-for-microservices.md)
 - [ScalarDB Cluster Error Codes](./scalardb-cluster/scalardb-cluster-status-codes.md)
+- [ScalarDB Cluster Standalone Mode](./scalardb-cluster/standalone-mode.md)
 - [ScalarDB GraphQL Error Codes](./scalardb-graphql/scalardb-graphql-status-codes.md)
+- [How to Migrate Your Applications and Databases into a ScalarDB-Based Environment](./scalardb-sql/migration-guide.md)
 - [ScalarDB SQL Error Codes](./scalardb-sql/scalardb-sql-status-codes.md)
 
 ## Sections

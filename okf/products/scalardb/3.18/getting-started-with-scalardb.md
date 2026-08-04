@@ -2,11 +2,12 @@
 type: Tutorial
 title: Getting Started with ScalarDB
 description: This getting started tutorial explains how to configure your preferred database in ScalarDB and illustrates the process of creating a sample e-commerce application, where items can be ordered and paid for with a credit card by using...
-resource: https://scalardb.scalar-labs.com/docs/latest/getting-started-with-scalardb/
+resource: https://scalardb.scalar-labs.com/docs/3.18/getting-started-with-scalardb/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:quickstart
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,25 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: getting-started-with-scalardb
 lifecycle_phase: implement
+breadcrumb:
+- Quickstart
+- Try Using the ScalarDB Core Library to Run Transactions
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/getting-started-with-scalardb.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/getting-started-with-scalardb.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Getting Started with ScalarDB
@@ -558,7 +562,7 @@ As shown in [`schema.json`](https://github.com/scalar-labs/scalardb-samples/tree
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/images/getting-started-ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.18/images/getting-started-ERD.png)
 
 ### Load the initial data
 

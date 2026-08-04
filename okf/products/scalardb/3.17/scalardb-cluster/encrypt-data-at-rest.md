@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.17'
-patch_version: 3.17.3
+patch_version: 3.17.4
 doc_id: scalardb-cluster/encrypt-data-at-rest
 lifecycle_phase: implement
 breadcrumb:
@@ -24,13 +24,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:26Z'
+  at: '2026-08-04T23:50:52Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.17/scalardb-cluster/encrypt-data-at-rest.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/scalardb-cluster/encrypt-data-at-rest.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Encrypt Data at Rest
@@ -220,7 +220,7 @@ services:
 
   scalardb-cluster-standalone:
     container_name: "scalardb-cluster-node"
-    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:3.17.2"
+    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:3.17.4"
     ports:
       - 60053:60053
       - 9080:9080
@@ -278,7 +278,7 @@ scalar.db.sql.cluster_mode.contact_points=indirect:localhost
 Then, start the SQL CLI by running the following command.
 
 ```console
-java -jar scalardb-cluster-sql-cli-3.17.2-all.jar --config scalardb-cluster-sql-cli.properties
+java -jar scalardb-cluster-sql-cli-3.17.4-all.jar --config scalardb-cluster-sql-cli.properties
 ```
 
 To begin, create the Coordinator tables required for ScalarDB transaction execution.

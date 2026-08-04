@@ -2,30 +2,34 @@
 type: Operations Guide
 title: How to Use Scalar Manager
 description: Scalar Manager is a centralized management and monitoring solution for ScalarDB in Kubernetes environments. It simplifies operational tasks by providing a graphical user interface (GUI) that combines functionalities previously managed...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalar-manager/how-to-use-scalar-manager/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/how-to-use-scalar-manager/
 tags:
 - scalardb
 - v3.18
 - phase:operate
+- section:manage
 - edition:enterprise-option
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalar-manager/how-to-use-scalar-manager
 lifecycle_phase: operate
+breadcrumb:
+- Manage
+- Monitor
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalar-manager/how-to-use-scalar-manager.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalar-manager/how-to-use-scalar-manager.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # How to Use Scalar Manager
@@ -77,7 +81,7 @@ If you see an error message, double-check your email address and password, and t
 
 :::
 
-![login-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/login-page.png)
+![login-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/login-page.png)
 
 ### How to manage your password
 
@@ -92,7 +96,7 @@ The following describes how to change your password, the password requirements, 
    - Your new password
 4. Select **Save** to apply the changes.
 
-![my-profile-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/my-profile.png)
+![my-profile-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/my-profile.png)
 
 #### Password requirements
 
@@ -214,7 +218,7 @@ The system does not currently support email notifications. New users will need t
 
 :::
 
-![user-create-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/user-create.png)
+![user-create-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/user-create.png)
 
 ### Modifying user details
 
@@ -233,7 +237,7 @@ Changes to user details take effect immediately after saving.
 
 :::
 
-![edit-user-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/edit-user.png)
+![edit-user-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/edit-user.png)
 
 ### Deactivating/removing users
 
@@ -258,7 +262,7 @@ When a user is deleted:
 
 :::
 
-![delete-user-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/delete-user.png)
+![delete-user-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/delete-user.png)
 
 ### Reset a user's password
 
@@ -322,7 +326,7 @@ To get detailed information about a specific release, go to the list on the dash
    - Pod name
    - IP address
 
-![release-detail-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/release-detail.png)
+![release-detail-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/release-detail.png)
 
 ## Monitoring
 
@@ -356,7 +360,7 @@ To access the metrics dashboard:
 
 Authentication is handled seamlessly by using your Scalar Manager credentials.
 
-![grafana-dashboard](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/metrics.png)
+![grafana-dashboard](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/metrics.png)
 
 ## Log management
 
@@ -376,7 +380,7 @@ The logs dashboard is pre-configured with your cluster's pod information. You ca
 - View real-time log streams.
 - Analyze historical log data.
 
-![grafana-logs-dashboard](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/logs.png)
+![grafana-logs-dashboard](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/logs.png)
 
 ## Pausing and resuming clusters
 
@@ -394,7 +398,7 @@ To execute a pausing job immediately:
 4. Select the release from the dropdown menu.
 5. Select **Execute**. This will pause all jobs in the release.
 
-![execute-pause-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/execute-pause.png)
+![execute-pause-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/execute-pause.png)
 
 ### How to schedule pausing jobs
 
@@ -407,7 +411,7 @@ To execute a pausing job immediately:
 7. Select **Schedule** to create the schedule.
    - To discard the schedule, select **Cancel**.
 
-![schedule-pause-popup](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/schedule-pause-popup.png)
+![schedule-pause-popup](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/schedule-pause-popup.png)
 
 ### How to view and manage scheduled pauses
 
@@ -428,7 +432,7 @@ You can see specific pausing jobs by:
 - Using the search bar to find scheduled pauses by keyword.
 - Filtering the list by namespace or release.
 
-![schedule-pauses-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/schedule-pauses.png)
+![schedule-pauses-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/schedule-pauses.png)
 
 ### How to check pause results
 
@@ -448,4 +452,4 @@ This page shows only the results of pauses that have been executed. To [schedule
 
 :::
 
-![check-pauses-page](https://scalardb.scalar-labs.com/docs/latest/scalar-manager/images/check-pauses.png)
+![check-pauses-page](https://scalardb.scalar-labs.com/docs/3.18/scalar-manager/images/check-pauses.png)

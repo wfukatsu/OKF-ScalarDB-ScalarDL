@@ -12,7 +12,7 @@ product: scalardl
 version: '3.12'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:07Z'
+  at: '2026-08-04T23:51:01Z'
 ---
 
 # Scalardl Benchmarks
