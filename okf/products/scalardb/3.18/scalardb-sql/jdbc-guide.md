@@ -1,31 +1,38 @@
 ---
-type: Documentation Page
+type: Development Guide
 title: ScalarDB JDBC Guide
 description: The usage of ScalarDB JDBC basically follows Java JDBC API. This guide describes several important topics that are specific to ScalarDB JDBC.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-sql/jdbc-guide/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-sql/jdbc-guide/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-sql/jdbc-guide
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
+- SQL Interface Guides
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-sql/jdbc-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-sql/jdbc-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB JDBC Guide
@@ -299,4 +306,4 @@ Please see also [ScalarDB SQL API Guide](./sql-api-guide.md) for more details on
 
 - [Java JDBC API](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/)
 - [ScalarDB SQL API Guide](./sql-api-guide.md)
-- [Javadoc for ScalarDB JDBC](https://javadoc.io/doc/com.scalar-labs/scalardb-sql-jdbc/3.18.0/index.html)
+- [Javadoc for ScalarDB JDBC](https://javadoc.io/doc/com.scalar-labs/scalardb-sql-jdbc/3.18.1/index.html)

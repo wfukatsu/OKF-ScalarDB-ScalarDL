@@ -2,32 +2,36 @@
 type: Deployment Guide
 title: Deploy ScalarDB Cluster Through Google Cloud Marketplace
 description: This document explains how to deploy ScalarDB Cluster in your Google Cloud environment through Google Cloud Marketplace.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/deploy-scalardb-cluster-google-cloud-marketplace/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/deploy-scalardb-cluster-google-cloud-marketplace/
 tags:
 - scalardb
 - v3.18
 - phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-cluster/deploy-scalardb-cluster-google-cloud-marketplace
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Deploy ScalarDB Cluster
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-cluster/deploy-scalardb-cluster-google-cloud-marketplace.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-cluster/deploy-scalardb-cluster-google-cloud-marketplace.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Deploy ScalarDB Cluster Through Google Cloud Marketplace
@@ -46,55 +50,55 @@ This document explains how to deploy ScalarDB Cluster in your Google Cloud envir
 
 1. Subscribe to **ScalarDB Enterprise Edition Standard** or **ScalarDB Enterprise Edition Premium**.
 
-   ![Select edition in Google Cloud Marketplace](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/select-edition-google-marketplace.png)
+   ![Select edition in Google Cloud Marketplace](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/select-edition-google-marketplace.png)
 
 1. On the **New ScalarDB subscription** page, read the content under **Additional terms** and select the checkbox. Then, select the **Subscribe** button.
 
-   ![Subscribe to ScalarDB](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/subscribe-to-scalardb.png)
+   ![Subscribe to ScalarDB](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/subscribe-to-scalardb.png)
 
 1. When the **Your order request has been sent to Scalar, Inc.** pop-up window is displayed, select the **Go to product page** button.
 
-   ![Select go to product page](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/select-go-to-product-page.png)
+   ![Select go to product page](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/select-go-to-product-page.png)
 
    The **Purchase pending provider approval** message will be displayed at the top of the product page. Please wait for the team at Scalar to approve your request.
 
-   ![Pending provider approval](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/pending-provider-approval.png)
+   ![Pending provider approval](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/pending-provider-approval.png)
 
 1. After your request has been approved, the **Manage on provider** button will be displayed at the top of the product page. Select the **Manage on provider** button.
 
-   ![Manage on provider](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/manage-on-provider.png)
+   ![Manage on provider](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/manage-on-provider.png)
 
 1. When the pop-up window asking you to confirm leaving Google Cloud Marketplace is displayed, select the **OK** button.
 
-   ![Leaving Google](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/leaving-google.png)
+   ![Leaving Google](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/leaving-google.png)
 
 1. When the Scalar portal login page is displayed, enter your email address and select the **Next** button.
 
-   ![Scalar portal login](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/scalar-portal-login.png)
+   ![Scalar portal login](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/scalar-portal-login.png)
 
 1. Select the **Sign up with a password** button.
 
-   ![Select sign up with a password](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/sign-up-with-password.png)
+   ![Select sign up with a password](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/sign-up-with-password.png)
 
 1. On the **Get Started Today** page, enter your account information.
 
-   ![Enter account information](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/enter-account-information.png)
+   ![Enter account information](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/enter-account-information.png)
 
 1. When the **Verify Your Email to Activate Your Account** page is displayed, check your email and select the link in the message that you received to activate your account.
 
-   ![Verify email to activate](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/verify-email-to-activate.png)
+   ![Verify email to activate](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/verify-email-to-activate.png)
 
 1. After you verify your account, you will see the login page again. Please log in to the Scalar portal.
 
-   ![Scalar portal login after verification](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/scalar-portal-login-after-verification.png)
+   ![Scalar portal login after verification](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/scalar-portal-login-after-verification.png)
 
    After you log in, the **Deployment Instances** page will be displayed.
 
-   ![Top page of Scalar portal](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/top-page-of-scalar-portal.png)
+   ![Top page of Scalar portal](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/top-page-of-scalar-portal.png)
 
 1. In the sidebar navigation, select **Cloud Accounts**. Then, select the **Create** button on the **Cloud Accounts** screen.
 
-   ![Cloud account create](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/cloud-account-create.png)
+   ![Cloud account create](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/cloud-account-create.png)
 
 1. On the **Cloud Accounts** page, select the **Subscribe** button.
 
@@ -104,23 +108,23 @@ This document explains how to deploy ScalarDB Cluster in your Google Cloud envir
 
    :::
 
-   ![Select edition in the Scalar portal](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/select-edition-scalar-portal.png)
+   ![Select edition in the Scalar portal](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/select-edition-scalar-portal.png)
 
 1. After you select the **Subscribe** button, the button will show the message **Pending Approval**. Please wait for the team at Scalar to approve your request.
 
-   ![Pending approval in the Scalar portal](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/pending-approval-scalar-portal.png)
+   ![Pending approval in the Scalar portal](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/pending-approval-scalar-portal.png)
 
    After your request has been approved, you will get an email with the title **Your ScalarDB Enterprise Edition - [EDITION_NAME] subscription request approved** from the following email address: marketplace-notifications@scalar-labs.com. Also, after your request has been approved, the **Subscribe** button on the **Cloud Accounts** page of the Scalar portal will be grayed out.
 
-   ![Grayed out subscribe button](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/grayed-out-subscribe-button.png)
+   ![Grayed out subscribe button](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/grayed-out-subscribe-button.png)
 
 1. On the **Cloud Accounts** page, enter the **Project ID** and **Project number** of your Google Cloud project that you want to use for the ScalarDB Cluster deployment. You can use the default values for the other configurations like **Subscription**, **Cloud Provider**, and **Account Configuration Method**. After you enter the **Project ID** and **Project number**, select the **Create** button.
 
-   ![Enter project ID and project number](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/enter-project-id-and-project-number.png)
+   ![Enter project ID and project number](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/enter-project-id-and-project-number.png)
 
 1. When the **Account Configuration Instructions** pop-up window is displayed, copy the bash command and select the link **Google Cloud Shell** to open the Google Cloud Shell.
 
-   ![Account configuration instructions](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/account-configuration-instructions.png)
+   ![Account configuration instructions](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/account-configuration-instructions.png)
 
 1. In the Google Cloud Shell, paste the bash command that you copied in the **Account Configuration Instructions** pop-up window and execute the command. You will be asked **Do you want to proceed?**, like in the example output below. Enter **yes**.
 
@@ -145,11 +149,11 @@ YYYY-MM-DD HH:MM:SS - [INFO] - Script completed successfully.
 
 1. On the **Cloud Accounts** page in the Scalar portal, the status will be **Ready**.
 
-   ![Cloud account lifecycle status ready](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/cloud-account-lifecycle-status-ready.png)
+   ![Cloud account lifecycle status ready](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/cloud-account-lifecycle-status-ready.png)
 
 1. In the sidebar navigation, select **Instances**. Then, select the **Create** button on the **Deployment Instances** screen.
 
-   ![Deployment instance create](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/deployment-instance-create.png)
+   ![Deployment instance create](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/deployment-instance-create.png)
 
 1. On the **Create Deployment Instance** page, enter the configurations as follows:
 
@@ -179,15 +183,15 @@ scalar.db.password=<PASSWORD>
 
    Example:
 
-   ![Create deployment instance](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/create-deployment-instance.png)
+   ![Create deployment instance](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/create-deployment-instance.png)
 
 1. After you enter the configurations for your deployment, select the **Create** button. The **Launching Your Instance** pop-up window will be displayed.
 
-   ![Launching your instance](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/launching-your-instance.png)
+   ![Launching your instance](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/launching-your-instance.png)
 
 1. After your instance has been launched, your deployed instance will be displayed with **Lifecycle Status** as **Running**.
 
-   ![Deployed your instance](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/deployed-your-instance.png)
+   ![Deployed your instance](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/deployed-your-instance.png)
 
    :::note
 
@@ -197,4 +201,4 @@ scalar.db.password=<PASSWORD>
 
 1. To see the endpoint information to access the ScalarDB Cluster endpoint and the Grafana dashboard, select an instance under **Instance ID** and go to the **Connectivity** tab.
 
-   ![Connectivity](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/google-marketplace/connectivity.png)
+   ![Connectivity](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/images/google-marketplace/connectivity.png)

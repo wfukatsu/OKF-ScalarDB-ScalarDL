@@ -12,7 +12,7 @@ product: scalardb-community
 version: '3.7'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:10Z'
+  at: '2026-08-04T23:51:05Z'
 ---
 
 # Releases

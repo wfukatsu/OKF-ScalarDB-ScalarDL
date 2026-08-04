@@ -12,7 +12,7 @@ product: scalardb-community
 version: '3.13'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:31Z'
+  at: '2026-08-04T23:51:04Z'
 ---
 
 # Microservice Transaction Sample

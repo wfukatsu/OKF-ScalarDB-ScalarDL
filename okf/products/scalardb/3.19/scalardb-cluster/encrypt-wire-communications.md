@@ -1,0 +1,88 @@
+---
+type: Documentation Page
+title: Encrypt Wire Communications
+description: ScalarDB can encrypt wire communications by using Transport Layer Security (TLS). This document explains the configurations for wire encryption in ScalarDB.
+resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/encrypt-wire-communications/
+tags:
+- scalardb
+- v3.19
+- phase:implement
+- edition:enterprise-premium
+status: stable
+product: scalardb
+product_title: ScalarDB
+version: '3.19'
+patch_version: 3.19.0
+doc_id: scalardb-cluster/encrypt-wire-communications
+lifecycle_phase: implement
+editions:
+- Enterprise Premium
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-08-04T23:50:47Z'
+sources:
+- id: docs-scalardb
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/docs/scalardb-cluster/encrypt-wire-communications.mdx
+  title: ScalarDB documentation source (MDX)
+  author: process:scalar-labs/docs-scalardb
+  last_modified: '2026-08-04T15:05:02Z'
+---
+
+# Encrypt Wire Communications
+
+ScalarDB can encrypt wire communications by using Transport Layer Security (TLS). This document explains the configurations for wire encryption in ScalarDB.
+
+The wire encryption feature encrypts:
+
+* The communications between the ScalarDB Cluster node and clients.
+* The communications between all the ScalarDB Cluster nodes (the cluster's internal communications).
+
+This feature uses TLS support in gRPC. For details, see the official gRPC [Security Policy](https://github.com/grpc/grpc-java/blob/master/SECURITY.md).
+
+:::note
+
+Enabling wire encryption between the ScalarDB Cluster nodes and the underlying databases in production environments is strongly recommended. For instructions on how to enable wire encryption between the ScalarDB Cluster nodes and the underlying databases, please refer to the product documentation for your underlying databases.
+
+:::
+
+## Configurations
+
+This section describes the available configurations for wire encryption.
+
+### ScalarDB Cluster node configurations
+
+To enable wire encryption in the ScalarDB Cluster nodes, you need to set `scalar.db.cluster.tls.enabled` to `true`.
+
+| Name                            | Description                               | Default |
+|---------------------------------|-------------------------------------------|---------|
+| `scalar.db.cluster.tls.enabled` | Whether wire encryption (TLS) is enabled. | `false` |
+
+You also need to set the following configurations:
+
+| Name                                          | Description                                                                                                                                                                                                                                                                                                                                                 | Default |
+|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| `scalar.db.cluster.tls.ca_root_cert_pem`      | The custom CA root certificate (PEM data) for TLS communication.                                                                                                                                                                                                                                                                                            |         |
+| `scalar.db.cluster.tls.ca_root_cert_path`     | The custom CA root certificate (file path) for TLS communication.                                                                                                                                                                                                                                                                                           |         |
+| `scalar.db.cluster.tls.override_authority`    | The custom authority for TLS communication. This doesn't change what host is actually connected. This is intended for testing, but may safely be used outside of tests as an alternative to DNS overrides. For example, you can specify the hostname presented in the certificate chain file that you set for `scalar.db.cluster.node.tls.cert_chain_path`. |         |
+| `scalar.db.cluster.node.tls.cert_chain_path`  | The certificate chain file used for TLS communication.                                                                                                                                                                                                                                                                                                      |         |
+| `scalar.db.cluster.node.tls.private_key_path` | The private key file used for TLS communication.                                                                                                                                                                                                                                                                                                            |         |
+
+To specify the certificate authority (CA) root certificate, you should set either `scalar.db.cluster.tls.ca_root_cert_pem` or `scalar.db.cluster.tls.ca_root_cert_path`. If you set both, `scalar.db.cluster.tls.ca_root_cert_pem` will be used.
+
+### Client configurations
+
+To enable wire encryption on the client side by using the ScalarDB Cluster Java client SDK, you need to set `scalar.db.cluster.tls.enabled` to `true`.
+
+| Name                            | Description                               | Default |
+|---------------------------------|-------------------------------------------|---------|
+| `scalar.db.cluster.tls.enabled` | Whether wire encryption (TLS) is enabled. | `false` |
+
+You also need to set the following configurations:
+
+| Name                                       | Description                                                                                                                                                                                                                                                                                                                                                 | Default |
+|--------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| `scalar.db.cluster.tls.ca_root_cert_pem`   | The custom CA root certificate (PEM data) for TLS communication.                                                                                                                                                                                                                                                                                            |         |
+| `scalar.db.cluster.tls.ca_root_cert_path`  | The custom CA root certificate (file path) for TLS communication.                                                                                                                                                                                                                                                                                           |         |
+| `scalar.db.cluster.tls.override_authority` | The custom authority for TLS communication. This doesn't change what host is actually connected. This is intended for testing, but may safely be used outside of tests as an alternative to DNS overrides. For example, you can specify the hostname presented in the certificate chain file that you set for `scalar.db.cluster.node.tls.cert_chain_path`. |         |
+
+To specify the CA root certificate, you should set either `scalar.db.cluster.tls.ca_root_cert_pem` or `scalar.db.cluster.tls.ca_root_cert_path`. If you set both, `scalar.db.cluster.tls.ca_root_cert_pem` will be used.

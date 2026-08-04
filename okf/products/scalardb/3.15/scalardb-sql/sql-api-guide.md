@@ -14,7 +14,7 @@ status: deprecated
 product: scalardb
 product_title: ScalarDB
 version: '3.15'
-patch_version: 3.15.8
+patch_version: 3.15.9
 doc_id: scalardb-sql/sql-api-guide
 lifecycle_phase: implement
 breadcrumb:
@@ -27,13 +27,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:02Z'
+  at: '2026-08-04T23:50:56Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.15/scalardb-sql/sql-api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.15/scalardb-sql/sql-api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB SQL API Guide
@@ -142,7 +142,7 @@ Statement statement = StatementBuilder.<factory method>...;
 ResultSet resultSet = sqlSession.execute(statement);
 ```
 
-`Statement` objects can be built by `StatementBuilder` that has factory methods for corresponding SQLs. For more details, see the [`StatementBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.8/com/scalar/db/sql/statement/builder/StatementBuilder.html) page in the Javadoc and [ScalarDB SQL Grammar](./grammar.md).
+`Statement` objects can be built by `StatementBuilder` that has factory methods for corresponding SQLs. For more details, see the [`StatementBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.9/com/scalar/db/sql/statement/builder/StatementBuilder.html) page in the Javadoc and [ScalarDB SQL Grammar](./grammar.md).
 
 ### Handle ResultSet objects
 
@@ -173,7 +173,7 @@ If you want to get the metadata of the `ResultSet` object, you can use the `getC
 ColumnDefinitions columnDefinitions = resultSet.getColumnDefinitions();
 ```
 
-For more details, see the [`ColumnDefinition`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.8/com/scalar/db/sql/ColumnDefinition.html) page in the Javadoc.
+For more details, see the [`ColumnDefinition`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.9/com/scalar/db/sql/ColumnDefinition.html) page in the Javadoc.
 
 ### Handle Record objects
 
@@ -239,7 +239,7 @@ boolean isNullGottenByName = record.isNull("<column name>");
 boolean isNullGottenByIndex = record.isNull(<column index>);
 ```
 
-For more details, see the [`Record`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.8/com/scalar/db/sql/Record.html) page of the Javadoc.
+For more details, see the [`Record`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.9/com/scalar/db/sql/Record.html) page of the Javadoc.
 
 ### Prepared Statements
 
@@ -284,7 +284,7 @@ preparedStatement2
     .execute();
 ```
 
-For more details, see the [`PreparedStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.8/com/scalar/db/sql/PreparedStatement.html) page of the Javadoc.
+For more details, see the [`PreparedStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.9/com/scalar/db/sql/PreparedStatement.html) page of the Javadoc.
 
 ## Execute transactions
 
@@ -398,10 +398,10 @@ You can get metadata with the `SqlSession.getMetadata()` method as follows:
 Metadata metadata = sqlSession.getMetadata();
 ```
 
-For more details, see the [`Metadata`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.8/com/scalar/db/sql/metadata/Metadata.html) page of the Javadoc.
+For more details, see the [`Metadata`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.15.9/com/scalar/db/sql/metadata/Metadata.html) page of the Javadoc.
 
 ## References
 
 - [ScalarDB SQL Grammar](./grammar.md)
 - [Two-phase Commit Transactions](../two-phase-commit-transactions.md)
-- [Javadoc for ScalarDB SQL](https://javadoc.io/doc/com.scalar-labs/scalardb-sql/3.15.7/index.html)
+- [Javadoc for ScalarDB SQL](https://javadoc.io/doc/com.scalar-labs/scalardb-sql/3.15.9/index.html)

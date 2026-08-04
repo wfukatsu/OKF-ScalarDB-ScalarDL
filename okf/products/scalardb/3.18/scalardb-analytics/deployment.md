@@ -2,30 +2,34 @@
 type: Deployment Guide
 title: Deploy ScalarDB Analytics in Public Cloud Environments
 description: 'This guide explains how to deploy ScalarDB Analytics in a public cloud environment. ScalarDB Analytics consists of two main components: a ScalarDB Analytics server and Apache Spark. In this guide, you can choose either Amazon EMR,...'
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/deployment/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-analytics/deployment/
 tags:
 - scalardb
 - v3.18
 - phase:operate
+- section:deploy
 - edition:enterprise-option
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-analytics/deployment
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Deploy ScalarDB Analytics
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-analytics/deployment.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-analytics/deployment.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Deploy ScalarDB Analytics in Public Cloud Environments
@@ -101,13 +105,13 @@ For more details, refer to [Set up ScalarDB Analytics in the Spark configuration
 
 ### Run analytical queries via the Spark driver
 
-After the EMR Spark cluster has launched, you can use ssh to connect to the primary node of the EMR cluster and run your Spark application. For details on how to create a Spark driver application, refer to [Spark driver application](https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-driver#develop-a-spark-application).
+After the EMR Spark cluster has launched, you can use ssh to connect to the primary node of the EMR cluster and run your Spark application. For details on how to create a Spark driver application, refer to [Spark driver application](https://scalardb.scalar-labs.com/docs/3.18/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-driver#develop-a-spark-application).
 
 ### Run analytical queries via Spark Connect
 
 You can use Spark Connect to run your Spark application remotely by using the EMR cluster that you launched.
 
-You first need to configure the Software setting in the same way as the [Spark driver application](https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-driver#develop-a-spark-application). You also need to set the following configuration to enable Spark Connect.
+You first need to configure the Software setting in the same way as the [Spark driver application](https://scalardb.scalar-labs.com/docs/3.18/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-driver#develop-a-spark-application). You also need to set the following configuration to enable Spark Connect.
 
 #### Allow inbound traffic for a Spark Connect server
 
@@ -142,7 +146,7 @@ sudo -u spark /usr/lib/spark/sbin/start-connect-server.sh --packages org.apache.
 
 You can run your Spark application via Spark Connect from anywhere by using the remote URL of the Spark Connect server, which is `sc://<PRIMARY_NODE_PUBLIC_HOSTNAME>:15001`.
 
-For details on how to create a Spark application by using Spark Connect, refer to [Spark Connect application](https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-connect#develop-a-spark-application).
+For details on how to create a Spark application by using Spark Connect, refer to [Spark Connect application](https://scalardb.scalar-labs.com/docs/3.18/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-connect#develop-a-spark-application).
 
 ### Run interactive queries by using notebooks
 
@@ -740,7 +744,7 @@ Replace the following placeholders:
 
 Since Dataproc Compute clusters provide a standard Apache Spark environment, you can run Spark applications by using standard methods. For more information, refer to the [Apache Spark documentation](https://spark.apache.org/docs/latest/submitting-applications.html).
 
-For details on Spark driver applications, refer to [Spark driver application](https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-driver#develop-a-spark-application).
+For details on Spark driver applications, refer to [Spark driver application](https://scalardb.scalar-labs.com/docs/3.18/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-driver#develop-a-spark-application).
 
 ### Run interactive queries by using notebooks
 
@@ -820,4 +824,4 @@ Replace the following placeholders:
 - `<SCALARDB_ANALYTICS_VERSION>`: The ScalarDB Analytics version (for example, `3.18.0`)
 - `<CATALOG_SERVER_HOST>`: The ScalarDB Analytics server host address verified in the GKE section
 
-For details on Spark Connect applications, refer to [Spark Connect application](https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-connect#develop-a-spark-application) and [Dataproc Serverless for Spark documentation](https://cloud.google.com/dataproc-serverless/docs).
+For details on Spark Connect applications, refer to [Spark Connect application](https://scalardb.scalar-labs.com/docs/3.18/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-connect#develop-a-spark-application) and [Dataproc Serverless for Spark documentation](https://cloud.google.com/dataproc-serverless/docs).

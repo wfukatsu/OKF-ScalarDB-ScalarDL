@@ -1,12 +1,13 @@
 ---
-type: Concept
+type: Reference
 title: Consensus Commit Protocol
 description: Consensus Commit is the transaction protocol used in ScalarDB and is designed for executing transactions spanning multiple diverse databases. Its uniqueness is that the protocol achieves ACID transactions without relying on the transaction...
-resource: https://scalardb.scalar-labs.com/docs/latest/consensus-commit/
+resource: https://scalardb.scalar-labs.com/docs/3.18/consensus-commit/
 tags:
 - scalardb
 - v3.18
-- phase:design
+- phase:implement
+- section:reference
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,24 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: consensus-commit
-lifecycle_phase: design
+lifecycle_phase: implement
+breadcrumb:
+- Reference
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/consensus-commit.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/consensus-commit.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Consensus Commit Protocol
@@ -124,7 +127,7 @@ ScalarDB stores transaction logs (transaction metadata), which are for write-ahe
 
 ScalarDB also manages transaction states separately from the application records in the Coordinator table. The Coordinator table determines and manages transaction states as a single source of truth. The Coordinator table can be collocated with application-managed tables or located in a separate dedicated database.
 
-![Distributed WAL](https://scalardb.scalar-labs.com/docs/latest/images/scalardb-metadata.png)
+![Distributed WAL](https://scalardb.scalar-labs.com/docs/3.18/images/scalardb-metadata.png)
 
 :::note
 
@@ -191,7 +194,7 @@ The Consensus Commit protocol of ScalarDB requires each underlying database to p
 
 :::warning
 
-Scanning records without specifying a partition key (for example, [`ScanAll`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/api/ScanAll.html) or `SELECT * FROM table`) for non-JDBC databases does not always guarantee serializability, even if `SERIALIZABLE` is specified. Therefore, you should do so at your own discretion and consider updating the schemas if possible. For more details, refer to [Cross-partition scan configurations](./configurations.md#cross-partition-scan-configurations).
+Scanning records without specifying a partition key (for example, [`ScanAll`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/api/ScanAll.html) or `SELECT * FROM table`) for non-JDBC databases does not always guarantee serializability, even if `SERIALIZABLE` is specified. Therefore, you should do so at your own discretion and consider updating the schemas if possible. For more details, refer to [Cross-partition scan configurations](./configurations.md#cross-partition-scan-configurations).
 
 :::
 

@@ -1,12 +1,13 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Create a Sample Application That Supports Multi-Storage Transactions
 description: This tutorial describes how to create a sample application that supports the multi-storage transactions feature in ScalarDB.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/multi-storage-transaction-sample/README/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/multi-storage-transaction-sample/README/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,26 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-samples/multi-storage-transaction-sample/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-samples/multi-storage-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-samples/multi-storage-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Create a Sample Application That Supports Multi-Storage Transactions
@@ -42,7 +47,7 @@ This tutorial illustrates the process of creating a sample e-commerce applicatio
 
 In this tutorial, you will build an application that uses both Cassandra and MySQL. By using the multi-storage transactions feature in ScalarDB, you can execute a transaction that spans both Cassandra and MySQL.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/multi-storage-transaction-sample/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/multi-storage-transaction-sample/images/overview.png)
 
 :::note
 
@@ -131,7 +136,7 @@ As shown in [`schema.json`](https://github.com/scalar-labs/scalardb-samples/tree
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/multi-storage-transaction-sample/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/multi-storage-transaction-sample/images/ERD.png)
 
 ### Load the initial data
 

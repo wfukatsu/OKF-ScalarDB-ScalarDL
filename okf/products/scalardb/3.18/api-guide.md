@@ -1,12 +1,13 @@
 ---
-type: Reference
+type: Development Guide
 title: ScalarDB Java API Guide
 description: The ScalarDB Java API is mainly composed of the Administrative API and Transactional API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
-resource: https://scalardb.scalar-labs.com/docs/latest/api-guide/
+resource: https://scalardb.scalar-labs.com/docs/3.18/api-guide/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,27 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: api-guide
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB Java API Guide
@@ -849,7 +855,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Handle `Result` objects
 
@@ -902,7 +908,7 @@ And if you need to check if a value of a column is null, you can use the `isNull
 boolean isNull = result.isNull("<COLUMN_NAME>");
 ```
 
-For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/api/Result.html) page in the Javadoc.
+For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/api/Result.html) page in the Javadoc.
 
 ###### Execute `Get` by using a secondary index
 
@@ -1011,7 +1017,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Execute `Scan` by using a secondary index
 
@@ -1636,7 +1642,7 @@ The following attributes apply to a cross-partition `Scan` operation (a `Scan` o
 - **`db-cross-partition-scan-filtering-enabled`:** Whether cross-partition scan with filtering is enabled for the operation. The value must be `true` or `false`.
 - **`db-cross-partition-scan-ordering-enabled`:** Whether cross-partition scan with ordering is enabled for the operation. The value must be `true` or `false`. This attribute is available only for JDBC databases.
 
-You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
+You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
 
 ###### Consensus Commit attributes
 
@@ -1650,7 +1656,7 @@ Unlike the other operation attributes, `cc-transaction-isolation` cannot be appl
 
 :::
 
-You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.0/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
+You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.18.1/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
 
 #### Commit a transaction
 

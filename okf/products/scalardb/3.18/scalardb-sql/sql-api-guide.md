@@ -1,31 +1,38 @@
 ---
-type: Reference
+type: Development Guide
 title: ScalarDB SQL API Guide
 description: This guide describes how to use ScalarDB SQL API.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-sql/sql-api-guide/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-sql/sql-api-guide/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-sql/sql-api-guide
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
+- SQL Interface Guides
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-sql/sql-api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-sql/sql-api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB SQL API Guide
@@ -138,7 +145,7 @@ For mutation statements (`INSERT`, `UPSERT`, `UPDATE`, or `DELETE`), the returne
 
 See [Execute transactions](#execute-transactions) for how DML, DDL, and DCL statements interact with transactions.
 
-`Statement` objects can be built by `StatementBuilder` that has factory methods for corresponding SQLs. For more details, see the [`StatementBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/statement/builder/StatementBuilder.html) page in the Javadoc and [ScalarDB SQL Grammar](./grammar.md).
+`Statement` objects can be built by `StatementBuilder` that has factory methods for corresponding SQLs. For more details, see the [`StatementBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/statement/builder/StatementBuilder.html) page in the Javadoc and [ScalarDB SQL Grammar](./grammar.md).
 
 ### Handle ResultSet objects
 
@@ -169,7 +176,7 @@ If you want to get the metadata of the `ResultSet` object, you can use the `getC
 ColumnDefinitions columnDefinitions = resultSet.getColumnDefinitions();
 ```
 
-For more details, see the [`ColumnDefinition`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/ColumnDefinition.html) page in the Javadoc.
+For more details, see the [`ColumnDefinition`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/ColumnDefinition.html) page in the Javadoc.
 
 ### Handle Record objects
 
@@ -235,7 +242,7 @@ boolean isNullGottenByName = record.isNull("<column name>");
 boolean isNullGottenByIndex = record.isNull(<column index>);
 ```
 
-For more details, see the [`Record`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/Record.html) page of the Javadoc.
+For more details, see the [`Record`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/Record.html) page of the Javadoc.
 
 ### Prepared Statements
 
@@ -296,7 +303,7 @@ sqlSession.execute(
 
 To wrap a plain SQL string as a `Statement`, for example when constructing a `BatchedStatements`, use `SimpleStatement.of("<SQL>")`.
 
-For more details, see the [`PreparedStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/PreparedStatement.html), [`BoundStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/statement/BoundStatement.html), and [`SimpleStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/statement/SimpleStatement.html) pages of the Javadoc.
+For more details, see the [`PreparedStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/PreparedStatement.html), [`BoundStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/statement/BoundStatement.html), and [`SimpleStatement`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/statement/SimpleStatement.html) pages of the Javadoc.
 
 ### Execute batch statements
 
@@ -326,7 +333,7 @@ List<ResultSet> results =
 
 Batch execution accepts DML, DDL, and DCL statements. Command statements (`BEGIN`, `COMMIT`, `ROLLBACK`, and other transaction-control statements) will be rejected, so use the corresponding `SqlSession` methods instead. See [Execute transactions](#execute-transactions) for how DML, DDL, and DCL statements interact with transactions.
 
-For more details, see the [`BatchedStatements`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/BatchedStatements.html) and [`SqlStatementExecutable`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/SqlStatementExecutable.html) pages of the Javadoc.
+For more details, see the [`BatchedStatements`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/BatchedStatements.html) and [`SqlStatementExecutable`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/SqlStatementExecutable.html) pages of the Javadoc.
 
 ## Execute transactions
 
@@ -335,7 +342,7 @@ In ScalarDB SQL, DML statements (`SELECT`, `INSERT`, `UPSERT`, `UPDATE`, and `DE
 - If a transaction is active (after `sqlSession.begin()`), both `sqlSession.execute(...)` and `sqlSession.executeBatch(...)` run their DML statements in that transaction.
 - If no transaction is active, each `sqlSession.execute(...)` call runs its DML statement in its own auto-managed transaction, and each `sqlSession.executeBatch(...)` call runs all DML statements in the batch atomically in a single auto-managed transaction.
 
-In addition to `begin()`, `SqlSession` provides other variants, such as `beginReadOnly()` for starting a read-only transaction and overloads that accept transaction attributes. For details, see the [`SqlSession`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/SqlSession.html) page of the Javadoc.
+In addition to `begin()`, `SqlSession` provides other variants, such as `beginReadOnly()` for starting a read-only transaction and overloads that accept transaction attributes. For details, see the [`SqlSession`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/SqlSession.html) page of the Javadoc.
 
 To make multiple DML statements from separate `execute(...)` calls atomic, you must begin an explicit transaction before executing them. `executeBatch(...)` provides atomicity across the DML statements in its batch without requiring an explicit transaction.
 
@@ -454,10 +461,10 @@ You can get metadata with the `SqlSession.getMetadata()` method as follows:
 Metadata metadata = sqlSession.getMetadata();
 ```
 
-For more details, see the [`Metadata`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.0/com/scalar/db/sql/metadata/Metadata.html) page of the Javadoc.
+For more details, see the [`Metadata`](https://javadoc.io/static/com.scalar-labs/scalardb-sql/3.18.1/com/scalar/db/sql/metadata/Metadata.html) page of the Javadoc.
 
 ## References
 
 - [ScalarDB SQL Grammar](./grammar.md)
 - [Two-phase Commit Transactions](../two-phase-commit-transactions.md)
-- [Javadoc for ScalarDB SQL](https://javadoc.io/doc/com.scalar-labs/scalardb-sql/3.18.0/index.html)
+- [Javadoc for ScalarDB SQL](https://javadoc.io/doc/com.scalar-labs/scalardb-sql/3.18.1/index.html)

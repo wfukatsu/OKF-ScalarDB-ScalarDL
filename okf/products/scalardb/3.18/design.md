@@ -2,11 +2,12 @@
 type: Concept
 title: ScalarDB Design
 description: This document briefly explains the design and implementation of ScalarDB. For what ScalarDB is and its use cases, see ScalarDB Overview.
-resource: https://scalardb.scalar-labs.com/docs/latest/design/
+resource: https://scalardb.scalar-labs.com/docs/3.18/design/
 tags:
 - scalardb
 - v3.18
 - phase:design
+- section:about-scalardb
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,24 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: design
 lifecycle_phase: design
+breadcrumb:
+- About ScalarDB
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/design.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/design.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB Design
@@ -40,7 +43,7 @@ This document briefly explains the design and implementation of ScalarDB. For wh
 
 ScalarDB is hybrid transaction/analytical processing (HTAP) middleware that sits in between applications and databases. As shown in the following figure, ScalarDB consists of three components: Core, Cluster, and Analytics. ScalarDB basically employs a layered architecture, so the Cluster and Analytics components use the Core component to interact with underlying databases but sometimes bypass the Core component for performance optimization without sacrificing correctness. Likewise, each component also consists of several layers.
 
-![ScalarDB architecture](https://scalardb.scalar-labs.com/docs/latest/images/scalardb-architecture.png)
+![ScalarDB architecture](https://scalardb.scalar-labs.com/docs/3.18/images/scalardb-architecture.png)
 
 ## Components
 

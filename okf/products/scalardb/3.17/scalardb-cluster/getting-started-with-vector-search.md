@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.17'
-patch_version: 3.17.3
+patch_version: 3.17.4
 doc_id: scalardb-cluster/getting-started-with-vector-search
 lifecycle_phase: implement
 breadcrumb:
@@ -25,13 +25,13 @@ feature_status:
 - Public Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:26Z'
+  at: '2026-08-04T23:50:52Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.17/scalardb-cluster/getting-started-with-vector-search.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/scalardb-cluster/getting-started-with-vector-search.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Getting Started with ScalarDB Cluster for Vector Search
@@ -449,7 +449,7 @@ Create the following configuration file as `docker-compose.yaml`.
 services:
   scalardb-cluster-standalone:
     container_name: "scalardb-cluster-node"
-    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:3.17.2"
+    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:3.17.4"
     ports:
       - 60053:60053
       - 9080:9080
@@ -479,7 +479,7 @@ To add the build dependency for the ScalarDB Cluster Embedding Java Client SDK b
 
 ```gradle
 dependencies {
-  implementation 'com.scalar-labs:scalardb-cluster-embedding-java-client-sdk:3.17.2'
+  implementation 'com.scalar-labs:scalardb-cluster-embedding-java-client-sdk:3.17.4'
 }
 ```
 
@@ -491,7 +491,7 @@ To add the build dependency for the ScalarDB Cluster Embedding Java Client SDK b
 <dependency>
   <groupId>com.scalar-labs</groupId>
   <artifactId>scalardb-cluster-embedding-java-client-sdk</artifactId>
-  <version>3.17.2</version>
+  <version>3.17.4</version>
 </dependency>
 ```
 
@@ -585,4 +585,4 @@ The `ScalarDbEmbeddingClientFactory` instance should be closed after use to rele
 
 The vector search feature is currently in Public Preview. For more details, please [contact us](https://www.scalar-labs.com/contact).
 
-- [Javadoc](https://javadoc.io/doc/com.scalar-labs/scalardb-cluster-embedding-java-client-sdk/3.17.2/index.html)
+- [Javadoc](https://javadoc.io/doc/com.scalar-labs/scalardb-cluster-embedding-java-client-sdk/3.17.4/index.html)

@@ -2,10 +2,11 @@
   "products": {
     "scalardb": {
       "repo": "docs-scalardb",
-      "repo_sha": "dc5c112650d1543275b5c9de1bf3d1dd6d2d777a",
-      "repo_committed_at": "2026-07-27T12:09:14Z",
-      "latest": "3.18",
+      "repo_sha": "6126dfe2f56389351d88b134752618641f9771dd",
+      "repo_committed_at": "2026-08-04T15:05:02Z",
+      "latest": "3.19",
       "version_order": [
+        "3.19",
         "3.18",
         "3.17",
         "3.16",
@@ -13,26 +14,32 @@
         "3.14"
       ],
       "versions": {
-        "3.18": {
-          "patch": "3.18.0",
+        "3.19": {
+          "patch": "3.19.0",
           "url_path": "latest",
           "maintenance": "supported",
           "concepts": 206
         },
+        "3.18": {
+          "patch": "3.18.1",
+          "url_path": "3.18",
+          "maintenance": "supported",
+          "concepts": 206
+        },
         "3.17": {
-          "patch": "3.17.3",
+          "patch": "3.17.4",
           "url_path": "3.17",
           "maintenance": "supported",
           "concepts": 202
         },
         "3.16": {
-          "patch": "3.16.5",
+          "patch": "3.16.6",
           "url_path": "3.16",
           "maintenance": "supported",
           "concepts": 204
         },
         "3.15": {
-          "patch": "3.15.8",
+          "patch": "3.15.9",
           "url_path": "3.15",
           "maintenance": "unmaintained",
           "concepts": 193
@@ -47,8 +54,8 @@
     },
     "scalardl": {
       "repo": "docs-scalardl",
-      "repo_sha": "eecc7f890d648a2f4ff33d60e5a96d57a1aa74d4",
-      "repo_committed_at": "2026-07-24T17:50:50Z",
+      "repo_sha": "c1dbc91f4c36ec4ce63e7181302c89b7b6669e62",
+      "repo_committed_at": "2026-08-04T15:05:14Z",
       "latest": "3.13",
       "version_order": [
         "3.13",
@@ -166,5 +173,5 @@
   },
   "okf_version": "0.2",
   "generator": "process:okf-build/1.0.0",
-  "last_run": "2026-07-28T00:57:31Z"
+  "last_run": "2026-08-04T23:51:05Z"
 }

@@ -2,11 +2,12 @@
 type: Development Guide
 title: Transactions with a Two-Phase Commit Interface
 description: ScalarDB supports executing transactions with a two-phase commit interface. With the two-phase commit interface, you can execute a transaction that spans multiple processes or applications, like in a microservice architecture.
-resource: https://scalardb.scalar-labs.com/docs/latest/two-phase-commit-transactions/
+resource: https://scalardb.scalar-labs.com/docs/3.18/two-phase-commit-transactions/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -14,22 +15,27 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: two-phase-commit-transactions
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/two-phase-commit-transactions.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/two-phase-commit-transactions.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Transactions with a Two-Phase Commit Interface
@@ -734,11 +740,11 @@ In addition, in the sample code, the transaction is retried three times maximum 
 
 Services that use transactions with a two-phase commit interface usually execute a transaction by exchanging multiple requests and responses, as shown in the following diagram:
 
-![Sequence diagram for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/latest/images/two_phase_commit_sequence_diagram.png)
+![Sequence diagram for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/3.18/images/two_phase_commit_sequence_diagram.png)
 
 In addition, each service typically has multiple servers (or hosts) for scalability and availability and uses server-side (proxy) or client-side load balancing to distribute requests to the servers. In such a case, since transaction processing in transactions with a two-phase commit interface is stateful, requests in a transaction must be routed to the same servers while different transactions need to be distributed to balance the load, as shown in the following diagram:
 
-![Load balancing for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/latest/images/two_phase_commit_load_balancing.png)
+![Load balancing for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/3.18/images/two_phase_commit_load_balancing.png)
 
 There are several approaches to achieve load balancing for transactions with a two-phase commit interface depending on the protocol between the services. Some approaches for this include using gRPC, HTTP/1.1, and [ScalarDB Cluster](./scalardb-cluster/section-home.md), which is a component that is available only in the ScalarDB Enterprise edition.
 

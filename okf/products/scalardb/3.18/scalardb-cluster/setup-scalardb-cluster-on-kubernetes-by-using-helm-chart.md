@@ -1,33 +1,37 @@
 ---
-type: Documentation Page
+type: Deployment Guide
 title: How to Deploy ScalarDB Cluster Locally
 description: This guide provides instructions on how to deploy ScalarDB Cluster by using a Helm Chart on a local Kubernetes cluster, specifically designed for a test environment.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart/
 tags:
 - scalardb
 - v3.18
-- phase:implement
+- phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart
-lifecycle_phase: implement
+lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Deploy ScalarDB Cluster
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # How to Deploy ScalarDB Cluster Locally
@@ -197,7 +201,7 @@ kubectl create secret generic scalardb-credentials-secret \
 5. Set the chart version of ScalarDB Cluster.
 
 ```console
-SCALAR_DB_CLUSTER_VERSION=3.18.0
+SCALAR_DB_CLUSTER_VERSION=3.18.1
 SCALAR_DB_CLUSTER_CHART_VERSION=$(helm search repo scalar-labs/scalardb-cluster -l | grep -F "${SCALAR_DB_CLUSTER_VERSION}" | awk '{print $2}' | sort --version-sort -r | head -n 1)
 ```
 

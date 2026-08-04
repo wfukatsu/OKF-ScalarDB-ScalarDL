@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.17'
-patch_version: 3.17.3
+patch_version: 3.17.4
 doc_id: scalardb-analytics/deployment
 lifecycle_phase: operate
 breadcrumb:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:26Z'
+  at: '2026-08-04T23:50:52Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.17/scalardb-analytics/deployment.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/scalardb-analytics/deployment.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Deploy ScalarDB Analytics in Public Cloud Environments
@@ -724,7 +724,7 @@ Replace the following placeholders:
 - `<SUBNET_NAME>`: The subnet name created in the VPC section
 - `<SPARK_VERSION>`: The Spark version (for example, `3.5` or `3.4`). Refer to [Dataproc version list](https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-version-clusters).
 - `<SCALA_VERSION>`: The Scala version used to build Spark (for example, `2.13` or `2.12`)
-- `<SCALARDB_ANALYTICS_VERSION>`: The ScalarDB Analytics version (for example, `3.17.0`)
+- `<SCALARDB_ANALYTICS_VERSION>`: The ScalarDB Analytics version (for example, `3.17.1`)
 - `<CATALOG_SERVER_HOST>`: The ScalarDB Analytics server host address verified in the GKE section
 
 After creating the cluster, you can connect via SSH through IAP and run analytical queries by using `spark-shell` or `spark-sql` on the cluster:
@@ -821,7 +821,7 @@ Replace the following placeholders:
 - `<SUBNET_NAME>`: The subnet name created in the VPC section
 - `<SPARK_VERSION>`: The Spark version (for example, `3.5` or `3.4`)
 - `<SCALA_VERSION>`: The Scala version used to build Spark (for example, `2.13` or `2.12`)
-- `<SCALARDB_ANALYTICS_VERSION>`: The ScalarDB Analytics version (for example, `3.17.0`)
+- `<SCALARDB_ANALYTICS_VERSION>`: The ScalarDB Analytics version (for example, `3.17.1`)
 - `<CATALOG_SERVER_HOST>`: The ScalarDB Analytics server host address verified in the GKE section
 
 For details on Spark Connect applications, refer to [Spark Connect application](https://scalardb.scalar-labs.com/docs/3.17/scalardb-analytics/run-analytical-queries.mdx?spark-application-type=spark-connect#develop-a-spark-application) and [Dataproc Serverless for Spark documentation](https://cloud.google.com/dataproc-serverless/docs).

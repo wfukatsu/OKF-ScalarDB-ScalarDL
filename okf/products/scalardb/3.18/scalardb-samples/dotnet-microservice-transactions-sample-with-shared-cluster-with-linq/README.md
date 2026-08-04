@@ -1,31 +1,36 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ
 description: This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for the ScalarDB Cluster .NET Client SDK and LINQ.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ
@@ -49,7 +54,7 @@ Each service has gRPC endpoints. Clients call the endpoints, and the services ca
 
 The databases that you will be using in the sample application are Cassandra and MySQL. The Customer Service and the Order Service use Cassandra and MySQL, respectively, through ScalarDB Cluster.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/overview.png)
 
 As shown in the diagram, ScalarDB Cluster has a small Coordinator database used for the Consensus Commit protocol. The database is service independent and exists for managing transaction metadata for Consensus Commit in a highly available manner.
 
@@ -186,7 +191,7 @@ Also, all the tables for the Order Service are created in the `order_service` na
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/ERD.png)
 
 ### Initial data
 

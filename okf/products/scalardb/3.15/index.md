@@ -1,7 +1,7 @@
 ---
 type: Product Version
 title: ScalarDB 3.15
-description: Documentation set for ScalarDB 3.15 (newest patch 3.15.8).
+description: Documentation set for ScalarDB 3.15 (newest patch 3.15.9).
 resource: https://scalardb.scalar-labs.com/docs/3.15/
 tags:
 - scalardb
@@ -12,20 +12,20 @@ status: deprecated
 product: scalardb
 product_title: ScalarDB
 version: '3.15'
-patch_version: 3.15.8
+patch_version: 3.15.9
 url_path: '3.15'
 maintenance: unmaintained
 is_latest: false
 concept_count: 193
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:02Z'
+  at: '2026-08-04T23:50:56Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/6126dfe2f56389351d88b134752618641f9771dd
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB 3.15
@@ -36,9 +36,9 @@ sources:
 |---|---|
 | Product | ScalarDB |
 | Documentation version | 3.15 |
-| Newest patch release described | 3.15.8 |
+| Newest patch release described | 3.15.9 |
 | Docs site | https://scalardb.scalar-labs.com/docs/3.15/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `dc5c112650d1` |
+| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `6126dfe2f563` |
 | Concepts in this version | 193 |
 
 ## By lifecycle phase

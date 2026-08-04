@@ -2,7 +2,7 @@
 type: Deployment Guide
 title: Collecting logs from Scalar products on a Kubernetes cluster
 description: This document explains how to deploy Grafana Loki and Promtail on Kubernetes with Helm. After following this document, you can collect logs of Scalar products on your Kubernetes environment.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/K8sLogCollectionGuide/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalar-kubernetes/K8sLogCollectionGuide/
 tags:
 - scalardb
 - v3.18
@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalar-kubernetes/K8sLogCollectionGuide
 lifecycle_phase: operate
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalar-kubernetes/K8sLogCollectionGuide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalar-kubernetes/K8sLogCollectionGuide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Collecting logs from Scalar products on a Kubernetes cluster

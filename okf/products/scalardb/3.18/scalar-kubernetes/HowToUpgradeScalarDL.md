@@ -2,7 +2,7 @@
 type: Deployment Guide
 title: How to Upgrade ScalarDL
 description: This guide explains how to upgrade to a newer version of ScalarDL.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/HowToUpgradeScalarDL/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalar-kubernetes/HowToUpgradeScalarDL/
 tags:
 - scalardb
 - v3.18
@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalar-kubernetes/HowToUpgradeScalarDL
 lifecycle_phase: operate
 editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalar-kubernetes/HowToUpgradeScalarDL.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalar-kubernetes/HowToUpgradeScalarDL.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # How to Upgrade ScalarDL
@@ -125,7 +125,7 @@ After you upgrade the ScalarDL Auditor deployment and the ScalarDL Ledger deploy
 
 Patch versions keep backward compatibility. So, you can upgrade ScalarDL from one patch version to another patch version in the same major version and minor version without doing any special operations. For example, you don't need to update the database schema on the backend database side or update the API in your application.
 
-The method for upgrading to a patch version is the same as for upgrading to a minor version. For details on how to upgrade, see the [Upgrade to a minor version](https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/?versions=upgrade-minor-version) tab.
+The method for upgrading to a patch version is the same as for upgrading to a minor version. For details on how to upgrade, see the [Upgrade to a minor version](https://scalardb.scalar-labs.com/docs/3.18/scalar-kubernetes/?versions=upgrade-minor-version) tab.
 
 :::warning
 

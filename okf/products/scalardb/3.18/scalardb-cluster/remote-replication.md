@@ -1,34 +1,38 @@
 ---
-type: Documentation Page
+type: Operations Guide
 title: Replicate Data for High Availability
 description: ScalarDB Cluster can replicate its managed data to remote sites for high availability and workload distribution. The remote replication feature provides near-real-time replication of write operations from a primary site to one or more...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/remote-replication/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/remote-replication/
 tags:
 - scalardb
 - v3.18
-- phase:implement
+- phase:operate
+- section:manage
 - edition:enterprise-premium
 - feature-status:private-preview
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-cluster/remote-replication
-lifecycle_phase: implement
+lifecycle_phase: operate
+breadcrumb:
+- Manage
+- Manage ScalarDB Cluster
 editions:
 - Enterprise Premium
 feature_status:
 - Private Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-cluster/remote-replication.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-cluster/remote-replication.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Replicate Data for High Availability
@@ -167,7 +171,6 @@ The current private preview version has the following limitations, but they are 
 
 - The specification may be changed in future releases.
 - Multiple backup sites are not supported.
-- Starting remote replication with restored data is not supported. Both primary and backup sites need to start from the beginning.
 - This feature does not work with the one-phase commit optimization. This optimization must be disabled for replication to function properly.
 - Creating the replication tables via ScalarDB SQL is not supported.
 - The combination of the [encryption feature](./encrypt-data-at-rest.md) and remote replication is not officially supported because it has not been verified.
@@ -963,7 +966,7 @@ kubectl delete -f repl-cli-backup.yaml -n <NAMESPACE>
 
 #### Prometheus metrics
 
-You can monitor LogApplier by using metrics. ScalarDB Cluster exposes many Prometheus format metrics, including LogApplier metrics, which can be monitored by using any tool that supports the format. For example, one option is using [Prometheus Operator (kube-prometheus-stack)](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/helm-charts/getting-started-monitoring/).
+You can monitor LogApplier by using metrics. ScalarDB Cluster exposes many Prometheus format metrics, including LogApplier metrics, which can be monitored by using any tool that supports the format. For example, one option is using [Prometheus Operator (kube-prometheus-stack)](https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/helm-charts/getting-started-monitoring/).
 
 While LogApplier provides many metrics, the following metric is the most important for monitoring overall replication health:
 

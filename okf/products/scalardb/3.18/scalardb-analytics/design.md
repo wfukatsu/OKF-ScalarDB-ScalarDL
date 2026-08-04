@@ -1,31 +1,34 @@
 ---
-type: Concept
+type: Reference
 title: ScalarDB Analytics Design and Implementation
 description: ScalarDB Analytics is the analytical component of ScalarDB. Similar to ScalarDB, it unifies diverse data sources—ranging from RDBMSs like PostgreSQL and MySQL to NoSQL databases like Cassandra and DynamoDB—into a single logical database....
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/design/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-analytics/design/
 tags:
 - scalardb
 - v3.18
-- phase:design
+- phase:implement
+- section:reference
 - edition:enterprise-option
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-analytics/design
-lifecycle_phase: design
+lifecycle_phase: implement
+breadcrumb:
+- Reference
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-analytics/design.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-analytics/design.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB Analytics Design and Implementation

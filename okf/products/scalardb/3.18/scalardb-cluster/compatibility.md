@@ -1,33 +1,36 @@
 ---
-type: Concept
+type: Reference
 title: ScalarDB Cluster Compatibility Matrix
 description: This document shows the compatibility of ScalarDB Cluster versions among client SDK versions.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/compatibility/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-cluster/compatibility/
 tags:
 - scalardb
 - v3.18
-- phase:design
+- phase:implement
+- section:reference
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-cluster/compatibility
-lifecycle_phase: design
+lifecycle_phase: implement
+breadcrumb:
+- Reference
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-cluster/compatibility.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-cluster/compatibility.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # ScalarDB Cluster Compatibility Matrix
@@ -65,8 +68,8 @@ Versions are expressed as `x.y.z`, where `x` represents the major version, `y` r
 
 - If the **major** versions are different between ScalarDB Cluster and a client SDK, they are **not** compatible and are **not** supported.
 - If the **major** versions are the same and the **minor** versions are different between ScalarDB Cluster and a client SDK, the version of ScalarDB Cluster must be greater than or equal to the client SDK version. For example:
-  - **Supported:** Combination of ScalarDB Cluster 3.17 and client SDK 3.14
-  - **Not supported:** Combination of ScalarDB Cluster 3.14 and client SDK 3.17
+  - **Supported:** Combination of ScalarDB Cluster 3.18 and client SDK 3.17
+  - **Not supported:** Combination of ScalarDB Cluster 3.17 and client SDK 3.18
 - If the **major** versions and the **minor** versions are the same, you can use different **patch** versions between ScalarDB Cluster and a client SDK. For example:
-  - **Supported:** Combination of ScalarDB Cluster 3.17.2 and client SDK 3.17.0
-  - **Supported:** Combination of ScalarDB Cluster 3.17.0 and client SDK 3.17.2
+  - **Supported:** Combination of ScalarDB Cluster 3.18.1 and client SDK 3.17.0
+  - **Supported:** Combination of ScalarDB Cluster 3.17.0 and client SDK 3.18.1

@@ -1,31 +1,36 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions
 description: This tutorial describes how to create a sample Spring Boot application for microservice transactions by using Spring Data JDBC for ScalarDB.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/README/
+resource: https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/spring-data-microservice-transaction-sample/README/
 tags:
 - scalardb
 - v3.18
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.18'
-patch_version: 3.18.0
+patch_version: 3.18.1
 doc_id: scalardb-samples/spring-data-microservice-transaction-sample/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:24Z'
+  at: '2026-08-04T23:50:49Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/docs/scalardb-samples/spring-data-microservice-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-samples/spring-data-microservice-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions
@@ -62,7 +67,7 @@ The Order Service is responsible for order operations like placing an order and 
 Each service has gRPC endpoints. Clients call the endpoints, and the services call the endpoints each other as well.
 The Customer Service and the Order Service use MySQL and Cassandra through ScalarDB, respectively.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/spring-data-microservice-transaction-sample/images/overview.png)
 
 Each service accesses the databases through its own dedicated ScalarDB Cluster.
 
@@ -251,7 +256,7 @@ As shown in [`schema-for-order-service.sql`](https://github.com/scalar-labs/scal
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/spring-data-microservice-transaction-sample/images/ERD.png)
 
 ### Start Microservices
 
@@ -399,7 +404,7 @@ The transactions for placing an order, getting a single order, and getting the h
 
 The following sequence diagram shows the transaction for placing an order:
 
-![Sequence Diagram](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/sequence_diagram.png)
+![Sequence Diagram](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/spring-data-microservice-transaction-sample/images/sequence_diagram.png)
 
 ### 1. Transaction with a two-phase commit interface is started
 
@@ -504,7 +509,7 @@ TwoPcResult<PlaceOrderResponse> result = orderRepository.executeTwoPcTransaction
 );
 ```
 
-![Sequence Diagram of High Level 2PC API](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/seq-diagram-high-level-2pc-api.png)
+![Sequence Diagram of High Level 2PC API](https://scalardb.scalar-labs.com/docs/3.18/scalardb-samples/spring-data-microservice-transaction-sample/images/seq-diagram-high-level-2pc-api.png)
 
 In the `prepare` endpoint of the Customer Service, the endpoint resumes and prepares the transaction by using `ScalarDbTwoPcRepository.prepareTransactionOnParticipant()`. For reference, see [`CustomerService.java`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/customer-service/src/main/java/sample/customer/CustomerService.java).
 

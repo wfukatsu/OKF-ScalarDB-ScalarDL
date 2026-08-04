@@ -15,7 +15,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.17'
-patch_version: 3.17.3
+patch_version: 3.17.4
 doc_id: run-non-transactional-storage-operations-through-library
 lifecycle_phase: implement
 breadcrumb:
@@ -30,13 +30,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:26Z'
+  at: '2026-08-04T23:50:51Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/dc5c112650d1543275b5c9de1bf3d1dd6d2d777a/versioned_docs/version-3.17/run-non-transactional-storage-operations-through-library.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/run-non-transactional-storage-operations-through-library.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-07-27T12:09:14Z'
+  last_modified: '2026-08-04T15:05:02Z'
 ---
 
 # Run Non-Transactional Storage Operations Through the Core Library
@@ -664,7 +664,7 @@ To add the build dependency for ScalarDB by using Gradle, add the following to `
 
 ```gradle
 dependencies {
-    implementation 'com.scalar-labs:scalardb:3.17.2'
+    implementation 'com.scalar-labs:scalardb:3.17.4'
 }
 ```
 
@@ -676,7 +676,7 @@ To add the build dependency for ScalarDB by using Maven, add the following to `p
 <dependency>
     <groupId>com.scalar-labs</groupId>
     <artifactId>scalardb</artifactId>
-    <version>3.17.2</version>
+    <version>3.17.4</version>
 </dependency>
 ```
 
@@ -695,4 +695,4 @@ The following limitations apply to non-transactional storage operations:
 
 ### Learn more
 
-- [Javadoc](https://javadoc.io/doc/com.scalar-labs/scalardb/3.17.2/index.html)
+- [Javadoc](https://javadoc.io/doc/com.scalar-labs/scalardb/3.17.4/index.html)

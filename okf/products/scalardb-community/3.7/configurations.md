@@ -20,7 +20,7 @@ breadcrumb:
 - Configuration Guides
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-07-28T00:57:10Z'
+  at: '2026-08-04T23:51:05Z'
 sources:
 - id: docs-scalardb-community
   resource: https://github.com/scalar-labs/docs-scalardb-community/blob/71d199cb0df1c638bd7e305b64fa09fc7236e5c4/versioned_docs/version-3.7/configurations.mdx
