@@ -169,9 +169,28 @@
           "concepts": 24
         }
       }
+    },
+    "scalardb-saga": {
+      "repo": "scalardb-saga",
+      "kind": "repo",
+      "repo_sha": "ecbd61722adae47620b2032be6974c9af593ecda",
+      "repo_committed_at": "2026-08-03T21:49:02Z",
+      "latest": "3.19",
+      "version_order": [
+        "3.19"
+      ],
+      "versions": {
+        "3.19": {
+          "patch": "3.19.0-alpha.1",
+          "sha": "ecbd61722adae47620b2032be6974c9af593ecda",
+          "url_path": "3.19",
+          "maintenance": "pre-release",
+          "concepts": 7
+        }
+      }
     }
   },
   "okf_version": "0.2",
   "generator": "process:okf-build/1.0.0",
-  "last_run": "2026-08-04T23:51:05Z"
+  "last_run": "2026-08-05T00:09:17Z"
 }

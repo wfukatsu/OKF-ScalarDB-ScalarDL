@@ -68,3 +68,7 @@ generated:
 - ScalarDB Community 3.5 (rebuilt, 22 concepts)
 - ScalarDB Community 3.4 (rebuilt, 24 concepts)
 
+## 2026-08-05T00:09:17Z
+
+- ScalarDB Saga 3.19 (new, 7 concepts)
+

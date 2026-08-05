@@ -22,6 +22,9 @@ status: stable
 3. **推測しない。** バンドル内に根拠が無い場合は「ドキュメントに記載が無い」と述べ、
    `resource` の URL を提示して確認を促すこと。
 4. **`status: deprecated` の概念は設計判断の根拠にしない。** 既存システムの調査目的でのみ使う。
+5. **`status: draft` の概念は未 GA。** `prerelease: true` / `pre-release` タグが付いた
+   バージョン（現時点では ScalarDB Saga 3.19 = `3.19.0-alpha.1`）は、API・設定キー・
+   ワイヤ契約が変わり得ます。提案する際は必ず「未 GA である」と明示すること。
 
 ## 読み込み手順
 
@@ -31,9 +34,13 @@ status: stable
 okf/products/<product>/index.md
 ```
 
-`scalardb` / `scalardl` / `scalardb-community` の 3 製品があります。
+`scalardb` / `scalardl` / `scalardb-saga` / `scalardb-community` の 4 製品があります。
 バージョン一覧・最新版・サポート状況が表になっています。
 判断基準は [製品・エディション・バージョンの選び方](./product-and-version-selection.md) を参照。
+
+`scalardb-saga` だけはドキュメントサイトを持たず、ソースリポジトリ内の
+ドキュメントと契約ファイル（proto、設定テンプレート、saga 定義）から生成されています。
+バージョンはリリースブランチ（`3.19`）に対応します。
 
 ### Step 2 — バージョンのハブを読む
 
@@ -83,6 +90,16 @@ frontmatter の `lifecycle_phase` と `type` で絞り込めます。
 - `*-error-codes.md` — エラーコードから原因への逆引き
 - `releases/release-notes.md` — バージョン間の差分
 
+ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、次の 7 概念だけです。
+
+- `overview.md` — Saga / TCC、サーバモードと組み込みモード、成果物一覧（設計）
+- `getting-started.md` — Docker Compose で動かすチュートリアル（実装）
+- `reference/saga-definitions.md` — saga 定義の実例（宣言的サービスステップと `stepClass`）（実装）
+- `reference/grpc-saga-api.md` — `SagaService` の gRPC 契約（実装）
+- `server-deployment.md` — サーバイメージの実行、ヘルスチェック、graceful shutdown（運用）
+- `reference/server-configuration.md` — `scalar.db.saga.server.*` 設定キーと既定値の全量（運用）
+- `reference/grpc-admin-api.md` — 運用者向け `AdminService`（運用）
+
 ## コード生成時の注意
 
 - **例外処理を省略しない。** ScalarDB のトランザクション API は
@@ -93,6 +110,12 @@ frontmatter の `lifecycle_phase` と `type` で絞り込めます。
   ドキュメントバージョンのパッチリリース（frontmatter の `patch_version`）に解決済みです。
 - **2PC（`two-phase-commit-transactions.md`）はマイクロサービス跨ぎのみ。**
   単一サービス内で使わないこと。
+- **ScalarDB の 2PC と ScalarDB Saga を取り違えない。** 2PC はサービスを跨いでも
+  強一貫（ACID）を保つ代わりに参加者を同期的に拘束します。ScalarDB Saga は
+  補償による結果整合であり、ステップは冪等である必要があります。
+  「即時の一貫性が正しさの要件か」で先に選び分けること。
+- **ScalarDB Saga のコードステップ（`stepClass`）は組み込みモード専用。**
+  サーバモードの定義に書くと起動時に拒否されます。
 
 ## 引用の作法
 
