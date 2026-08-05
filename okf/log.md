@@ -76,3 +76,7 @@ generated:
 
 - ScalarDB Saga 3.19 (rebuilt, 8 concepts — RELEASING.md added)
 
+## 2026-08-05T00:27:00Z
+
+- ScalarDB Saga 3.19 (rebuilt, 9 concepts — CLAUDE.md added)
+

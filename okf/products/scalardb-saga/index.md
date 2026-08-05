@@ -15,7 +15,7 @@ supported_versions:
 - '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-05T00:20:30Z'
+  at: '2026-08-05T00:26:16Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/tree/ecbd61722adae47620b2032be6974c9af593ecda
@@ -32,7 +32,7 @@ Saga orchestration engine for microservices. Coordinates eventually consistent d
 
 | Version | Release | Status | Concepts | Source |
 |---|---|---|---|---|
-| [3.19 (latest)](./3.19/index.md) | 3.19.0-alpha.1 | pre-release | 8 | https://github.com/scalar-labs/scalardb-saga/tree/3.19 |
+| [3.19 (latest)](./3.19/index.md) | 3.19.0-alpha.1 | pre-release | 9 | https://github.com/scalar-labs/scalardb-saga/tree/3.19 |
 
 ## How to pick a version
 

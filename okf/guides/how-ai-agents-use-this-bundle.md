@@ -90,7 +90,7 @@ frontmatter の `lifecycle_phase` と `type` で絞り込めます。
 - `*-error-codes.md` — エラーコードから原因への逆引き
 - `releases/release-notes.md` — バージョン間の差分
 
-ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、次の 8 概念だけです。
+ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、次の 9 概念だけです。
 
 - `overview.md` — Saga / TCC、サーバモードと組み込みモード、成果物一覧（設計）
 - `getting-started.md` — Docker Compose で動かすチュートリアル（実装）
@@ -101,6 +101,10 @@ ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、�
 - `reference/grpc-admin-api.md` — 運用者向け `AdminService`（運用）
 - `releasing.md` — リリース手順。公開される成果物の座標（Maven Central / GHCR）、
   ブランチモデル、公開イメージの署名検証方法（運用）
+- `contributing-conventions.md` — **ScalarDB Saga 本体に手を入れる場合**の規約
+  （Java/Gradle、コードスタイル、静的解析、パッケージ命名、テスト方針）。
+  タグ `contributor` / `upstream-development` が付いています。
+  **Saga を利用するアプリケーション側の実装規約として適用しないこと。**
 
 ## コード生成時の注意
 
