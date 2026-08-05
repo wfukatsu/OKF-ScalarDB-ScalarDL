@@ -18,7 +18,7 @@ doc_id: overview
 lifecycle_phase: design
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-05T00:09:17Z'
+  at: '2026-08-05T00:20:30Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/README.md
@@ -202,7 +202,7 @@ Building requires JDK 21. Before opening a pull request:
 
 Code follows the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html),
 enforced by Spotless, and is checked by Error Prone, NullAway, and SpotBugs. See
-[RELEASING.md](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/RELEASING.md) for how releases are cut.
+[RELEASING.md](./releasing.md) for how releases are cut.
 
 ## License
 

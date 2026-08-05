@@ -90,7 +90,7 @@ frontmatter の `lifecycle_phase` と `type` で絞り込めます。
 - `*-error-codes.md` — エラーコードから原因への逆引き
 - `releases/release-notes.md` — バージョン間の差分
 
-ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、次の 7 概念だけです。
+ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、次の 8 概念だけです。
 
 - `overview.md` — Saga / TCC、サーバモードと組み込みモード、成果物一覧（設計）
 - `getting-started.md` — Docker Compose で動かすチュートリアル（実装）
@@ -99,6 +99,8 @@ ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、�
 - `server-deployment.md` — サーバイメージの実行、ヘルスチェック、graceful shutdown（運用）
 - `reference/server-configuration.md` — `scalar.db.saga.server.*` 設定キーと既定値の全量（運用）
 - `reference/grpc-admin-api.md` — 運用者向け `AdminService`（運用）
+- `releasing.md` — リリース手順。公開される成果物の座標（Maven Central / GHCR）、
+  ブランチモデル、公開イメージの署名検証方法（運用）
 
 ## コード生成時の注意
 

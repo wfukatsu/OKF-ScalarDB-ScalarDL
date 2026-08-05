@@ -17,10 +17,10 @@ prerelease: true
 url_path: '3.19'
 maintenance: supported
 is_latest: true
-concept_count: 7
+concept_count: 8
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-05T00:09:17Z'
+  at: '2026-08-05T00:20:30Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/tree/ecbd61722adae47620b2032be6974c9af593ecda
@@ -40,7 +40,7 @@ sources:
 | Release the branch builds | 3.19.0-alpha.1 |
 | Source branch | `3.19` |
 | Upstream source | https://github.com/scalar-labs/scalardb-saga @ `ecbd61722ada` |
-| Concepts in this version | 7 |
+| Concepts in this version | 8 |
 
 ## By lifecycle phase
 
@@ -56,9 +56,10 @@ Start here when you know which phase of the project you are in.
 - [Saga definition examples](./reference/saga-definitions.md)
 - [Saga gRPC API](./reference/grpc-saga-api.md)
 
-### 運用 / Operate (3)
+### 運用 / Operate (4)
 
 - [Admin gRPC API](./reference/grpc-admin-api.md)
+- [Releasing](./releasing.md)
 - [ScalarDB Saga server image](./server-deployment.md)
 - [Server configuration reference](./reference/server-configuration.md)
 
