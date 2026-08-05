@@ -17,7 +17,6 @@ listings and update history.
 from __future__ import annotations
 
 import argparse
-import datetime as dt
 import json
 import re
 import shutil
@@ -29,29 +28,25 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from okf_common import (  # noqa: E402
+    GENERATOR, LIFECYCLE_LABELS, LIFECYCLE_ORDER, OKF_VERSION, now, slugify_tag,
+    write_concept,
+)
 from okf_mdx import (  # noqa: E402
     MdxConverter, extract_description, extract_title, rewrite_links,
     split_frontmatter,
 )
+from okf_repo import RepoVersionBuilder, write_repo_product_index  # noqa: E402
 from okf_sources import (  # noqa: E402
     PRODUCTS, PRODUCTS_BY_KEY, DocVersion, Product, classify, discover_versions,
-    index_sidebar, load_sidebar, sync_repo,
+    index_sidebar, load_sidebar, sync_repo, sync_repo_versions,
 )
-
-GENERATOR = "process:okf-build/1.0.0"
 
 # Upstream page tags mix two vocabularies: which edition a feature belongs to
 # and what release status the feature is in.  They are kept apart here so a
 # consumer never mistakes "Deprecated" for an edition.
 FEATURE_STATUS_TAGS = {"Deprecated", "Private Preview", "Public Preview"}
-OKF_VERSION = "0.2"
 SKIP_DIRS = {"components", "images", "slides", "assets", "_partials"}
-LIFECYCLE_LABELS = {
-    "design": "設計 / Design",
-    "implement": "実装 / Implement",
-    "operate": "運用 / Operate",
-}
-LIFECYCLE_ORDER = ["design", "implement", "operate"]
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -59,23 +54,6 @@ ROOT = Path(__file__).resolve().parent.parent
 # --------------------------------------------------------------------------
 # Helpers
 # --------------------------------------------------------------------------
-
-def now() -> str:
-    return dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-
-def write_concept(path: Path, frontmatter: dict, body: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    fm = yaml.safe_dump(
-        frontmatter, sort_keys=False, allow_unicode=True, default_flow_style=False,
-        width=100000,
-    ).rstrip()
-    path.write_text(f"---\n{fm}\n---\n\n{body.lstrip()}", encoding="utf-8")
-
-
-def slugify_tag(text: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
-
 
 def _is_empty(body: str, min_words: int = 12) -> bool:
     """True when a page has no prose of its own.
@@ -481,8 +459,9 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "# ScalarDB / ScalarDL Knowledge Bundle",
         "",
         "An OKF bundle containing the ScalarDB and ScalarDL product documentation "
-        "published at developers.scalar-labs.com, split by product and by version so "
-        "that an AI agent can be pointed at exactly the release a project runs.",
+        "published at developers.scalar-labs.com, plus the documentation ScalarDB Saga "
+        "keeps in its source repository, split by product and by version so that an AI "
+        "agent can be pointed at exactly the release a project runs.",
         "",
         "## Start here",
         "",
@@ -520,17 +499,23 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "`sources[]` pointing at the exact upstream commit it was generated from. "
         "`lifecycle_phase` is one of `design`, `implement`, `operate`.",
         "",
+        "ScalarDB Saga has no documentation site yet, so its concepts are generated from "
+        "the Markdown and contract files in `scalar-labs/scalardb-saga`, one release "
+        "branch per version; their `resource` points at the file on GitHub, pinned to the "
+        "commit they were built from. A version with no GA release is marked "
+        "`status: draft` and tagged `pre-release`.",
+        "",
     ]
     fm = {
         "type": "Knowledge Bundle",
         "title": "ScalarDB / ScalarDL Knowledge Bundle",
         "okf_version": OKF_VERSION,
         "description": (
-            "ScalarDB and ScalarDL documentation organised per product and per version "
-            "for AI-assisted design, implementation and operations."
+            "ScalarDB, ScalarDL and ScalarDB Saga documentation organised per product "
+            "and per version for AI-assisted design, implementation and operations."
         ),
         "resource": "https://developers.scalar-labs.com/",
-        "tags": ["scalardb", "scalardl", "bundle-root"],
+        "tags": ["scalardb", "scalardl", "scalardb-saga", "bundle-root"],
         "status": "stable",
         "concept_count": summary["total_concepts"],
         "generated": {"by": GENERATOR, "at": now()},
@@ -570,6 +555,87 @@ def copy_guides(bundle: Path) -> None:
 
 
 # --------------------------------------------------------------------------
+# Repository-sourced products
+# --------------------------------------------------------------------------
+
+def build_repo_product(product: Product, cache: Path, bundle: Path, state: dict,
+                       summary: dict, changed: list[str], *,
+                       wanted_versions: set[str], only_new: bool,
+                       offline: bool) -> None:
+    """Build a product whose documentation lives in its source repository.
+
+    Its versions are release branches rather than `versioned_docs/` directories,
+    and a branch keeps moving until the line is released, so a version is
+    rebuilt whenever the branch head has moved — not only when it is new.
+    """
+    versions = sync_repo_versions(product, cache, offline=offline)
+    if not versions:
+        print("  (no release branches found)", flush=True)
+        return
+
+    repo_dir = cache / product.repo
+    known = state["products"].get(product.key, {}).get("versions", {})
+    counts: dict[str, int] = {v: known.get(v, {}).get("concepts", 0) for v in known}
+    built_any = False
+
+    for version in versions:
+        if wanted_versions and version.name not in wanted_versions:
+            continue
+        if (only_new and version.name in known
+                and known[version.name].get("sha") == version.sha):
+            continue
+
+        out_dir = bundle / "products" / product.key / version.name
+        if out_dir.exists():
+            shutil.rmtree(out_dir)
+
+        builder = RepoVersionBuilder(product, version, repo_dir, out_dir)
+        builder.build()
+        builder.write_version_index()
+        counts[version.name] = len(builder.built)
+        built_any = True
+        tag = "new" if version.name not in known else "rebuilt"
+        changed.append(
+            f"{product.title} {version.name} ({tag}, {len(builder.built)} concepts)"
+        )
+        missing = f"  missing {len(builder.missing)} source" if builder.missing else ""
+        print(f"  {version.name:<6} {len(builder.built):>4} concepts  [{tag}]{missing}",
+              flush=True)
+
+    write_repo_product_index(
+        product, versions, bundle / "products" / product.key, counts,
+    )
+    if not built_any:
+        print("  (nothing to build)", flush=True)
+
+    head = versions[0]
+    state["products"][product.key] = {
+        "repo": product.repo,
+        "kind": "repo",
+        "repo_sha": head.sha,
+        "repo_committed_at": head.committed_at,
+        "latest": head.name,
+        "version_order": [v.name for v in versions],
+        "versions": {
+            v.name: {
+                "patch": v.release,
+                "sha": v.sha,
+                "url_path": v.name,
+                "maintenance": "pre-release" if v.prerelease else "supported",
+                "concepts": counts.get(v.name, 0),
+            }
+            for v in versions if v.name in counts
+        },
+    }
+    summary["products"][product.key] = {
+        "latest": head.name,
+        "versions": [v.name for v in versions],
+        "concepts": sum(counts.get(v.name, 0) for v in versions),
+    }
+    summary["total_concepts"] += summary["products"][product.key]["concepts"]
+
+
+# --------------------------------------------------------------------------
 # Main
 # --------------------------------------------------------------------------
 
@@ -601,6 +667,15 @@ def main() -> int:
 
     for product in products:
         print(f"[{product.key}] syncing {product.repo} ...", flush=True)
+
+        if product.kind == "repo":
+            build_repo_product(
+                product, cache, bundle, state, summary, changed,
+                wanted_versions=wanted_versions, only_new=args.only_new,
+                offline=args.offline,
+            )
+            continue
+
         repo_state = sync_repo(product, cache, offline=args.offline)
         repo_dir = cache / product.repo
         versions = discover_versions(product, repo_dir)

@@ -9,11 +9,12 @@ AI に設計・実装・運用のコンテキストを与えるために使い�
 
 | 製品 | 最新 | 収録バージョン | 概念数 |
 |---|---|---|---|
-| ScalarDB | 3.18 | 3.18, 3.17, 3.16, 3.15, 3.14 | 983 |
+| ScalarDB | 3.19 | 3.19, 3.18, 3.17, 3.16, 3.15, 3.14 | 1,189 |
 | ScalarDL | 3.13 | 3.13, 3.12, 3.11, 3.10 | 548 |
+| ScalarDB Saga | 3.19 | 3.19（未 GA / `3.19.0-alpha.1`） | 7 |
 | ScalarDB Community | 3.13 | 3.13 〜 3.4 | 269 |
 
-合計 **1,800 概念 / 19 バージョン**（`okf/` 配下、2,048 ファイル）。
+合計 **2,013 概念 / 21 バージョン**。
 
 ## 構成
 
@@ -28,11 +29,15 @@ okf/                                      ← OKF バンドルルート
 └── products/
     ├── scalardb/
     │   ├── index.md                      製品概念（バージョン一覧・サポート状況）
-    │   └── 3.18/ 3.17/ 3.16/ 3.15/ 3.14/
+    │   └── 3.19/ 3.18/ 3.17/ 3.16/ 3.15/ 3.14/
     │       ├── index.md                  バージョン概念＋フェーズ別ナビゲーション
     │       ├── <page>.md                 1 ドキュメントページ = 1 概念
     │       └── <section>/index.md        セクションの目次
     ├── scalardl/
+    ├── scalardb-saga/                    ソースリポジトリ由来（ドキュメントサイト無し）
+    │   └── 3.19/                         リリースブランチ = バージョン
+    │       ├── overview.md               リポジトリ内 Markdown
+    │       └── reference/                proto・設定テンプレート・saga 定義
     └── scalardb-community/
 
 tools/                                    ジェネレータ（okf/ はここから再生成される）
@@ -80,13 +85,14 @@ make validate    # OKF v0.2 適合性を検査
 
 ## 生成元と変換について
 
-| 製品 | 上流リポジトリ | 公開サイト |
-|---|---|---|
-| ScalarDB | `scalar-labs/docs-scalardb` | https://scalardb.scalar-labs.com/docs/ |
-| ScalarDL | `scalar-labs/docs-scalardl` | https://scalardl.scalar-labs.com/docs/ |
-| ScalarDB Community | `scalar-labs/docs-scalardb-community` | https://scalardb-community.scalar-labs.com/docs/ |
+| 製品 | 上流リポジトリ | 種別 | 公開サイト |
+|---|---|---|---|
+| ScalarDB | `scalar-labs/docs-scalardb` | Docusaurus | https://scalardb.scalar-labs.com/docs/ |
+| ScalarDL | `scalar-labs/docs-scalardl` | Docusaurus | https://scalardl.scalar-labs.com/docs/ |
+| ScalarDB Community | `scalar-labs/docs-scalardb-community` | Docusaurus | https://scalardb-community.scalar-labs.com/docs/ |
+| ScalarDB Saga | `scalar-labs/scalardb-saga` | ソースリポジトリ | （無し） |
 
-developers.scalar-labs.com はこれら 3 サイトへのハブで、実体はこの Docusaurus リポジトリ群です。
+developers.scalar-labs.com は前者 3 サイトへのハブで、実体はこの Docusaurus リポジトリ群です。
 HTML をスクレイピングするのではなく、サイトの生成元である MDX を直接取り込んでいます。
 
 上流は MDX なので、以下を平文 Markdown に展開しています。
@@ -105,12 +111,28 @@ HTML をスクレイピングするのではなく、サイトの生成元であ
 ナビゲーション用コンポーネントのみのページやリダイレクトスタブ（全体で 14 ページ）は、
 空概念になるため取り込まず、生成した `index.md` の目次が代わりになっています。
 
+### ScalarDB Saga（ソースリポジトリ由来）
+
+ScalarDB Saga はドキュメントサイトを持たないため、別経路（`tools/okf_repo.py`）で生成しています。
+
+- **バージョン = リリースブランチ。** `^\d+\.\d+$` に一致するブランチ（現在は `3.19`）のみを
+  取り込みます。`main` / 次期マイナーブランチは `-SNAPSHOT` の開発ラインなので対象外です。
+- **概念にするファイルは `REPO_DOCS` に宣言。** サイドバーが無いため、リポジトリ内 Markdown
+  （README / getting-started / server イメージ）に加え、契約そのものであるファイル
+  （`saga.proto`・`admin.proto`・`server.properties` テンプレート・saga 定義の実例）を
+  Reference 概念として出力します。
+- **`resource` は生成元コミットに固定した GitHub blob URL。** リポジトリ内リンクは、
+  概念になっているファイルならバンドル内相対パスへ、それ以外は同じコミットの GitHub URL へ
+  書き換えます。
+- **GA 前のラインは `status: draft` + `prerelease: true` + `pre-release` タグ。**
+
 ## ライセンス
 
 [Apache License 2.0](./LICENSE)。`okf/products/` 配下のコンテンツは
 [scalar-labs/docs-scalardb](https://github.com/scalar-labs/docs-scalardb) /
 [scalar-labs/docs-scalardl](https://github.com/scalar-labs/docs-scalardl) /
-[scalar-labs/docs-scalardb-community](https://github.com/scalar-labs/docs-scalardb-community)
+[scalar-labs/docs-scalardb-community](https://github.com/scalar-labs/docs-scalardb-community) /
+[scalar-labs/scalardb-saga](https://github.com/scalar-labs/scalardb-saga)
 （いずれも Apache-2.0）から機械変換した派生物です。各概念の `sources[]` に
 生成元コミットへのパーマリンクを保持しています。
 
@@ -122,3 +144,8 @@ HTML をスクレイピングするのではなく、サイトの生成元であ
 - `<VERSION>` `<NAMESPACE>` のようなプレースホルダは原文どおり残しています。
 - 上流サイドバーに載っていない 54 概念（全体の 3%）は `type: Documentation Page` に
   フォールバックしています。内容は完全です。
+- **ScalarDB Saga は未 GA。** 収録しているのはアルファ（`3.19.0-alpha.1`）の内容であり、
+  API・設定キー・ワイヤ契約は変わり得ます。また REST API に OpenAPI 定義が上流に無いため、
+  REST の網羅的なリファレンスはありません（gRPC の proto と getting-started の
+  `curl` 例が根拠になります）。ライセンス/エディション区分も上流で宣言されていないため
+  `editions` は付いていません。

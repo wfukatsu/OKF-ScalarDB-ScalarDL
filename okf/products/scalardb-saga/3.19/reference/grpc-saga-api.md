@@ -1,0 +1,137 @@
+---
+type: Reference
+title: Saga gRPC API
+description: The SagaService gRPC contract — starting a saga, awaiting it, and reading its snapshot and event history — as defined in saga.proto.
+resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/rpc/src/main/proto/saga.proto
+tags:
+- scalardb-saga
+- v3.19
+- phase:implement
+- section:reference
+- pre-release
+status: draft
+product: scalardb-saga
+product_title: ScalarDB Saga
+version: '3.19'
+patch_version: 3.19.0-alpha.1
+prerelease: true
+doc_id: reference/grpc-saga-api
+lifecycle_phase: implement
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-08-05T00:09:17Z'
+sources:
+- id: scalardb-saga
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/rpc/src/main/proto/saga.proto
+  title: ScalarDB Saga source repository — rpc/src/main/proto/saga.proto
+  author: process:scalar-labs/scalardb-saga
+  last_modified: '2026-08-03T21:49:02Z'
+---
+
+# Saga gRPC API
+
+`SagaService` is the gRPC rendering of the server's REST contract, served on port `12051` by default. The protobuf definition below is the contract itself, and its comments state the semantics each RPC guarantees — what a bounded wait returns, which errors travel as which `io.grpc.Status`, and what a client-supplied saga id does.
+
+The generated stubs ship as `com.scalar-labs:scalardb-saga-rpc`; the client SDK (`scalardb-saga-java-client-sdk`) wraps them and is what an application normally uses.
+
+## `rpc/src/main/proto/saga.proto`
+
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/rpc/src/main/proto/saga.proto)
+
+```protobuf
+syntax = "proto3";
+
+package rpc;
+
+option java_multiple_files = true;
+option java_package = "com.scalar.db.saga.rpc";
+option java_outer_classname = "SagaProto";
+
+import "google/protobuf/timestamp.proto";
+
+// The gRPC rendering of the saga daemon's REST contract. Three unary RPCs delegating to the same
+// orchestrator as the REST routes. No streaming yet (a future WatchSaga adds push). Errors travel as
+// plain io.grpc.Status (no rich-error model); the duplicate-id conflict is ALREADY_EXISTS.
+service SagaService {
+  // Starts a saga. `async=false` blocks for one bounded window (the gRPC analogue of REST's 202),
+  // returning the terminal snapshot if it is reached within the window, else the in-flight
+  // (non-terminal) snapshot; `async=true` returns the running snapshot immediately. A duplicate
+  // client-supplied `saga_id` fails ALREADY_EXISTS.
+  rpc StartSaga (StartSagaRequest) returns (SagaSnapshot);
+
+  // Long-poll wait on an EXISTING saga: blocks until the saga is terminal, bounded by
+  // min(max_wait_millis, the server's sync ceiling, the remaining call deadline). On the bound it
+  // returns the current (possibly non-terminal) snapshot — status is the source of truth — and the
+  // client re-issues AwaitSaga. Idempotent and side-effect-free, so it is safe to retry/loop.
+  // NOT_FOUND if no saga has the given id.
+  rpc AwaitSaga (AwaitSagaRequest) returns (SagaSnapshot);
+
+  // Returns the current snapshot; NOT_FOUND if no saga has the given id.
+  rpc GetSaga (GetSagaRequest) returns (SagaSnapshot);
+
+  // Returns a saga's state plus its redacted event timeline (metadata and failure error /
+  // intervention reason only — never a raw step input/output payload). An application read for
+  // diagnosing its own saga's failure; NOT_FOUND if no saga has the given id.
+  rpc GetSagaDetail (GetSagaDetailRequest) returns (SagaDetail);
+}
+
+message StartSagaRequest {
+  optional string saga_id = 1;  // absent = server-generated id; present = client-supplied (idempotent retry)
+  string name = 2;              // required: the saga definition name
+  optional string version = 3;  // absent = latest version; present = pinned version
+  bytes input_json = 4;         // UTF-8 JSON of the Map<String, Object> saga input
+  bool async = 5;               // true = return immediately (running); false = block to terminal
+}
+
+message AwaitSagaRequest {
+  string saga_id = 1;                   // required: the existing saga to wait on
+  optional uint64 max_wait_millis = 2;  // client-requested long-poll window; server clamps to its ceiling
+}
+
+message GetSagaRequest {
+  string saga_id = 1;
+}
+
+message GetSagaDetailRequest {
+  string saga_id = 1;
+}
+
+message SagaDetail {
+  SagaSnapshot saga = 1;
+  repeated TimelineEvent timeline = 2;
+}
+
+// One event in a saga's timeline. Carries metadata plus the failure error or intervention reason
+// only; a raw step input/output payload is never included. The nullable api fields are proto3
+// `optional` so absence round-trips (a missing `detail` is distinct from an empty one).
+message TimelineEvent {
+  google.protobuf.Timestamp timestamp = 1;
+  string type = 2;                        // the event type name (e.g. STEP_FAILED)
+  optional int32 step_index = 3;          // set for step events
+  optional string step_name = 4;          // set for step events
+  optional SagaStatus resulting_status = 5;  // set for status events
+  optional string detail = 6;             // failure error or intervention reason, when present
+  optional string operator = 7;           // the operator, for an intervention event
+}
+
+message SagaSnapshot {
+  string saga_id = 1;
+  string name = 2;
+  SagaStatus status = 3;
+  string definition_version = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+// Mapped to/from the api SagaStatus enum BY NAME (the Java enum's RUNNING=0 collides with proto3's
+// required zero-value _UNSPECIFIED, so the numeric codes deliberately differ).
+enum SagaStatus {
+  SAGA_STATUS_UNSPECIFIED = 0;
+  SAGA_STATUS_RUNNING = 1;
+  SAGA_STATUS_COMPENSATING = 2;
+  SAGA_STATUS_COMPLETED = 3;
+  SAGA_STATUS_COMPENSATED = 4;
+  SAGA_STATUS_ESCALATED = 5;
+  SAGA_STATUS_WAITING = 6;
+}
+```

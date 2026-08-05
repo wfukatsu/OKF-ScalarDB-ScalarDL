@@ -4,6 +4,12 @@ The upstream documentation for developers.scalar-labs.com is authored as
 Docusaurus sites in three public repositories.  This module knows how to fetch
 them and how to read the metadata that the Docusaurus configuration carries
 (version list, patch version, maintenance banner, sidebar hierarchy).
+
+One product — ScalarDB Saga — has no documentation site yet: its documentation
+lives inside the source repository, and its versions are release branches
+rather than `versioned_docs/` directories.  Products carry a ``kind`` so the
+build can pick the right reader; the repository side of that is at the bottom
+of this module and in okf_repo.py.
 """
 
 from __future__ import annotations
@@ -27,6 +33,7 @@ class Product:
     repo: str           # github repo under scalar-labs
     site: str           # public docs site the pages are served from
     summary: str
+    kind: str = "docusaurus"   # "docusaurus" | "repo"
 
     @property
     def clone_url(self) -> str:
@@ -59,6 +66,20 @@ PRODUCTS: list[Product] = [
             "Byzantine-fault-detection middleware that makes database state "
             "tamper-evident. Covers contracts and functions, Ledger and Auditor "
             "deployment, certificate/HMAC authentication and operations."
+        ),
+    ),
+    Product(
+        key="scalardb-saga",
+        title="ScalarDB Saga",
+        repo="scalardb-saga",
+        site="https://github.com/scalar-labs/scalardb-saga",
+        kind="repo",
+        summary=(
+            "Saga orchestration engine for microservices. Coordinates eventually "
+            "consistent distributed transactions across services with the Saga "
+            "pattern (steps with compensations) and TCC, keeping saga state "
+            "durable through ScalarDB so no message broker is needed. Runs as a "
+            "server exposing REST and gRPC, or embedded as a library."
         ),
     ),
     Product(
@@ -347,6 +368,125 @@ def index_sidebar(tree: dict) -> dict[str, list[str]]:
         for items in sidebars.values():
             walk(items, [])
     return out
+
+
+# --------------------------------------------------------------------------
+# Repository-sourced products
+# --------------------------------------------------------------------------
+
+# A product without a documentation site keeps its versions as release
+# branches: one branch per minor line, named after it ("3.19").  Development
+# lines ("main", "3") carry a -SNAPSHOT version and no release, so they are not
+# versions anyone can run and are left out of the bundle.
+_MINOR_BRANCH = re.compile(r"^\d+\.\d+$")
+_PRERELEASE = re.compile(r"-(alpha|beta|rc|snapshot)", re.I)
+
+
+@dataclass
+class RepoVersion:
+    """One release line of a product documented inside its source repository."""
+
+    name: str               # "3.19" — the minor line, and the bundle directory
+    ref: str                # git ref the content is read from
+    sha: str
+    committed_at: str       # ISO-8601 UTC
+    release: str | None     # "3.19.0-alpha.1" — the version the branch builds
+    is_current: bool = False
+
+    @property
+    def prerelease(self) -> bool:
+        return bool(self.release and _PRERELEASE.search(self.release))
+
+    @property
+    def supported(self) -> bool:
+        return True
+
+    @property
+    def status(self) -> str:
+        """OKF lifecycle status for concepts belonging to this version."""
+        return "draft" if self.prerelease else "stable"
+
+
+def read_repo_file(repo_dir: Path, ref: str, path: str) -> str | None:
+    """Return a file's content at ``ref``, or None when it is not there."""
+    try:
+        res = subprocess.run(
+            ["git", "show", f"{ref}:{path}"],
+            cwd=repo_dir, capture_output=True, text=True, check=True,
+        )
+    except subprocess.CalledProcessError:
+        return None
+    return res.stdout
+
+
+def repo_path_kind(repo_dir: Path, ref: str, path: str) -> str | None:
+    """"blob", "tree", or None when ``path`` does not exist at ``ref``."""
+    try:
+        res = subprocess.run(
+            ["git", "cat-file", "-t", f"{ref}:{path}"],
+            cwd=repo_dir, capture_output=True, text=True, check=True,
+        )
+    except subprocess.CalledProcessError:
+        return None
+    kind = res.stdout.strip()
+    return kind if kind in ("blob", "tree") else None
+
+
+def _release_version(repo_dir: Path, ref: str) -> str | None:
+    text = read_repo_file(repo_dir, ref, "gradle.properties") or ""
+    m = re.search(r"^version\s*=\s*(.+)$", text, re.M)
+    return m.group(1).strip() if m else None
+
+
+def sync_repo_versions(product: Product, cache_dir: Path, *,
+                       offline: bool = False) -> list[RepoVersion]:
+    """Clone the product repository and fetch every release branch it has."""
+    dest = cache_dir / product.repo
+    if not dest.exists():
+        if offline:
+            raise SystemExit(
+                f"{product.repo} is not cached at {dest} and --offline was given"
+            )
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        _run(["git", "clone", "--depth", "1", product.clone_url, str(dest)])
+
+    if offline:
+        refs = _run(
+            ["git", "for-each-ref", "--format=%(refname:short)", "refs/remotes/origin"],
+            cwd=dest,
+        ).splitlines()
+        names = sorted({r.split("/", 1)[1] for r in refs if "/" in r
+                        and _MINOR_BRANCH.match(r.split("/", 1)[1])})
+    else:
+        heads = _run(["git", "ls-remote", "--heads", "origin"], cwd=dest).splitlines()
+        names = sorted({
+            line.split("refs/heads/", 1)[1] for line in heads
+            if "refs/heads/" in line
+            and _MINOR_BRANCH.match(line.split("refs/heads/", 1)[1])
+        })
+        for name in names:
+            _run(["git", "fetch", "--depth", "1", "origin",
+                  f"+refs/heads/{name}:refs/remotes/origin/{name}"], cwd=dest)
+
+    versions: list[RepoVersion] = []
+    for name in names:
+        ref = f"origin/{name}"
+        sha = _run(["git", "rev-parse", ref], cwd=dest)
+        committed_at = _run(
+            ["git", "show", "-s",
+             "--format=%cd", "--date=format-local:%Y-%m-%dT%H:%M:%SZ", ref],
+            cwd=dest,
+        )
+        versions.append(RepoVersion(
+            name=name, ref=ref, sha=sha, committed_at=committed_at,
+            release=_release_version(dest, ref),
+        ))
+
+    versions.sort(key=lambda v: tuple(int(x) for x in re.findall(r"\d+", v.name)),
+                  reverse=True)
+    if versions:
+        versions[0].is_current = True
+    return versions
 
 
 def classify(doc_id: str, breadcrumb: list[str]) -> tuple[str, str]:
