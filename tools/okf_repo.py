@@ -81,6 +81,12 @@ REPO_DOCS: dict[str, list[RepoDoc]] = {
             phase="operate",
         ),
         RepoDoc(
+            out_rel="releasing.md",
+            sources=("RELEASING.md",),
+            concept_type="Release Process",
+            phase="operate",
+        ),
+        RepoDoc(
             out_rel="reference/saga-definitions.md",
             sources=(
                 "getting-started/conf/definitions/order-saga.json",

@@ -18,7 +18,7 @@ doc_id: server-deployment
 lifecycle_phase: operate
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-05T00:09:17Z'
+  at: '2026-08-05T00:20:30Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/server/docker/README.md
@@ -34,7 +34,7 @@ sources:
 
 Build it yourself with `./gradlew :server:dockerBuild`: that assembles the context from the
 `Dockerfile` in this directory plus the server distribution, and loads a single-architecture image
-tagged with the project version. See [RELEASING.md](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/RELEASING.md) for how the published image
+tagged with the project version. See [RELEASING.md](./releasing.md) for how the published image
 is built and signed, and how to verify its signature.
 
 ## Running it

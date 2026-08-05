@@ -19,7 +19,7 @@ doc_id: reference/grpc-admin-api
 lifecycle_phase: operate
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-05T00:09:17Z'
+  at: '2026-08-05T00:20:30Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/rpc/src/main/proto/admin.proto
