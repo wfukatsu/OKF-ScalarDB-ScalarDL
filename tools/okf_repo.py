@@ -38,9 +38,11 @@ class RepoDoc:
     concept_type: str
     phase: str
     render: str = "markdown"            # "markdown" | "code"
-    title: str = ""                     # required for code renders
+    title: str = ""                     # required for code renders; overrides the H1
     description: str = ""               # required for code renders
     intro: str = ""                     # prose placed above a code render
+    note: str = ""                      # scope note prepended to a markdown render
+    extra_tags: tuple[str, ...] = ()    # tags beyond the standard product/version set
     optional: bool = False              # skip silently when the source is gone
 
     @property
@@ -79,6 +81,28 @@ REPO_DOCS: dict[str, list[RepoDoc]] = {
             sources=("server/docker/README.md",),
             concept_type="Deployment Guide",
             phase="operate",
+        ),
+        RepoDoc(
+            out_rel="contributing-conventions.md",
+            sources=("CLAUDE.md",),
+            concept_type="Contributor Guide",
+            phase="implement",
+            title="ScalarDB Saga codebase conventions",
+            description=(
+                "Conventions for changing the ScalarDB Saga codebase itself: Java and "
+                "Gradle setup, code style, static analysis, package naming, design "
+                "principles and testing. Not guidance for applications that use "
+                "ScalarDB Saga."
+            ),
+            note=(
+                "これは **ScalarDB Saga 本体のコードに手を入れる場合** の規約です "
+                "（上流リポジトリの `CLAUDE.md`）。ScalarDB Saga を利用する "
+                "アプリケーション側の規約ではありません。アプリの実装指針は "
+                "`overview.md` / `getting-started.md` / `reference/` を参照してください。"
+                "本文中の `~/git/scalardb-saga-design/` は上流メンテナのローカルパスで、"
+                "公開されていません。"
+            ),
+            extra_tags=("contributor", "upstream-development"),
         ),
         RepoDoc(
             out_rel="releasing.md",
@@ -287,9 +311,14 @@ class RepoVersionBuilder:
         if doc.render == "markdown":
             source, text = found[0]
             body = _clean_markdown(text)
-            self.titles[doc.out_rel] = extract_title(body, doc.out_rel)
+            self.titles[doc.out_rel] = doc.title or extract_title(body, doc.out_rel)
             self.descriptions[doc.out_rel] = doc.description or extract_description(body)
-            return self._rewrite_links(body, doc, source)
+            body = self._rewrite_links(body, doc, source)
+            if doc.note:
+                # Prepended, not merged into the document, so the upstream text
+                # below it stays exactly what the repository says.
+                body = f"> **バンドル注記:** {doc.note}\n\n{body}"
+            return body
 
         self.titles[doc.out_rel] = doc.title
         self.descriptions[doc.out_rel] = doc.description
@@ -316,6 +345,7 @@ class RepoVersionBuilder:
             tags.append(f"section:{slugify_tag(doc.directory)}")
         if self.version.prerelease:
             tags.append("pre-release")
+        tags += list(doc.extra_tags)
 
         fm = {
             "type": doc.concept_type,

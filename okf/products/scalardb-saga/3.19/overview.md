@@ -18,7 +18,7 @@ doc_id: overview
 lifecycle_phase: design
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-05T00:20:30Z'
+  at: '2026-08-05T00:26:15Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/README.md
