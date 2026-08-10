@@ -18,13 +18,13 @@ is_latest: true
 concept_count: 206
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:47Z'
+  at: '2026-08-10T20:39:58Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/6126dfe2f56389351d88b134752618641f9771dd
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-07T16:37:01Z'
 ---
 
 # ScalarDB 3.19
@@ -37,7 +37,7 @@ Supported release.
 | Documentation version | 3.19 |
 | Newest patch release described | 3.19.0 |
 | Docs site | https://scalardb.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `6126dfe2f563` |
+| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `8bb9295f8fbd` |
 | Concepts in this version | 206 |
 
 ## By lifecycle phase

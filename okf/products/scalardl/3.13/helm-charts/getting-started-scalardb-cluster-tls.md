@@ -2,7 +2,7 @@
 type: Deployment Guide
 title: Getting Started with Helm Charts (ScalarDB Cluster with TLS)
 description: This tutorial explains how to get started with ScalarDB Cluster with TLS configurations by using Helm Charts on a Kubernetes cluster in a test environment. Before starting, you should already have a Mac or Linux environment for testing. In...
-resource: https://scalardl.scalar-labs.com/docs/latest/helm-charts/getting-started-scalardb-cluster-tls/
+resource: https://scalardl.scalar-labs.com/docs/3.13/helm-charts/getting-started-scalardb-cluster-tls/
 tags:
 - scalardl
 - v3.13
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/helm-charts/getting-started-scalardb-cluster-tls.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/helm-charts/getting-started-scalardb-cluster-tls.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Getting Started with Helm Charts (ScalarDB Cluster with TLS)
@@ -305,7 +305,7 @@ scalardb-cluster.pem
 helm repo add scalar-labs https://scalar-labs.github.io/helm-charts
 ```
 
-1. Set your license key and certificate as environment variables. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact). For details about the value of `<CERT_PEM_FOR_YOUR_LICENSE_KEY>`, see [How to Configure a License Key](https://scalardl.scalar-labs.com/docs/latest/scalar-licensing/index/).
+1. Set your license key and certificate as environment variables. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact). For details about the value of `<CERT_PEM_FOR_YOUR_LICENSE_KEY>`, see [How to Configure a License Key](https://scalardl.scalar-labs.com/docs/3.13/scalar-licensing/index/).
 
 ```console
 SCALAR_DB_CLUSTER_LICENSE_KEY='<YOUR_LICENSE_KEY>'

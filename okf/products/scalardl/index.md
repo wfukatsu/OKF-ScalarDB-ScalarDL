@@ -9,24 +9,26 @@ tags:
 status: stable
 product: scalardl
 versions:
+- '3.14'
 - '3.13'
 - '3.12'
 - '3.11'
 - '3.10'
-latest_version: '3.13'
+latest_version: '3.14'
 supported_versions:
+- '3.14'
 - '3.13'
 - '3.12'
 - '3.11'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:51:03Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # ScalarDL
@@ -37,7 +39,8 @@ Byzantine-fault-detection middleware that makes database state tamper-evident. C
 
 | Version | Newest patch | Maintenance | Concepts | Docs |
 |---|---|---|---|---|
-| [3.13 (latest)](./3.13/index.md) | 3.13.0 | supported | 143 | https://scalardl.scalar-labs.com/docs/latest/ |
+| [3.14 (latest)](./3.14/index.md) | 3.14.0 | supported | 144 | https://scalardl.scalar-labs.com/docs/latest/ |
+| [3.13](./3.13/index.md) | 3.13.0 | supported | 143 | https://scalardl.scalar-labs.com/docs/3.13/ |
 | [3.12](./3.12/index.md) | 3.12.3 | supported | 141 | https://scalardl.scalar-labs.com/docs/3.12/ |
 | [3.11](./3.11/index.md) | 3.11.3 | supported | 132 | https://scalardl.scalar-labs.com/docs/3.11/ |
 | [3.10](./3.10/index.md) | 3.10.5 | unmaintained | 132 | https://scalardl.scalar-labs.com/docs/3.10/ |

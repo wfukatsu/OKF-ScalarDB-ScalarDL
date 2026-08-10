@@ -15,7 +15,7 @@ supported_versions:
 - '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-05T00:26:16Z'
+  at: '2026-08-10T20:40:04Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/tree/ecbd61722adae47620b2032be6974c9af593ecda

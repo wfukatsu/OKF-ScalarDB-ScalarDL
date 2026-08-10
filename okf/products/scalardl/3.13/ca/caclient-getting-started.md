@@ -1,12 +1,13 @@
 ---
-type: Reference
+type: Development Guide
 title: How to Get a Certificate
 description: This document describes how to get a certificate to enroll in ScalarDL.
-resource: https://scalardl.scalar-labs.com/docs/latest/ca/caclient-getting-started/
+resource: https://scalardl.scalar-labs.com/docs/3.13/ca/caclient-getting-started/
 tags:
 - scalardl
 - v3.13
-- phase:operate
+- phase:implement
+- section:develop
 - edition:community
 - edition:enterprise
 status: stable
@@ -15,19 +16,22 @@ product_title: ScalarDL
 version: '3.13'
 patch_version: 3.13.0
 doc_id: ca/caclient-getting-started
-lifecycle_phase: operate
+lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Reference
 editions:
 - Community
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/ca/caclient-getting-started.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/ca/caclient-getting-started.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # How to Get a Certificate
@@ -487,7 +491,7 @@ You must install the [cfssl and cfssljson](https://github.com/cloudflare/cfssl) 
 
 ### Create a private key and certificate file
 
-1. Create a private key and CSR based on the [requirements](#private-key-and-certificate-requirements) by using a tool such as CFSSL or OpenSSL. You can see an example of how to create a private key and CSR by using the `cfssl` command in the [CFSSL](https://scalardl.scalar-labs.com/docs/latest/ca/?methods=self-signed&tools=cfssl) tab or the `openssl` command in the [OpenSSL](https://scalardl.scalar-labs.com/docs/latest/ca/?methods=self-signed&tools=openssl) tab.
+1. Create a private key and CSR based on the [requirements](#private-key-and-certificate-requirements) by using a tool such as CFSSL or OpenSSL. You can see an example of how to create a private key and CSR by using the `cfssl` command in the [CFSSL](https://scalardl.scalar-labs.com/docs/3.13/ca/?methods=self-signed&tools=cfssl) tab or the `openssl` command in the [OpenSSL](https://scalardl.scalar-labs.com/docs/3.13/ca/?methods=self-signed&tools=openssl) tab.
 
 1. Request a certificate from your CFSSL server.
 

@@ -1,12 +1,13 @@
 ---
-type: Release Notes
+type: Concept
 title: Release Support Policy
 description: This page describes Scalar's support policy for major and minor version releases of ScalarDL.
-resource: https://scalardl.scalar-labs.com/docs/latest/releases/release-support-policy/
+resource: https://scalardl.scalar-labs.com/docs/3.13/releases/release-support-policy/
 tags:
 - scalardl
 - v3.13
-- phase:operate
+- phase:design
+- section:about-scalardl
 - edition:enterprise
 status: stable
 product: scalardl
@@ -14,18 +15,20 @@ product_title: ScalarDL
 version: '3.13'
 patch_version: 3.13.0
 doc_id: releases/release-support-policy
-lifecycle_phase: operate
+lifecycle_phase: design
+breadcrumb:
+- About ScalarDL
 editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/releases/release-support-policy.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/releases/release-support-policy.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Release Support Policy
@@ -52,14 +55,14 @@ This page describes Scalar's support policy for major and minor version releases
   </thead>
   <tbody>
 <tr>
-<td>[3.13](https://scalardl.scalar-labs.com/docs/latest/releases/release-notes#v3130)</td>
+<td>[3.13](https://scalardl.scalar-labs.com/docs/3.13/releases/release-notes#v3130)</td>
 <td>2026-03-25</td>
-<td>TBD*</td>
-<td>TBD*</td>
+<td>2027-08-05</td>
+<td>2028-02-01</td>
 <td>[Contact us](https://scalar-labs.com/en/contact)</td>
 </tr>
 <tr>
-<td>[3.12](https://scalardl.scalar-labs.com/docs/latest/releases/release-notes#v3120)</td>
+<td>[3.12](https://scalardl.scalar-labs.com/docs/3.12/releases/release-notes#v3120)</td>
 <td>2025-09-22</td>
 <td>2027-03-25</td>
 <td>2027-09-21</td>
@@ -124,6 +127,4 @@ This page describes Scalar's support policy for major and minor version releases
   </tbody>
 </table>
 
-\* "TBD" will be replaced with a date after the next minor version is released.
-
-\*\* This product version is no longer supported under Maintenance Support or Assistance Support.
+\* This product version is no longer supported under Maintenance Support or Assistance Support.

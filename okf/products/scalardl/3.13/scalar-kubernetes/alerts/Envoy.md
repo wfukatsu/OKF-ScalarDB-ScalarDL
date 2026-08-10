@@ -1,12 +1,13 @@
 ---
-type: Deployment Guide
+type: Operations Guide
 title: Envoy Alerts
 description: This is the most critical alert and indicates that an Envoy cluster is not able to process requests. This alert should be handled with the highest priority.
-resource: https://scalardl.scalar-labs.com/docs/latest/scalar-kubernetes/alerts/Envoy/
+resource: https://scalardl.scalar-labs.com/docs/3.13/scalar-kubernetes/alerts/Envoy/
 tags:
 - scalardl
 - v3.13
 - phase:operate
+- section:manage
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -16,18 +17,22 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: scalar-kubernetes/alerts/Envoy
 lifecycle_phase: operate
+breadcrumb:
+- Manage
+- Monitor
+- Reference
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/scalar-kubernetes/alerts/Envoy.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/scalar-kubernetes/alerts/Envoy.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Envoy Alerts

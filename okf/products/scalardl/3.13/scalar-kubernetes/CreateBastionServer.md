@@ -2,11 +2,12 @@
 type: Deployment Guide
 title: Create a bastion server
 description: This document explains how to create a bastion server and install some tools for the deployment of Scalar products.
-resource: https://scalardl.scalar-labs.com/docs/latest/scalar-kubernetes/CreateBastionServer/
+resource: https://scalardl.scalar-labs.com/docs/3.13/scalar-kubernetes/CreateBastionServer/
 tags:
 - scalardl
 - v3.13
 - phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -16,18 +17,22 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: scalar-kubernetes/CreateBastionServer
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
+- Deployment Guides
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/scalar-kubernetes/CreateBastionServer.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/scalar-kubernetes/CreateBastionServer.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Create a bastion server
