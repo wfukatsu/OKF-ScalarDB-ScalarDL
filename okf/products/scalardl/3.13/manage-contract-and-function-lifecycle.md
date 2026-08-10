@@ -1,12 +1,13 @@
 ---
-type: Operations Guide
+type: Development Guide
 title: Manage the Contract and Function Lifecycle
 description: This document explains the lifecycle of contracts and functions in ScalarDL—from creating and registering them to updating them when bug fixes or feature additions are needed.
-resource: https://scalardl.scalar-labs.com/docs/latest/manage-contract-and-function-lifecycle/
+resource: https://scalardl.scalar-labs.com/docs/3.13/manage-contract-and-function-lifecycle/
 tags:
 - scalardl
 - v3.13
-- phase:operate
+- phase:implement
+- section:develop
 - edition:community
 - edition:enterprise
 status: stable
@@ -15,19 +16,22 @@ product_title: ScalarDL
 version: '3.13'
 patch_version: 3.13.0
 doc_id: manage-contract-and-function-lifecycle
-lifecycle_phase: operate
+lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Write Business Logic
 editions:
 - Community
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/manage-contract-and-function-lifecycle.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/manage-contract-and-function-lifecycle.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Manage the Contract and Function Lifecycle

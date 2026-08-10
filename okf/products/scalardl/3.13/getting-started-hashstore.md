@@ -2,11 +2,12 @@
 type: Tutorial
 title: Get Started with ScalarDL HashStore
 description: 'ScalarDL HashStore is a high-level abstraction on top of a low-level ledger abstraction. It is specially designed for digital evidence preservation and offers two functionalities: object authenticity management and collection authenticity...'
-resource: https://scalardl.scalar-labs.com/docs/latest/getting-started-hashstore/
+resource: https://scalardl.scalar-labs.com/docs/3.13/getting-started-hashstore/
 tags:
 - scalardl
 - v3.13
 - phase:implement
+- section:quickstart
 - edition:community
 - edition:enterprise
 status: stable
@@ -16,18 +17,20 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: getting-started-hashstore
 lifecycle_phase: implement
+breadcrumb:
+- Quickstart
 editions:
 - Community
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/getting-started-hashstore.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/getting-started-hashstore.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Get Started with ScalarDL HashStore
@@ -67,7 +70,7 @@ cd scalardl-samples
 
 ## Start up ScalarDL with your preferred database
 
-Select your database, and follow the instructions to deploy ScalarDL Ledger with it. For a list of databases that ScalarDL supports, see [Databases](https://scalardl.scalar-labs.com/docs/latest/requirements#databases).
+Select your database, and follow the instructions to deploy ScalarDL Ledger with it. For a list of databases that ScalarDL supports, see [Databases](https://scalardl.scalar-labs.com/docs/3.13/requirements#databases).
 
 **MySQL**
 

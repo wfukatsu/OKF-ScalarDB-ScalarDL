@@ -80,3 +80,10 @@ generated:
 
 - ScalarDB Saga 3.19 (rebuilt, 9 concepts — CLAUDE.md added)
 
+## 2026-08-10T20:40:05Z
+
+- ScalarDB 3.19 (rebuilt, 206 concepts)
+- ScalarDL 3.14 (new, 144 concepts)
+- ScalarDL 3.13 (rebuilt, 143 concepts)
+- ScalarDB Community 3.13 (rebuilt, 35 concepts)
+

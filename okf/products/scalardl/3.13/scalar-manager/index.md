@@ -2,7 +2,7 @@
 type: Documentation Section
 title: ScalarDL 3.13 — Scalar Manager
 description: Directory listing for the `scalar-manager` section of the ScalarDL 3.13 documentation.
-resource: https://scalardl.scalar-labs.com/docs/latest/scalar-manager/
+resource: https://scalardl.scalar-labs.com/docs/3.13/scalar-manager/
 tags:
 - scalardl
 - v3.13
@@ -12,7 +12,7 @@ product: scalardl
 version: '3.13'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 ---
 
 # Scalar Manager

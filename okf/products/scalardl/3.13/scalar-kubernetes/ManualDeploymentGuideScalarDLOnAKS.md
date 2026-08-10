@@ -2,11 +2,12 @@
 type: Deployment Guide
 title: Deploy ScalarDL Ledger on Azure Kubernetes Service (AKS)
 description: This document explains how to deploy ScalarDL Ledger on Azure Kubernetes Service (AKS).
-resource: https://scalardl.scalar-labs.com/docs/latest/scalar-kubernetes/ManualDeploymentGuideScalarDLOnAKS/
+resource: https://scalardl.scalar-labs.com/docs/3.13/scalar-kubernetes/ManualDeploymentGuideScalarDLOnAKS/
 tags:
 - scalardl
 - v3.13
 - phase:operate
+- section:deploy
 - edition:enterprise
 status: stable
 product: scalardl
@@ -15,17 +16,20 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: scalar-kubernetes/ManualDeploymentGuideScalarDLOnAKS
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- In Managed Kubernetes Environments
 editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/scalar-kubernetes/ManualDeploymentGuideScalarDLOnAKS.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/scalar-kubernetes/ManualDeploymentGuideScalarDLOnAKS.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Deploy ScalarDL Ledger on Azure Kubernetes Service (AKS)
@@ -34,7 +38,7 @@ This document explains how to deploy **ScalarDL Ledger** on Azure Kubernetes Ser
 
 In this guide, you will create the following environment in your Azure environment.
 
-![image](https://scalardl.scalar-labs.com/docs/latest/scalar-kubernetes/images/png/AKS_ScalarDL_Ledger.drawio.png)
+![image](https://scalardl.scalar-labs.com/docs/3.13/scalar-kubernetes/images/png/AKS_ScalarDL_Ledger.drawio.png)
 
 ## Step 1. Get the ScalarDL Ledger container image
 

@@ -2,11 +2,12 @@
 type: Concept
 title: ScalarDL Implementation
 description: ScalarDL is scalable and practical Byzantine fault detection middleware for transactional database systems, which achieves correctness, scalability, and database agnosticism. This document briefly introduces the implementation of ScalarDL....
-resource: https://scalardl.scalar-labs.com/docs/latest/implementation/
+resource: https://scalardl.scalar-labs.com/docs/3.13/implementation/
 tags:
 - scalardl
 - v3.13
 - phase:design
+- section:about-scalardl
 - edition:community
 - edition:enterprise
 status: stable
@@ -16,18 +17,20 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: implementation
 lifecycle_phase: design
+breadcrumb:
+- About ScalarDL
 editions:
 - Community
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/implementation.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/implementation.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # ScalarDL Implementation
@@ -40,7 +43,7 @@ For the architecture, novelty and Byzantine fault detection protocol of ScalarDL
 
 ScalarDL is middleware that runs on top of databases and is mainly written in Java. ScalarDL is composed of Ledger, Auditor, and Client SDK. Let's look at each component.
 
-![](https://scalardl.scalar-labs.com/docs/latest/images/scalardl.png)
+![](https://scalardl.scalar-labs.com/docs/3.13/images/scalardl.png)
 
 ### Ledger
 

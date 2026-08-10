@@ -1,12 +1,13 @@
 ---
-type: Sample Application
+type: Development Guide
 title: A simple bank account application
 description: 'This is a simple bank account application, which can be found in the scalardl repository. The actions that a user can perform are: create an account, view an account history, deposit funds to an account, withdraw funds from an account, and...'
-resource: https://scalardl.scalar-labs.com/docs/latest/applications/simple-bank-account/README/
+resource: https://scalardl.scalar-labs.com/docs/3.13/applications/simple-bank-account/README/
 tags:
 - scalardl
 - v3.13
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise
 status: stable
@@ -16,18 +17,21 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: applications/simple-bank-account/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Sample Applications
 editions:
 - Community
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/applications/simple-bank-account/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/applications/simple-bank-account/README.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # A simple bank account application
@@ -50,7 +54,7 @@ These contracts will be registered by the bank and will allow the bank to, respe
 
 The overall architecture of this application can be viewed as follows. (Note again that this use case is for simplicity, and in practice may look a bit different.)
 
-![architecture](https://scalardl.scalar-labs.com/docs/latest/applications/simple-bank-account/docs/img/architecture.jpg)
+![architecture](https://scalardl.scalar-labs.com/docs/3.13/applications/simple-bank-account/docs/img/architecture.jpg)
 
 ## Prerequisites for this sample application
 

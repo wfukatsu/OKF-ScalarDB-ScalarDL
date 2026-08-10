@@ -2,11 +2,12 @@
 type: Deployment Guide
 title: Getting Started with Helm Charts (ScalarDL Ledger and Auditor with TLS by Using cert-manager / Auditor Mode)
 description: This tutorial explains how to get started with ScalarDL Ledger and ScalarDL Auditor with TLS configurations by using Helm Charts and cert-manager on a Kubernetes cluster as a test environment. Before starting, you should already have a Mac...
-resource: https://scalardl.scalar-labs.com/docs/latest/helm-charts/getting-started-scalardl-auditor-tls-cert-manager/
+resource: https://scalardl.scalar-labs.com/docs/3.13/helm-charts/getting-started-scalardl-auditor-tls-cert-manager/
 tags:
 - scalardl
 - v3.13
 - phase:operate
+- section:deploy
 - edition:enterprise
 status: stable
 product: scalardl
@@ -15,17 +16,21 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: helm-charts/getting-started-scalardl-auditor-tls-cert-manager
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
+- Getting Started Guides
 editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/helm-charts/getting-started-scalardl-auditor-tls-cert-manager.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/helm-charts/getting-started-scalardl-auditor-tls-cert-manager.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Getting Started with Helm Charts (ScalarDL Ledger and Auditor with TLS by Using cert-manager / Auditor Mode)
@@ -393,7 +398,7 @@ schema-loader-ledger-schema-loading-mtllb    0/1     Completed   0          10s
 
 ## Step 6. Deploy ScalarDL Ledger and ScalarDL Auditor on the Kubernetes cluster by using Helm Charts
 
-1. Set your license key and certificate as environment variables. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact). For details about the value of `<CERT_PEM_FOR_YOUR_SCALAR_DL_LEDGER_LICENSE_KEY>` and `<CERT_PEM_FOR_YOUR_SCALAR_DL_AUDITOR_LICENSE_KEY>`, see [How to Configure a License Key](https://scalardl.scalar-labs.com/docs/latest/scalar-licensing/index/).
+1. Set your license key and certificate as environment variables. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact). For details about the value of `<CERT_PEM_FOR_YOUR_SCALAR_DL_LEDGER_LICENSE_KEY>` and `<CERT_PEM_FOR_YOUR_SCALAR_DL_AUDITOR_LICENSE_KEY>`, see [How to Configure a License Key](https://scalardl.scalar-labs.com/docs/3.13/scalar-licensing/index/).
 
 ```console
 SCALAR_DL_LEDGER_LICENSE_KEY='<YOUR_SCALAR_DL_LEDGER_LICENSE_KEY>'

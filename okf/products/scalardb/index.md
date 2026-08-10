@@ -23,13 +23,13 @@ supported_versions:
 - '3.16'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:57Z'
+  at: '2026-08-10T20:39:58Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/6126dfe2f56389351d88b134752618641f9771dd
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-07T16:37:01Z'
 ---
 
 # ScalarDB

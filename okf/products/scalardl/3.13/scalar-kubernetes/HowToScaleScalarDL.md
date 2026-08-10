@@ -1,12 +1,13 @@
 ---
-type: Deployment Guide
+type: Operations Guide
 title: How to Scale ScalarDL
 description: This guide explains how to scale ScalarDL. The contents of this guide assume that you used Scalar Helm Chart to deploy ScalarDL, which is the recommended way.
-resource: https://scalardl.scalar-labs.com/docs/latest/scalar-kubernetes/HowToScaleScalarDL/
+resource: https://scalardl.scalar-labs.com/docs/3.13/scalar-kubernetes/HowToScaleScalarDL/
 tags:
 - scalardl
 - v3.13
 - phase:operate
+- section:manage
 - edition:enterprise
 status: stable
 product: scalardl
@@ -15,17 +16,19 @@ version: '3.13'
 patch_version: 3.13.0
 doc_id: scalar-kubernetes/HowToScaleScalarDL
 lifecycle_phase: operate
+breadcrumb:
+- Manage
 editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/scalar-kubernetes/HowToScaleScalarDL.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/scalar-kubernetes/HowToScaleScalarDL.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # How to Scale ScalarDL

@@ -2,7 +2,7 @@
 type: Product Version
 title: ScalarDL 3.13
 description: Documentation set for ScalarDL 3.13 (newest patch 3.13.0).
-resource: https://scalardl.scalar-labs.com/docs/latest/
+resource: https://scalardl.scalar-labs.com/docs/3.13/
 tags:
 - scalardl
 - v3.13
@@ -12,19 +12,19 @@ product: scalardl
 product_title: ScalarDL
 version: '3.13'
 patch_version: 3.13.0
-url_path: latest
+url_path: '3.13'
 maintenance: supported
-is_latest: true
+is_latest: false
 concept_count: 143
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # ScalarDL 3.13
@@ -36,8 +36,8 @@ Supported release.
 | Product | ScalarDL |
 | Documentation version | 3.13 |
 | Newest patch release described | 3.13.0 |
-| Docs site | https://scalardl.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `c1dbc91f4c36` |
+| Docs site | https://scalardl.scalar-labs.com/docs/3.13/ |
+| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `03da04b21c1a` |
 | Concepts in this version | 143 |
 
 ## By lifecycle phase
@@ -47,16 +47,16 @@ Start here when you know which phase of the project you are in.
 ### 設計 / Design (9)
 
 - [Glossary](./glossary.md)
-- [Model Your Data](./data-modeling.md)
 - [Requirements](./requirements.md)
-- [ScalarDL Compatibility Matrix](./compatibility.md)
 - [ScalarDL Design Document](./design.md)
 - [ScalarDL Implementation](./implementation.md)
 - [ScalarDL Learning Paths](./learning-paths.md)
 - [ScalarDL Overview](./overview.md)
 - [ScalarDL Roadmap](./roadmap.md)
+- [Release Support Policy](./releases/release-support-policy.md)
+- [ScalarDL 3.13 Release Notes](./releases/release-notes.md)
 
-### 実装 / Implement (33)
+### 実装 / Implement (41)
 
 - [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md)
 - [A Guide on How to Write Function for ScalarDL](./how-to-write-function.md)
@@ -68,6 +68,9 @@ Start here when you know which phase of the project you are in.
 - [Get Started with ScalarDL Ledger](./getting-started.md)
 - [Get Started with ScalarDL TableStore](./getting-started-tablestore.md)
 - [Libraries and Tools for ScalarDL](./libraries-and-tools.md)
+- [Manage Namespaces](./manage-namespaces.md)
+- [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md)
+- [Model Your Data](./data-modeling.md)
 - [Quickstart Overview](./quickstart-overview.md)
 - [Run a ScalarDL Application Through ScalarDL Ledger](./how-to-run-applications.md)
 - [Run a ScalarDL Application Through ScalarDL Ledger and Auditor](./how-to-run-applications-with-auditor.md)
@@ -75,6 +78,7 @@ Start here when you know which phase of the project you are in.
 - [Run Sample Applications Overview](./develop-samples-overview.md)
 - [ScalarDL Authentication Guide](./authentication.md)
 - [ScalarDL Client Command Reference](./scalardl-command-reference.md)
+- [ScalarDL Compatibility Matrix](./compatibility.md)
 - [ScalarDL Configurations](./configurations.md)
 - [ScalarDL HashStore Command Reference](./scalardl-hashstore-command-reference.md)
 - [ScalarDL Schema Loader](./schema-loader.md)
@@ -90,9 +94,13 @@ Start here when you know which phase of the project you are in.
 - [Write Business Logic Overview](./develop-write-business-logic-overview.md)
 - [A simple bank account application](./applications/simple-bank-account/README.md)
 - [API endpoints](./applications/simple-bank-account/docs/api_endpoints.md)
+- [How to Get a Certificate](./ca/caclient-getting-started.md)
 - [ScalarDL Javadoc](./javadoc/section-home.md)
+- [How to Configure a Commercial License Key](./scalar-licensing/commercial.md)
+- [How to Configure a Trial License Key](./scalar-licensing/trial.md)
+- [ScalarDL Benchmarking Tools](./scalardl-benchmarks/README.md)
 
-### 運用 / Operate (101)
+### 運用 / Operate (93)
 
 - [A Guide on How to Backup and Restore Data in ScalarDL](./backup-restore.md)
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore-overview.md)
@@ -100,9 +108,7 @@ Start here when you know which phase of the project you are in.
 - [Deploy ScalarDL in a Cloud-Based Kubernetes Environment Overview](./deploy-managed-kubernetes-environment-overview.md)
 - [Deploy ScalarDL in Your Local Kubernetes Environment Overview](./deploy-local-environment-overview.md)
 - [How to Install ScalarDL in Your Local Environment with Docker](./installation-with-docker.md)
-- [Manage Namespaces](./manage-namespaces.md)
 - [Manage Overview](./manage-overview.md)
-- [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md)
 - [Monitor Overview](./manage-monitor-overview.md)
 - [ScalarDL Auditor Error Codes](./scalardl-auditor-status-codes.md)
 - [ScalarDL Client Error Codes](./scalardl-client-status-codes.md)
@@ -110,7 +116,6 @@ Start here when you know which phase of the project you are in.
 - [ScalarDL HashStore Error Codes](./scalardl-hashstore-status-codes.md)
 - [ScalarDL Ledger Error Codes](./scalardl-ledger-status-codes.md)
 - [ScalarDL TableStore Error Codes](./scalardl-tablestore-status-codes.md)
-- [How to Get a Certificate](./ca/caclient-getting-started.md)
 - [How to start CA server with CFSSL](./ca/caserver-getting-started.md)
 - [[Deprecated] Configure a custom values file for ScalarDB GraphQL](./helm-charts/configure-custom-values-scalardb-graphql.md)
 - [[Deprecated] Configure a custom values file for ScalarDB Server](./helm-charts/configure-custom-values-scalardb.md)
@@ -143,8 +148,6 @@ Start here when you know which phase of the project you are in.
 - [How to deploy ScalarDL Ledger](./helm-charts/how-to-deploy-scalardl-ledger.md)
 - [How to use Secret resources to pass credentials as environment variables into the properties file](./helm-charts/use-secret-for-credentials.md)
 - [Mount any files or volumes on Scalar product pods](./helm-charts/mount-files-or-volumes-on-scalar-pods.md)
-- [Release Support Policy](./releases/release-support-policy.md)
-- [ScalarDL 3.13 Release Notes](./releases/release-notes.md)
 - [(Deprecated) Guidelines for creating an EKS cluster for ScalarDB Server](./scalar-kubernetes/CreateEKSClusterForScalarDB.md)
 - [[Deprecated] Deploy ScalarDB Server on Azure Kubernetes Service (AKS)](./scalar-kubernetes/ManualDeploymentGuideScalarDBServerOnAKS.md)
 - [Back up a NoSQL database in a Kubernetes environment](./scalar-kubernetes/BackupNoSQL.md)
@@ -189,12 +192,9 @@ Start here when you know which phase of the project you are in.
 - [Envoy Alerts](./scalar-kubernetes/alerts/Envoy.md)
 - [Ledger Alerts](./scalar-kubernetes/alerts/Ledger.md)
 - [Scalar Alerts](./scalar-kubernetes/alerts/README.md)
-- [How to Configure a Commercial License Key](./scalar-licensing/commercial.md)
-- [How to Configure a Trial License Key](./scalar-licensing/trial.md)
 - [How to Use Scalar Manager](./scalar-manager/how-to-use-scalar-manager.md)
 - [Scalar Manager Metrics Reference](./scalar-manager/metrics-reference.md)
 - [Scalar Manager Overview](./scalar-manager/overview.md)
-- [ScalarDL Benchmarking Tools](./scalardl-benchmarks/README.md)
 
 ## Sections
 

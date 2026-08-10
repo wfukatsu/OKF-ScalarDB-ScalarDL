@@ -1,12 +1,13 @@
 ---
-type: Concept
+type: Development Guide
 title: Model Your Data
 description: Data modeling (or in other words, organizing your data) is the process of conceptualizing and visualizing how data will be stored and used by identifying the patterns used to access data and the types of queries to be performed within...
-resource: https://scalardl.scalar-labs.com/docs/latest/data-modeling/
+resource: https://scalardl.scalar-labs.com/docs/3.13/data-modeling/
 tags:
 - scalardl
 - v3.13
-- phase:design
+- phase:implement
+- section:develop
 - edition:community
 - edition:enterprise
 status: stable
@@ -15,19 +16,22 @@ product_title: ScalarDL
 version: '3.13'
 patch_version: 3.13.0
 doc_id: data-modeling
-lifecycle_phase: design
+lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Write Business Logic
 editions:
 - Community
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:59Z'
+  at: '2026-08-10T20:40:03Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/docs/data-modeling.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/03da04b21c1a7ce3eb94d9e29129a0ce194ecbeb/versioned_docs/version-3.13/data-modeling.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-07T17:27:19Z'
 ---
 
 # Model Your Data
@@ -40,7 +44,7 @@ This page first explains the ScalarDL data model and then describes how to organ
 
 The data model of ScalarDL is a kind of key-value model that abstracts a ledger as a set of assets, where each key acts as a unique identifier for an asset, and the value represents the data of the asset. The following diagram shows the objects in ScalarDL with some examples of the assets. This section first explains what objects ScalarDL defines and then describes how to locate the objects.
 
-![ScalarDL data model](https://scalardl.scalar-labs.com/docs/latest/images/scalardl_data_model.png)
+![ScalarDL data model](https://scalardl.scalar-labs.com/docs/3.13/images/scalardl_data_model.png)
 
 ### Objects in ScalarDL
 
