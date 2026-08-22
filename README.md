@@ -1,5 +1,8 @@
 # OKF-ScalarDB-ScalarDL
 
+[![release](https://img.shields.io/github/v/release/wfukatsu/OKF-ScalarDB-ScalarDL)](https://github.com/wfukatsu/OKF-ScalarDB-ScalarDL/releases/latest)
+[![OKF](https://img.shields.io/badge/OKF-v0.2-blue)](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
+
 ScalarDB / ScalarDL の公式ドキュメント（developers.scalar-labs.com）を、
 **製品ごと・バージョンごと**に [OKF (Open Knowledge Format) v0.2](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md)
 のバンドルとしてまとめたものです。ScalarDB / ScalarDL を使う開発プロジェクトで、
