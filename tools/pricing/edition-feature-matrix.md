@@ -10,7 +10,7 @@ matrix_snapshot: 'scalardb 3.19 / scalardl 3.13'
 snapshot_date: '2026-08-06'
 sources:
 - id: scalar-price-list-2024-07-01
-  resource: https://docs.google.com/spreadsheets/d/11JYhx_cz8TbTopHbcoRvEHDhgEnvVYkud--qFnw9G7A/edit
+  access: internal (Google Drive / Scalar 社内)
   title: Scalar 製品価格表 — シート「機能比較」
   author: org:scalar-labs
   last_modified: '2026-08-06T14:55:57Z'

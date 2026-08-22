@@ -8,15 +8,14 @@ currency: JPY
 tax: excluded
 price_basis: list-price
 price_list_version: '2024-07-01'
-resource: https://docs.google.com/spreadsheets/d/1dszcNiRPddLThYAkGVwq8iL03Alg6Wum-7StmueICnI/edit
 sources:
 - id: scalar-sample-quotation
-  resource: https://docs.google.com/spreadsheets/d/1dszcNiRPddLThYAkGVwq8iL03Alg6Wum-7StmueICnI/edit
+  access: internal (Google Drive / Scalar 社内)
   title: Scalar 製品 サンプル見積書
   author: org:scalar-labs
   last_modified: '2026-08-06T15:16:11Z'
 - id: scalar-sample-quotation-slides
-  resource: https://docs.google.com/presentation/d/1GqQcOt9ZWVX4WhQ_Nt5zrYuobooFoxv0FPyqjrrSUPI/edit
+  access: internal (Google Drive / Scalar 社内)
   title: Scalar 製品 サンプル見積もり 解説（AWS 構成図つき）
   author: org:scalar-labs
   last_modified: '2026-08-06T15:17:10Z'

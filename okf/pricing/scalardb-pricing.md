@@ -10,10 +10,9 @@ tax: excluded
 price_basis: list-price
 price_unit: Pod / 期間
 price_list_version: '2024-07-01'
-resource: https://docs.google.com/spreadsheets/d/11JYhx_cz8TbTopHbcoRvEHDhgEnvVYkud--qFnw9G7A/edit
 sources:
 - id: scalar-price-list-2024-07-01
-  resource: https://docs.google.com/spreadsheets/d/11JYhx_cz8TbTopHbcoRvEHDhgEnvVYkud--qFnw9G7A/edit
+  access: internal (Google Drive / Scalar 社内)
   title: Scalar 製品価格表 — シート「価格表」
   author: org:scalar-labs
   last_modified: '2026-08-06T14:55:57Z'

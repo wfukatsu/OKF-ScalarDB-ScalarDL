@@ -10,10 +10,9 @@ tax: excluded
 price_basis: list-price
 price_unit: SDBU・時間
 price_list_version: '2024-09-10'
-resource: https://docs.google.com/spreadsheets/d/11JYhx_cz8TbTopHbcoRvEHDhgEnvVYkud--qFnw9G7A/edit
 sources:
 - id: scalardb-analytics-pricing-2024-09-10
-  resource: https://docs.google.com/spreadsheets/d/11JYhx_cz8TbTopHbcoRvEHDhgEnvVYkud--qFnw9G7A/edit
+  access: internal (Google Drive / Scalar 社内)
   title: ScalarDB Analytics — Product feature overview and pricing（2024年9月10日 株式会社Scalar）
   author: org:scalar-labs
   last_modified: '2026-08-06T14:55:57Z'
