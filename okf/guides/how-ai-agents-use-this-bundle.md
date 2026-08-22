@@ -22,7 +22,10 @@ status: stable
 3. **推測しない。** バンドル内に根拠が無い場合は「ドキュメントに記載が無い」と述べ、
    `resource` の URL を提示して確認を促すこと。
 4. **`status: deprecated` の概念は設計判断の根拠にしない。** 既存システムの調査目的でのみ使う。
-5. **`status: draft` の概念は未 GA。** `prerelease: true` / `pre-release` タグが付いた
+5. **価格を確定金額として提示しない。** `pricing/` 配下は上流ドキュメントではなく
+   社内価格表由来の**定価**です。参考見積の材料としてのみ使い、確定金額・提出可能な
+   見積として出力しないこと。詳細は下の「価格・ライセンスを引くとき」を参照。
+6. **`status: draft` の概念は未 GA。** `prerelease: true` / `pre-release` タグが付いた
    バージョン（現時点では ScalarDB Saga 3.19 = `3.19.0-alpha.1`）は、API・設定キー・
    ワイヤ契約が変わり得ます。提案する際は必ず「未 GA である」と明示すること。
 
@@ -105,6 +108,46 @@ ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、�
   （Java/Gradle、コードスタイル、静的解析、パッケージ命名、テスト方針）。
   タグ `contributor` / `upstream-development` が付いています。
   **Saga を利用するアプリケーション側の実装規約として適用しないこと。**
+
+## 価格・ライセンスを引くとき
+
+```
+okf/pricing/index.md
+```
+
+`products/` 配下（上流ドキュメント由来）とは**出典が異なる**セクションです。
+価格は developers.scalar-labs.com には公開されておらず、株式会社 Scalar の社内価格表に由来します。
+
+- **収録しているのは Pay as you go / 月額 / 年額 の定価のみ**です（税抜・JPY）。
+  3年契約の定価、先払いクレジットの販売価格、値引き条件は**収録していません**。
+  これらを問われたら「本バンドルの公開範囲外」と答え、営業担当への確認を促すこと。
+  **推定・按分・逆算で埋めないこと**（例: 年額から 3年額を推測しない）。
+- 実際のご提供価格はボリューム・契約条件により調整されます。
+- 概算・比較・エディション選定の材料としては使えます。**確定金額として提示しないこと。**
+  提出する見積は必ず営業担当のレビューを経てください。
+- 価格表の版（`price_list_version`）を必ず添えて回答すること。
+  `products/` と違い**自動再生成されません**ので、古い版を根拠にしている可能性があります。
+
+引く順序:
+
+1. [価格・ライセンス](../pricing/index.md) — 3 つの課金モデルのどれに当たるかを先に確定する
+2. [エディション別 機能・提供物マトリクス](../pricing/edition-feature-matrix.md) — 要件からエディションを決める
+3. [ライセンス数量の数え方](../pricing/licensing-units.md) — Pod 数を換算する（2vCPU / 4GB を超える Pod は切り上げ）
+4. 製品別の価格表 — [ScalarDB](../pricing/scalardb-pricing.md) / [ScalarDL](../pricing/scalardl-pricing.md) / [Analytics](../pricing/scalardb-analytics-pricing.md)
+5. [サンプル見積（5 パターン）](../pricing/sample-quotations.md) — 試算の型として使う
+
+よくある誤り:
+
+- **2vCPU / 4GB を超える Pod を 1 Pod として数える。** 換算式は
+  `MAX(ceil(vCPU÷2), ceil(memGB÷4))` です。
+- **ScalarDB Analytics を Pod 単位で見積もる。** Analytics は SDBU 時間単位の従量課金です。
+- **ライブラリが配布されている＝機能が使える、と判断する。** 例: ScalarDB SQL ライブラリは
+  Enterprise Standard にも配布されますが、SQL インターフェース機能は Enterprise Premium が対象です。
+- **ABAC を Premium に含める。** Enterprise Premium **Option** であり、Premium には含まれません。
+- **ScalarDL Auditor を単独で見積もる。** Ledger の導入と別管理ドメインへの配置が前提です。
+- **Private Preview 機能を本番前提で見積もる。**
+- **公開範囲外の価格を推定して答える。** 3年契約・先払いクレジット・値引き条件は
+  バンドルに存在しません。無い値を作らないこと。
 
 ## コード生成時の注意
 

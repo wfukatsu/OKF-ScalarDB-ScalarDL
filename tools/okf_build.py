@@ -468,6 +468,9 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "- [How to use this bundle](./guides/how-ai-agents-use-this-bundle.md) — read this first.",
         "- [Choosing a product, edition and version](./guides/product-and-version-selection.md)",
         "- [Keeping the bundle current](./guides/bundle-maintenance.md)",
+        "- [Pricing and licensing](./pricing/index.md) — list prices, licensing units, "
+        "edition matrix. Not from the docs site; pay-as-you-go / monthly / annual "
+        "list prices only.",
         "",
         "## Products",
         "",
@@ -489,6 +492,7 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "products/<product>/<version>/<page>.md     one concept per documentation page",
         "products/<product>/<version>/<dir>/        sections keep the upstream structure",
         "guides/                                    how to consume and maintain the bundle",
+        "pricing/                                   commercial terms (hand-written, not upstream)",
         "log.md                                     update history",
         "```",
         "",
@@ -504,6 +508,14 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "branch per version; their `resource` points at the file on GitHub, pinned to the "
         "commit they were built from. A version with no GA release is marked "
         "`status: draft` and tagged `pre-release`.",
+        "",
+        "`pricing/` is the one section that does not come from an upstream repository. It is "
+        "authored by hand from the internal Scalar price list and is not refreshed by the "
+        "generator. It carries only the pay-as-you-go, monthly and annual list prices "
+        "(JPY, tax excluded); three-year list prices, prepaid-credit sale prices and any "
+        "discount terms are deliberately out of scope and marked \u975e\u516c\u958b. Treat it as "
+        "input to a quotation, never as a binding offer, and never infer a price the "
+        "bundle does not state.",
         "",
     ]
     fm = {
@@ -541,17 +553,33 @@ def append_log(bundle: Path, entry: str) -> None:
 
 
 # --------------------------------------------------------------------------
-# Guides (written once, kept in the bundle)
+# Hand-written sections (authored under tools/, copied into the bundle)
 # --------------------------------------------------------------------------
 
-GUIDES_DIR = Path(__file__).resolve().parent / "guides"
+TOOLS_DIR = Path(__file__).resolve().parent
+GUIDES_DIR = TOOLS_DIR / "guides"
+PRICING_DIR = TOOLS_DIR / "pricing"
+
+
+def _copy_section(src_dir: Path, bundle: Path, name: str) -> None:
+    dest = bundle / name
+    dest.mkdir(parents=True, exist_ok=True)
+    for src in sorted(src_dir.glob("*.md")):
+        shutil.copyfile(src, dest / src.name)
 
 
 def copy_guides(bundle: Path) -> None:
-    dest = bundle / "guides"
-    dest.mkdir(parents=True, exist_ok=True)
-    for src in sorted(GUIDES_DIR.glob("*.md")):
-        shutil.copyfile(src, dest / src.name)
+    _copy_section(GUIDES_DIR, bundle, "guides")
+
+
+def copy_pricing(bundle: Path) -> None:
+    """Commercial terms are not published on the docs site.
+
+    They come from the internal price list rather than from an upstream
+    repository, so they are authored by hand under tools/pricing/ and copied
+    in verbatim; nothing in the generator can derive or refresh them.
+    """
+    _copy_section(PRICING_DIR, bundle, "pricing")
 
 
 # --------------------------------------------------------------------------
@@ -764,6 +792,7 @@ def main() -> int:
     }
 
     copy_guides(bundle)
+    copy_pricing(bundle)
     write_bundle_index(bundle, summary)
 
     if changed:
