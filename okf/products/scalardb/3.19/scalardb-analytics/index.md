@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 ---
 
 # Scalardb Analytics
@@ -32,3 +32,4 @@ ScalarDB 3.19 documentation under `scalardb-analytics/`.
 - [ScalarDB Analytics CLI Command Reference](./reference-cli-command.md) — The ScalarDB Analytics CLI uses a hierarchical command structure:
 - [ScalarDB Analytics Configurations](./configurations.md) — This page provides a comprehensive reference for configuring all components of ScalarDB Analytics.
 - [ScalarDB Analytics Design and Implementation](./design.md) — ScalarDB Analytics is the analytical component of ScalarDB. Similar to ScalarDB, it unifies diverse data sources—ranging from RDBMSs like PostgreSQL and MySQL to NoSQL databases like Cassandra and DynamoDB—into a single logical database....
+- [ScalarDB Analytics Error Codes](./scalardb-analytics-status-codes.md) — This page provides a list of error codes in ScalarDB Analytics.

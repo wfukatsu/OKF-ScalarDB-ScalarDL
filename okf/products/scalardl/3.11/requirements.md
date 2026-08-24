@@ -24,13 +24,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:51:02Z'
+  at: '2026-08-24T00:15:45Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/versioned_docs/version-3.11/requirements.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/requirements.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-20T15:35:18Z'
 ---
 
 # Requirements
@@ -202,7 +202,7 @@ ScalarDL is provided as a Pod on the Kubernetes platform in production environme
 
 ### Platform
 
-- **[Kubernetes](https://kubernetes.io/):** 1.32 - 1.35
+- **[Kubernetes](https://kubernetes.io/):** 1.33 - 1.36
   - **[Amazon Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/)**
   - **[Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-us/products/kubernetes-service)**
 - **[Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift):** TBD

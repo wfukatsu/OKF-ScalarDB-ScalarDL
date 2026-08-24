@@ -27,13 +27,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:49Z'
+  at: '2026-08-24T00:15:33Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-core-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.18/scalardb-core-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Core Error Codes
@@ -66,7 +66,7 @@ Only a single-column index is supported. Operation: %s
 **Message**
 
 ```markdown
-The column of the specified index key is not indexed. Operation: %s
+The column of the specified index key is not indexed. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10002`
@@ -74,7 +74,7 @@ The column of the specified index key is not indexed. Operation: %s
 **Message**
 
 ```markdown
-The index key is not properly specified. Operation: %s
+The index key is not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10003`
@@ -130,7 +130,7 @@ Cross-partition scan filtering is not enabled. Operation: %s
 **Message**
 
 ```markdown
-The specified projection is not found. Projection: %s, Operation: %s
+The specified projection is not found. Projection: %s, Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10010`
@@ -138,7 +138,7 @@ The specified projection is not found. Projection: %s, Operation: %s
 **Message**
 
 ```markdown
-The clustering key boundary is not properly specified. Operation: %s
+The clustering key boundary is not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10011`
@@ -146,7 +146,7 @@ The clustering key boundary is not properly specified. Operation: %s
 **Message**
 
 ```markdown
-The start clustering key is not properly specified. Operation: %s
+The start clustering key is not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10012`
@@ -154,7 +154,7 @@ The start clustering key is not properly specified. Operation: %s
 **Message**
 
 ```markdown
-The end clustering key is not properly specified. Operation: %s
+The end clustering key is not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10013`
@@ -162,7 +162,7 @@ The end clustering key is not properly specified. Operation: %s
 **Message**
 
 ```markdown
-Orderings are not properly specified. Operation: %s
+Orderings are not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10014`
@@ -170,7 +170,7 @@ Orderings are not properly specified. Operation: %s
 **Message**
 
 ```markdown
-The specified ordering column is not found. Ordering: %s, Operation: %s
+The specified ordering column is not found. Ordering: %s, Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10015`
@@ -178,7 +178,7 @@ The specified ordering column is not found. Ordering: %s, Operation: %s
 **Message**
 
 ```markdown
-The condition is not properly specified. Operation: %s
+The condition is not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10016`
@@ -194,7 +194,7 @@ The table does not exist. Table: %s
 **Message**
 
 ```markdown
-The column value is not properly specified. Column: %s, Operation: %s
+The column value is not properly specified. Column: %s, Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10018`
@@ -218,7 +218,7 @@ The storage does not support mutations across multiple partitions. Storage: %s; 
 **Message**
 
 ```markdown
-The partition key is not properly specified. Operation: %s
+The partition key is not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10021`
@@ -226,7 +226,7 @@ The partition key is not properly specified. Operation: %s
 **Message**
 
 ```markdown
-The clustering key is not properly specified. Operation: %s
+The clustering key is not properly specified. Operation: %s; Table metadata: %s
 ```
 
 ### `DB-CORE-10022`
@@ -554,7 +554,7 @@ The property 'scalar.db.cross_partition_scan.enabled' must be set to true to use
 **Message**
 
 ```markdown
-This column value is out of range for BigInt. Value: %s
+This column value is out of range for BigInt in Cosmos DB. Value: %s
 ```
 
 ### `DB-CORE-10064`
@@ -674,7 +674,7 @@ Cannot encode a Text value that contains '\u0000'
 **Message**
 
 ```markdown
-An index column cannot be set to null or an empty value for Text or Blob in DynamoDB. Operation: %s
+An index column cannot be set to an empty value for Text or Blob in DynamoDB. Operation: %s
 ```
 
 ### `DB-CORE-10082`
@@ -851,14 +851,6 @@ Non-primary key columns with the 'before_' prefix, '%s', are reserved as transac
 
 ```markdown
 Put cannot have a condition when the target record is unread and implicit pre-read is disabled. Please read the target record beforehand or enable implicit pre-read: %s
-```
-
-### `DB-CORE-10104`
-
-**Message**
-
-```markdown
-Writing data already-deleted by the same transaction is not allowed
 ```
 
 ### `DB-CORE-10106`
@@ -1506,7 +1498,7 @@ Specifying transaction metadata columns in the ordering is not allowed. Table: %
 **Message**
 
 ```markdown
-Get operations by using an index is not allowed in the SERIALIZABLE isolation level
+Get operations using a secondary index are not allowed in the SERIALIZABLE isolation level without before-image indexes. Run repairTable() to create before-image indexes for the table, which will enable index-based Get operations in the SERIALIZABLE isolation level
 ```
 
 ### `DB-CORE-10261`
@@ -1514,7 +1506,7 @@ Get operations by using an index is not allowed in the SERIALIZABLE isolation le
 **Message**
 
 ```markdown
-Scan operations by using an index is not allowed in the SERIALIZABLE isolation level
+Scan operations using a secondary index are not allowed in the SERIALIZABLE isolation level without before-image indexes. Run repairTable() to create before-image indexes for the table, which will enable index-based Scan operations in the SERIALIZABLE isolation level
 ```
 
 ### `DB-CORE-10262`
@@ -1522,7 +1514,7 @@ Scan operations by using an index is not allowed in the SERIALIZABLE isolation l
 **Message**
 
 ```markdown
-Conditions on indexed columns in cross-partition scan operations are not allowed in the SERIALIZABLE isolation level
+Conditions on indexed columns in cross-partition scan operations are not allowed in the SERIALIZABLE isolation level without before-image indexes. Run repairTable() to create before-image indexes for the table, which will enable conditions on indexed columns in cross-partition scan operations in the SERIALIZABLE isolation level
 ```
 
 ### `DB-CORE-10263`
@@ -1651,6 +1643,86 @@ The transaction metadata decoupling feature is not supported in the storage. Sto
 
 ```markdown
 The storage does not guarantee consistent reads for virtual tables. Depending on the storage configuration, you may be able to adjust the settings to enable consistent reads. Please refer to the storage configuration for details. Storage: %s
+```
+
+### `DB-CORE-10279`
+
+**Message**
+
+```markdown
+The size of a BLOB column value exceeds the maximum allowed size of %d bytes. Column: %s; Size: %d bytes
+```
+
+### `DB-CORE-10280`
+
+**Message**
+
+```markdown
+The condition for the Update operation must be UpdateIf or UpdateIfExists. Operation: %s
+```
+
+### `DB-CORE-10281`
+
+**Message**
+
+```markdown
+The column definition must be specified since %s is specified as a secondary index
+```
+
+### `DB-CORE-10282`
+
+**Message**
+
+```markdown
+This column value is out of range for BigInt in Object Storage. Value: %s
+```
+
+### `DB-CORE-10283`
+
+**Message**
+
+```markdown
+Spanner does not support renaming columns
+```
+
+### `DB-CORE-10284`
+
+**Message**
+
+```markdown
+Spanner does not support column type conversion except from BLOB to TEXT. Conversion: from %s to %s
+```
+
+### `DB-CORE-10285`
+
+**Message**
+
+```markdown
+Spanner does not support renaming tables
+```
+
+### `DB-CORE-10286`
+
+**Message**
+
+```markdown
+Spanner uses '\' as the default LIKE escape character and it cannot be configured or disabled. Escape character: '%s'
+```
+
+### `DB-CORE-10287`
+
+**Message**
+
+```markdown
+Failed to load the service account key for Spanner
+```
+
+### `DB-CORE-10288`
+
+**Message**
+
+```markdown
+All %d Spanner credential slots are already in use. ScalarDB's Spanner adapter supports up to that many distinct sets of Spanner credentials per JVM
 ```
 
 ## `DB-CORE-2xxxx` status codes
@@ -1871,6 +1943,22 @@ A conflict occurred when committing records. Details: %s
 
 ```markdown
 A transaction conflict occurred in the mutation. Details: %s
+```
+
+### `DB-CORE-20028`
+
+**Message**
+
+```markdown
+Before-image index recovery retry limit exceeded. Transaction ID: %s
+```
+
+### `DB-CORE-20029`
+
+**Message**
+
+```markdown
+Records that need recovery were found during the before-image index check when closing the scanner. Transaction ID: %s
 ```
 
 ## `DB-CORE-3xxxx` status codes

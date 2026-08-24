@@ -27,13 +27,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:52Z'
+  at: '2026-08-24T00:15:36Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/scalardb-core-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.17/scalardb-core-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Core Error Codes
@@ -674,7 +674,7 @@ Cannot encode a Text value that contains '\u0000'
 **Message**
 
 ```markdown
-An index column cannot be set to null or an empty value for Text or Blob in DynamoDB. Operation: %s
+An index column cannot be set to an empty value for Text or Blob in DynamoDB. Operation: %s
 ```
 
 ### `DB-CORE-10082`
@@ -1506,7 +1506,7 @@ Specifying transaction metadata columns in the ordering is not allowed. Table: %
 **Message**
 
 ```markdown
-Get operations by using an index is not allowed in the SERIALIZABLE isolation level
+Get operations using a secondary index are not allowed in the SERIALIZABLE isolation level without before-image indexes. Run repairTable() to create before-image indexes for the table, which will enable index-based Get operations in the SERIALIZABLE isolation level
 ```
 
 ### `DB-CORE-10261`
@@ -1514,7 +1514,7 @@ Get operations by using an index is not allowed in the SERIALIZABLE isolation le
 **Message**
 
 ```markdown
-Scan operations by using an index is not allowed in the SERIALIZABLE isolation level
+Scan operations using a secondary index are not allowed in the SERIALIZABLE isolation level without before-image indexes. Run repairTable() to create before-image indexes for the table, which will enable index-based Scan operations in the SERIALIZABLE isolation level
 ```
 
 ### `DB-CORE-10262`
@@ -1522,7 +1522,7 @@ Scan operations by using an index is not allowed in the SERIALIZABLE isolation l
 **Message**
 
 ```markdown
-Conditions on indexed columns in cross-partition scan operations are not allowed in the SERIALIZABLE isolation level
+Conditions on indexed columns in cross-partition scan operations are not allowed in the SERIALIZABLE isolation level without before-image indexes. Run repairTable() to create before-image indexes for the table, which will enable conditions on indexed columns in cross-partition scan operations in the SERIALIZABLE isolation level
 ```
 
 ### `DB-CORE-10263`
@@ -1651,6 +1651,22 @@ The transaction metadata decoupling feature is not supported in the storage. Sto
 
 ```markdown
 The storage does not guarantee consistent reads for virtual tables. Depending on the storage configuration, you may be able to adjust the settings to enable consistent reads. Please refer to the storage configuration for details. Storage: %s
+```
+
+### `DB-CORE-10279`
+
+**Message**
+
+```markdown
+The size of a BLOB column value exceeds the maximum allowed size of %d bytes. Column: %s; Size: %d bytes
+```
+
+### `DB-CORE-10281`
+
+**Message**
+
+```markdown
+The column definition must be specified since %s is specified as a secondary index
 ```
 
 ## `DB-CORE-2xxxx` status codes
@@ -1871,6 +1887,22 @@ A conflict occurred when committing records. Details: %s
 
 ```markdown
 A transaction conflict occurred in the mutation. Details: %s
+```
+
+### `DB-CORE-20028`
+
+**Message**
+
+```markdown
+Before-image index recovery retry limit exceeded. Transaction ID: %s
+```
+
+### `DB-CORE-20029`
+
+**Message**
+
+```markdown
+Records that need recovery were found during the before-image index check when closing the scanner. Transaction ID: %s
 ```
 
 ## `DB-CORE-3xxxx` status codes

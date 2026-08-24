@@ -28,13 +28,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:56Z'
+  at: '2026-08-24T00:15:40Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.15/scalardb-core-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.15/scalardb-core-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Core Error Codes
@@ -1451,7 +1451,7 @@ Something went wrong while converting the ScalarDB values to strings. The table 
 **Message**
 
 ```markdown
-The provided file format is not supported : %s
+The provided file format is not supported: %s
 ```
 
 ### `DB-CORE-10179`
@@ -1507,7 +1507,7 @@ No table metadata found
 **Message**
 
 ```markdown
-The data mapping source field '%s' for table '%s' is missing in the json data record
+The data mapping source field '%s' for table '%s' is missing in the JSON data record
 ```
 
 ### `DB-CORE-10186`
@@ -1531,7 +1531,7 @@ Expected JSON file content to be an array
 **Message**
 
 ```markdown
-Missing option: either '--namespace' and'--table' or '--control-file' options must be specified.
+Missing option: either '--namespace' and '--table' or '--control-file' options must be specified.
 ```
 
 ### `DB-CORE-10190`
@@ -1611,7 +1611,7 @@ File not found: %s
 **Message**
 
 ```markdown
-Invalid date time value specified for column %s in table %s in namespace %s.
+Invalid date/time value specified for column %s in table %s in namespace %s.
 ```
 
 ### `DB-CORE-10200`
@@ -2283,7 +2283,7 @@ Failed to read CSV file. Details: %s.
 **Message**
 
 ```markdown
-Failed to CSV read header line. Details: %s.
+Failed to read CSV header line. Details: %s.
 ```
 
 ### `DB-CORE-30051`

@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47/docs/scalardb-cluster/compatibility.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/compatibility.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Cluster Compatibility Matrix
@@ -38,14 +38,11 @@ This document shows the compatibility of ScalarDB Cluster versions among client 
 
 | ScalarDB Cluster version | ScalarDB Cluster Java Client SDK version | ScalarDB Cluster .NET Client SDK version |
 |:-------------------------|:-----------------------------------------|:-----------------------------------------|
-| 3.19                     | 3.14 - 3.19                              | 3.14* - 3.19                             |
-| 3.18                     | 3.14 - 3.18                              | 3.14* - 3.18                             |
-| 3.17                     | 3.14 - 3.17                              | 3.14* - 3.17                             |
-| 3.16                     | 3.14 - 3.16                              | 3.14* - 3.16                             |
-| 3.15                     | 3.14 - 3.15                              | 3.14* - 3.15                             |
-| 3.14                     | 3.14                                     | 3.14*                                    |
-
-\* This version is in private preview, which means that future versions might have backward-incompatible updates.
+| 3.19                     | 3.15 - 3.19                              | 3.15 - 3.19                              |
+| 3.18                     | 3.15 - 3.18                              | 3.15 - 3.18                              |
+| 3.17                     | 3.15 - 3.17                              | 3.15 - 3.17                              |
+| 3.16                     | 3.15 - 3.16                              | 3.15 - 3.16                              |
+| 3.15                     | 3.15                                     | 3.15                                     |
 
 :::note
 
