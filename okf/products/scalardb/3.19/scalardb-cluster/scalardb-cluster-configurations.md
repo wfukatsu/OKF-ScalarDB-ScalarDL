@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster/scalardb-cluster-configurations
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB Cluster Configurations
@@ -67,6 +67,12 @@ The following transaction management-related configurations are available for Sc
 #### Node configurations
 
 The following node-related configurations are available for ScalarDB Cluster.
+
+##### `cluster.id`
+
+- **Field:** `scalar.db.cluster.id`
+- **Description:** ID of the ScalarDB Cluster. It is used by the features that need to identify the cluster, so the value should be unique among your ScalarDB Clusters. For example, this property is required when `scalar.db.cluster.node.transaction_participant.enabled` is set to `true`. In that case, the value must be the same as the one listed in the `scalar.db.cluster.transaction_coordinator.clusters` property of the Transaction Coordinator and the one specified in the `scalar.db.cluster.id` property of the applications that belong to this cluster.
+- **Default value:** empty
 
 ##### `cluster.membership.type`
 
@@ -138,6 +144,12 @@ The following node-related configurations are available for ScalarDB Cluster.
 
 - **Field:** `scalar.db.cluster.node.standalone_mode.enabled`
 - **Description:** Whether standalone mode is enabled. Note that if standalone mode is enabled, the membership configurations (`scalar.db.cluster.membership.*`) will be ignored.
+- **Default value:** `false`
+
+##### `cluster.node.transaction_participant.enabled`
+
+- **Field:** `scalar.db.cluster.node.transaction_participant.enabled`
+- **Description:** Whether the ScalarDB Cluster node acts as a participant of the transactions that the Transaction Coordinator drives. If you set this property to `true`, you also need to set `scalar.db.cluster.id`. For details about the Transaction Coordinator, see [Transaction Coordinator configurations](#transaction-coordinator-configurations).
 - **Default value:** `false`
 
 ##### `transaction.enabled`
@@ -459,11 +471,30 @@ The following properties have been removed and will be ignored if set. If these 
 If you're using SQLite3 as a JDBC database, you must set `scalar.db.contact_points` as follows:
 
 ```properties
-scalar.db.contact_points=jdbc:sqlite:<SQLITE_DB_FILE_PATH>?busy_timeout=10000
+scalar.db.contact_points=jdbc:sqlite:<SQLITE_DB_FILE_PATH>?busy_timeout=10000&journal_mode=WAL
 ```
 
-Unlike other JDBC databases, [SQLite3 doesn't fully support concurrent access](https://www.sqlite.org/lang_transaction.html).
-To avoid frequent errors caused internally by [`SQLITE_BUSY`](https://www.sqlite.org/rescode.html#busy), we recommend setting a [`busy_timeout`](https://www.sqlite.org/c3ref/busy_timeout.html) parameter.
+Unlike other JDBC databases, [SQLite3 doesn't fully support concurrent access](https://www.sqlite.org/lang_transaction.html). To avoid frequent errors caused internally by [`SQLITE_BUSY`](https://www.sqlite.org/rescode.html#busy), set a [`busy_timeout`](https://www.sqlite.org/c3ref/busy_timeout.html) parameter. Also set [`journal_mode=WAL`](https://www.sqlite.org/wal.html) to enable write-ahead logging (WAL), which lets a reader and a writer run at the same time and reduces lock contention. Keep the `busy_timeout` parameter set as well because SQLite3 still serializes writers in WAL mode.
+
+**YugabyteDB**
+
+If you're using YugabyteDB as a JDBC database, you can specify multiple endpoints in `scalar.db.contact_points` as follows:
+
+```properties
+scalar.db.contact_points=jdbc:yugabytedb://127.0.0.1:5433\\,127.0.0.2:5433\\,127.0.0.3:5433/?load-balance=true
+```
+
+Multiple endpoints should be separated by escaped commas.
+
+For information on YugabyteDB's smart driver and load balancing, see [YugabyteDB smart drivers for YSQL](https://docs.yugabyte.com/preview/drivers-orms/smart-drivers/).
+
+**AlloyDB**
+
+If you are using AlloyDB on Google Cloud as a JDBC database and want to connect with the [Java connector](https://docs.cloud.google.com/alloydb/docs/connect-language-connectors#configure-connectors), you need to add additional properties in `scalar.db.contact_points` as follows:
+
+```properties
+scalar.db.contact_points=jdbc:postgresql:///<DATABASE_NAME>?socketFactory=com.google.cloud.alloydb.SocketFactory&alloydbInstanceName=<INSTANCE_NAME>&alloydbIpType=PUBLIC
+```
 
 **Spanner**
 
@@ -477,6 +508,47 @@ scalar.db.contact_points=jdbc:cloudspanner:/projects/<PROJECT_ID>/instances/<INS
 scalar.db.username=
 scalar.db.password=<content-of-service-account-key.json>
 ```
+
+**Amazon Aurora**
+
+If you're using Amazon Aurora as a JDBC database, you can add the `jdbc:aws-wrapper:` prefix to `scalar.db.contact_points` to connect through the [AWS Advanced JDBC Wrapper](https://github.com/aws/aws-advanced-jdbc-wrapper). The wrapper discovers the cluster topology and reconnects to the new writer after a failover instead of waiting for DNS to propagate. ScalarDB bundles the wrapper, so you don't need to add any JAR files.
+
+For Aurora PostgreSQL, specify the cluster endpoint as follows:
+
+```properties
+scalar.db.storage=jdbc
+scalar.db.contact_points=jdbc:aws-wrapper:postgresql://<CLUSTER_ENDPOINT>:5432/<DATABASE_NAME>
+scalar.db.username=<USERNAME>
+scalar.db.password=<PASSWORD>
+```
+
+For Aurora MySQL, specify the cluster endpoint as follows:
+
+```properties
+scalar.db.storage=jdbc
+scalar.db.contact_points=jdbc:aws-wrapper:mysql://<CLUSTER_ENDPOINT>:3306/<DATABASE_NAME>
+scalar.db.username=<USERNAME>
+scalar.db.password=<PASSWORD>
+```
+
+ScalarDB supports the prefix for Aurora PostgreSQL and Aurora MySQL only. If you use it with any other database, ScalarDB fails to start.
+
+To configure the wrapper, add its parameters to the query string of the connection URL. Aside from the Aurora MySQL parameters described below, ScalarDB sets no defaults of its own, so the wrapper's own defaults apply. For example, to shorten the failover timeout:
+
+```properties
+scalar.db.contact_points=jdbc:aws-wrapper:postgresql://<CLUSTER_ENDPOINT>:5432/<DATABASE_NAME>?failoverTimeoutMs=60000
+```
+
+For Aurora MySQL, ScalarDB adds `permitMysqlScheme=true` and `wrapperTargetDriverDialect=mariadb-connector-j-3` to the URL automatically, because ScalarDB connects to MySQL through MariaDB Connector/J. If you set either parameter yourself, ScalarDB uses your value.
+
+If a failover happens while `commit()` is running, ScalarDB throws `UnknownTransactionStatusException`. Check whether the transaction was applied before you retry it. A failover during a CRUD operation throws `CrudException`, which you can handle as usual. For details, see [How to handle exceptions](../api-guide.md#how-to-handle-exceptions).
+
+This support does not cover the following:
+
+- **IAM database authentication and Secrets Manager integration:** The wrapper's plugins for these require additional JAR files that ScalarDB doesn't bundle.
+- **Read-write splitting:** ScalarDB doesn't route read operations to reader instances.
+- **Configurations other than Aurora:** ScalarDB doesn't support non-Aurora RDS deployments, or engines other than PostgreSQL and MySQL, through the wrapper. ScalarDB doesn't check whether the endpoint belongs to an Aurora cluster, so a non-Aurora RDS deployment starts without an error.
+
 :::
 
 **DynamoDB**
@@ -1707,6 +1779,18 @@ This is a backward-compatibility option and is **not recommended for new workloa
 
 :::
 
+#### `consensus_commit.coordinator.write_set_logging.enabled`
+
+- **Field:** `scalar.db.consensus_commit.coordinator.write_set_logging.enabled`
+- **Description:** When using Consensus Commit, if this is set to `true`, ScalarDB records the write set of each transaction in the Coordinator table. The write set identifies the records that the transaction wrote, and ScalarDB uses this information for capabilities such as recovering transactions proactively. Enabling this configuration requires an additional column in the Coordinator table and increases the amount of data that ScalarDB writes to and stores in the Coordinator table.
+- **Default value:** `false`
+
+:::warning
+
+A Coordinator table created before you enable this configuration does not have the additional column that this configuration requires. For details about how to add the column to an existing Coordinator table, see [Coordinator write set logging](../consensus-commit.md#coordinator-write-set-logging).
+
+:::
+
 #### `default_namespace_name`
 
 - **Field:** `scalar.db.default_namespace_name`
@@ -1714,6 +1798,186 @@ This is a backward-compatibility option and is **not recommended for new workloa
 - **Default value:** empty
 
 This section describes the configurations for the ScalarDB Cluster Java Client SDK.
+
+## Transaction Coordinator configurations
+
+This section describes the configurations for the Transaction Coordinator. The Transaction Coordinator is a separate process that drives two-phase commit across multiple ScalarDB Clusters, so that applications do not need to implement the two-phase commit protocol themselves. Because it runs as its own process, its configurations need to be specified in a properties file that is separate from the one for ScalarDB Cluster.
+
+For details about the deployment pattern that uses the Transaction Coordinator, see [ScalarDB Cluster Deployment Patterns for Microservices](./deployment-patterns-for-microservices.md).
+
+:::warning
+
+- Configuring the Transaction Coordinator alone is not sufficient. You also need to configure the ScalarDB Cluster nodes that act as participants, by setting `scalar.db.cluster.node.transaction_participant.enabled` and `scalar.db.cluster.id` as described in [Node configurations](#node-configurations), and the applications that send transaction control to the Transaction Coordinator, as described in [Transaction Coordinator connection configurations](#transaction-coordinator-connection-configurations).
+- The Transaction Coordinator configurations are under the `scalar.db.cluster.transaction_coordinator.` prefix, which is different from the `scalar.db.cluster.node.` prefix for a ScalarDB Cluster node. Some property names exist under both prefixes, such as `standalone_mode.enabled`, and they are not interchangeable.
+
+:::
+
+:::note
+
+The Transaction Coordinator does not authenticate clients and has no authentication and authorization configurations of its own. It forwards the authentication token that a client presents when beginning or joining a transaction to the target clusters, which perform authentication and authorization. As a result, `scalar.db.cluster.auth.enabled` has no effect on the Transaction Coordinator. Restrict network access to the Transaction Coordinator in the same way that you restrict access to the target clusters.
+
+:::
+
+### Configurations shared with ScalarDB Cluster
+
+In addition to the Transaction Coordinator-specific configurations described in the following sections, the Transaction Coordinator uses the following configurations, which are configured in the same way as for ScalarDB Cluster.
+
+- **[`scalar.db.transaction_manager`](#transaction_manager):** Transaction manager of ScalarDB. The Transaction Coordinator requires a transaction manager that supports the coordinator role, so the default value, `consensus-commit`, must be kept. `single-crud-operation` cannot be used.
+- **[`scalar.db.consensus_commit.coordinator.namespace`](#coordinatornamespace):** Namespace name of the Coordinator tables that the Transaction Coordinator manages.
+- **[`scalar.db.consensus_commit.coordinator.write_omission_on_read_only.enabled`](#coordinatorwrite_omission_on_read_onlyenabled):** Whether the Transaction Coordinator omits writing the Coordinator state for read-only transactions.
+- **[`scalar.db.cluster.membership.*`](#node-configurations):** Membership configurations that the Transaction Coordinator nodes use to form their own cluster.
+- **[`scalar.db.cluster.grpc.deadline_duration_millis`](#clustergrpcdeadline_duration_millis):** Deadline duration for gRPC in milliseconds. This applies to the communication between Transaction Coordinator nodes and to the communication with the target clusters.
+- **[`scalar.db.cluster.tls.*`](#wire-encryption-configurations):** Wire encryption configurations, such as whether TLS is enabled and the CA root certificate. The server certificate and private key of the Transaction Coordinator are configured separately, as described in [Transaction Coordinator wire encryption configurations](#transaction-coordinator-wire-encryption-configurations).
+- **[`scalar.db.metadata.cache_expiration_time_secs`](#metadatacache_expiration_time_secs):** Expiration time of the metadata cache in seconds.
+- **[`scalar.db.active_transaction_management.*`](#other-scalardb-cluster-configurations):** Expiration time and maximum number of the in-progress transactions that the Transaction Coordinator maintains.
+- **[`scalar.db.scan_fetch_size`](#scan_fetch_size):** Number of records to fetch in a single batch when the Transaction Coordinator runs scan operations on the target clusters.
+- **[Storage configurations](#storage-related-configurations), such as `scalar.db.storage` and `scalar.db.contact_points`:** Storage that holds the Coordinator tables. The Transaction Coordinator has its own storage configurations, which are independent of the ones for the target clusters.
+
+### Target cluster configurations
+
+The following configurations specify the ScalarDB Clusters that the Transaction Coordinator drives two-phase commit against.
+
+#### `cluster.transaction_coordinator.clusters`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.clusters`
+- **Description:** Comma-separated list of the IDs of the target clusters. At least one cluster ID is required, and the IDs must be unique. Each ID must match the `scalar.db.cluster.id` property of the corresponding ScalarDB Cluster.
+- **Default value:** empty
+
+#### `cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_points`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_points`
+- **Description:** Contact point of the target cluster, with `<CLUSTER_ID>` being one of the cluster IDs specified in the `scalar.db.cluster.transaction_coordinator.clusters` property. This property is required for each cluster ID that you specify in that property. If you use the `indirect` mode, specify the IP address or the host name of the load balancer in front of the cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the `default` namespace is used.
+- **Default value:** empty
+
+#### `cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_port`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_port`
+- **Description:** Port number for the contact point of the target cluster.
+- **Default value:** `60053`
+
+:::note
+
+For example, if the target clusters are `customer-cluster` and `order-cluster`, and both are reached through a load balancer, you can configure the Transaction Coordinator as follows:
+
+```properties
+scalar.db.cluster.transaction_coordinator.clusters=customer-cluster,order-cluster
+scalar.db.cluster.transaction_coordinator.clusters.customer-cluster.contact_points=indirect:customer-cluster
+scalar.db.cluster.transaction_coordinator.clusters.customer-cluster.contact_port=60053
+scalar.db.cluster.transaction_coordinator.clusters.order-cluster.contact_points=indirect:order-cluster
+scalar.db.cluster.transaction_coordinator.clusters.order-cluster.contact_port=60053
+```
+
+:::
+
+#### `cluster.transaction_coordinator.clusters.<CLUSTER_ID>.<PROPERTY_NAME>`
+
+Apart from `contact_points` and `contact_port`, you can override any `scalar.db.cluster.` property for a single target cluster by using `scalar.db.cluster.transaction_coordinator.clusters.<CLUSTER_ID>.<PROPERTY_NAME>`, with `<CLUSTER_ID>` being one of the cluster IDs specified in the `scalar.db.cluster.transaction_coordinator.clusters` property and `<PROPERTY_NAME>` being the part of the property name that follows `scalar.db.cluster.`. Such a property is applied to the connection to that target cluster only. If you don't specify it, the value of the corresponding `scalar.db.cluster.` property is used.
+
+For example, if the target cluster `customer-cluster` presents a server certificate that is signed by a different certificate authority (CA) than the other target clusters, you can specify the CA root certificate for that cluster only by using `scalar.db.cluster.transaction_coordinator.clusters.customer-cluster.tls.ca_root_cert_path`, which overrides `scalar.db.cluster.tls.ca_root_cert_path`.
+
+### Transaction Coordinator node configurations
+
+The following node-related configurations are available for the Transaction Coordinator.
+
+#### `cluster.transaction_coordinator.port`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.port`
+- **Description:** Port number of the Transaction Coordinator node. This port is used both for the requests from applications and for the communication between Transaction Coordinator nodes.
+- **Default value:** `60055`
+
+#### `cluster.transaction_coordinator.admin.port`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.admin.port`
+- **Description:** Port number of the administrative gRPC server of the Transaction Coordinator node. If this property is set, the administrator service (`pause`, `unpause`, and `checkPaused`) will run on a dedicated gRPC server on this port, which is useful for isolating administrative operations from other gRPC traffic. If this property is not set, the administrator service will run on the same port as the other gRPC services (`scalar.db.cluster.transaction_coordinator.port`).
+- **Default value:** empty (uses `scalar.db.cluster.transaction_coordinator.port`)
+
+#### `cluster.transaction_coordinator.prometheus_exporter_port`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.prometheus_exporter_port`
+- **Description:** Port number of the Prometheus exporter.
+- **Default value:** `9080`
+
+#### `cluster.transaction_coordinator.standalone_mode.enabled`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.standalone_mode.enabled`
+- **Description:** Whether standalone mode is enabled. In standalone mode, the Transaction Coordinator runs as a single node. Note that if standalone mode is enabled, the membership configurations (`scalar.db.cluster.membership.*`) will be ignored.
+- **Default value:** `false`
+
+#### `cluster.transaction_coordinator.decommissioning_duration_secs`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.decommissioning_duration_secs`
+- **Description:** Duration in seconds until a Transaction Coordinator node is actually decommissioned when shutting down.
+- **Default value:** `30`
+
+#### `cluster.transaction_coordinator.grpc.max_inbound_message_size`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.grpc.max_inbound_message_size`
+- **Description:** Maximum message size allowed to be received. This value is also applied to the connections from the Transaction Coordinator to the target clusters and to the other Transaction Coordinator nodes, unless `scalar.db.cluster.grpc.max_inbound_message_size` is set.
+- **Default value:** The gRPC default value
+
+#### `cluster.transaction_coordinator.grpc.max_inbound_metadata_size`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.grpc.max_inbound_metadata_size`
+- **Description:** Maximum size of metadata allowed to be received. This value is also applied to the connections from the Transaction Coordinator to the target clusters and to the other Transaction Coordinator nodes, unless `scalar.db.cluster.grpc.max_inbound_metadata_size` is set.
+- **Default value:** The gRPC default value
+
+#### `cluster.transaction_coordinator.grpc.max_connection_age_millis`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.grpc.max_connection_age_millis`
+- **Description:** Maximum time that a channel may exist. It helps proactively close and refresh old connections to prevent imbalance across servers.
+- **Default value:** `Integer.MAX_VALUE` (Infinite)
+
+#### `cluster.transaction_coordinator.grpc.max_connection_age_grace_millis`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.grpc.max_connection_age_grace_millis`
+- **Description:** Grace period after the channel reaches its max age. It provides a grace period for ongoing RPCs to complete before the connection is closed.
+- **Default value:** `Integer.MAX_VALUE` (Infinite)
+
+### Transaction Coordinator wire encryption configurations
+
+The following wire encryption configurations are available for the Transaction Coordinator. Whether wire encryption is enabled is controlled by `scalar.db.cluster.tls.enabled`, which is shared with ScalarDB Cluster.
+
+For details about encrypting wire communications, see [Encrypt Wire Communications](./encrypt-wire-communications.md).
+
+#### `cluster.transaction_coordinator.tls.cert_chain_path`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.tls.cert_chain_path`
+- **Description:** The certificate chain file used for TLS communication.
+- **Default value:** empty
+
+#### `cluster.transaction_coordinator.tls.private_key_path`
+
+- **Field:** `scalar.db.cluster.transaction_coordinator.tls.private_key_path`
+- **Description:** The private key file used for TLS communication.
+- **Default value:** empty
+
+### Configuration example
+
+The following is an example of the configuration for a Transaction Coordinator that drives two-phase commit across two target clusters, `customer-cluster` and `order-cluster`:
+
+```properties
+# Storage that holds the Coordinator tables.
+scalar.db.storage=jdbc
+scalar.db.contact_points=jdbc:postgresql://<HOST>:<PORT>/<DATABASE_NAME>
+scalar.db.username=<USERNAME>
+scalar.db.password=<PASSWORD>
+
+# Target clusters that the Transaction Coordinator drives two-phase commit against.
+scalar.db.cluster.transaction_coordinator.clusters=customer-cluster,order-cluster
+scalar.db.cluster.transaction_coordinator.clusters.customer-cluster.contact_points=indirect:customer-cluster
+scalar.db.cluster.transaction_coordinator.clusters.order-cluster.contact_points=indirect:order-cluster
+
+# Membership configurations for forming the cluster of the Transaction Coordinator nodes.
+scalar.db.cluster.membership.type=KUBERNETES
+scalar.db.cluster.membership.kubernetes.endpoint.namespace_name=<NAMESPACE_NAME>
+scalar.db.cluster.membership.kubernetes.endpoint.name=<ENDPOINT_NAME>
+```
+
+:::note
+
+The `scalar.db.contact_points` property in this file specifies the database that holds the Coordinator tables, not the target clusters. The contact points of the target clusters are specified in the `scalar.db.cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_points` properties.
+
+:::
 
 ## Java Client SDK configurations
 
@@ -1732,7 +1996,7 @@ The following shows the general configurations for the Java Client SDK when usin
 #### `contact_points`
 
 - **Field:** `scalar.db.contact_points`
-- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
+- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
 - **Default value:** empty
 
 :::note
@@ -1808,6 +2072,46 @@ scalar.db.contact_points=direct-kubernetes:ns/scalardb-cluster
 
 :::
 
+#### Transaction Coordinator connection configurations
+
+The following shows the configurations for connecting to the Transaction Coordinator. For details about the Transaction Coordinator, see [Transaction Coordinator configurations](#transaction-coordinator-configurations).
+
+##### `cluster.id`
+
+- **Field:** `scalar.db.cluster.id`
+- **Description:** ID of the ScalarDB Cluster that the application belongs to. The Transaction Coordinator uses it as the ID of the participant that the application's operations belong to. This property is required when `scalar.db.cluster.client.transaction_coordinator.enabled` is set to `true` and the application connects to a ScalarDB Cluster by specifying `scalar.db.contact_points`. The value must be the same as the one specified in the `scalar.db.cluster.id` property of the corresponding ScalarDB Cluster nodes.
+- **Default value:** empty
+
+##### `cluster.client.transaction_coordinator.enabled`
+
+- **Field:** `scalar.db.cluster.client.transaction_coordinator.enabled`
+- **Description:** Whether transaction control is sent to the Transaction Coordinator. If you set this property to `false`, a transaction runs within the single ScalarDB Cluster that the application is connected to. If you set this property to `true`, transaction control is sent to the Transaction Coordinator, which drives two-phase commit across the target clusters.
+- **Default value:** `false`
+
+##### `cluster.client.transaction_coordinator.contact_points`
+
+- **Field:** `scalar.db.cluster.client.transaction_coordinator.contact_points`
+- **Description:** Contact point of the Transaction Coordinator. This property is required when `scalar.db.cluster.client.transaction_coordinator.enabled` is set to `true`. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of the Transaction Coordinator nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
+- **Default value:** empty
+
+##### `cluster.client.transaction_coordinator.contact_port`
+
+- **Field:** `scalar.db.cluster.client.transaction_coordinator.contact_port`
+- **Description:** Port number for the contact point of the Transaction Coordinator. Note that the default value is different from the default value of `scalar.db.contact_port`, which is the port number of a ScalarDB Cluster node.
+- **Default value:** `60055`
+
+##### `cluster.client.transaction_coordinator.<PROPERTY_NAME>`
+
+Apart from `enabled`, `contact_points`, and `contact_port`, you can override any `scalar.db.cluster.` property for the connection to the Transaction Coordinator by using `scalar.db.cluster.client.transaction_coordinator.<PROPERTY_NAME>`, with `<PROPERTY_NAME>` being the part of the property name that follows `scalar.db.cluster.`. Such a property is applied to the connection to the Transaction Coordinator only, not to the connection to the cluster. If you don't specify it, the value of the corresponding `scalar.db.cluster.` property is used.
+
+For example, if the Transaction Coordinator presents a server certificate that is signed by a different certificate authority (CA) than the cluster, you can specify the CA root certificate for the Transaction Coordinator connection only by using `scalar.db.cluster.client.transaction_coordinator.tls.ca_root_cert_path`, which overrides `scalar.db.cluster.tls.ca_root_cert_path`.
+
+:::note
+
+When `scalar.db.cluster.client.transaction_coordinator.enabled` is set to `true`, `scalar.db.contact_points` becomes optional. If you omit it, the application connects to the Transaction Coordinator only, which is useful for a service that starts and commits transactions without running any operations of its own.
+
+:::
+
 #### Authentication and authorization configurations
 
 The following shows the authentication and authorization configurations for the Java Client SDK when using the primitive interface.
@@ -1847,7 +2151,7 @@ When you run applications or tools that use the Java Client SDK and the primitiv
 ##### `cluster.client.auth.userpass_cache.size`
 
 - **Field:** `scalar.db.cluster.client.auth.userpass_cache.size`
-- **Description:** The maximum number of authentication tokens that the client caches. The client caches a token for each username and password pair so that it does not need to authenticate on every request. This configuration applies only when the authentication type is `userpass`.
+- **Description:** The maximum number of authentication tokens that the client caches. The client caches a token for each username and password pair so that it does not need to authenticate on every request. The cache is shared between the credentials set in the configuration properties and the credentials passed programmatically. This configuration applies only when the authentication type is `userpass`.
 - **Default value:** `10000`
 
 ##### `cluster.client.auth.userpass_cache.expiration_margin_millis`
@@ -1899,7 +2203,7 @@ The following shows the configurations for the Java Client SDK when using the SQ
 #### `sql.cluster_mode.contact_points`
 
 - **Field:** `scalar.db.sql.cluster_mode.contact_points`
-- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
+- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
 - **Default value:** empty
 
 :::note
@@ -2016,7 +2320,7 @@ The following shows the authentication and authorization configurations for the 
 #### `auth.userpass_cache.size`
 
 - **Field:** `scalar.db.sql.cluster_mode.auth.userpass_cache.size`
-- **Description:** The maximum number of authentication tokens that the client caches. The client caches a token for each username and password pair so that it does not need to authenticate on every request. This configuration applies only when the authentication type is `userpass`.
+- **Description:** The maximum number of authentication tokens that the client caches. The client caches a token for each username and password pair so that it does not need to authenticate on every request. The cache is shared between the credentials set in the configuration properties and the credentials passed programmatically. This configuration applies only when the authentication type is `userpass`.
 - **Default value:** `10000`
 
 #### `auth.userpass_cache.expiration_margin_millis`
@@ -2032,7 +2336,7 @@ The following shows the configurations for the Embedding Client SDK (`scalardb-c
 #### `embedding.client.contact_points`
 
 - **Field:** `scalar.db.embedding.client.contact_points`
-- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Embedding Client SDK will use the `default` namespace.
+- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Embedding Client SDK will use the `default` namespace.
 - **Default value:** empty
 
 #### `embedding.client.contact_port`

@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.0
+patch_version: 3.14.1
 doc_id: helm-charts/configure-custom-values-file
 lifecycle_phase: operate
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:41Z'
+  at: '2026-09-11T05:23:09Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/docs/helm-charts/configure-custom-values-file.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/helm-charts/configure-custom-values-file.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-09-09T05:36:42Z'
 ---
 
 # Configure a custom values file for Scalar Helm Charts
@@ -39,7 +39,6 @@ When you deploy Scalar products using Scalar Helm Charts, you must prepare your 
 * [ScalarDL Auditor](./configure-custom-values-scalardl-auditor.md)
 * [ScalarDL Schema Loader](./configure-custom-values-scalardl-schema-loader.md)
 * [Scalar Admin for Kubernetes](./configure-custom-values-scalar-admin-for-kubernetes.md)
-* [Scalar Manager](./configure-custom-values-scalar-manager.md)
 * [Envoy](./configure-custom-values-envoy.md)
 * [[Deprecated] ScalarDB Server](./configure-custom-values-scalardb.md)
 * [[Deprecated] ScalarDB GraphQL](./configure-custom-values-scalardb-graphql.md)

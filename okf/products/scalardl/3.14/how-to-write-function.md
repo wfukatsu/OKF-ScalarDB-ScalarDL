@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.0
+patch_version: 3.14.1
 doc_id: how-to-write-function
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:41Z'
+  at: '2026-09-11T05:23:09Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/docs/how-to-write-function.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/how-to-write-function.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-09-09T05:36:42Z'
 ---
 
 # A Guide on How to Write Function for ScalarDL
@@ -36,7 +36,7 @@ This document sets out some guidelines for writing functions for ScalarDL.
 
 ## What is a function for ScalarDL ?
 
-A Function (Smart Function) for ScalarDL is a Java program, which extends the predefined base functions such as [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/function/JacksonBasedFunction.html) class, written for implementing single business logic. A Function mainly manages the data of a ScalarDL application whereas a Contract manages the evidence of the data. Before looking at this, please check [Getting Started with ScalarDL](./getting-started.md) and [How to Write Contract For ScalarDL](./how-to-write-contract.md) to understand what ScalarDL is and what ScalarDL can do with contracts.
+A Function (Smart Function) for ScalarDL is a Java program, which extends the predefined base functions such as [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/JacksonBasedFunction.html) class, written for implementing single business logic. A Function mainly manages the data of a ScalarDL application whereas a Contract manages the evidence of the data. Before looking at this, please check [Getting Started with ScalarDL](./getting-started.md) and [How to Write Contract For ScalarDL](./how-to-write-contract.md) to understand what ScalarDL is and what ScalarDL can do with contracts.
 
 ## Background
 
@@ -123,12 +123,12 @@ As of writing this, we provide four base Functions as shown below; however, usin
 
 | Base Function Class                                                                                                                                        | Type of Function inputs and output                                                                                 | Library                                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/function/JacksonBasedFunction.html) (recommended) | [JsonNode](https://fasterxml.github.io/jackson-databind/javadoc/2.13/com/fasterxml/jackson/databind/JsonNode.html) | [Jackson](https://github.com/FasterXML/jackson) |
-| [`JsonpBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/function/JsonpBasedFunction.html)                   | [JsonObject](https://javadoc.io/static/javax.json/javax.json-api/1.1.4/javax/json/JsonObject.html)                 | [JSONP](https://javaee.github.io/jsonp/)        |
-| [`StringBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/function/StringBasedFunction.html)                 | [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)                                          | Java Standard Libraries                         |
-| [`Function`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/function/Function.html) (deprecated)                          | [JsonObject](https://javadoc.io/static/javax.json/javax.json-api/1.1.4/javax/json/JsonObject.html)                 | [JSONP](https://javaee.github.io/jsonp/)        |
+| [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/JacksonBasedFunction.html) (recommended) | [JsonNode](https://fasterxml.github.io/jackson-databind/javadoc/2.13/com/fasterxml/jackson/databind/JsonNode.html) | [Jackson](https://github.com/FasterXML/jackson) |
+| [`JsonpBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/JsonpBasedFunction.html)                   | [JsonObject](https://javadoc.io/static/javax.json/javax.json-api/1.1.4/javax/json/JsonObject.html)                 | [JSONP](https://javaee.github.io/jsonp/)        |
+| [`StringBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/StringBasedFunction.html)                 | [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)                                          | Java Standard Libraries                         |
+| [`Function`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/Function.html) (deprecated)                          | [JsonObject](https://javadoc.io/static/javax.json/javax.json-api/1.1.4/javax/json/JsonObject.html)                 | [JSONP](https://javaee.github.io/jsonp/)        |
 
-The old [`Function`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/function/Function.html) is still available, but it is now deprecated and will be removed in a later major version. So, it is highly recommended to use the above new (non-deprecated) Functions as a base Function.
+The old [`Function`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/Function.html) is still available, but it is now deprecated and will be removed in a later major version. So, it is highly recommended to use the above new (non-deprecated) Functions as a base Function.
 
 ### About the `invoke` arguments
 
@@ -179,7 +179,7 @@ For example, you can execute a function as follows with the command-line tool.
 client/bin/scalardl execute-contract --properties client.properties --contract-id test-contract --contract-argument '{...}' --function-id test-function --function-argument '{...}'
 ```
 
-You can also do it with the [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/client/service/ClientService.html) as follows.
+You can also do it with the [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html) as follows.
 
 ```java
 ContractExecutionResult result = clientService.executeContract(contractId, contractArgument, functionId, functionArgument);

@@ -1,7 +1,7 @@
 ---
 type: Product Version
 title: ScalarDL 3.14
-description: Documentation set for ScalarDL 3.14 (newest patch 3.14.0).
+description: Documentation set for ScalarDL 3.14 (newest patch 3.14.1).
 resource: https://scalardl.scalar-labs.com/docs/latest/
 tags:
 - scalardl
@@ -11,20 +11,20 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.0
+patch_version: 3.14.1
 url_path: latest
 maintenance: supported
 is_latest: true
-concept_count: 144
+concept_count: 139
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:41Z'
+  at: '2026-09-11T05:23:09Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/db1535c35d0f746c5b5d8d9772f54afa0c709a34
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/65cde245dc475500d48ccf7a4d460a7965759c95
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-09-09T05:36:42Z'
 ---
 
 # ScalarDL 3.14
@@ -35,10 +35,10 @@ Supported release.
 |---|---|
 | Product | ScalarDL |
 | Documentation version | 3.14 |
-| Newest patch release described | 3.14.0 |
+| Newest patch release described | 3.14.1 |
 | Docs site | https://scalardl.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `db1535c35d0f` |
-| Concepts in this version | 144 |
+| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `65cde245dc47` |
+| Concepts in this version | 139 |
 
 ## By lifecycle phase
 
@@ -93,7 +93,7 @@ Start here when you know which phase of the project you are in.
 - [API endpoints](./applications/simple-bank-account/docs/api_endpoints.md)
 - [ScalarDL Javadoc](./javadoc/section-home.md)
 
-### 運用 / Operate (101)
+### 運用 / Operate (96)
 
 - [A Guide on How to Backup and Restore Data in ScalarDL](./backup-restore.md)
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore-overview.md)
@@ -121,13 +121,11 @@ Start here when you know which phase of the project you are in.
 - [Configure a custom values file for Scalar Admin for Kubernetes](./helm-charts/configure-custom-values-scalar-admin-for-kubernetes.md)
 - [Configure a custom values file for Scalar Envoy](./helm-charts/configure-custom-values-envoy.md)
 - [Configure a custom values file for Scalar Helm Charts](./helm-charts/configure-custom-values-file.md)
-- [Configure a Custom Values File for Scalar Manager](./helm-charts/configure-custom-values-scalar-manager.md)
 - [Configure a custom values file for ScalarDB Analytics server](./helm-charts/configure-custom-values-scalardb-analytics-server.md)
 - [Configure a custom values file for ScalarDB Cluster](./helm-charts/configure-custom-values-scalardb-cluster.md)
 - [Configure a custom values file for ScalarDL Auditor](./helm-charts/configure-custom-values-scalardl-auditor.md)
 - [Configure a custom values file for ScalarDL Ledger](./helm-charts/configure-custom-values-scalardl-ledger.md)
 - [Configure a custom values file for ScalarDL Schema Loader](./helm-charts/configure-custom-values-scalardl-schema-loader.md)
-- [Deploy Scalar Manager](./helm-charts/getting-started-scalar-manager.md)
 - [Deploy Scalar products using Scalar Helm Charts](./helm-charts/how-to-deploy-scalar-products.md)
 - [Getting Started with Helm Charts (Logging using Loki Stack)](./helm-charts/getting-started-logging.md)
 - [Getting Started with Helm Charts (Monitoring using Prometheus Operator)](./helm-charts/getting-started-monitoring.md)
@@ -192,9 +190,6 @@ Start here when you know which phase of the project you are in.
 - [Scalar Alerts](./scalar-kubernetes/alerts/README.md)
 - [How to Configure a Commercial License Key](./scalar-licensing/commercial.md)
 - [How to Configure a Trial License Key](./scalar-licensing/trial.md)
-- [How to Use Scalar Manager](./scalar-manager/how-to-use-scalar-manager.md)
-- [Scalar Manager Metrics Reference](./scalar-manager/metrics-reference.md)
-- [Scalar Manager Overview](./scalar-manager/overview.md)
 - [ScalarDL Benchmarking Tools](./scalardl-benchmarks/README.md)
 
 ## Sections
@@ -206,7 +201,6 @@ Start here when you know which phase of the project you are in.
 - [releases](./releases/index.md)
 - [scalar-kubernetes](./scalar-kubernetes/index.md)
 - [scalar-licensing](./scalar-licensing/index.md)
-- [scalar-manager](./scalar-manager/index.md)
 - [scalardl-benchmarks](./scalardl-benchmarks/index.md)
 
 ## Top-level concepts
@@ -232,7 +226,7 @@ Start here when you know which phase of the project you are in.
 - [Manage Overview](./manage-overview.md) — In this category, you can follow guides to help you manage ScalarDL.
 - [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md) — This document explains the lifecycle of contracts and functions in ScalarDL—from creating and registering them to updating them when bug fixes or feature additions are needed.
 - [Model Your Data](./data-modeling.md) — Data modeling (or in other words, organizing your data) is the process of conceptualizing and visualizing how data will be stored and used by identifying the patterns used to access data and the types of queries to be performed within...
-- [Monitor Overview](./manage-monitor-overview.md) — Scalar Manager is a centralized management and monitoring solution for ScalarDL within Kubernetes cluster environments that allows you to:
+- [Monitor Overview](./manage-monitor-overview.md) — Monitoring is essential for maintaining the health and performance of your ScalarDL deployment. This section provides guidance on monitoring ScalarDL in Kubernetes cluster environments, including checking system availability, collecting...
 - [Purge the Residual Transaction State](./purge-residual-transaction-state.md) — When using ScalarDL Ledger and Auditor, each transaction produces a transaction state that ScalarDL uses to process and, if necessary, recover the transaction. After a transaction has fully served this purpose, the state that it leaves...
 - [Quickstart Overview](./quickstart-overview.md) — In this category, you can follow quickstart tutorials for how to get started with ScalarDL.
 - [Requirements](./requirements.md) — This page describes the required tools and their versions to use ScalarDL correctly.

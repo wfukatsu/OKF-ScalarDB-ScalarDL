@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster/scalardb-auth-with-sql
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/scalardb-auth-with-sql.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/scalardb-auth-with-sql.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Authenticate and Authorize Users
@@ -34,7 +34,7 @@ ScalarDB Cluster can authenticate and authorize users in a coarse-grained manner
 
 :::tip
 
-You can also do authentication and authorization by using the primitive interface. For details, see [`ClusterClientTransactionAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb-cluster-java-client-sdk/3.19.0/com/scalar/db/cluster/client/ClusterClientTransactionAdmin.html), which implements [`AuthAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/AuthAdmin.html).
+You can also do authentication and authorization by using the primitive interface. For details, see [`ClusterClientTransactionAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb-cluster-java-client-sdk/3.19.1/com/scalar/db/cluster/client/ClusterClientTransactionAdmin.html), which implements [`AuthAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/AuthAdmin.html).
 :::
 
 ## Authentication methods
@@ -175,6 +175,127 @@ In addition to the configuration in the [ScalarDB Cluster SQL client configurati
 |---------------------------------------|-----------------------------|---------|
 | `scalar.db.sql.cluster_mode.username` | The username of the client. |         |
 | `scalar.db.sql.cluster_mode.password` | The password of the client. |         |
+
+## Passing credentials programmatically
+
+The simplest way to provide credentials is to set them in the configuration properties: a username and password for the `userpass` authentication type, or a JWT access token for the `oidc_jwt` authentication type. However, this binds the client to a single ScalarDB user, and a token set in the properties cannot be refreshed when it expires. If your application needs to authenticate as different ScalarDB users at runtime (for example, when one application instance serves many end users), you can instead pass credentials programmatically on a per-thread, per-transaction, or per-operation basis, as described in the following sections. Each mechanism works with both authentication types.
+
+### Passing credentials per thread
+
+A credential holder sets credentials for the current thread for the duration of a block of code. All ScalarDB Cluster operations within the block are executed as the user identified by the held credentials.
+
+Use `UserpassHolder` when the authentication type of the client is `userpass`, which is the default:
+
+```java
+import com.scalar.db.cluster.client.UserpassHolder;
+
+UserpassHolder.executeWithUserpass(username, password, () -> {
+    // All ScalarDB Cluster operations in this block are executed as the user who is authenticated with the specified username and password.
+});
+```
+
+Use `OidcJwtAccessTokenHolder` when the authentication type of the client is `oidc_jwt`:
+
+```java
+import com.scalar.db.cluster.client.OidcJwtAccessTokenHolder;
+
+OidcJwtAccessTokenHolder.executeWithToken(jwtAccessToken, () -> {
+    // All ScalarDB Cluster operations in this block are executed as the user who is mapped from the specified token.
+});
+```
+
+When using the holders, keep the following in mind:
+
+- The credentials are set for the current thread only. Other threads are not affected, so you can safely use the holders concurrently from multiple threads.
+- The credentials are resolved for each request. Therefore, when you begin a transaction within the block, also commit or roll it back within the block.
+- The credentials are cleared automatically when the block completes, even if an exception is thrown.
+- Nested calls of the same holder are not supported and throw an `IllegalStateException`.
+- Credentials set in the holder for the other authentication type are ignored.
+- The credentials set in a holder take precedence over the credentials set in the configuration properties.
+- For `UserpassHolder`, the password will be `null` for users that don't have a password.
+
+### Passing credentials as operation attributes
+
+You can pass credentials for a specific transaction, operation, or SQL statement by using operation attributes. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes). The following attribute keys are reserved for authentication credentials:
+
+| Key                          | Constant in `AuthOperationAttributes` | Description                                                                                             |
+|------------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------|
+| `auth-type`                  | `TYPE`                                | The authentication method for the call. The value must be `userpass` or `oidc_jwt` (case-insensitive).  |
+| `auth-userpass-username`     | `USERPASS_USERNAME`                   | The username when `auth-type` is `userpass`. Required.                                                  |
+| `auth-userpass-password`     | `USERPASS_PASSWORD`                   | The password when `auth-type` is `userpass`. Optional for users who don't have a password.              |
+| `auth-oidc-jwt-access-token` | `OIDC_JWT_ACCESS_TOKEN`               | The JWT access token when `auth-type` is `oidc_jwt`. Required.                                          |
+
+The `com.scalar.db.cluster.client.AuthOperationAttributes` class provides these keys as constants, but you can also specify them as literal strings.
+
+You can pass the auth attributes in the places described in the following sections. The examples use the `userpass` authentication type. For `oidc_jwt`, set `auth-type` to `oidc_jwt` and specify the JWT access token by using the `auth-oidc-jwt-access-token` key instead of the username and password keys.
+
+#### For a transaction by using the primitive interface
+
+Pass the attributes to the `begin()` or `beginReadOnly()` method on the transaction manager. All operations in the transaction authenticate as the specified user.
+
+```java
+import com.scalar.db.cluster.client.AuthOperationAttributes;
+
+Map<String, String> attributes = new HashMap<>();
+attributes.put(AuthOperationAttributes.TYPE, "userpass");
+attributes.put(AuthOperationAttributes.USERPASS_USERNAME, "user1");
+attributes.put(AuthOperationAttributes.USERPASS_PASSWORD, "password1");
+
+DistributedTransaction transaction = manager.begin(attributes);
+```
+
+#### For a transaction by using the SQL interface
+
+Pass the attributes to the `begin()` or `beginReadOnly()` method on `SqlSession`, or specify the keys in the `WITH` clause of the `BEGIN` or `START TRANSACTION` statement. All statements in the transaction authenticate as the specified user.
+
+```sql
+BEGIN WITH 'auth-type' = 'userpass'
+  AND 'auth-userpass-username' = 'user1'
+  AND 'auth-userpass-password' = 'password1';
+```
+
+#### For an operation executed directly on the transaction manager
+
+For one-shot operations that you execute directly on the transaction manager without beginning a transaction, set the attributes on the operation itself by using the `attribute()` method in the operation builder. This works for any operation builder that supports the `attribute()` method, such as `Get`, `Scan`, `Insert`, `Upsert`, `Update`, and `Delete`.
+
+```java
+import com.scalar.db.cluster.client.AuthOperationAttributes;
+
+Insert insert = Insert.newBuilder()
+    .namespace("ns1")
+    .table("tbl")
+    .partitionKey(Key.ofInt("id", 1))
+    .textValue("col1", "a")
+    .attribute(AuthOperationAttributes.TYPE, "userpass")
+    .attribute(AuthOperationAttributes.USERPASS_USERNAME, "user1")
+    .attribute(AuthOperationAttributes.USERPASS_PASSWORD, "password1")
+    .build();
+
+manager.insert(insert);
+```
+
+#### For a SQL statement executed outside of a transaction
+
+For SQL statements that you execute without beginning a transaction, specify the keys in the `WITH` clause of the statement. This works for any statement that supports the `WITH` clause, including prepared statements.
+
+```sql
+INSERT INTO ns1.tbl (id, col1) VALUES (1, 'a')
+  WITH 'auth-type' = 'userpass'
+  AND 'auth-userpass-username' = 'user1'
+  AND 'auth-userpass-password' = 'password1';
+```
+
+#### How the auth attributes are handled
+
+When passing credentials as operation attributes, keep the following in mind:
+
+- If the `auth-type` attribute is present with a non-empty value, the specified credentials are used for that call, taking precedence over the credentials set for the current thread by a credential holder and the credentials set in the client configuration properties.
+- When you pass the auth attributes in one of the places described above, the client removes them from the attributes before forwarding the request to the cluster, so the credentials don't appear in server-side logs or error messages. Other attributes in the same attribute map or `WITH` clause are preserved.
+- The auth attributes are recognized only in the places described above. If you specify them anywhere else, such as on an operation or SQL statement that you execute within a transaction, they are not interpreted as credentials and are forwarded to the cluster as regular operation attributes.
+- Invalid values, such as an unknown `auth-type` value or a missing required attribute, cause an `IllegalArgumentException` on the client side before any request is sent.
+- When you execute a batch of SQL statements by using the `executeBatch()` method, only the auth attributes in the `WITH` clause of the first statement are used, and the selected credentials apply to the whole batch.
+- Similarly, when you execute multiple operations in a single call on the transaction manager, for example, by using the `mutate()` method, only the auth attributes on the first operation are used, and the selected credentials apply to all operations in that call.
+- If authentication and authorization are disabled (`scalar.db.cluster.auth.enabled` is `false`), the auth attributes are ignored and the operation is executed without authentication. Therefore, you can keep the attributes in your application code even when deploying to an environment where authentication and authorization are disabled.
 
 ## Wire encryption
 

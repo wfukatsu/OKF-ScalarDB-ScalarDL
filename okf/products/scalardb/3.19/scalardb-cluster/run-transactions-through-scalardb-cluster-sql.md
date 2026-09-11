@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster/run-transactions-through-scalardb-cluster-sql
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/run-transactions-through-scalardb-cluster-sql.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/run-transactions-through-scalardb-cluster-sql.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Run Transactions Through ScalarDB Cluster SQL
@@ -518,7 +518,7 @@ For details about how to run transactions by using a one-phase commit interface,
 
 :::note
 
-Documentation for how to run transactions in a two-phase commit interface is coming soon.
+Support for the 2PC interface in JDBC is deprecated as of ScalarDB 3.19 and will be removed in a future release. Therefore, no additional documentation is planned for it.
 
 :::
 
@@ -530,7 +530,7 @@ For details about how to run transactions by using a one-phase commit interface,
 
 :::note
 
-Documentation for how to run transactions in a two-phase commit interface is coming soon.
+Support for the 2PC interface in Java is deprecated as of ScalarDB 3.19 and will be removed in a future release. Therefore, no additional documentation is planned for it.
 
 :::
 
@@ -544,6 +544,12 @@ To learn more about running transactions by using ScalarDB Cluster SQL, see the 
 
 ### One-phase or two-phase commit interface
 
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
 For details about how to run transactions by using a one-phase or a two-phase commit interface, see the [Getting Started with LINQ in the ScalarDB Cluster .NET Client SDK](../scalardb-cluster-dotnet-client-sdk/getting-started-with-linq.md#manage-transactions).
 
 **.NET (SQL)**
@@ -554,6 +560,6 @@ For details about how to run transactions by using a one-phase commit interface,
 
 :::note
 
-Documentation for how to run transactions in a two-phase commit interface is coming soon. For now, please refer to [Getting Started with Distributed Transactions with a Two-Phase Commit Interface in the ScalarDB Cluster .NET Client SDK](../scalardb-cluster-dotnet-client-sdk/getting-started-with-two-phase-commit-transactions.md).
+Support for the 2PC interface in .NET (SQL) is deprecated as of ScalarDB 3.19 and will be removed in a future release. Therefore, no additional documentation is planned for it.
 
 :::

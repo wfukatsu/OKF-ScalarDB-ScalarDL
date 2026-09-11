@@ -25,13 +25,13 @@ archived_versions:
 - '3.14'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:40Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/c882c4103fe6e0aedff74e7afa67c2587a78ec9b
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB
@@ -42,10 +42,10 @@ Universal HTAP engine that provides ACID transactions and analytical queries acr
 
 | Version | Newest patch | Maintenance | Concepts | Docs |
 |---|---|---|---|---|
-| [3.19 (latest)](./3.19/index.md) | 3.19.0 | supported | 207 | https://scalardb.scalar-labs.com/docs/latest/ |
-| [3.18](./3.18/index.md) | 3.18.1 | supported | 206 | https://scalardb.scalar-labs.com/docs/3.18/ |
-| [3.17](./3.17/index.md) | 3.17.4 | supported | 202 | https://scalardb.scalar-labs.com/docs/3.17/ |
-| [3.16](./3.16/index.md) | 3.16.6 | supported | 204 | https://scalardb.scalar-labs.com/docs/3.16/ |
+| [3.19 (latest)](./3.19/index.md) | 3.19.1 | supported | 203 | https://scalardb.scalar-labs.com/docs/latest/ |
+| [3.18](./3.18/index.md) | 3.18.2 | supported | 206 | https://scalardb.scalar-labs.com/docs/3.18/ |
+| [3.17](./3.17/index.md) | 3.17.5 | supported | 202 | https://scalardb.scalar-labs.com/docs/3.17/ |
+| [3.16](./3.16/index.md) | 3.16.7 | supported | 204 | https://scalardb.scalar-labs.com/docs/3.16/ |
 | [3.15](./3.15/index.md) | 3.15.9 | unmaintained | 193 | https://scalardb.scalar-labs.com/docs/3.15/ |
 | [3.14](./3.14/index.md) | 3.14.6 | archived | 178 | — (removed upstream) |
 

@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: releases/release-notes
 lifecycle_phase: operate
 editions:
@@ -23,18 +23,54 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/releases/release-notes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/releases/release-notes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB 3.19 Release Notes
 
 This page includes a list of release notes for ScalarDB 3.19.
+
+## v3.19.1
+
+**Release date:** September 2, 2026
+
+### Summary
+
+This release updates the Global Transaction API to require branches to explicitly declare their outcome, adds support for the AWS Advanced JDBC Wrapper for fast Aurora failover, improves Cosmos DB error handling and ScalarDB Cluster's attribute-based access control metadata cache refresh, deprecates the `join()` and `resume()` transaction APIs, adds retry handling for conflict errors during schema operations, and upgrades grpc_health_probe to address security vulnerabilities.
+
+### Community edition
+
+#### Improvements
+
+- Replaced `BranchTransaction.end()` with `BranchTransaction.end(BranchTransaction.Status)`, which requires a branch of a global transaction to declare the outcome of its work. Replace existing `end()` calls with `end(BranchTransaction.Status.SUCCESS)`, and call `end(BranchTransaction.Status.FAILURE)` on failure paths. ([#3806](https://github.com/scalar-labs/scalardb/pull/3806))
+- Added support for the AWS Advanced JDBC Wrapper, which enables fast Aurora failover for Aurora PostgreSQL and Aurora MySQL. Configuring HikariCP with an exception override is now rejected at startup, since it would cause a transaction with an unknown outcome to be reported as a definite failure. ([#3805](https://github.com/scalar-labs/scalardb/pull/3805))
+- Fixed an issue where the error message for a Cosmos DB error was excessively large because it included the Cosmos DB diagnostics, which could cause the error information to be lost. ([#3816](https://github.com/scalar-labs/scalardb/pull/3816))
+- Deprecated `DistributedTransactionManager.join()` and `DistributedTransactionManager.resume()`, along with their implementations, for removal in 3.20.0. ([#3817](https://github.com/scalar-labs/scalardb/pull/3817))
+
+#### Bug fixes
+
+- Fixed an issue where schema operations could fail with a conflict error, such as `ORA-08177` on Oracle when using the SERIALIZABLE isolation level. Conflict errors are now retried. ([#3820](https://github.com/scalar-labs/scalardb/pull/3820))
+
+### Enterprise edition
+
+#### Improvements
+
+##### ScalarDB Cluster
+
+- Reduced the number of queries issued when the attribute-based access control metadata caches are refreshed, which removes a latency spike on the first request after each refresh.
+- Adopted the ScalarDB Core change that replaced `BranchTransaction.end()` with `BranchTransaction.end(BranchTransaction.Status)`, which requires a branch of a global transaction to declare the outcome of its work. Replace existing `end()` calls with `end(BranchTransaction.Status.SUCCESS)`, and call `end(BranchTransaction.Status.FAILURE)` on failure paths.
+
+#### Bug fixes
+
+##### ScalarDB Cluster
+
+- Upgraded the grpc_health_probe binary to fix security issues: [CVE-2026-33818](https://github.com/advisories/GHSA-xc2p-8ggw-6cr5 "CVE-2026-33818"), [CVE-2026-39821](https://github.com/advisories/GHSA-w2q5-6q6x-x959 "CVE-2026-39821"), [CVE-2026-46600](https://github.com/advisories/GHSA-gg3m-vvp2-p2c5 "CVE-2026-46600"), [CVE-2026-56852](https://github.com/advisories/GHSA-jpjm-c3r5-q96r "CVE-2026-56852"), [CVE-2026-56853](https://github.com/advisories/GHSA-xphw-4f88-5f39 "CVE-2026-56853"), [CVE-2026-56858](https://github.com/advisories/GHSA-c974-w86c-vpfw "CVE-2026-56858"), [CVE-2026-56859](https://github.com/advisories/GHSA-76p8-fhrm-vpc7 "CVE-2026-56859"), [CVE-2026-56860](https://github.com/advisories/GHSA-25mv-j2qr-v5jq "CVE-2026-56860"), [CVE-2026-56862](https://github.com/advisories/GHSA-7qch-w8m5-g3h3 "CVE-2026-56862"), and [GHSA-hrxh-6v49-42gf](https://github.com/advisories/GHSA-hrxh-6v49-42gf "GHSA-hrxh-6v49-42gf")
 
 ## v3.19.0
 
@@ -105,3 +141,29 @@ This release adds Consensus Commit recovery capabilities, including write-set lo
 ##### ScalarDB SQL
 
 - Fixed a statement cache regression where non-parameterized DML statements occupied cache slots intended for parameterized SQL. Cache eligibility is now correctly gated on the presence of bind markers in the parsed SQL.
+
+### Enterprise Options
+
+#### ScalarDB Analytics
+
+:::warning Backward-incompatible changes
+
+- Redesigned `user` / `internal-backend` / `role` / `permission` CLI commands: `user register` is replaced by `user create` + `user link` and `user unregister` by `user delete` + `user unlink` (+ `internal-backend create`), `--username` is split into `--user` / `--backend-user`, passwords are accepted only via `--password` / `--password-stdin`, and `data-source delete` is renamed to `data-source unregister`.
+
+:::
+
+##### Enhancements
+
+- Unified error code system (`DB-ANALYTICS-NNNNN`): server-side and SDK errors are reported as a single `AnalyticsException` carrying a machine-readable error code and structured metadata, propagated over gRPC as structured `AnalyticsError` details.
+- Filter push down, column pruning, and limit push down for the ScalarDB Spark data source, reducing data transfer for selective queries.
+- Configure authentication credentials via environment variables (`SCALAR_DB_ANALYTICS_CLIENT_AUTH_USERNAME` / `SCALAR_DB_ANALYTICS_CLIENT_AUTH_PASSWORD`) in the Spark connector.
+
+##### Improvements
+
+- Display clean error messages instead of raw stack traces for catalog errors in the spark-sql CLI.
+- Removed the internal `tenantId` field from Catalog JSON output in CLI commands.
+- Upgraded Spring Boot from 3.5.x to 4.0.4.
+
+##### Bug fixes
+
+- Fixed a `NullPointerException` in the metering server when reporting an execution that contains no jobs, or a job that contains no stages.

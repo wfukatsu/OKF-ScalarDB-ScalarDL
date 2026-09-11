@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster/index
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/index.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/index.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB Cluster
@@ -35,6 +35,12 @@ sources:
 ScalarDB Cluster is a clustering solution for [ScalarDB](../overview.md) that consists of a set of cluster nodes, each of which provides ScalarDB functionality. Each cluster node has a routing mechanism that directs transaction requests to the appropriate cluster node within the cluster.
 
 ## Why ScalarDB Cluster?
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 When executing a transaction that spans multiple client requests, such as in microservice transactions, all requests for the transaction must be processed on the same server due to the stateful nature of transaction processing. However, in a distributed environment, routing requests to the same server isn't straightforward because a service typically runs on multiple servers (or hosts) for scalability and availability. In this scenario, all requests within a transaction must be routed to the same server, while different transactions should be distributed to ensure load balancing.
 

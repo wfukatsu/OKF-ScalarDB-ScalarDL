@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 ---
 
 # Scalardb Cluster Dotnet Client Sdk
@@ -28,7 +28,7 @@ Section overview: [ScalarDB Cluster .NET Client SDK Overview](./section-home.md)
 - [Getting Started with Authentication and Authorization by Using ScalarDB Cluster .NET Client SDK](./getting-started-with-auth.md) — The ScalarDB Cluster .NET Client SDK supports authentication and authorization, which allows you to authenticate and authorize your requests to ScalarDB Cluster.
 - [Getting Started with Distributed SQL Transactions in the ScalarDB Cluster .NET Client SDK](./getting-started-with-distributed-sql-transactions.md) — The ScalarDB Cluster .NET Client SDK supports the distributed SQL transaction functionality of ScalarDB Cluster. The SDK includes transaction and manager abstractions for easier communication within a cluster.
 - [Getting Started with Distributed Transactions in the ScalarDB Cluster .NET Client SDK](./getting-started-with-distributed-transactions.md) — The ScalarDB Cluster .NET Client SDK supports the distributed transaction functionality of ScalarDB Cluster. The SDK includes transaction and manager abstractions for easier communication within a cluster.
-- [Getting Started with Distributed Transactions with a Two-Phase Commit Interface in the ScalarDB Cluster .NET Client SDK](./getting-started-with-two-phase-commit-transactions.md) — The ScalarDB Cluster .NET Client SDK supports transactions with the two-phase commit interface in ScalarDB. The SDK includes transaction and manager abstractions for enhanced communication within a cluster.
+- [Getting Started with Distributed Transactions with a Two-Phase Commit Interface in the ScalarDB Cluster .NET Client SDK](./getting-started-with-two-phase-commit-transactions.md) — The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
 - [Getting Started with LINQ in the ScalarDB Cluster .NET Client SDK](./getting-started-with-linq.md) — The ScalarDB Cluster .NET Client SDK supports querying the cluster with LINQ and some Entity Framework-like functionality.
 - [Getting Started with Tables as C# Classes in the ScalarDB Cluster .NET Client SDK](./getting-started-with-scalardb-tables-as-csharp-classes.md) — The ScalarDB Cluster .NET Client SDK helps you write code to access a cluster by abstracting ScalarDB tables as C# objects. After defining a class that represents a table in the cluster, you can ensure that a column name or its type won't...
 - [Getting Started with the Administrative API in the ScalarDB Cluster .NET Client SDK](./getting-started-with-admin-api.md) — The ScalarDB Cluster .NET Client SDK supports the Administrative API of ScalarDB Cluster. By using this API, you can manage ScalarDB Cluster from .NET applications.

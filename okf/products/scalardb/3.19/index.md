@@ -1,7 +1,7 @@
 ---
 type: Product Version
 title: ScalarDB 3.19
-description: Documentation set for ScalarDB 3.19 (newest patch 3.19.0).
+description: Documentation set for ScalarDB 3.19 (newest patch 3.19.1).
 resource: https://scalardb.scalar-labs.com/docs/latest/
 tags:
 - scalardb
@@ -11,20 +11,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 url_path: latest
 maintenance: supported
 is_latest: true
-concept_count: 207
+concept_count: 203
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/c882c4103fe6e0aedff74e7afa67c2587a78ec9b
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB 3.19
@@ -35,10 +35,10 @@ Supported release.
 |---|---|
 | Product | ScalarDB |
 | Documentation version | 3.19 |
-| Newest patch release described | 3.19.0 |
+| Newest patch release described | 3.19.1 |
 | Docs site | https://scalardb.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `4fa644f40396` |
-| Concepts in this version | 207 |
+| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `c882c4103fe6` |
+| Concepts in this version | 203 |
 
 ## By lifecycle phase
 
@@ -58,7 +58,7 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB Analytics Design and Implementation](./scalardb-analytics/design.md)
 - [ScalarDB Cluster Compatibility Matrix](./scalardb-cluster/compatibility.md)
 
-### 実装 / Implement (90)
+### 実装 / Implement (91)
 
 - [Add ScalarDB to Your Build](./add-scalardb-to-your-build.md)
 - [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md)
@@ -93,6 +93,7 @@ Start here when you know which phase of the project you are in.
 - [Run Analytical Queries Through ScalarDB Analytics](./scalardb-analytics/run-analytical-queries.md)
 - [ScalarDB Analytics CLI Command Reference](./scalardb-analytics/reference-cli-command.md)
 - [ScalarDB Analytics Configurations](./scalardb-analytics/configurations.md)
+- [Set Up Usage Metering in ScalarDB Analytics](./scalardb-analytics/set-up-metering.md)
 - [Authenticate and Authorize Users](./scalardb-cluster/scalardb-auth-with-sql.md)
 - [Control User Access in a Fine-Grained Manner](./scalardb-cluster/authorize-with-abac.md)
 - [Control User Access via OIDC-Based JWT Access Tokens](./scalardb-cluster/control-access-via-oidc-based-jwt-tokens.md)
@@ -151,7 +152,7 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB SQL Grammar](./scalardb-sql/grammar.md)
 - [ScalarDB SQL Overview](./scalardb-sql/section-home.md)
 
-### 運用 / Operate (106)
+### 運用 / Operate (101)
 
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore.md)
 - [Deploy Overview](./deploy-overview.md)
@@ -169,13 +170,11 @@ Start here when you know which phase of the project you are in.
 - [Configure a custom values file for Scalar Admin for Kubernetes](./helm-charts/configure-custom-values-scalar-admin-for-kubernetes.md)
 - [Configure a custom values file for Scalar Envoy](./helm-charts/configure-custom-values-envoy.md)
 - [Configure a custom values file for Scalar Helm Charts](./helm-charts/configure-custom-values-file.md)
-- [Configure a Custom Values File for Scalar Manager](./helm-charts/configure-custom-values-scalar-manager.md)
 - [Configure a custom values file for ScalarDB Analytics server](./helm-charts/configure-custom-values-scalardb-analytics-server.md)
 - [Configure a custom values file for ScalarDB Cluster](./helm-charts/configure-custom-values-scalardb-cluster.md)
 - [Configure a custom values file for ScalarDL Auditor](./helm-charts/configure-custom-values-scalardl-auditor.md)
 - [Configure a custom values file for ScalarDL Ledger](./helm-charts/configure-custom-values-scalardl-ledger.md)
 - [Configure a custom values file for ScalarDL Schema Loader](./helm-charts/configure-custom-values-scalardl-schema-loader.md)
-- [Deploy Scalar Manager](./helm-charts/getting-started-scalar-manager.md)
 - [Deploy Scalar products using Scalar Helm Charts](./helm-charts/how-to-deploy-scalar-products.md)
 - [Getting Started with Helm Charts (Logging using Loki Stack)](./helm-charts/getting-started-logging.md)
 - [Getting Started with Helm Charts (Monitoring using Prometheus Operator)](./helm-charts/getting-started-monitoring.md)
@@ -241,9 +240,6 @@ Start here when you know which phase of the project you are in.
 - [How to Configure a Commercial License Key](./scalar-licensing/commercial.md)
 - [How to Configure a Trial License Key](./scalar-licensing/trial.md)
 - [License Key Configuration Overview](./scalar-licensing/section-home.md)
-- [How to Use Scalar Manager](./scalar-manager/how-to-use-scalar-manager.md)
-- [Scalar Manager Metrics Reference](./scalar-manager/metrics-reference.md)
-- [Scalar Manager Overview](./scalar-manager/overview.md)
 - [Deploy a ScalarDB Analytics server](./scalardb-analytics/deploy-scalardb-analytics-server.md)
 - [Deploy ScalarDB Analytics in Public Cloud Environments](./scalardb-analytics/deployment.md)
 - [Deploy ScalarDB Analytics Locally](./scalardb-analytics/deployment-local.md)
@@ -266,7 +262,6 @@ Start here when you know which phase of the project you are in.
 - [releases](./releases/index.md)
 - [scalar-kubernetes](./scalar-kubernetes/index.md)
 - [scalar-licensing](./scalar-licensing/index.md)
-- [scalar-manager](./scalar-manager/index.md)
 - [scalardb-analytics](./scalardb-analytics/index.md)
 - [scalardb-benchmarks](./scalardb-benchmarks/index.md)
 - [scalardb-cluster](./scalardb-cluster/index.md)
@@ -296,7 +291,7 @@ Start here when you know which phase of the project you are in.
 - [Manage Overview](./manage-overview.md) — In this category, you can follow guides to help you manage ScalarDB.
 - [Migrate Overview](./migrate-overview.md) — For details on importing your tables or migrating your applications and databases to a ScalarDB-based environment, see the following guides.
 - [Model Your Data](./data-modeling.md) — Data modeling (or in other words, designing your database schemas) is the process of conceptualizing and visualizing how data will be stored and used by identifying the patterns used to access data and the types of queries to be performed...
-- [Monitor Overview](./manage-monitor-overview.md) — Scalar Manager is a centralized management and monitoring solution for ScalarDB within Kubernetes cluster environments that allows you to:
+- [Monitor Overview](./manage-monitor-overview.md) — Monitoring is essential for maintaining the health and performance of your ScalarDB deployment. This section provides guidance on monitoring ScalarDB in Kubernetes cluster environments, including checking system availability, collecting...
 - [Multi-Storage Transactions](./multi-storage-transactions.md) — ScalarDB transactions can span multiple storages or databases while maintaining ACID compliance by using a feature called multi-storage transactions.
 - [Quickstart Overview](./quickstart-overview.md) — In this category, you can follow quickstart tutorials for how to get started with running transactions and queries through ScalarDB.
 - [Requirements](./requirements.md) — This page outlines the requirements for using each ScalarDB component, including the programming languages and their versions, supported databases and their versions, and the necessary configurations.
@@ -321,4 +316,4 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB Roadmap](./roadmap.md) — This roadmap provides a look into the proposed future of ScalarDB. The purpose of this roadmap is to provide visibility into what changes may be coming so that you can more closely follow progress, learn about key milestones, and give...
 - [ScalarDB Schema Loader](./schema-loader.md) — ScalarDB has its own data model and schema that maps to the implementation-specific data model and schema. In addition, ScalarDB stores internal metadata, such as transaction IDs, record versions, and transaction statuses, to manage...
 - [ScalarDB Schema Loader Error Codes](./scalardb-schema-loader-status-codes.md) — This page provides a list of error codes in ScalarDB Schema Loader.
-- [Transactions with a Two-Phase Commit Interface](./two-phase-commit-transactions.md) — ScalarDB supports executing transactions with a two-phase commit interface. With the two-phase commit interface, you can execute a transaction that spans multiple processes or applications, like in a microservice architecture.
+- [Transactions with a Two-Phase Commit Interface](./two-phase-commit-transactions.md) — The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.

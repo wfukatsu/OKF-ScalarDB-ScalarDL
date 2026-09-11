@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster/getting-started-with-scalardb-cluster-graphql
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/getting-started-with-scalardb-cluster-graphql.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/getting-started-with-scalardb-cluster-graphql.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Getting Started with ScalarDB Cluster GraphQL
@@ -212,7 +212,7 @@ You should get the following result in the right pane:
 
 ### Mappings between GraphQL API and ScalarDB Java API
 
-The automatically generated GraphQL schema defines queries, mutations, and object types for input/output to allow you to run CRUD operations for all the tables in the target namespaces. These operations are designed to match the ScalarDB APIs defined in the [`DistributedTransaction`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/DistributedTransaction.html) interface.
+The automatically generated GraphQL schema defines queries, mutations, and object types for input/output to allow you to run CRUD operations for all the tables in the target namespaces. These operations are designed to match the ScalarDB APIs defined in the [`DistributedTransaction`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/DistributedTransaction.html) interface.
 
 Assuming you have an `account` table in a namespace, the following queries and mutations will be generated:
 

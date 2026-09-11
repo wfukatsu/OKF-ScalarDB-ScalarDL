@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-graphql/index
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-graphql/index.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-graphql/index.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB GraphQL Overview
@@ -41,6 +41,12 @@ ScalarDB GraphQL is designed to be intuitive and user-friendly, enabling develop
 For details on how to set up ScalarDB Cluster with GraphQL support, see [Getting Started with ScalarDB Cluster GraphQL](../scalardb-cluster/getting-started-with-scalardb-cluster-graphql.md).
 
 ## Transactions with a two-phase commit
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 ScalarDB GraphQL supports executing transactions with a two-phase commit interface. By using the two-phase commit interface, you can execute a transaction that spans multiple processes/applications (for example, microservices applications).
 

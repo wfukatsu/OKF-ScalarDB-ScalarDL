@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: getting-started-with-benchmarking-scalardb
 lifecycle_phase: implement
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/getting-started-with-benchmarking-scalardb.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/getting-started-with-benchmarking-scalardb.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Getting Started with Benchmarking ScalarDB
@@ -143,6 +143,12 @@ For instructions on setting up ScalarDB benchmarks, including cloning the reposi
 Before running benchmarks, configure ScalarDB with the performance parameters that match your benchmarking objectives. The connection mode subsection below is specific to ScalarDB Cluster. The performance-related properties apply to both ScalarDB Core and ScalarDB Cluster, but the configuration location differs (see [Tune performance-related properties](#tune-performance-related-properties)).
 
 ### Choose a deployment pattern
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 Choose a deployment pattern based on how your application uses ScalarDB. ScalarDB supports the following deployment patterns:
 

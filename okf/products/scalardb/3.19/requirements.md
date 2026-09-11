@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: requirements
 lifecycle_phase: design
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/requirements.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/requirements.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Requirements
@@ -197,13 +197,13 @@ ScalarDB works only for [Spanner database with the PostgreSQL dialect](https://d
 
 **YugabyteDB**
 
-|      Version      | YugabyteDB 2 |
-| :---------------- | :----------- |
-| **ScalarDB 3.19** | ✅            |
-| **ScalarDB 3.18** | ✅            |
-| **ScalarDB 3.17** | ✅            |
-| **ScalarDB 3.16** | ✅            |
-| **ScalarDB 3.15** | ✅            |
+|      Version      | YugabyteDB 2025.2 |
+| :---------------- | :---------------- |
+| **ScalarDB 3.19** | ✅                 |
+| **ScalarDB 3.18** | ✅                 |
+| **ScalarDB 3.17** | ✅                 |
+| **ScalarDB 3.16** | ✅                 |
+| **ScalarDB 3.15** | ✅                 |
 
 #### NoSQL databases
 
@@ -671,7 +671,11 @@ Since ScalarDB Cluster uses Core to interact with databases, the requirements fo
 
 ### Required ports
 
-ScalarDB Cluster requires the following ports to be accessible. These default port numbers can be configured via the corresponding properties as needed:
+The following ports need to be accessible. These default port numbers can be configured via the corresponding properties as needed.
+
+#### ScalarDB Cluster nodes
+
+ScalarDB Cluster requires the following ports to be accessible:
 
 - 60053 (Administrative API / Transaction API / SQL API / administrator service; configurable via `scalar.db.cluster.node.port`)
 - 60054 (internal gRPC communication between cluster nodes; configurable via `scalar.db.cluster.internal.node.port`. This port only needs to be reachable between cluster nodes and should typically be restricted from client and public networks.)
@@ -681,6 +685,20 @@ ScalarDB Cluster requires the following ports to be accessible. These default po
 :::note
 
 If you configure `scalar.db.cluster.node.admin.port` to run the administrator service (`pause`, `unpause`, and `checkPaused`) on a dedicated port, that dedicated port will also need to be accessible. In this case, only the administrator service runs on that port instead of the port specified by `scalar.db.cluster.node.port`; the port specified by `scalar.db.cluster.node.port` must still remain accessible for the other gRPC APIs, including the Administrative API, Transaction API, and SQL API.
+
+:::
+
+#### Transaction Coordinator
+
+If you deploy the [Transaction Coordinator](./scalardb-cluster/scalardb-cluster-configurations.md#transaction-coordinator-configurations), it requires the following ports to be accessible:
+
+- 60055 (Transaction API; configurable via `scalar.db.cluster.transaction_coordinator.port`)
+- 9080 (metrics; configurable via `scalar.db.cluster.transaction_coordinator.prometheus_exporter_port`)
+
+:::note
+
+- The Transaction Coordinator nodes communicate with each other by using the port specified by `scalar.db.cluster.transaction_coordinator.port`. Unlike ScalarDB Cluster, the Transaction Coordinator does not have a separate port dedicated to internal communication, so this port cannot be restricted to communication between the Transaction Coordinator nodes.
+- If you configure `scalar.db.cluster.transaction_coordinator.admin.port` to run the administrator service (`pause`, `unpause`, and `checkPaused`) on a dedicated port, that dedicated port will also need to be accessible. In this case, only the administrator service runs on that port instead of the port specified by `scalar.db.cluster.transaction_coordinator.port`; the port specified by `scalar.db.cluster.transaction_coordinator.port` must still remain accessible for the Transaction API.
 
 :::
 
