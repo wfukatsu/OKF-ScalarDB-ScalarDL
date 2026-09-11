@@ -22,13 +22,13 @@ feature_status:
 - Private Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47/docs/scalardb-cluster/scalardb-abac-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/scalardb-abac-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # Attribute-Based Access Control Error Codes
@@ -421,6 +421,54 @@ The user does not exist. Username: %s
 
 ```markdown
 The table already exists. Table: %s
+```
+
+### `DB-ABAC-10047`
+
+**Message**
+
+```markdown
+The dynamic ABAC tag restriction is not allowed. The user has no tag for the policy. Policy: %s
+```
+
+### `DB-ABAC-10048`
+
+**Message**
+
+```markdown
+The dynamic ABAC tag level is not allowed. The requested level exceeds the user's level. Policy: %s; Field: %s; Requested level: %s; User level: %s
+```
+
+### `DB-ABAC-10049`
+
+**Message**
+
+```markdown
+The dynamic ABAC tag compartment is not allowed. The requested compartments are not a subset of the user's compartments. Policy: %s; Field: %s; Requested: %s; Allowed: %s
+```
+
+### `DB-ABAC-10050`
+
+**Message**
+
+```markdown
+The dynamic ABAC tag group is not allowed. The requested group is not accessible from the user's groups. Policy: %s; Field: %s; Group: %s
+```
+
+### `DB-ABAC-10051`
+
+**Message**
+
+```markdown
+The dynamic ABAC tag level is invalid. The requested level exceeds the max level in the claim. Policy: %s; Field: %s; Level: %s; Max level: %s
+```
+
+### `DB-ABAC-10052`
+
+**Message**
+
+```markdown
+The dynamic ABAC tag is invalid. '%s' %s is not a subset of '%s' %s. Policy: %s; Category: %s
 ```
 
 ## `DB-ABAC-2xxxx` status codes

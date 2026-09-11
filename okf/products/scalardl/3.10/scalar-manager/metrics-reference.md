@@ -7,7 +7,6 @@ tags:
 - scalardl
 - v3.10
 - phase:operate
-- section:manage
 - edition:enterprise-option
 - unmaintained
 status: deprecated
@@ -17,20 +16,17 @@ version: '3.10'
 patch_version: 3.10.5
 doc_id: scalar-manager/metrics-reference
 lifecycle_phase: operate
-breadcrumb:
-- Manage
-- Monitor
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:51:03Z'
+  at: '2026-08-24T00:15:46Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62/versioned_docs/version-3.10/scalar-manager/metrics-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.10/scalar-manager/metrics-reference.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-20T15:35:18Z'
 ---
 
 # Scalar Manager Metrics Reference

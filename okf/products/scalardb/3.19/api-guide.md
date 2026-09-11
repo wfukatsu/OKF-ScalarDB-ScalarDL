@@ -1,7 +1,7 @@
 ---
 type: Reference
 title: ScalarDB Java API Guide
-description: The ScalarDB Java API is mainly composed of the Administrative API and Transactional API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
+description: The ScalarDB Java API is mainly composed of the Administrative API and Transaction API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
 resource: https://scalardb.scalar-labs.com/docs/latest/api-guide/
 tags:
 - scalardb
@@ -23,18 +23,18 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47/docs/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Java API Guide
 
-The ScalarDB Java API is mainly composed of the Administrative API and Transactional API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
+The ScalarDB Java API is mainly composed of the Administrative API and Transaction API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
 
 ## Administrative API
 
@@ -474,7 +474,7 @@ When using Consensus Commit, after upgrading to ScalarDB 3.16.5, 3.17.3, or 3.18
 
 ### Specify operations for the Coordinator table
 
-The Coordinator table is used by the [Transactional API](#transactional-api) to track the statuses of transactions.
+The Coordinator table is used by the [Transaction API](#transaction-api) to track the statuses of transactions.
 
 When using a transaction manager, you must create the Coordinator table to execute transactions. In addition to creating the table, you can truncate and drop the Coordinator table.
 
@@ -535,9 +535,9 @@ You can also enable *transaction metadata decoupling* by specifying the `transac
 
 :::
 
-## Transactional API
+## Transaction API
 
-This section explains how to execute transactional operations by using the Transactional API in ScalarDB.
+This section explains how to execute transactional operations by using the Transaction API in ScalarDB.
 
 ### Get a `DistributedTransactionManager` instance
 
@@ -2125,71 +2125,3 @@ In the sample code, for `UnknownTransactionStatusException`, the transaction is 
 In the sample code, the transaction is retried three times maximum and sleeps for 100 milliseconds before it is retried. But you can choose a retry policy, such as exponential backoff, according to your application requirements.
 
 :::
-
-## Group commit for the Coordinator table
-
-The Coordinator table that is used for Consensus Commit transactions is a vital data store, and using robust storage for it is recommended. However, utilizing more robust storage options, such as internally leveraging multi-AZ or multi-region replication, may lead to increased latency when writing records to the storage, resulting in poor throughput performance.
-
-ScalarDB provides a group commit feature for the Coordinator table that groups multiple record writes into a single write operation, improving write throughput. In this case, latency may increase or decrease, depending on the underlying database and the workload.
-
-To enable the group commit feature, add the following configuration:
-
-```properties
-# By default, this configuration is set to `false`.
-scalar.db.consensus_commit.coordinator.group_commit.enabled=true
-
-# These properties are for tuning the performance of the group commit feature.
-# scalar.db.consensus_commit.coordinator.group_commit.group_size_fix_timeout_millis=40
-# scalar.db.consensus_commit.coordinator.group_commit.delayed_slot_move_timeout_millis=800
-# scalar.db.consensus_commit.coordinator.group_commit.old_group_abort_timeout_millis=30000
-# scalar.db.consensus_commit.coordinator.group_commit.timeout_check_interval_millis=10
-# scalar.db.consensus_commit.coordinator.group_commit.metrics_monitor_log_enabled=true
-```
-
-### Limitations
-
-This section describes the limitations of the group commit feature.
-
-#### Custom transaction ID passed by users
-
-The group commit feature implicitly generates an internal value and uses it as a part of transaction ID. Therefore, a custom transaction ID manually passed by users via `com.scalar.db.transaction.consensuscommit.ConsensusCommitManager.begin(String txId)` or `com.scalar.db.transaction.consensuscommit.TwoPhaseConsensusCommitManager.begin(String txId)` can't be used as is for later API calls. You need to use a transaction ID returned from`com.scalar.db.transaction.consensuscommit.ConsensusCommit.getId()` or `com.scalar.db.transaction.consensuscommit.TwoPhaseConsensusCommit.getId()` instead.
-
-```java
-   // This custom transaction ID needs to be used for ScalarDB transactions.
-   String myTxId = UUID.randomUUID().toString();
-
-   ...
-
-   DistributedTransaction transaction = manager.begin(myTxId);
-
-   ...
-
-   // When the group commit feature is enabled, a custom transaction ID passed by users can't be used as is.
-   // logger.info("The transaction state: {}", manager.getState(myTxId));
-   logger.info("The transaction state: {}", manager.getState(transaction.getId()));
-```
-
-#### Prohibition of use with a two-phase commit interface
-
-The group commit feature manages all ongoing transactions in memory. If this feature is enabled with a two-phase commit interface, the information must be solely maintained by the coordinator service to prevent conflicts caused by participant services' inconsistent writes to the Coordinator table, which may contain different transaction distributions over groups.
-
-This limitation introduces some complexities and inflexibilities related to application development. Therefore, combining the use of the group commit feature with a two-phase commit interface is currently prohibited.
-
-##### Enabling the feature on existing applications is not supported
-
-The group commit feature uses a new column in the Coordinator table. The current [Schema Loader](./schema-loader.md), as of ScalarDB 3, doesn't support table schema migration for the Coordinator table.
-
-Therefore, enabling the group commit feature on existing applications where any transactions have been executed is not supported. To use this feature, you'll need to start your application in a clean state.
-
-Coordinator table schema migration in [Schema Loader](./schema-loader.md) is expected to be supported in ScalarDB 4.0.
-
-## Investigating Consensus Commit transaction manager errors
-
-To investigate errors when using the Consensus Commit transaction manager, you can enable a configuration that will return table metadata augmented with transaction metadata columns, which can be helpful when investigating transaction-related issues. This configuration, which is only available when troubleshooting the Consensus Commit transaction manager, enables you to see transaction metadata column details for a given table by using the `DistributedTransactionAdmin.getTableMetadata()` method.
-
-By adding the following configuration, `Get` and `Scan` operations results will contain [transaction metadata](./schema-loader.md#internal-metadata-for-consensus-commit):
-
-```properties
-# By default, this configuration is set to `false`.
-scalar.db.consensus_commit.include_metadata.enabled=true
-```

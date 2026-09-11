@@ -18,13 +18,13 @@ is_latest: false
 concept_count: 132
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:51:02Z'
+  at: '2026-08-24T00:15:45Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/c1dbc91f4c36ec4ce63e7181302c89b7b6669e62
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/db1535c35d0f746c5b5d8d9772f54afa0c709a34
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-04T15:05:14Z'
+  last_modified: '2026-08-20T15:35:18Z'
 ---
 
 # ScalarDL 3.11
@@ -37,7 +37,7 @@ Supported release.
 | Documentation version | 3.11 |
 | Newest patch release described | 3.11.3 |
 | Docs site | https://scalardl.scalar-labs.com/docs/3.11/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `c1dbc91f4c36` |
+| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `db1535c35d0f` |
 | Concepts in this version | 132 |
 
 ## By lifecycle phase

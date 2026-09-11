@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Cluster Configurations
@@ -1680,13 +1680,19 @@ The following are additional configurations available for ScalarDB Cluster.
 #### `active_transaction_management.expiration_time_millis`
 
 - **Field:** `scalar.db.active_transaction_management.expiration_time_millis`
-- **Description:** ScalarDB maintains in-progress transactions, which can be resumed by using a transaction ID. This process expires transactions that have been idle for an extended period to prevent resource leaks. This setting specifies the expiration time of this transaction management feature in milliseconds.
+- **Description:** ScalarDB maintains in-progress transactions, which can be resumed by using a transaction ID. This process expires transactions that have been idle for an extended period to prevent resource leaks. This setting specifies the expiration time of this transaction management feature in milliseconds. The idle time of a transaction is reset each time an operation is performed on the transaction, so a transaction that keeps making progress does not expire. When a transaction expires, ScalarDB rolls back the transaction, and resuming the transaction by using the `resume()` method throws `TransactionNotFoundException`.
 - **Default value:** `60000` (60 seconds)
+
+#### `active_transaction_management.max_active_transactions`
+
+- **Field:** `scalar.db.active_transaction_management.max_active_transactions`
+- **Description:** Specifies the maximum number of in-progress transactions that ScalarDB maintains for resumption. When the number of in-progress transactions exceeds this value, ScalarDB reclaims one of the transactions that it maintains, giving preference to transactions that are idle or that are used the least. ScalarDB rolls back a reclaimed transaction in the same way as an expired transaction. This limit applies regardless of the `scalar.db.active_transaction_management.expiration_time_millis` setting, including when expiration is disabled. To disable this limit, specify `0` or a negative value.
+- **Default value:** `10000`
 
 #### `consensus_commit.include_metadata.enabled`
 
 - **Field:** `scalar.db.consensus_commit.include_metadata.enabled`
-- **Description:** When using Consensus Commit, if this is set to `true`, `Get` and `Scan` operations results will contain transaction metadata. To see the transaction metadata columns details for a given table, you can use the `DistributedTransactionAdmin.getTableMetadata()` method, which will return the table metadata augmented with the transaction metadata columns. Using this configuration can be useful to investigate transaction-related issues.
+- **Description:** When using Consensus Commit, if this is set to `true`, `Get` and `Scan` operations results will contain [transaction metadata](../schema-loader.md#internal-transaction-metadata-for-consensus-commit). To see the transaction metadata columns details for a given table, you can use the `DistributedTransactionAdmin.getTableMetadata()` method, which will return the table metadata augmented with the transaction metadata columns. Using this configuration can be useful to investigate transaction-related issues.
 - **Default value:** `false`
 
 #### `consensus_commit.index.eventually_consistent_read.enabled`
@@ -1832,11 +1838,23 @@ When you run applications or tools that use the Java Client SDK and the primitiv
 - **Description:** The authentication type. `userpass` uses username and password authentication. `oidc_jwt` uses OIDC JWT-based access control. For details about `oidc_jwt`, see [Control User Access via OIDC-Based JWT Access Tokens](./control-access-via-oidc-based-jwt-tokens.md).
 - **Default value:** empty (treated as `userpass`)
 
-#### `auth.oidc_jwt.access_token`
+##### `auth.oidc_jwt.access_token`
 
 - **Field:** `scalar.db.cluster.client.auth.oidc_jwt.access_token`
 - **Description:** The JWT access token for OIDC access control. Since the token is set at initialization time, it cannot be refreshed and is only valid for the duration of the JWT access token's expiration.
 - **Default value:** empty
+
+##### `cluster.client.auth.userpass_cache.size`
+
+- **Field:** `scalar.db.cluster.client.auth.userpass_cache.size`
+- **Description:** The maximum number of authentication tokens that the client caches. The client caches a token for each username and password pair so that it does not need to authenticate on every request. This configuration applies only when the authentication type is `userpass`.
+- **Default value:** `10000`
+
+##### `cluster.client.auth.userpass_cache.expiration_margin_millis`
+
+- **Field:** `scalar.db.cluster.client.auth.userpass_cache.expiration_margin_millis`
+- **Description:** How long before a cached authentication token actually expires that the client evicts it from the cache, in milliseconds. Because the client re-authenticates ahead of the actual expiration, a token that the client reads from the cache is less likely to expire while a request is in flight. The margin is capped at half of the remaining lifetime of each token. To disable the margin, set this configuration to `0`. This configuration applies only when the authentication type is `userpass`.
+- **Default value:** `60000` (1 minute)
 
 ### Configurations for wire encryption
 
@@ -1994,6 +2012,18 @@ The following shows the authentication and authorization configurations for the 
 - **Field:** `scalar.db.sql.cluster_mode.auth.oidc_jwt.access_token`
 - **Description:** The JWT access token for OIDC access control. Since the token is set at initialization time, it cannot be refreshed and is only valid for the duration of the JWT access token's expiration.
 - **Default value:** empty
+
+#### `auth.userpass_cache.size`
+
+- **Field:** `scalar.db.sql.cluster_mode.auth.userpass_cache.size`
+- **Description:** The maximum number of authentication tokens that the client caches. The client caches a token for each username and password pair so that it does not need to authenticate on every request. This configuration applies only when the authentication type is `userpass`.
+- **Default value:** `10000`
+
+#### `auth.userpass_cache.expiration_margin_millis`
+
+- **Field:** `scalar.db.sql.cluster_mode.auth.userpass_cache.expiration_margin_millis`
+- **Description:** How long before a cached authentication token actually expires that the client evicts it from the cache, in milliseconds. Because the client re-authenticates ahead of the actual expiration, a token that the client reads from the cache is less likely to expire while a request is in flight. The margin is capped at half of the remaining lifetime of each token. To disable the margin, set this configuration to `0`. This configuration applies only when the authentication type is `userpass`.
+- **Default value:** `60000` (1 minute)
 
 ### Configurations for embedding
 

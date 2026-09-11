@@ -25,13 +25,13 @@ editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:51Z'
+  at: '2026-08-24T00:15:36Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.17/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # Run Non-Transactional Storage Operations Through the Primitive CRUD Interface
@@ -40,16 +40,16 @@ This page explains how to run non-transactional storage operations through the p
 
 One of the keys to achieving storage-agnostic or database-agnostic ACID transactions on top of existing storage and database systems is the storage abstraction capabilities that ScalarDB provides. Storage abstraction defines a [data model](./design.md#data-model) and the APIs (Storage API) that issue operations on the basis of the data model.
 
-Although you will likely use the [Transactional API](./api-guide.md#transactional-api) in most cases, another option is to use the Storage API.
+Although you will likely use the [Transaction API](./api-guide.md#transaction-api) in most cases, another option is to use the Storage API.
 
 The benefits of using the Storage API include the following:
 
-- As with the Transactional API, you can write your application code without worrying too much about the underlying storage implementation.
+- As with the Transaction API, you can write your application code without worrying too much about the underlying storage implementation.
 - If you don't need transactions for some of the data in your application, you can use the Storage API to partially avoid transactions, which results in faster execution.
 
 :::warning
 
-Directly using the Storage API or mixing the Transactional API and the Storage API could cause unexpected behavior. For example, since the Storage API cannot provide transaction capability, the API could cause anomalies or data inconsistency if failures occur when executing operations.
+Directly using the Storage API or mixing the Transaction API and the Storage API could cause unexpected behavior. For example, since the Storage API cannot provide transaction capability, the API could cause anomalies or data inconsistency if failures occur when executing operations.
 
 Therefore, you should be *very* careful about using the Storage API and use it only if you know exactly what you are doing.
 

@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47/docs/scalardb-cluster/deployment-patterns-for-microservices.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/deployment-patterns-for-microservices.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Cluster Deployment Patterns for Microservices
@@ -55,7 +55,7 @@ You also need to manage the Coordinator table in either pattern in addition to t
 
 One obvious difference is the amount of resources for ScalarDB Cluster instances. With the separated-cluster pattern, you need more resources to manage your applications. This also incurs more maintenance burden and costs.
 
-In addition, the ScalarDB Cluster APIs that you would need to use are different. Specifically, for the shared-cluster pattern, you need to use the [one-phase commit interface](../api-guide.md#transactional-api), where only one microservice needs to call `commit` to commit a transaction after microservices read and write records. For the separated-cluster pattern, you need to use the [two-phase commit interface](../two-phase-commit-transactions.md), where all the microservices first need to call `prepare` and then call `commit` if all the prepare calls are successful. Therefore, microservices with the separated-cluster pattern will likely be more complex than microservices with the shared-cluster pattern because they need to handle transactions and their errors in a more fine-grained manner.
+In addition, the ScalarDB Cluster APIs that you would need to use are different. Specifically, for the shared-cluster pattern, you need to use the [one-phase commit interface](../api-guide.md#transaction-api), where only one microservice needs to call `commit` to commit a transaction after microservices read and write records. For the separated-cluster pattern, you need to use the [two-phase commit interface](../two-phase-commit-transactions.md), where all the microservices first need to call `prepare` and then call `commit` if all the prepare calls are successful. Therefore, microservices with the separated-cluster pattern will likely be more complex than microservices with the shared-cluster pattern because they need to handle transactions and their errors in a more fine-grained manner.
 
 Moreover, the level of resource isolation is different. Microservices should be well-isolated for better maintainability and development efficiency, but the shared-cluster pattern brings weaker resource isolation. Weak resource isolation might also bring weak security. However, security risks can be mitigated by using the security features of ScalarDB Cluster, like authentication and authorization.
 

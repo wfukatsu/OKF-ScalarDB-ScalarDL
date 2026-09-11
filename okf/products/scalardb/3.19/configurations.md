@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47/docs/configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Core Configurations
@@ -749,13 +749,19 @@ The following are additional configurations available for ScalarDB.
 ### `active_transaction_management.expiration_time_millis`
 
 - **Field:** `scalar.db.active_transaction_management.expiration_time_millis`
-- **Description:** ScalarDB maintains in-progress transactions, which can be resumed by using a transaction ID. This process expires transactions that have been idle for an extended period to prevent resource leaks. This setting specifies the expiration time of this transaction management feature in milliseconds.
+- **Description:** ScalarDB maintains in-progress transactions, which can be resumed by using a transaction ID. This process expires transactions that have been idle for an extended period to prevent resource leaks. This setting specifies the expiration time of this transaction management feature in milliseconds. The idle time of a transaction is reset each time an operation is performed on the transaction, so a transaction that keeps making progress does not expire. When a transaction expires, ScalarDB rolls back the transaction, and resuming the transaction by using the `resume()` method throws `TransactionNotFoundException`.
 - **Default value:** `-1` (no expiration)
+
+### `active_transaction_management.max_active_transactions`
+
+- **Field:** `scalar.db.active_transaction_management.max_active_transactions`
+- **Description:** Specifies the maximum number of in-progress transactions that ScalarDB maintains for resumption. When the number of in-progress transactions exceeds this value, ScalarDB reclaims one of the transactions that it maintains, giving preference to transactions that are idle or that are used the least. ScalarDB rolls back a reclaimed transaction in the same way as an expired transaction. This limit applies regardless of the `scalar.db.active_transaction_management.expiration_time_millis` setting, including when expiration is disabled. To disable this limit, specify `0` or a negative value.
+- **Default value:** `10000`
 
 ### `consensus_commit.include_metadata.enabled`
 
 - **Field:** `scalar.db.consensus_commit.include_metadata.enabled`
-- **Description:** When using Consensus Commit, if this is set to `true`, `Get` and `Scan` operations results will contain transaction metadata. To see the transaction metadata columns details for a given table, you can use the `DistributedTransactionAdmin.getTableMetadata()` method, which will return the table metadata augmented with the transaction metadata columns. Using this configuration can be useful to investigate transaction-related issues.
+- **Description:** When using Consensus Commit, if this is set to `true`, `Get` and `Scan` operations results will contain [transaction metadata](./schema-loader.md#internal-transaction-metadata-for-consensus-commit). To see the transaction metadata columns details for a given table, you can use the `DistributedTransactionAdmin.getTableMetadata()` method, which will return the table metadata augmented with the transaction metadata columns. Using this configuration can be useful to investigate transaction-related issues.
 - **Default value:** `false`
 
 ### `consensus_commit.index.eventually_consistent_read.enabled`

@@ -12,7 +12,7 @@ product: scalardb
 version: '3.18'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:49Z'
+  at: '2026-08-24T00:15:34Z'
 ---
 
 # Scalardb Sql

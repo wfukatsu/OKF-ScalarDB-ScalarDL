@@ -25,13 +25,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:49Z'
+  at: '2026-08-24T00:15:33Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-cluster/scalardb-cluster-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.18/scalardb-cluster/scalardb-cluster-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Cluster Error Codes
@@ -424,6 +424,46 @@ Resuming a transaction is not allowed when write-buffering is enabled
 
 ```markdown
 The transaction has not begun yet. This situation may occur when piggyback-begin is enabled
+```
+
+### `DB-CLUSTER-10062`
+
+**Message**
+
+```markdown
+The transaction already exists. Transaction ID: %s
+```
+
+### `DB-CLUSTER-10063`
+
+**Message**
+
+```markdown
+The authentication method is unspecified
+```
+
+### `DB-CLUSTER-10064`
+
+**Message**
+
+```markdown
+The authentication method is unrecognized
+```
+
+### `DB-CLUSTER-10065`
+
+**Message**
+
+```markdown
+Nested holder calls are not supported
+```
+
+### `DB-CLUSTER-10066`
+
+**Message**
+
+```markdown
+No value set in the thread-local holder. Use the holder's execute method to set it.
 ```
 
 ## `DB-CLUSTER-2xxxx` status codes

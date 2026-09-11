@@ -24,13 +24,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:56Z'
+  at: '2026-08-24T00:15:40Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.15/scalardb-cluster/scalardb-encryption-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.15/scalardb-cluster/scalardb-encryption-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # Encryption Error Codes
@@ -289,7 +289,7 @@ Getting the Kubernetes API client failed
 **Message**
 
 ```markdown
-Registering a data encryption key to the Kubernetes secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
+Registering a data encryption key to the Kubernetes Secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
 ```
 
 ### `DB-ENCRYPTION-30016`
@@ -297,7 +297,7 @@ Registering a data encryption key to the Kubernetes secret failed. Namespace: %s
 **Message**
 
 ```markdown
-Checking the existence of a data encryption key in the Kubernetes secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
+Checking the existence of a data encryption key in the Kubernetes Secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
 ```
 
 ### `DB-ENCRYPTION-30017`
@@ -305,7 +305,7 @@ Checking the existence of a data encryption key in the Kubernetes secret failed.
 **Message**
 
 ```markdown
-Deleting a data encryption key in the Kubernetes secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
+Deleting a data encryption key in the Kubernetes Secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
 ```
 
 ### `DB-ENCRYPTION-30018`
@@ -321,5 +321,5 @@ Parsing a data encryption key failed. Details: %s
 **Message**
 
 ```markdown
-Reading a data encryption key in the Kubernetes secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
+Reading a data encryption key in the Kubernetes Secret failed. Namespace: %s; Name: %s; Code: %d; Response Headers: %s; Response Body: %s
 ```

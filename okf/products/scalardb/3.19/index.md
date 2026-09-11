@@ -15,16 +15,16 @@ patch_version: 3.19.0
 url_path: latest
 maintenance: supported
 is_latest: true
-concept_count: 206
+concept_count: 207
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB 3.19
@@ -37,8 +37,8 @@ Supported release.
 | Documentation version | 3.19 |
 | Newest patch release described | 3.19.0 |
 | Docs site | https://scalardb.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `8bb9295f8fbd` |
-| Concepts in this version | 206 |
+| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `4fa644f40396` |
+| Concepts in this version | 207 |
 
 ## By lifecycle phase
 
@@ -151,7 +151,7 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB SQL Grammar](./scalardb-sql/grammar.md)
 - [ScalarDB SQL Overview](./scalardb-sql/section-home.md)
 
-### 運用 / Operate (105)
+### 運用 / Operate (106)
 
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore.md)
 - [Deploy Overview](./deploy-overview.md)
@@ -247,6 +247,7 @@ Start here when you know which phase of the project you are in.
 - [Deploy a ScalarDB Analytics server](./scalardb-analytics/deploy-scalardb-analytics-server.md)
 - [Deploy ScalarDB Analytics in Public Cloud Environments](./scalardb-analytics/deployment.md)
 - [Deploy ScalarDB Analytics Locally](./scalardb-analytics/deployment-local.md)
+- [ScalarDB Analytics Error Codes](./scalardb-analytics/scalardb-analytics-status-codes.md)
 - [ScalarDB Benchmarking Tools](./scalardb-benchmarks/README.md)
 - [Attribute-Based Access Control Error Codes](./scalardb-cluster/scalardb-abac-status-codes.md)
 - [Authentication and Authorization Error Codes](./scalardb-cluster/scalardb-auth-status-codes.md)
@@ -314,7 +315,7 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB Data Loader Error Codes](./scalardb-data-loader-status-codes.md) — This page provides a list of error codes in ScalarDB Data Loader.
 - [ScalarDB Design](./design.md) — This document briefly explains the design and implementation of ScalarDB. For what ScalarDB is and its use cases, see ScalarDB Overview.
 - [ScalarDB Features](./features.md) — This document briefly explains which features are available in which editions of ScalarDB.
-- [ScalarDB Java API Guide](./api-guide.md) — The ScalarDB Java API is mainly composed of the Administrative API and Transactional API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
+- [ScalarDB Java API Guide](./api-guide.md) — The ScalarDB Java API is mainly composed of the Administrative API and Transaction API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
 - [ScalarDB Learning Paths](./learning-paths.md) — This guide provides learning paths for different roles. Depending on your role, follow the appropriate sequence of documents to gain a comprehensive understanding of ScalarDB.
 - [ScalarDB Overview](./overview.md) — This page describes what ScalarDB is and its primary use cases.
 - [ScalarDB Roadmap](./roadmap.md) — This roadmap provides a look into the proposed future of ScalarDB. The purpose of this roadmap is to provide visibility into what changes may be coming so that you can more closely follow progress, learn about key milestones, and give...

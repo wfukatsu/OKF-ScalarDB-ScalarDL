@@ -26,13 +26,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:51Z'
+  at: '2026-08-24T00:15:36Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.17/consensus-commit.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.17/consensus-commit.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # Consensus Commit Protocol
@@ -258,7 +258,7 @@ You can enable one-phase commit optimization by using the following parameter:
 
 ### Group commit
 
-Consensus Commit provides a group-commit feature to execute the commit-state phase of multiple transactions in a batch, reducing the number of writes for the commit-state phase. It is especially useful when writing to a Coordinator table is slow, for example, when the Coordinator table is deployed in a multi-region environment for high availability.
+Consensus Commit provides a group-commit feature to execute the commit-state phase of multiple transactions in a batch, reducing the number of writes for the commit-state phase. It is especially useful when writing to a Coordinator table is slow, for example, when the Coordinator table is deployed in a multi-region environment for high availability. Enabling group commit may increase or decrease latency, depending on the underlying database and the workload.
 
 You can enable group commit by using the following parameter:
 
@@ -266,9 +266,11 @@ You can enable group commit by using the following parameter:
 
 Group commit has several other parameters. For more details, refer to [Performance-related configurations](./configurations.md#performance-related-configurations).
 
+The group commit feature also has some limitations. For details, see [Limitations](#limitations).
+
 ## Limitations
 
-ScalarDB has several limitations in achieving database-agnostic transactions.
+ScalarDB has several limitations in achieving database-agnostic transactions, and some of its features have limitations of their own.
 
 ### Applications must access ScalarDB to access the underlying databases
 
@@ -288,6 +290,31 @@ In the current implementation, ScalarDB throws an exception in the following cas
 
 * Executing scan operations after write (Put, Insert, Update, Upsert, Delete) operations for the same record in a transaction.
 * Executing write (Put, Insert, Update, and Upsert) operations after Delete operations for the same record in a transaction.
+
+### Custom transaction IDs can't be used as is when group commit is enabled
+
+The group commit feature implicitly generates an internal value and uses it as a part of transaction ID. Therefore, a custom transaction ID manually passed by users via `com.scalar.db.transaction.consensuscommit.ConsensusCommitManager.begin(String txId)` or `com.scalar.db.transaction.consensuscommit.TwoPhaseConsensusCommitManager.begin(String txId)` can't be used as is for later API calls. You need to use a transaction ID returned from `com.scalar.db.transaction.consensuscommit.ConsensusCommit.getId()` or `com.scalar.db.transaction.consensuscommit.TwoPhaseConsensusCommit.getId()` instead.
+
+```java
+// This custom transaction ID needs to be used for ScalarDB transactions.
+String myTxId = UUID.randomUUID().toString();
+
+...
+
+DistributedTransaction transaction = manager.begin(myTxId);
+
+...
+
+// When the group commit feature is enabled, a custom transaction ID passed by users can't be used as is.
+// logger.info("The transaction state: {}", manager.getState(myTxId));
+logger.info("The transaction state: {}", manager.getState(transaction.getId()));
+```
+
+### Using group commit with a two-phase commit interface is prohibited
+
+The group commit feature manages all ongoing transactions in memory. If this feature is enabled with a two-phase commit interface, the information must be solely maintained by the coordinator service to prevent conflicts caused by participant services' inconsistent writes to the Coordinator table, which may contain different transaction distributions over groups.
+
+This limitation introduces some complexities and inflexibilities related to application development. Therefore, combining the use of the group commit feature with a two-phase commit interface is currently prohibited.
 
 ## See also
 

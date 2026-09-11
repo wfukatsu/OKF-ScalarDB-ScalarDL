@@ -27,13 +27,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:54Z'
+  at: '2026-08-24T00:15:38Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.16/scalardb-cluster-dotnet-client-sdk/common-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.16/scalardb-cluster-dotnet-client-sdk/common-reference.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB Cluster .NET Client SDK Reference
@@ -179,7 +179,7 @@ The following options are available:
 
 ## How ScalarDB column types are converted to and from .NET types
 
-When using [LINQ](./getting-started-with-linq.md#set-up-classes) or extension methods for the [Transactional API](./getting-started-with-scalardb-tables-as-csharp-classes.md#create-classes-for-all-scalardb-tables), [SQL API](./getting-started-with-distributed-sql-transactions.md#execute-sql-queries), or [Administrative API](./getting-started-with-scalardb-tables-as-csharp-classes.md#use-the-administrative-api), a column's value received from the cluster is automatically converted to a corresponding .NET type. Likewise, a value of a .NET property is automatically converted to a corresponding cluster's type when an object is being saved to the cluster.
+When using [LINQ](./getting-started-with-linq.md#set-up-classes) or extension methods for the [Transaction API](./getting-started-with-scalardb-tables-as-csharp-classes.md#create-classes-for-all-scalardb-tables), [SQL API](./getting-started-with-distributed-sql-transactions.md#execute-sql-queries), or [Administrative API](./getting-started-with-scalardb-tables-as-csharp-classes.md#use-the-administrative-api), a column's value received from the cluster is automatically converted to a corresponding .NET type. Likewise, a value of a .NET property is automatically converted to a corresponding cluster's type when an object is being saved to the cluster.
 
 In the following table, you can find how types are converted:
 

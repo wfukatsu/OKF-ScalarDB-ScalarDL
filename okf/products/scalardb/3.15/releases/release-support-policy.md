@@ -25,13 +25,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:56Z'
+  at: '2026-08-24T00:15:40Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.15/releases/release-support-policy.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.15/releases/release-support-policy.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # Release Support Policy
@@ -65,21 +65,21 @@ This page describes Scalar's support policy for major and minor version releases
 <td>[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td>[3.14](https://scalardb.scalar-labs.com/docs/3.14/releases/release-notes#v3140)</td>
-<td>2024-11-22</td>
-<td class="version-out-of-maintenance-support">2026-02-20</td>
-<td>2026-08-18</td>
-<td>[Contact us](https://www.scalar-labs.com/contact)</td>
+<td class="version-out-of-support">[3.14](https://docs-archive.scalar-labs.com/scalardb/3.14/releases/release-notes#v3140)*</td>
+<td class="version-out-of-support">2024-11-22</td>
+<td class="version-out-of-support">2026-02-20</td>
+<td class="version-out-of-support">2026-08-18</td>
+<td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.13](https://docs-archive.scalar-labs.com/scalardb/3.13/)*</td>
+<td class="version-out-of-support">[3.13](https://docs-archive.scalar-labs.com/scalardb/3.13/releases/release-notes#v3130)*</td>
 <td class="version-out-of-support">2024-07-08</td>
 <td class="version-out-of-support">2025-11-22</td>
 <td class="version-out-of-support">2026-05-21</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.12](https://docs-archive.scalar-labs.com/scalardb/3.12/)*</td>
+<td class="version-out-of-support">[3.12](https://docs-archive.scalar-labs.com/scalardb/3.12/releases/release-notes#v3120)*</td>
 <td class="version-out-of-support">2024-02-17</td>
 <td class="version-out-of-support">2025-07-08</td>
 <td class="version-out-of-support">2026-01-04</td>
@@ -93,21 +93,21 @@ This page describes Scalar's support policy for major and minor version releases
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.10](https://docs-archive.scalar-labs.com/scalardb/3.10/)*</td>
+<td class="version-out-of-support">[3.10](https://docs-archive.scalar-labs.com/scalardb/3.10/releases/release-notes#v3100)*</td>
 <td class="version-out-of-support">2023-07-20</td>
 <td class="version-out-of-support">2024-12-26</td>
 <td class="version-out-of-support">2025-06-24</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.9](https://docs-archive.scalar-labs.com/scalardb/3.9/)*</td>
+<td class="version-out-of-support">[3.9](https://docs-archive.scalar-labs.com/scalardb/3.9/re)*</td>
 <td class="version-out-of-support">2023-04-27</td>
 <td class="version-out-of-support">2024-07-19</td>
 <td class="version-out-of-support">2025-01-15</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.8](https://docs-archive.scalar-labs.com/scalardb/3.8/)*</td>
+<td class="version-out-of-support">[3.8](https://docs-archive.scalar-labs.com/scalardb/3.8/re)*</td>
 <td class="version-out-of-support">2023-01-17</td>
 <td class="version-out-of-support">2024-04-26</td>
 <td class="version-out-of-support">2024-10-23</td>

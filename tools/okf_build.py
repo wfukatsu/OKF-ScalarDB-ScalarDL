@@ -402,7 +402,9 @@ class VersionBuilder:
 
 def write_product_index(product: Product, versions: list[DocVersion],
                         out_dir: Path, repo_sha: str, committed_at: str,
-                        counts: dict[str, int]) -> None:
+                        counts: dict[str, int],
+                        archived: list[dict] | None = None) -> None:
+    archived = archived or []
     lines = [
         f"# {product.title}",
         "",
@@ -420,6 +422,11 @@ def write_product_index(product: Product, versions: list[DocVersion],
             f"{'supported' if v.supported else 'unmaintained'} | "
             f"{counts.get(v.name, 0)} | {product.site}/docs/{v.url_path}/ |"
         )
+    for a in archived:
+        lines.append(
+            f"| [{a['name']}](./{a['name']}/index.md) | {a.get('patch') or '—'} | "
+            f"archived | {a.get('concepts', 0)} | — (removed upstream) |"
+        )
     lines += [
         "",
         "## How to pick a version",
@@ -430,6 +437,22 @@ def write_product_index(product: Product, versions: list[DocVersion],
         "API signatures differ between minor releases.",
         "",
     ]
+    if archived:
+        names = ", ".join(a["name"] for a in archived)
+        lines += [
+            "## Archived versions",
+            "",
+            f"{names} — upstream has removed these versions from the documentation site, "
+            "so they are no longer regenerated and their pages on "
+            f"{product.site} now 404. The concepts kept here are the last snapshot taken "
+            "before the removal; their `resource` links point at pages that no longer "
+            "exist, and `sources[]` still pins the upstream commit they were built from.",
+            "",
+            "Use them to investigate a system that is still running that release. "
+            "**Never use them as the basis for a new design**, and say plainly that the "
+            "version is archived whenever you quote one.",
+            "",
+        ]
 
     fm = {
         "type": "Product",
@@ -439,9 +462,10 @@ def write_product_index(product: Product, versions: list[DocVersion],
         "tags": [product.key, "product"],
         "status": "stable",
         "product": product.key,
-        "versions": [v.name for v in versions],
+        "versions": [v.name for v in versions] + [a["name"] for a in archived],
         "latest_version": next((v.name for v in versions if v.is_current), versions[0].name),
         "supported_versions": [v.name for v in versions if v.supported],
+        **({"archived_versions": [a["name"] for a in archived]} if archived else {}),
         "generated": {"by": GENERATOR, "at": now()},
         "sources": [{
             "id": product.repo,
@@ -452,6 +476,73 @@ def write_product_index(product: Product, versions: list[DocVersion],
         }],
     }
     write_concept(out_dir / "index.md", fm, "\n".join(lines))
+
+
+VERSION_DIR_RE = re.compile(r"\d+\.\d+")
+
+
+def count_concepts(version_dir: Path) -> int:
+    """Concepts in a version directory that the state file no longer records.
+
+    A concept is one page; the per-directory index.md files are navigation the
+    builder generates on top of them, so they do not count. Matches what
+    len(builder.pages) reported when the version was last built.
+    """
+    md = list(version_dir.rglob("*.md"))
+    return len(md) - sum(1 for f in md if f.name == "index.md")
+
+
+def read_version_meta(version_dir: Path) -> dict:
+    """Frontmatter of a version index, for a version the state file forgot."""
+    index = version_dir / "index.md"
+    if not index.exists():
+        return {}
+    m = re.match(r"\A---\r?\n(.*?)\r?\n---\r?\n", index.read_text("utf-8"), re.S)
+    return (yaml.safe_load(m.group(1)) or {}) if m else {}
+
+
+ARCHIVED_NOTE_MARK = "> **Archived.**"
+
+
+def mark_archived_version(version_dir: Path, product: Product) -> None:
+    """Stamp a version index that upstream has since deleted.
+
+    The version is no longer regenerated, so nothing else would ever tell a
+    reader who opens it directly that the docs site behind every `resource`
+    link in it is gone. Idempotent: the note is written once, and re-running
+    keeps the original archived_at rather than moving it to today.
+    """
+    index = version_dir / "index.md"
+    if not index.exists():
+        return
+    text = index.read_text(encoding="utf-8")
+    m = re.match(r"\A---\r?\n(.*?)\r?\n---\r?\n", text, re.S)
+    if not m:
+        return
+    fm = yaml.safe_load(m.group(1)) or {}
+
+    fm["maintenance"] = "archived"
+    fm["archived"] = True
+    fm.setdefault("archived_at", now())
+    fm["status"] = "deprecated"
+    tags = [t for t in (fm.get("tags") or []) if t != "unmaintained"]
+    if "archived" not in tags:
+        tags.append("archived")
+    fm["tags"] = tags
+
+    body = text[m.end():].lstrip("\n")
+    if ARCHIVED_NOTE_MARK not in body:
+        note = (
+            f"{ARCHIVED_NOTE_MARK} Upstream has removed {product.title} "
+            f"{fm.get('version', '')} from {product.site}, so this version is no longer "
+            "regenerated and the pages its `resource` links point at now 404. What "
+            "follows is the last snapshot taken before the removal. Use it to "
+            "investigate a system still running this release, never as the basis for a "
+            "new design.\n"
+        )
+        head, sep, rest = body.partition("\n")
+        body = f"{head}\n\n{note}{sep}{rest}" if head.startswith("#") else note + "\n" + body
+    write_concept(index, fm, body)
 
 
 def write_bundle_index(bundle: Path, summary: dict) -> None:
@@ -710,6 +801,30 @@ def main() -> int:
         known = state["products"].get(product.key, {}).get("versions", {})
 
         counts: dict[str, int] = {v: known.get(v, {}).get("concepts", 0) for v in known}
+
+        # A version upstream has deleted stops being discovered, but its concepts
+        # are still on disk and still worth reading for a system running that
+        # release. Keep it listed and counted, flagged as archived, rather than
+        # letting it fall out of every index while the files remain.
+        discovered = {v.name for v in versions}
+        archived = [
+            {
+                "name": d.name,
+                "patch": (known.get(d.name, {}).get("patch")
+                          or read_version_meta(d).get("patch_version")),
+                "url_path": known.get(d.name, {}).get("url_path", d.name),
+                "concepts": (known.get(d.name, {}).get("concepts")
+                             or count_concepts(d)),
+            }
+            for d in sorted((bundle / "products" / product.key).glob("*"))
+            if d.is_dir() and VERSION_DIR_RE.fullmatch(d.name)
+            and d.name not in discovered
+        ]
+        archived.sort(key=lambda a: [int(x) for x in a["name"].split(".")], reverse=True)
+        for a in archived:
+            mark_archived_version(bundle / "products" / product.key / a["name"], product)
+            print(f"  {a['name']:<6} {a['concepts']:>4} concepts  [archived upstream]",
+                  flush=True)
         built_any = False
 
         for version in versions:
@@ -747,7 +862,7 @@ def main() -> int:
 
         write_product_index(
             product, versions, bundle / "products" / product.key,
-            repo_state.sha, repo_state.committed_at, counts,
+            repo_state.sha, repo_state.committed_at, counts, archived,
         )
 
         state["products"][product.key] = {
@@ -755,23 +870,36 @@ def main() -> int:
             "repo_sha": repo_state.sha,
             "repo_committed_at": repo_state.committed_at,
             "latest": next((v.name for v in versions if v.is_current), versions[0].name),
-            "version_order": [v.name for v in versions],
+            "version_order": [v.name for v in versions] + [a["name"] for a in archived],
             "versions": {
-                v.name: {
-                    "patch": v.patch,
-                    "url_path": v.url_path,
-                    "maintenance": "supported" if v.supported else "unmaintained",
-                    "concepts": counts.get(v.name, 0),
-                }
-                for v in versions if v.name in counts
+                **{
+                    v.name: {
+                        "patch": v.patch,
+                        "url_path": v.url_path,
+                        "maintenance": "supported" if v.supported else "unmaintained",
+                        "concepts": counts.get(v.name, 0),
+                    }
+                    for v in versions if v.name in counts
+                },
+                **{
+                    a["name"]: {
+                        "patch": a["patch"],
+                        "url_path": a["url_path"],
+                        "maintenance": "archived",
+                        "archived_from_upstream": True,
+                        "concepts": a["concepts"],
+                    }
+                    for a in archived
+                },
             },
         }
         summary["products"][product.key] = {
             "latest": next((v.name for v in versions if v.is_current), versions[0].name),
-            "versions": [v.name for v in versions],
-            "concepts": sum(counts.values()),
+            "versions": [v.name for v in versions] + [a["name"] for a in archived],
+            "concepts": (sum(counts.get(v.name, 0) for v in versions)
+                         + sum(a["concepts"] for a in archived)),
         }
-        summary["total_concepts"] += sum(counts.values())
+        summary["total_concepts"] += summary["products"][product.key]["concepts"]
         if not built_any:
             print(f"  (nothing to build)", flush=True)
 

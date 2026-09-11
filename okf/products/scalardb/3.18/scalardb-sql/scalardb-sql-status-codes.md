@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:49Z'
+  at: '2026-08-24T00:15:33Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/6126dfe2f56389351d88b134752618641f9771dd/versioned_docs/version-3.18/scalardb-sql/scalardb-sql-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/versioned_docs/version-3.18/scalardb-sql/scalardb-sql-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB SQL Error Codes
@@ -100,14 +100,6 @@ A positional bind marker is not allowed when binding named values
 
 ```markdown
 A named bind marker is not allowed when binding positional values
-```
-
-### `DB-SQL-10007`
-
-**Message**
-
-```markdown
-Cannot convert BLOB values to SQL. Please use a bind marker for a BLOB value and bind it separately
 ```
 
 ### `DB-SQL-10008`
@@ -764,4 +756,100 @@ The %s in the HAVING clause must appear in the SELECT projections
 
 ```markdown
 Invalid LIKE pattern: '%s'. Detail: %s
+```
+
+### `DB-SQL-10090`
+
+**Message**
+
+```markdown
+Command statements (BEGIN, COMMIT, ROLLBACK, SHOW ..., etc.) are not allowed in batch execution
+```
+
+### `DB-SQL-10091`
+
+**Message**
+
+```markdown
+Only mutation statements (INSERT, UPDATE, DELETE, etc.) are allowed in batch execution
+```
+
+### `DB-SQL-10092`
+
+**Message**
+
+```markdown
+Unmatched column type. The type of the column %s should be %s, but a blob literal is specified
+```
+
+### `DB-SQL-10093`
+
+**Message**
+
+```markdown
+A bind marker is not allowed in the argument of the function %s
+```
+
+### `DB-SQL-10094`
+
+**Message**
+
+```markdown
+The column %s is specified more than once in the CREATE TABLE statement
+```
+
+### `DB-SQL-10095`
+
+**Message**
+
+```markdown
+Executing a batch with multiple statements is not supported in one-operation mode
+```
+
+### `DB-SQL-10096`
+
+**Message**
+
+```markdown
+Functions are not allowed in WHERE clauses: %s
+```
+
+### `DB-SQL-10097`
+
+**Message**
+
+```markdown
+Functions are not allowed in ORDER BY clauses without GROUP BY: %s
+```
+
+### `DB-SQL-10098`
+
+**Message**
+
+```markdown
+AUTH_METHOD is specified more than once
+```
+
+### `DB-SQL-10099`
+
+**Message**
+
+```markdown
+Invalid pos or length for Blob access. pos: %d, length: %d
+```
+
+### `DB-SQL-10100`
+
+**Message**
+
+```markdown
+The start position for Blob.position() must be >= 1. start: %d
+```
+
+### `DB-SQL-10101`
+
+**Message**
+
+```markdown
+The InputStream has fewer bytes than the declared length. declared: %d
 ```

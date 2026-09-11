@@ -18,13 +18,13 @@ is_latest: false
 concept_count: 206
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-04T23:50:49Z'
+  at: '2026-08-24T00:15:34Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/6126dfe2f56389351d88b134752618641f9771dd
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-04T15:05:02Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # ScalarDB 3.18
@@ -37,7 +37,7 @@ Supported release.
 | Documentation version | 3.18 |
 | Newest patch release described | 3.18.1 |
 | Docs site | https://scalardb.scalar-labs.com/docs/3.18/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `6126dfe2f563` |
+| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `4fa644f40396` |
 | Concepts in this version | 206 |
 
 ## By lifecycle phase
@@ -314,7 +314,7 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB Data Loader Error Codes](./scalardb-data-loader-status-codes.md) — This page provides a list of error codes in ScalarDB Data Loader.
 - [ScalarDB Design](./design.md) — This document briefly explains the design and implementation of ScalarDB. For what ScalarDB is and its use cases, see ScalarDB Overview.
 - [ScalarDB Features](./features.md) — This document briefly explains which features are available in which editions of ScalarDB.
-- [ScalarDB Java API Guide](./api-guide.md) — The ScalarDB Java API is mainly composed of the Administrative API and Transactional API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
+- [ScalarDB Java API Guide](./api-guide.md) — The ScalarDB Java API is mainly composed of the Administrative API and Transaction API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
 - [ScalarDB Learning Paths](./learning-paths.md) — This guide provides learning paths for different roles. Depending on your role, follow the appropriate sequence of documents to gain a comprehensive understanding of ScalarDB.
 - [ScalarDB Overview](./overview.md) — This page describes what ScalarDB is and its primary use cases.
 - [ScalarDB Roadmap](./roadmap.md) — This roadmap provides a look into the proposed future of ScalarDB. The purpose of this roadmap is to provide visibility into what changes may be coming so that you can more closely follow progress, learn about key milestones, and give...

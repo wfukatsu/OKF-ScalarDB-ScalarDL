@@ -22,13 +22,13 @@ feature_status:
 - Private Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-10T20:39:58Z'
+  at: '2026-08-24T00:15:31Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/8bb9295f8fbd8a042360ebb5a3e70f8c4e5dfa47/docs/scalardb-cluster/scalardb-embedding-store-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/scalardb-embedding-store-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-07T16:37:01Z'
+  last_modified: '2026-08-20T18:31:06Z'
 ---
 
 # Embedding Store Error Codes
@@ -75,30 +75,6 @@ The embedding store is not found. Store: %s
 
 ```markdown
 The embedding model is not found. Model: %s
-```
-
-### `DB-EMBEDDING-10005`
-
-**Message**
-
-```markdown
-The property 'scalar.db.embedding.client.contact_points' must not be empty
-```
-
-### `DB-EMBEDDING-10006`
-
-**Message**
-
-```markdown
-The property 'scalar.db.embedding.client.contact_points' must be prefixed with 'indirect:' or 'direct-kubernetes:'
-```
-
-### `DB-EMBEDDING-10007`
-
-**Message**
-
-```markdown
-The format of the property 'scalar.db.embedding.client.contact_points' for direct-kubernetes client mode is 'direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>' or 'direct-kubernetes:<ENDPOINT_NAME>'
 ```
 
 ### `DB-EMBEDDING-10008`

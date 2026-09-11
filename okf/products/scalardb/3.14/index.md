@@ -7,14 +7,14 @@ tags:
 - scalardb
 - v3.14
 - product-version
-- unmaintained
+- archived
 status: deprecated
 product: scalardb
 product_title: ScalarDB
 version: '3.14'
 patch_version: 3.14.6
 url_path: '3.14'
-maintenance: unmaintained
+maintenance: archived
 is_latest: false
 concept_count: 178
 generated:
@@ -26,9 +26,14 @@ sources:
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
   last_modified: '2026-08-04T15:05:02Z'
+archived: true
+archived_at: '2026-08-24T00:13:45Z'
 ---
 
 # ScalarDB 3.14
+
+> **Archived.** Upstream has removed ScalarDB 3.14 from https://scalardb.scalar-labs.com, so this version is no longer regenerated and the pages its `resource` links point at now 404. What follows is the last snapshot taken before the removal. Use it to investigate a system still running this release, never as the basis for a new design.
+
 
 **Unmaintained release.** Prefer a supported version for new work; kept here for systems still running it.
 
