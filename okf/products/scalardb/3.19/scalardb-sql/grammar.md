@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-sql/grammar
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-sql/grammar.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/grammar.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB SQL Grammar
@@ -935,6 +935,11 @@ Aggregate functions:
 
 - You can specify `<limit>` to a bind marker (positional `?` and named `:<name>`).
 
+`WITH` clause:
+
+- You can specify operation attributes by using the `WITH` clause. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes).
+- When authentication and authorization are enabled in ScalarDB Cluster, you can pass authentication credentials for a statement executed outside of a transaction by specifying the auth attributes in the `WITH` clause. For details, see [Passing credentials as operation attributes](../scalardb-cluster/scalardb-auth-with-sql.md#passing-credentials-as-operation-attributes).
+
 For details about retrieving data from a database in ScalarDB, see [Get operation](../api-guide.md#get-operation) and [Scan operation](../api-guide.md#scan-operation).
 
 #### Examples of partition scans and index scans
@@ -1493,12 +1498,14 @@ INSERT INTO [<namespace name>.]<table name> [(<column name> [, <column name>] ..
   VALUES (<literal> [, <literal>] ...) [, (<literal> [, <literal>] ...)] ...
   [WITH operation_attributes]
 
-operation_attributes: <operation attribute name>=<operation attribute value> [AND <operation attribute name>=<operation attribute value>] ...
+operation_attributes: operation_attribute [AND operation_attribute] ...
+operation_attribute: <operation attribute name>=<operation attribute value>
 ```
 
 - You must specify a full primary key in `INSERT`.
 - You can specify `<literal>` to a bind marker (positional `?` and named `:<name>`). See the [Literal](#literal) section for the literal syntax.
 - You can specify operation attributes by using the `WITH` clause. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes).
+- When authentication and authorization are enabled in ScalarDB Cluster, you can pass authentication credentials for a statement executed outside of a transaction by specifying the auth attributes in the `WITH` clause. For details, see [Passing credentials as operation attributes](../scalardb-cluster/scalardb-auth-with-sql.md#passing-credentials-as-operation-attributes).
 
 #### Examples
 
@@ -1598,6 +1605,8 @@ operation_attribute: <operation attribute name>=<operation attribute value>
 
 - You must specify a full primary key in `UPSERT`.
 - You can specify `<literal>` to a bind marker (positional `?` and named `:<name>`). See the [Literal](#literal) section for the literal syntax.
+- You can specify operation attributes by using the `WITH` clause. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes).
+- When authentication and authorization are enabled in ScalarDB Cluster, you can pass authentication credentials for a statement executed outside of a transaction by specifying the auth attributes in the `WITH` clause. For details, see [Passing credentials as operation attributes](../scalardb-cluster/scalardb-auth-with-sql.md#passing-credentials-as-operation-attributes).
 
 #### Examples
 
@@ -1755,6 +1764,11 @@ operation_attribute: <operation attribute name>=<operation attribute value>
 - `\` in `<pattern>` works as the escape character by default.
   - You can change the escape character by specifying the `ESCAPE` clause.
   - You can disable the escape character by specifying an empty escape character, `ESCAPE ''`.
+
+`WITH` clause:
+
+- You can specify operation attributes by using the `WITH` clause. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes).
+- When authentication and authorization are enabled in ScalarDB Cluster, you can pass authentication credentials for a statement executed outside of a transaction by specifying the auth attributes in the `WITH` clause. For details, see [Passing credentials as operation attributes](../scalardb-cluster/scalardb-auth-with-sql.md#passing-credentials-as-operation-attributes).
 
 #### Examples with the full primary key specified
 
@@ -2001,6 +2015,11 @@ operation_attribute: <operation attribute name>=<operation attribute value>
 - `\` in `<pattern>` works as the escape character by default.
   - You can change the escape character by specifying the `ESCAPE` clause.
   - You can disable the escape character by specifying an empty escape character, `ESCAPE ''`.
+
+`WITH` clause:
+
+- You can specify operation attributes by using the `WITH` clause. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes).
+- When authentication and authorization are enabled in ScalarDB Cluster, you can pass authentication credentials for a statement executed outside of a transaction by specifying the auth attributes in the `WITH` clause. For details, see [Passing credentials as operation attributes](../scalardb-cluster/scalardb-auth-with-sql.md#passing-credentials-as-operation-attributes).
 
 #### Examples with the full primary key specified
 
@@ -2830,11 +2849,17 @@ This command returns the following column:
 
 ```sql
 BEGIN [READ ONLY | READ WRITE]
+  [WITH operation_attributes]
+
+operation_attributes: operation_attribute [AND operation_attribute] ...
+operation_attribute: <operation attribute name>=<operation attribute value>
 ```
 
 - If you specify `READ ONLY`, the transaction will be started in read-only mode.
 - If you specify `READ WRITE`, the transaction will be started in read-write mode.
 - If you omit the `READ ONLY` or `READ WRITE` option, the transaction will be started as a read-write transaction by default.
+- You can specify transaction-scoped operation attributes by using the `WITH` clause. The specified attributes are merged into every operation issued within the transaction. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes).
+- When authentication and authorization are enabled in ScalarDB Cluster, you can pass authentication credentials for the transaction by specifying the auth attributes in the `WITH` clause. For details, see [Passing credentials as operation attributes](../scalardb-cluster/scalardb-auth-with-sql.md#passing-credentials-as-operation-attributes).
 
 #### Examples
 
@@ -2882,11 +2907,17 @@ This command returns the following column:
 
 ```sql
 START TRANSACTION [READ ONLY | READ WRITE]
+  [WITH operation_attributes]
+
+operation_attributes: operation_attribute [AND operation_attribute] ...
+operation_attribute: <operation attribute name>=<operation attribute value>
 ```
 
 - If you specify `READ ONLY`, the transaction will be started in read-only mode.
 - If you specify `READ WRITE`, the transaction will be started in read-write mode.
 - If you omit the `READ ONLY` or `READ WRITE` option, the transaction will be started as a read-write transaction by default.
+- You can specify transaction-scoped operation attributes by using the `WITH` clause. The specified attributes are merged into every operation issued within the transaction. For details on operation attributes, see [Operation attributes](../api-guide.md#operation-attributes).
+- When authentication and authorization are enabled in ScalarDB Cluster, you can pass authentication credentials for the transaction by specifying the auth attributes in the `WITH` clause. For details, see [Passing credentials as operation attributes](../scalardb-cluster/scalardb-auth-with-sql.md#passing-credentials-as-operation-attributes).
 
 #### Examples
 

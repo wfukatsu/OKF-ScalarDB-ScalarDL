@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: configurations
 lifecycle_phase: implement
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB Core Configurations
@@ -378,10 +378,10 @@ The following properties have been removed and will be ignored if set. If these 
 If you're using SQLite3 as a JDBC database, you must set `scalar.db.contact_points` as follows:
 
 ```properties
-scalar.db.contact_points=jdbc:sqlite:<SQLITE_DB_FILE_PATH>?busy_timeout=10000
+scalar.db.contact_points=jdbc:sqlite:<SQLITE_DB_FILE_PATH>?busy_timeout=10000&journal_mode=WAL
 ```
 
-Unlike other JDBC databases, [SQLite3 doesn't fully support concurrent access](https://www.sqlite.org/lang_transaction.html). To avoid frequent errors caused internally by [`SQLITE_BUSY`](https://www.sqlite.org/rescode.html#busy), setting a [`busy_timeout`](https://www.sqlite.org/c3ref/busy_timeout.html) parameter is recommended.
+Unlike other JDBC databases, [SQLite3 doesn't fully support concurrent access](https://www.sqlite.org/lang_transaction.html). To avoid frequent errors caused internally by [`SQLITE_BUSY`](https://www.sqlite.org/rescode.html#busy), set a [`busy_timeout`](https://www.sqlite.org/c3ref/busy_timeout.html) parameter. Also set [`journal_mode=WAL`](https://www.sqlite.org/wal.html) to enable write-ahead logging (WAL), which lets a reader and a writer run at the same time and reduces lock contention. Keep the `busy_timeout` parameter set as well because SQLite3 still serializes writers in WAL mode.
 
 **YugabyteDB**
 
@@ -415,6 +415,46 @@ scalar.db.contact_points=jdbc:cloudspanner:/projects/<PROJECT_ID>/instances/<INS
 scalar.db.username=
 scalar.db.password=<content-of-service-account-key.json>
 ```
+
+**Amazon Aurora**
+
+If you're using Amazon Aurora as a JDBC database, you can add the `jdbc:aws-wrapper:` prefix to `scalar.db.contact_points` to connect through the [AWS Advanced JDBC Wrapper](https://github.com/aws/aws-advanced-jdbc-wrapper). The wrapper discovers the cluster topology and reconnects to the new writer after a failover instead of waiting for DNS to propagate. ScalarDB bundles the wrapper, so you don't need to add any JAR files.
+
+For Aurora PostgreSQL, specify the cluster endpoint as follows:
+
+```properties
+scalar.db.storage=jdbc
+scalar.db.contact_points=jdbc:aws-wrapper:postgresql://<CLUSTER_ENDPOINT>:5432/<DATABASE_NAME>
+scalar.db.username=<USERNAME>
+scalar.db.password=<PASSWORD>
+```
+
+For Aurora MySQL, specify the cluster endpoint as follows:
+
+```properties
+scalar.db.storage=jdbc
+scalar.db.contact_points=jdbc:aws-wrapper:mysql://<CLUSTER_ENDPOINT>:3306/<DATABASE_NAME>
+scalar.db.username=<USERNAME>
+scalar.db.password=<PASSWORD>
+```
+
+ScalarDB supports the prefix for Aurora PostgreSQL and Aurora MySQL only. If you use it with any other database, ScalarDB fails to start.
+
+To configure the wrapper, add its parameters to the query string of the connection URL. Aside from the Aurora MySQL parameters described below, ScalarDB sets no defaults of its own, so the wrapper's own defaults apply. For example, to shorten the failover timeout:
+
+```properties
+scalar.db.contact_points=jdbc:aws-wrapper:postgresql://<CLUSTER_ENDPOINT>:5432/<DATABASE_NAME>?failoverTimeoutMs=60000
+```
+
+For Aurora MySQL, ScalarDB adds `permitMysqlScheme=true` and `wrapperTargetDriverDialect=mariadb-connector-j-3` to the URL automatically, because ScalarDB connects to MySQL through MariaDB Connector/J. If you set either parameter yourself, ScalarDB uses your value.
+
+If a failover happens while `commit()` is running, ScalarDB throws `UnknownTransactionStatusException`. Check whether the transaction was applied before you retry it. A failover during a CRUD operation throws `CrudException`, which you can handle as usual. For details, see [How to handle exceptions](./api-guide.md#how-to-handle-exceptions).
+
+This support does not cover the following:
+
+- **IAM database authentication and Secrets Manager integration:** The wrapper's plugins for these require additional JAR files that ScalarDB doesn't bundle.
+- **Read-write splitting:** ScalarDB doesn't route read operations to reader instances.
+- **Configurations other than Aurora:** ScalarDB doesn't support non-Aurora RDS deployments, or engines other than PostgreSQL and MySQL, through the wrapper. ScalarDB doesn't check whether the endpoint belongs to an Aurora cluster, so a non-Aurora RDS deployment starts without an error.
 
 :::
 
@@ -773,6 +813,18 @@ The following are additional configurations available for ScalarDB.
 :::warning
 
 This is a backward-compatibility option and is **not recommended for new workloads**. For details, see [Correctness of index-based reads](./consensus-commit.md#correctness-of-index-based-reads).
+
+:::
+
+### `consensus_commit.coordinator.write_set_logging.enabled`
+
+- **Field:** `scalar.db.consensus_commit.coordinator.write_set_logging.enabled`
+- **Description:** When using Consensus Commit, if this is set to `true`, ScalarDB records the write set of each transaction in the Coordinator table. The write set identifies the records that the transaction wrote, and ScalarDB uses this information for capabilities such as recovering transactions proactively. Enabling this configuration requires an additional column in the Coordinator table and increases the amount of data that ScalarDB writes to and stores in the Coordinator table.
+- **Default value:** `false`
+
+:::warning
+
+A Coordinator table created before you enable this configuration does not have the additional column that this configuration requires. For details about how to add the column to an existing Coordinator table, see [Coordinator write set logging](./consensus-commit.md#coordinator-write-set-logging).
 
 :::
 

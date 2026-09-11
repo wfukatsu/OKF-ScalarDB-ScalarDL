@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.0
+patch_version: 3.14.1
 doc_id: how-to-run-applications
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:41Z'
+  at: '2026-09-11T05:23:09Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/docs/how-to-run-applications.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/how-to-run-applications.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-09-09T05:36:42Z'
 ---
 
 # Run a ScalarDL Application Through ScalarDL Ledger
@@ -162,7 +162,7 @@ scalardl bootstrap --properties <CLIENT_PROPERTIES_FILE>
 
 The bootstrap command registers the client certificate or secret key based on the authentication configuration done in [Decide on an authentication method](#decide-on-an-authentication-method).
 
-You can also bootstrap by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
+You can also bootstrap by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
 
 ### Register contracts and functions
 
@@ -178,7 +178,7 @@ You can register functions by using the `register-function` command.
 scalardl register-function --properties <CLIENT_PROPERTIES_FILE> --function-id <FUNCTION_ID> --function-binary-name <FUNCTION_BINARY_NAME> --function-class-file <FUNCTION_CLASS_FILE>
 ```
 
-You can also register contracts and functions by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
+You can also register contracts and functions by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
 
 ## Run your application
 

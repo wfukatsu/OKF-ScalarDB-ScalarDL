@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: api-guide
 lifecycle_phase: implement
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB Java API Guide
@@ -849,7 +849,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Handle `Result` objects
 
@@ -902,7 +902,7 @@ And if you need to check if a value of a column is null, you can use the `isNull
 boolean isNull = result.isNull("<COLUMN_NAME>");
 ```
 
-For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/Result.html) page in the Javadoc.
+For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/Result.html) page in the Javadoc.
 
 ###### Execute `Get` by using a secondary index
 
@@ -1011,7 +1011,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Execute `Scan` by using a secondary index
 
@@ -1636,7 +1636,7 @@ The following attributes apply to a cross-partition `Scan` operation (a `Scan` o
 - **`db-cross-partition-scan-filtering-enabled`:** Whether cross-partition scan with filtering is enabled for the operation. The value must be `true` or `false`.
 - **`db-cross-partition-scan-ordering-enabled`:** Whether cross-partition scan with ordering is enabled for the operation. The value must be `true` or `false`. This attribute is available only for JDBC databases.
 
-You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
+You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
 
 ###### Consensus Commit attributes
 
@@ -1650,7 +1650,7 @@ Unlike the other operation attributes, `cc-transaction-isolation` cannot be appl
 
 :::
 
-You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.0/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
+You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
 
 #### Commit a transaction
 

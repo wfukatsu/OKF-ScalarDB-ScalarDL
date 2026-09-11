@@ -12,7 +12,7 @@ product: scalardl
 version: '3.14'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:41Z'
+  at: '2026-09-11T05:23:09Z'
 ---
 
 # Helm Charts
@@ -29,13 +29,11 @@ ScalarDL 3.14 documentation under `helm-charts/`.
 - [Configure a custom values file for Scalar Admin for Kubernetes](./configure-custom-values-scalar-admin-for-kubernetes.md) — This document explains how to create your custom values file for the Scalar Admin for Kubernetes chart. For details on the parameters, see the README of the Scalar Admin for Kubernetes chart.
 - [Configure a custom values file for Scalar Envoy](./configure-custom-values-envoy.md) — This document explains how to create your custom values file for the Scalar Envoy chart. If you want to know the details of the parameters, please refer to the README of the Scalar Envoy chart.
 - [Configure a custom values file for Scalar Helm Charts](./configure-custom-values-file.md) — When you deploy Scalar products using Scalar Helm Charts, you must prepare your custom values file based on your environment. Please refer to the following documents for more details on how to a create custom values file for each product.
-- [Configure a Custom Values File for Scalar Manager](./configure-custom-values-scalar-manager.md) — This document provides instructions on how to configure a custom values file for the Scalar Manager Helm Chart. For details about the available parameters, see the README in the Scalar Manager chart repository.
 - [Configure a custom values file for ScalarDB Analytics server](./configure-custom-values-scalardb-analytics-server.md) — This document explains how to create your custom values file for the ScalarDB Analytics server chart. For details on the parameters, see the README of the ScalarDB Analytics server chart.
 - [Configure a custom values file for ScalarDB Cluster](./configure-custom-values-scalardb-cluster.md) — This document explains how to create your custom values file for the ScalarDB Cluster chart. For details on the parameters, see the README of the ScalarDB Cluster chart.
 - [Configure a custom values file for ScalarDL Auditor](./configure-custom-values-scalardl-auditor.md) — This document explains how to create your custom values file for the ScalarDL Auditor chart. If you want to know the details of the parameters, please refer to the README of the ScalarDL Auditor chart.
 - [Configure a custom values file for ScalarDL Ledger](./configure-custom-values-scalardl-ledger.md) — This document explains how to create your custom values file for the ScalarDL Ledger chart. If you want to know the details of the parameters, please refer to the README of the ScalarDL Ledger chart.
 - [Configure a custom values file for ScalarDL Schema Loader](./configure-custom-values-scalardl-schema-loader.md) — This document explains how to create your custom values file for the ScalarDL Schema Loader chart. If you want to know the details of the parameters, please refer to the README of the ScalarDL Schema Loader chart.
-- [Deploy Scalar Manager](./getting-started-scalar-manager.md) — Scalar Manager is a centralized management and monitoring solution for ScalarDB and ScalarDL in Kubernetes clusters. It enables you to:
 - [Deploy Scalar products using Scalar Helm Charts](./how-to-deploy-scalar-products.md) — This document explains how to deploy Scalar products using Scalar Helm Charts. If you want to test Scalar products on your local environment using a minikube cluster, please refer to the following getting started guide.
 - [Getting Started with Helm Charts (Logging using Loki Stack)](./getting-started-logging.md) — This document explains how to get started with log aggregation for Scalar products on Kubernetes using Grafana Loki (with Promtail).
 - [Getting Started with Helm Charts (Monitoring using Prometheus Operator)](./getting-started-monitoring.md) — This document explains how to get started with Scalar products monitoring on Kubernetes using Prometheus Operator (kube-prometheus-stack). Here, we assume that you already have a Mac or Linux environment for testing. We use Minikube in...

@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: helm-charts/how-to-deploy-scalar-products
 lifecycle_phase: operate
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/helm-charts/how-to-deploy-scalar-products.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/helm-charts/how-to-deploy-scalar-products.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Deploy Scalar products using Scalar Helm Charts
@@ -90,6 +90,5 @@ Please refer to the following documents for more details on how to deploy each p
 * [ScalarDL Ledger](./how-to-deploy-scalardl-ledger.md)
 * [ScalarDL Auditor](./how-to-deploy-scalardl-auditor.md)
 * [Scalar Admin for Kubernetes](./how-to-deploy-scalar-admin-for-kubernetes.md)
-* [Scalar Manager](./getting-started-scalar-manager.md)
 * [[Deprecated] ScalarDB Server](./how-to-deploy-scalardb.md)
 * [[Deprecated] ScalarDB GraphQL](./how-to-deploy-scalardb-graphql.md)

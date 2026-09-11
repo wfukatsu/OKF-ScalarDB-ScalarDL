@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: helm-charts/getting-started-monitoring
 lifecycle_phase: operate
 editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/helm-charts/getting-started-monitoring.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/helm-charts/getting-started-monitoring.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Getting Started with Helm Charts (Monitoring using Prometheus Operator)
@@ -101,14 +101,6 @@ prometheus:
    * Note:
 * If you want to customize the Prometheus Operator deployment by using Helm Charts, you'll need to set the following configurations to monitor Scalar products:
 * Set `serviceMonitorSelectorNilUsesHelmValues` and `ruleSelectorNilUsesHelmValues` to `false` (`true` by default) so that Prometheus Operator can detect `ServiceMonitor` and `PrometheusRule` for Scalar products.
-
-* If you want to use Scalar Manager, you'll need to set the following configurations to enable Scalar Manager to collect CPU and memory resources:
-* Set `kubeStateMetrics.enabled`, `nodeExporter.enabled`, and `kubelet.enabled` to `true`.
-
-* If you want to use Scalar Manager, you'll need to set the following configurations to enable Scalar Manager to embed Grafana:
-* Set `grafana.ini.security.allow_embedding` and `grafana.ini.auth.anonymous.enabled` to `true`.
-* Set `grafana.ini.auth.anonymous.org_name` to the organization you are using. If you're using the sample custom values, the value is `Main Org.`.
-* Set `grafana.ini.auth.anonymous.org_role` to `Editor`.
 
 ## Step 3. Deploy `kube-prometheus-stack`
 

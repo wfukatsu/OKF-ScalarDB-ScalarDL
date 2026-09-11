@@ -22,13 +22,13 @@ supported_versions:
 - '3.11'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-09-11T05:23:09Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/db1535c35d0f746c5b5d8d9772f54afa0c709a34
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/65cde245dc475500d48ccf7a4d460a7965759c95
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-09-09T05:36:42Z'
 ---
 
 # ScalarDL
@@ -39,10 +39,10 @@ Byzantine-fault-detection middleware that makes database state tamper-evident. C
 
 | Version | Newest patch | Maintenance | Concepts | Docs |
 |---|---|---|---|---|
-| [3.14 (latest)](./3.14/index.md) | 3.14.0 | supported | 144 | https://scalardl.scalar-labs.com/docs/latest/ |
-| [3.13](./3.13/index.md) | 3.13.0 | supported | 143 | https://scalardl.scalar-labs.com/docs/3.13/ |
-| [3.12](./3.12/index.md) | 3.12.3 | supported | 141 | https://scalardl.scalar-labs.com/docs/3.12/ |
-| [3.11](./3.11/index.md) | 3.11.3 | supported | 132 | https://scalardl.scalar-labs.com/docs/3.11/ |
+| [3.14 (latest)](./3.14/index.md) | 3.14.1 | supported | 139 | https://scalardl.scalar-labs.com/docs/latest/ |
+| [3.13](./3.13/index.md) | 3.13.1 | supported | 143 | https://scalardl.scalar-labs.com/docs/3.13/ |
+| [3.12](./3.12/index.md) | 3.12.4 | supported | 141 | https://scalardl.scalar-labs.com/docs/3.12/ |
+| [3.11](./3.11/index.md) | 3.11.4 | supported | 132 | https://scalardl.scalar-labs.com/docs/3.11/ |
 | [3.10](./3.10/index.md) | 3.10.5 | unmaintained | 132 | https://scalardl.scalar-labs.com/docs/3.10/ |
 
 ## How to pick a version

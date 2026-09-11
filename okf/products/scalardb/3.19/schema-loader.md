@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: schema-loader
 lifecycle_phase: implement
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/schema-loader.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/schema-loader.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB Schema Loader
@@ -240,7 +240,7 @@ To create namespaces and tables by using a properties file, run the following co
 java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator]
 ```
 
-If `--coordinator` is specified, a [Coordinator table](./api-guide.md#specify-operations-for-the-coordinator-table) will be created. When the [group commit feature for the Coordinator table](./api-guide.md#group-commit-for-coordinator-table) is enabled, this command creates a Coordinator table with additional columns for the group commit feature.
+If `--coordinator` is specified, a [Coordinator table](./api-guide.md#specify-operations-for-the-coordinator-table) will be created. When [group commit](./consensus-commit.md#group-commit) or [Coordinator write set logging](./consensus-commit.md#coordinator-write-set-logging) is enabled, this command creates a Coordinator table with the additional column that each enabled feature requires.
 
 :::note
 
@@ -373,14 +373,13 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPER
 
 :::warning
 
-Before executing this command, you should confirm the following configurations are the same as those that were last applied:
-
-- The schema configuration
-- Whether the [group commit feature for the Coordinator table](./api-guide.md#group-commit-for-coordinator-table) is enabled or not, if the `--coordinator` option described below is specified
+Before executing this command, you should confirm the schema configuration is the same as the one that was last applied.
 
 :::
 
 If `--coordinator` is specified, the Coordinator table will be repaired as well. In addition, if you're using Cosmos DB for NoSQL, running this command will also repair stored procedures attached to each table.
+
+If you enable [group commit](./consensus-commit.md#group-commit) or [Coordinator write set logging](./consensus-commit.md#coordinator-write-set-logging) after creating the Coordinator table, running this command with `--coordinator` also adds the additional column that each enabled feature requires.
 
 :::note
 

@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster/control-access-via-oidc-based-jwt-tokens
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/control-access-via-oidc-based-jwt-tokens.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/control-access-via-oidc-based-jwt-tokens.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Control User Access via OIDC-Based JWT Access Tokens
@@ -112,11 +112,20 @@ The following are the client-side configurations for OIDC-based access control. 
 
 :::note
 
-You can pass the JWT access token programmatically by using `OidcJwtAccessTokenHolder`, which is the recommended option when handling many OIDC users. Alternatively, you can supply the token via the access token property (`scalar.db.cluster.client.auth.oidc_jwt.access_token` for the primitive interface or `scalar.db.sql.cluster_mode.auth.oidc_jwt.access_token` for the SQL interface), which is easy to start with, especially for testing with tools like the SQL CLI. However, since the token is set at initialization time, it cannot be refreshed.
+You can pass the JWT access token programmatically by using `OidcJwtAccessTokenHolder`, which is the recommended option when handling many OIDC users. Alternatively, you can supply the token via the access token property (`scalar.db.cluster.client.auth.oidc_jwt.access_token` for the primitive interface or `scalar.db.sql.cluster_mode.auth.oidc_jwt.access_token` for the SQL interface), which is easy to start with, especially for testing with tools like the SQL CLI. However, since the token is set at initialization time, it cannot be refreshed. You can also pass the token for a specific transaction, operation, or SQL statement by using operation attributes. For details, see [Passing the JWT access token programmatically](#passing-the-jwt-access-token-programmatically).
 
 :::
 
 For additional client-side configurations, see the configurations for the [primitive interface](./scalardb-cluster-configurations.md#configurations-for-the-primitive-interface) and the [SQL interface](./scalardb-cluster-configurations.md#configurations-for-the-sql-interface) in the ScalarDB Cluster configurations.
+
+## Passing the JWT access token programmatically
+
+Instead of setting the JWT access token in the configuration properties, you can pass it programmatically in the following ways:
+
+- **Per thread:** Use `OidcJwtAccessTokenHolder` to set the token for the current thread for the duration of a block of code.
+- **Per transaction, operation, or SQL statement:** Use the auth attributes `auth-type` and `auth-oidc-jwt-access-token`.
+
+Both mechanisms work in the same way for the `userpass` and `oidc_jwt` authentication types and are described in [Passing credentials programmatically](./scalardb-auth-with-sql.md#passing-credentials-programmatically) in the authentication and authorization guide.
 
 ## Troubleshooting
 

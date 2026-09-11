@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.0
+patch_version: 3.14.1
 doc_id: how-to-write-applications
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:41Z'
+  at: '2026-09-11T05:23:09Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/docs/how-to-write-applications.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/how-to-write-applications.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-09-09T05:36:42Z'
 ---
 
 # Write a ScalarDL Application with the Ledger Abstraction
@@ -47,7 +47,7 @@ dependencies {
 }
 ```
 
-The Java Client SDK APIs are provided by a service class called [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/client/service/ClientService.html). The following is a code snippet that shows how to use `ClientService` to execute a contract.
+The Java Client SDK APIs are provided by a service class called [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html). The following is a code snippet that shows how to use `ClientService` to execute a contract.
 
 ```java
   // ClientServiceFactory should always be reused.
@@ -81,7 +81,7 @@ If an error occurs in your application, the Client SDK will return an exception 
 
 ### Implement error handling
 
-The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
+The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
 
 ```java
 ClientService clientService = ...;
@@ -107,7 +107,7 @@ Status codes explain what kind of status request you ended up with. The status c
 - Client errors (600-699)
 - The 6xx class of status code indicates that the client encountered an unexpected condition that prevented it from fulfilling the request.
 
-For more details, see [`StatusCode`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/service/StatusCode.html).
+For more details, see [`StatusCode`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/service/StatusCode.html).
 
 ### Error codes
 
@@ -210,7 +210,7 @@ Since Asset Proof is evidence at the time of execution by Ledger, it is difficul
 
 #### How to access Asset Proof from your applications
 
-You can get [`AssetProof`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/proof/AssetProof.html) from the result [`ContractExecutionResult`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.0/com/scalar/dl/ledger/model/ContractExecutionResult.html) of the `executeContract` method of the Client SDK. An Asset Proof can be validated if it is not tampered and it is from Ledger by verifying the signature.
+You can get [`AssetProof`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/proof/AssetProof.html) from the result [`ContractExecutionResult`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/model/ContractExecutionResult.html) of the `executeContract` method of the Client SDK. An Asset Proof can be validated if it is not tampered and it is from Ledger by verifying the signature.
 
 Storing Asset Proofs outside of a domain in which Ledger runs is recommended. This is so that malicious activities in one domain can be detected by the other domain. Storing Asset Proofs in cloud storages for ease of management is also worth considering.
 

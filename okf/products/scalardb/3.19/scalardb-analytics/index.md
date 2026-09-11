@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 ---
 
 # Scalardb Analytics
@@ -33,3 +33,4 @@ ScalarDB 3.19 documentation under `scalardb-analytics/`.
 - [ScalarDB Analytics Configurations](./configurations.md) — This page provides a comprehensive reference for configuring all components of ScalarDB Analytics.
 - [ScalarDB Analytics Design and Implementation](./design.md) — ScalarDB Analytics is the analytical component of ScalarDB. Similar to ScalarDB, it unifies diverse data sources—ranging from RDBMSs like PostgreSQL and MySQL to NoSQL databases like Cassandra and DynamoDB—into a single logical database....
 - [ScalarDB Analytics Error Codes](./scalardb-analytics-status-codes.md) — This page provides a list of error codes in ScalarDB Analytics.
+- [Set Up Usage Metering in ScalarDB Analytics](./set-up-metering.md) — The ScalarDB Analytics server measures how much compute your analytical workloads consume and persists this usage data so that it can be used for licensing and billing. This guide explains what ScalarDB Analytics meters and shows you how...

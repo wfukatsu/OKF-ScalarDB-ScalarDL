@@ -2,8 +2,8 @@
   "products": {
     "scalardb": {
       "repo": "docs-scalardb",
-      "repo_sha": "4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1",
-      "repo_committed_at": "2026-08-20T18:31:06Z",
+      "repo_sha": "c882c4103fe6e0aedff74e7afa67c2587a78ec9b",
+      "repo_committed_at": "2026-09-09T05:43:01Z",
       "latest": "3.19",
       "version_order": [
         "3.19",
@@ -15,25 +15,25 @@
       ],
       "versions": {
         "3.19": {
-          "patch": "3.19.0",
+          "patch": "3.19.1",
           "url_path": "latest",
           "maintenance": "supported",
-          "concepts": 207
+          "concepts": 203
         },
         "3.18": {
-          "patch": "3.18.1",
+          "patch": "3.18.2",
           "url_path": "3.18",
           "maintenance": "supported",
           "concepts": 206
         },
         "3.17": {
-          "patch": "3.17.4",
+          "patch": "3.17.5",
           "url_path": "3.17",
           "maintenance": "supported",
           "concepts": 202
         },
         "3.16": {
-          "patch": "3.16.6",
+          "patch": "3.16.7",
           "url_path": "3.16",
           "maintenance": "supported",
           "concepts": 204
@@ -55,8 +55,8 @@
     },
     "scalardl": {
       "repo": "docs-scalardl",
-      "repo_sha": "db1535c35d0f746c5b5d8d9772f54afa0c709a34",
-      "repo_committed_at": "2026-08-20T15:35:18Z",
+      "repo_sha": "65cde245dc475500d48ccf7a4d460a7965759c95",
+      "repo_committed_at": "2026-09-09T05:36:42Z",
       "latest": "3.14",
       "version_order": [
         "3.14",
@@ -67,25 +67,25 @@
       ],
       "versions": {
         "3.14": {
-          "patch": "3.14.0",
+          "patch": "3.14.1",
           "url_path": "latest",
           "maintenance": "supported",
-          "concepts": 144
+          "concepts": 139
         },
         "3.13": {
-          "patch": "3.13.0",
+          "patch": "3.13.1",
           "url_path": "3.13",
           "maintenance": "supported",
           "concepts": 143
         },
         "3.12": {
-          "patch": "3.12.3",
+          "patch": "3.12.4",
           "url_path": "3.12",
           "maintenance": "supported",
           "concepts": 141
         },
         "3.11": {
-          "patch": "3.11.3",
+          "patch": "3.11.4",
           "url_path": "3.11",
           "maintenance": "supported",
           "concepts": 132
@@ -101,7 +101,7 @@
     "scalardb-community": {
       "repo": "docs-scalardb-community",
       "repo_sha": "71d199cb0df1c638bd7e305b64fa09fc7236e5c4",
-      "repo_committed_at": "2025-04-07T11:32:02Z",
+      "repo_committed_at": "2025-04-07T02:32:02Z",
       "latest": "3.13",
       "version_order": [
         "3.13",
@@ -182,7 +182,7 @@
       "repo": "scalardb-saga",
       "kind": "repo",
       "repo_sha": "ecbd61722adae47620b2032be6974c9af593ecda",
-      "repo_committed_at": "2026-08-03T21:49:02Z",
+      "repo_committed_at": "2026-08-03T12:49:02Z",
       "latest": "3.19",
       "version_order": [
         "3.19"
@@ -200,5 +200,5 @@
   },
   "okf_version": "0.2",
   "generator": "process:okf-build/1.0.0",
-  "last_run": "2026-08-24T00:15:48Z"
+  "last_run": "2026-09-11T05:23:13Z"
 }

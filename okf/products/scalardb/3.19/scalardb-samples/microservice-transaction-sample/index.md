@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 ---
 
 # Microservice Transaction Sample
@@ -21,4 +21,4 @@ ScalarDB 3.19 documentation under `scalardb-samples/microservice-transaction-sam
 
 ## Concepts
 
-- [Create a Sample Application That Supports Microservice Transactions](./README.md) — This tutorial describes how to create a sample application that supports microservice transactions in ScalarDB.
+- [Create a Sample Application That Supports Microservice Transactions](./README.md) — The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.

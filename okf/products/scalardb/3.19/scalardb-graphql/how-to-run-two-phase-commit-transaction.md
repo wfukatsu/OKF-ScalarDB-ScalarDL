@@ -1,7 +1,7 @@
 ---
 type: Development Guide
 title: How to run two-phase commit transaction
-description: ScalarDB GraphQL supports two-phase commit style transactions called Two-phase Commit Transactions. With Two-phase Commit Transactions, you can execute a transaction that spans multiple processes/applications (e.g., Microservices). We name...
+description: The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
 resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-graphql/how-to-run-two-phase-commit-transaction/
 tags:
 - scalardb
@@ -12,23 +12,29 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-graphql/how-to-run-two-phase-commit-transaction
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-graphql/how-to-run-two-phase-commit-transaction.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-graphql/how-to-run-two-phase-commit-transaction.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # How to run two-phase commit transaction
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 ScalarDB GraphQL supports two-phase commit style transactions
 called [Two-phase Commit Transactions](../two-phase-commit-transactions.md).

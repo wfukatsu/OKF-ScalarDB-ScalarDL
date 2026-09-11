@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster-dotnet-client-sdk/index
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster-dotnet-client-sdk/index.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster-dotnet-client-sdk/index.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB Cluster .NET Client SDK Overview
@@ -43,5 +43,12 @@ To use the ScalarDB Cluster .NET Client SDK, see the following getting started g
 * [Getting Started with ASP.NET Core and Dependency Injection](./getting-started-with-aspnet-and-di.md)
 * [Getting Started with LINQ](./getting-started-with-linq.md)
 * [Getting Started with Distributed Transactions with a Two-Phase Commit Interface](./getting-started-with-two-phase-commit-transactions.md)
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
 * [Getting Started with Authentication and Authorization](./getting-started-with-auth.md)
 * [Exception Handling](./exception-handling.md)

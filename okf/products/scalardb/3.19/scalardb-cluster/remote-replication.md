@@ -8,27 +8,27 @@ tags:
 - v3.19
 - phase:implement
 - edition:enterprise-premium
-- feature-status:private-preview
+- feature-status:public-preview
 status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: scalardb-cluster/remote-replication
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 feature_status:
-- Private Preview
+- Public Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/scalardb-cluster/remote-replication.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/remote-replication.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # Replicate Data for High Availability
@@ -161,9 +161,9 @@ The replication process follows these steps:
 
 This section describes the limitations and characteristics of remote replication.
 
-### Private preview limitations
+### Public preview limitations
 
-The current private preview version has the following limitations, but they are going to be relaxed when it becomes public preview or general availability (GA):
+The current public preview version has the following limitations, but they are going to be relaxed when it becomes generally available (GA):
 
 - The specification may be changed in future releases.
 - Multiple backup sites are not supported.
@@ -172,6 +172,12 @@ The current private preview version has the following limitations, but they are 
 - The combination of the [encryption feature](./encrypt-data-at-rest.md) and remote replication is not officially supported because it has not been verified.
 
 ### Architectural limitations
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 Remote replication has the following architectural limitations, which are inherently challenging to relax due to the architecture:
 
@@ -972,4 +978,4 @@ While LogApplier provides many metrics, the following metric is the most importa
 
 ## Additional details
 
-Remote replication is currently in Private Preview. This feature and documentation are subject to change. For more details, please [contact us](https://www.scalar-labs.com/contact) or wait for this feature to become public preview or GA.
+Remote replication is currently in Public Preview. This feature and documentation are subject to change. For more details, please [contact us](https://www.scalar-labs.com/contact) or wait for this feature to become GA.

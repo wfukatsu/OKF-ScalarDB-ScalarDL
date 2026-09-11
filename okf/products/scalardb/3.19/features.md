@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.19'
-patch_version: 3.19.0
+patch_version: 3.19.1
 doc_id: features
 lifecycle_phase: design
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:31Z'
+  at: '2026-09-11T05:23:06Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/4fa644f40396f8d8f5d3d0d90c217b77ea0e70d1/docs/features.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/features.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-08-20T18:31:06Z'
+  last_modified: '2026-09-09T05:43:01Z'
 ---
 
 # ScalarDB Features
@@ -43,14 +43,12 @@ This document briefly explains which features are available in which editions of
 | [Non-transactional storage operations](./develop-run-non-transactional-operations-overview.md)                                       | –                         | ✅ (3.14+)                             | ✅ (3.14+)                                                 | –                               |
 | [Authentication/authorization](./scalardb-cluster/scalardb-auth-with-sql.md)                                                         | –                         | ✅                                     | ✅                                                         | –                               |
 | [Encryption](./scalardb-cluster/encrypt-data-at-rest.md)                                                                             | –                         | –                                      | ✅ (3.14+)                                                 | –                               |
-| [Attribute-based access control](./scalardb-cluster/authorize-with-abac.md)                                                          | –                         | –                                      | ✅ (3.15+) (Enterprise Premium Option*, Private Preview**) | –                               |
+| [Attribute-based access control](./scalardb-cluster/authorize-with-abac.md)                                                          | –                         | –                                      | ✅ (3.15+) (Enterprise Premium Option*, Public Preview) | –                               |
 | [SQL interface (SQL API, JDBC, Spring Data JDBC, and LINQ)](./scalardb-sql/section-home.md)                                                 | –                         | –                                      | ✅                                                         | –                               |
 | [GraphQL interface](./scalardb-graphql/section-home.md)                                                                                     | –                         | –                                      | ✅                                                         | –                               |
-| [Vector search interface](./scalardb-cluster/getting-started-with-vector-search.md)                                                  | –                         | –                                      | ✅ (3.15+) (Private Preview**)                             | –                               |
+| [Vector search interface](./scalardb-cluster/getting-started-with-vector-search.md)                                                  | –                         | –                                      | ✅ (3.15+) (Public Preview)                             | –                               |
 | [Analytical query processing across ScalarDB-managed data sources](./scalardb-analytics/quickstart.md)     | –                         | –                                      | –                                                          | ✅ (3.14+)                      |
 | [Analytical query processing across non-ScalarDB-managed data sources](./scalardb-analytics/quickstart.md) | –                         | –                                      | –                                                          | ✅ (3.15+)                      |
-| [Remote replication](./scalardb-cluster/remote-replication.md)                                                                       | –                         | –                                      | ✅ (3.16+) (Private Preview**)                             | –                               |
+| [Remote replication](./scalardb-cluster/remote-replication.md)                                                                       | –                         | –                                      | ✅ (3.16+) (Public Preview)                             | –                               |
 
 \* This feature is not available in the Enterprise Premium edition. If you want to use this feature, please [contact us](https://www.scalar-labs.com/contact).
-
-\*\* This feature is currently in Private Preview. For details, please [contact us](https://www.scalar-labs.com/contact) or wait for this feature to become publicly available in a future version.
