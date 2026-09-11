@@ -1,0 +1,107 @@
+# Pull the upstream documentation on a schedule and open a pull request when
+# the bundle actually changes.
+#
+# Every run rewrites `generated.at` timestamps, `.okf-state.json` `last_run`
+# and appends to okf/log.md, even when upstream did not move. Those are
+# ignored when deciding whether there is anything to propose; the pull request
+# still carries them, so the log records when the change was picked up.
+name: Scheduled upstream update
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"        # Mondays 00:00 UTC (09:00 JST)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "update = new versions + latest (make update), build = rebuild everything (make build)"
+        type: choice
+        options: [update, build]
+        default: update
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: scheduled-update
+  cancel-in-progress: false
+
+env:
+  BRANCH: auto-update/upstream
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash            # -eo pipefail, so a failing build is not hidden by tee
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Regenerate the bundle
+        run: make "${{ inputs.mode || 'update' }}" 2>&1 | tee "$RUNNER_TEMP/build.log"
+
+      - name: Validate
+        run: make validate
+
+      - name: Detect meaningful changes
+        id: diff
+        run: |
+          ignore=(-I "^  at: '" -I '"last_run":')
+          untracked=$(git ls-files --others --exclude-standard)
+          if git diff --quiet "${ignore[@]}" -- . ':!okf/log.md' && [ -z "$untracked" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No upstream changes beyond timestamps." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git add -A
+            {
+              echo "### Changed files"
+              echo '```'
+              git diff --cached --stat "${ignore[@]}" -- . ':!okf/log.md' | tail -n 40
+              echo '```'
+            } > "$RUNNER_TEMP/stat.md"
+            cat "$RUNNER_TEMP/stat.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Open or update the pull request
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git commit -q -m "Refresh from upstream ($(date -u +%Y-%m-%d))"
+          git push --force origin "$BRANCH"
+
+          {
+            echo "上流ドキュメントリポジトリの定期取得で差分が見つかりました（\`make ${{ inputs.mode || 'update' }}\` → \`make validate\` 通過済み）。"
+            echo
+            echo "タイムスタンプ（\`generated.at\` / \`last_run\`）と \`okf/log.md\` 以外に変更があった場合だけ作成されます。"
+            echo "マージ前に、概念数の増減や新規・アーカイブ化されたバージョンを確認してください。"
+            echo
+            echo "### Build output"
+            echo '```'
+            grep -v '^note: JSX' "$RUNNER_TEMP/build.log" | tail -n 30
+            echo '```'
+            echo
+            cat "$RUNNER_TEMP/stat.md"
+            echo
+            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          } > "$RUNNER_TEMP/body.md"
+
+          if gh pr view "$BRANCH" --json state -q .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$BRANCH" --body-file "$RUNNER_TEMP/body.md"
+          else
+            gh pr create --base "${{ github.event.repository.default_branch }}" --head "$BRANCH" \
+              --title "Refresh from upstream" --body-file "$RUNNER_TEMP/body.md"
+          fi
