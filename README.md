@@ -137,6 +137,11 @@ make validate    # OKF v0.2 適合性を検査
 
 `okf/` 配下は生成物です。直接編集せず、`tools/` を編集してください。
 
+GitHub Actions（`.github/workflows/update.yml`）が毎週月曜 09:00 JST に `make update` と
+`make validate` を実行し、タイムスタンプ以外の差分があればプルリクエストを作成します。
+Actions タブから手動実行も可能です。詳細は
+[`okf/guides/bundle-maintenance.md`](./okf/guides/bundle-maintenance.md) の「定期自動更新」節を参照してください。
+
 ### バージョンの廃止（アーカイブ）
 
 上流がドキュメントサイトからバージョンを削除しても、バンドルのディレクトリは残ります。

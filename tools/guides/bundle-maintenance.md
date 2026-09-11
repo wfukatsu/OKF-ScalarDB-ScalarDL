@@ -95,6 +95,24 @@ python3 tools/okf_build.py --products scalardb --versions 3.18
 python3 tools/okf_build.py --offline
 ```
 
+## 定期自動更新（GitHub Actions）
+
+`.github/workflows/update.yml` が **毎週月曜 09:00 JST** に `make update` → `make validate` を実行し、
+差分があればプルリクエスト（ブランチ `auto-update/upstream`）を作成します。
+Actions タブの「Scheduled upstream update」から手動実行もでき、その際は
+`mode: build` を選ぶと全バージョンを作り直します。
+
+- 生成のたびに `generated.at` / `.okf-state.json` の `last_run` が書き換わり、
+  `okf/log.md` にも追記されますが、**それ以外に変更が無ければ PR は作りません。**
+- 未マージの PR がある状態で再実行すると、同じ PR を最新の結果で上書きします（force push）。
+- 検証（`make validate`）が失敗した場合は PR を作らず、ワークフローが失敗します。
+- 価格セクションは対象外です（上流が無いため。後述）。
+- マージ前に、概念数の増減・新規バージョン・アーカイブ化されたバージョンを確認してください。
+
+リポジトリ設定の **Settings → Actions → General → Workflow permissions** で
+「Allow GitHub Actions to create and approve pull requests」を有効にしておく必要があります。
+また GitHub は、60 日間コミットが無い公開リポジトリの定期実行を自動停止します。
+
 ## 生成後の確認
 
 ```bash
