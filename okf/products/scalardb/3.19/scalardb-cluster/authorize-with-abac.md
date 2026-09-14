@@ -22,13 +22,13 @@ feature_status:
 - Public Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-09-14T03:42:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/authorize-with-abac.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/45b362692765eeed47d41bf36b23f6e7c007a55f/docs/scalardb-cluster/authorize-with-abac.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-09-11T06:55:58Z'
 ---
 
 # Control User Access in a Fine-Grained Manner

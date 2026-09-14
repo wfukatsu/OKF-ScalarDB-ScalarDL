@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-09-14T03:42:18Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/helm-charts/mount-files-or-volumes-on-scalar-pods.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/f4def7259703d3d3e1afd35342e333fdbcd437a2/docs/helm-charts/mount-files-or-volumes-on-scalar-pods.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-09-11T06:56:11Z'
 ---
 
 # Mount any files or volumes on Scalar product pods

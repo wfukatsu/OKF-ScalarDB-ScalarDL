@@ -15,7 +15,7 @@ doc_id: getting-started-with-scalardb
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:13Z'
+  at: '2026-09-14T03:42:21Z'
 sources:
 - id: docs-scalardb-community
   resource: https://github.com/scalar-labs/docs-scalardb-community/blob/71d199cb0df1c638bd7e305b64fa09fc7236e5c4/docs/getting-started-with-scalardb.mdx
