@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # ScalarDB Core Configurations
@@ -338,13 +338,13 @@ The following properties have been removed and will be ignored if set. If these 
 #### `jdbc.mysql.variable_key_column_size`
 
 - **Field:** `scalar.db.jdbc.mysql.variable_key_column_size`
-- **Description:** Column size for TEXT and BLOB columns in MySQL when they are used as a primary key or secondary key. Minimum 64 bytes.
+- **Description:** Column size for `TEXT` and `BLOB` columns in MySQL when they are used as a primary key or secondary key. Minimum 64 bytes.
 - **Default value:** `128`
 
 #### `jdbc.oracle.variable_key_column_size`
 
 - **Field:** `scalar.db.jdbc.oracle.variable_key_column_size`
-- **Description:** Column size for TEXT and BLOB columns in Oracle when they are used as a primary key or secondary key. Minimum 64 bytes.
+- **Description:** Column size for `TEXT` and `BLOB` columns in Oracle when they are used as a primary key or secondary key. Minimum 64 bytes.
 - **Default value:** `128`
 
 #### `jdbc.oracle.time_column.default_date_component`
@@ -356,19 +356,19 @@ The following properties have been removed and will be ignored if set. If these 
 #### `jdbc.db2.variable_key_column_size`
 
 - **Field:** `scalar.db.jdbc.db2.variable_key_column_size`
-- **Description:** Column size for TEXT and BLOB columns in IBM Db2 when they are used as a primary key or secondary key. Minimum 64 bytes.
+- **Description:** Column size for `TEXT` and `BLOB` columns in IBM Db2 when they are used as a primary key or secondary key. Minimum 64 bytes.
 - **Default value:** `128`
 
 #### `jdbc.db2.time_column.default_date_component`
 
 - **Field:** `scalar.db.jdbc.db2.time_column.default_date_component`
-- **Description:** Value of the date component used for storing `TIME` data in IBM Db2. Since the IBM Db2 TIMESTAMP type is used to store ScalarDB `TIME` type data because it provides fractional-second precision, ScalarDB stores `TIME` data with the same date component value for ease of comparison and sorting.
+- **Description:** Value of the date component used for storing `TIME` data in IBM Db2. Since the IBM Db2 `TIMESTAMP` type is used to store ScalarDB `TIME` type data because it provides fractional-second precision, ScalarDB stores `TIME` data with the same date component value for ease of comparison and sorting.
 - **Default value:** `1970-01-01`
 
 #### `jdbc.spanner.time_column.default_date_component`
 
 - **Field:** `scalar.db.jdbc.spanner.time_column.default_date_component`
-- **Description:** Value of the date component used for storing `TIME` data in Spanner. Because Spanner's PostgreSQL dialect has no native TIME type, ScalarDB stores `TIME` data as Spanner `TIMESTAMP WITH TIME ZONE` data with a fixed date component to enable comparison and sorting.
+- **Description:** Value of the date component used for storing `TIME` data in Spanner. Because Spanner's PostgreSQL dialect has no native `time` type, ScalarDB stores `TIME` data as Spanner `timestamp with time zone` data with a fixed date component to enable comparison and sorting.
 - **Default value:** `1970-01-01`
 
 :::note

@@ -18,13 +18,13 @@ is_latest: true
 concept_count: 139
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/65cde245dc475500d48ccf7a4d460a7965759c95
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/5a0ce6d90acfadea3a0e493f961c676890e2cc1a
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL 3.14
@@ -37,7 +37,7 @@ Supported release.
 | Documentation version | 3.14 |
 | Newest patch release described | 3.14.1 |
 | Docs site | https://scalardl.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `65cde245dc47` |
+| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `5a0ce6d90acf` |
 | Concepts in this version | 139 |
 
 ## By lifecycle phase
@@ -59,7 +59,7 @@ Start here when you know which phase of the project you are in.
 ### 実装 / Implement (34)
 
 - [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md)
-- [A Guide on How to Write Function for ScalarDL](./how-to-write-function.md)
+- [A Guide on How to Write Functions for ScalarDL](./how-to-write-function.md)
 - [Access Namespaces in a Restricted Manner](./access-namespaces-in-a-restricted-manner.md)
 - [Advanced Configurations and Operations Overview](./develop-advanced-configurations-overview.md)
 - [Develop Overview](./develop-overview.md)
@@ -206,8 +206,8 @@ Start here when you know which phase of the project you are in.
 ## Top-level concepts
 
 - [A Guide on How to Backup and Restore Data in ScalarDL](./backup-restore.md) — Since ScalarDL uses ScalarDB that provides transaction capability on top of non-transactional (possibly transactional) databases non-invasively, you need to take special care of backing up and restoring the databases in a...
-- [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md) — This document sets out some guidelines for writing contracts for ScalarDL.
-- [A Guide on How to Write Function for ScalarDL](./how-to-write-function.md) — This document sets out some guidelines for writing functions for ScalarDL.
+- [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md) — This document sets out some guidelines for writing Contracts for ScalarDL.
+- [A Guide on How to Write Functions for ScalarDL](./how-to-write-function.md) — This document sets out some guidelines for writing Functions for ScalarDL.
 - [Access Namespaces in a Restricted Manner](./access-namespaces-in-a-restricted-manner.md) — The namespace feature is currently in Public Preview. The feature and related documentation are subject to change.
 - [Advanced Configurations and Operations Overview](./develop-advanced-configurations-overview.md) — In this category, you can learn how to set advanced configurations and perform advanced operations for ScalarDL.
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore-overview.md) — In this category, you can follow guides to help you back up and restore databases that are used by ScalarDL through ScalarDB.
@@ -215,7 +215,7 @@ Start here when you know which phase of the project you are in.
 - [Deploy ScalarDL in a Cloud-Based Kubernetes Environment Overview](./deploy-managed-kubernetes-environment-overview.md) — In this category, you can follow guides to help you become more familiar with deploying ScalarDL in managed, cloud-based Kubernetes environments by using Helm Charts.
 - [Deploy ScalarDL in Your Local Kubernetes Environment Overview](./deploy-local-environment-overview.md) — In this category, you can follow guides to help you become more familiar with deploying ScalarDL in your local Kubernetes environment by using Helm Charts.
 - [Develop Overview](./develop-overview.md) — In this category, you can follow guides to help you become more familiar with ScalarDL, specifically with how to write and run ScalarDL applications.
-- [Generic Contracts and Functions Reference Guide](./generic-contracts-reference.md) — Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than...
+- [Generic Contracts and Functions Reference Guide](./generic-contracts-reference.md) — Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than...
 - [Get Started with ScalarDL HashStore](./getting-started-hashstore.md) — ScalarDL HashStore is a high-level abstraction on top of a low-level ledger abstraction. It is specially designed for digital evidence preservation and offers two functionalities: object authenticity management and collection authenticity...
 - [Get Started with ScalarDL Ledger](./getting-started.md) — This getting started tutorial explains how to configure ScalarDL on your preferred database and illustrates the process of creating a simple application where the historical states of data are traced.
 - [Get Started with ScalarDL TableStore](./getting-started-tablestore.md) — ScalarDL TableStore is a high-level abstraction on top of the low-level ledger abstraction. It offers an SQL interface instead of primitive CRUD interfaces like get and put, enabling you to build versatile, tamper-evident applications with...
@@ -224,7 +224,7 @@ Start here when you know which phase of the project you are in.
 - [Libraries and Tools for ScalarDL](./libraries-and-tools.md) — ScalarDL provides various libraries and tools to help you build and operate scalable and reliable applications. Below are some key libraries and tools available.
 - [Manage Namespaces](./manage-namespaces.md) — The namespace feature is currently in Public Preview. The feature and related documentation are subject to change.
 - [Manage Overview](./manage-overview.md) — In this category, you can follow guides to help you manage ScalarDL.
-- [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md) — This document explains the lifecycle of contracts and functions in ScalarDL—from creating and registering them to updating them when bug fixes or feature additions are needed.
+- [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md) — This document explains the lifecycle of Contracts and Functions in ScalarDL—from creating and registering them to updating them when bug fixes or feature additions are needed.
 - [Model Your Data](./data-modeling.md) — Data modeling (or in other words, organizing your data) is the process of conceptualizing and visualizing how data will be stored and used by identifying the patterns used to access data and the types of queries to be performed within...
 - [Monitor Overview](./manage-monitor-overview.md) — Monitoring is essential for maintaining the health and performance of your ScalarDL deployment. This section provides guidance on monitoring ScalarDL in Kubernetes cluster environments, including checking system availability, collecting...
 - [Purge the Residual Transaction State](./purge-residual-transaction-state.md) — When using ScalarDL Ledger and Auditor, each transaction produces a transaction state that ScalarDL uses to process and, if necessary, recover the transaction. After a transaction has fully served this purpose, the state that it leaves...
@@ -253,9 +253,9 @@ Start here when you know which phase of the project you are in.
 - [ScalarDL TableStore Command Reference](./scalardl-tablestore-command-reference.md) — This page introduces scalardl-tablestore, which is a client command for interacting with ScalarDL TableStore.
 - [ScalarDL TableStore Error Codes](./scalardl-tablestore-status-codes.md) — This page provides a list of error codes in ScalarDL TableStore.
 - [ScalarDL TableStore SQL Grammar](./sql-grammar.md) — This page provides a list of commands supported in ScalarDL TableStore SQL.
-- [Use Generic Contracts and Functions](./use-generic-contracts.md) — Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than...
-- [Use Table-Oriented Generic Contracts](./use-table-oriented-generic-contracts.md) — Although table-oriented generic contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented generic contracts. For most use cases, using TableStore is...
-- [Write a ScalarDL Application with Generic Contracts](./how-to-write-applications-with-generic-contracts.md) — Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than...
+- [Use Generic Contracts and Functions](./use-generic-contracts.md) — Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than...
+- [Use Table-Oriented Generic Contracts](./use-table-oriented-generic-contracts.md) — Although table-oriented Generic Contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented Generic Contracts. For most use cases, using TableStore is...
+- [Write a ScalarDL Application with Generic Contracts](./how-to-write-applications-with-generic-contracts.md) — Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than...
 - [Write a ScalarDL Application with the HashStore Abstraction](./how-to-write-applications-with-hashstore.md) — This document explains how to write ScalarDL applications with the HashStore abstraction. You will learn how to use ScalarDL HashStore in your applications, handle errors, and validate your data.
 - [Write a ScalarDL Application with the Ledger Abstraction](./how-to-write-applications.md) — This document explains how to write ScalarDL applications with the Ledger abstraction. You will learn how to integrate ScalarDL into your applications, handle errors, and validate your data.
 - [Write a ScalarDL Application with the TableStore Abstraction](./how-to-write-applications-with-tablestore.md) — This document explains how to write ScalarDL applications with the TableStore abstraction. You will learn how to use ScalarDL TableStore in your applications, handle errors, and validate your data.

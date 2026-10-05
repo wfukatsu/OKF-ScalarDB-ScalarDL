@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/run-transactions-through-scalardb-cluster-sql.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-cluster/run-transactions-through-scalardb-cluster-sql.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Run Transactions Through ScalarDB Cluster SQL
@@ -496,7 +496,7 @@ docker compose up -d scalardb-cluster-node
 
 ScalarDB has its own data model and schema that maps to the implementation-specific data model and schema.
 
-- **Need to create a database schema?** See [SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#sql-cli).
+- **Need to create a database schema?** See [SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-sql-cli).
 - **Need to import an existing database?** See [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](../schema-loader-import.md).
 
 ## Load initial data as necessary

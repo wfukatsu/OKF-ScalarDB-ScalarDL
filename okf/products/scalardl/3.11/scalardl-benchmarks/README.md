@@ -10,11 +10,12 @@ tags:
 - section:develop
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: scalardl-benchmarks/README
 lifecycle_phase: implement
 breadcrumb:
@@ -25,13 +26,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:30Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/scalardl-benchmarks/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/scalardl-benchmarks/README.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL Benchmarking Tools
@@ -70,7 +71,7 @@ Set up the above components, and then configure the properties for client, Ledge
 
 :::note
 
-You don't need to download the client SDK and manually register your certificate. As described later in this tutorial, the benchmarking tools will automatically register the required certificate and contracts.
+You don't need to download the client SDK and manually register your certificate. As described later in this tutorial, the benchmarking tools will automatically register the required certificate and Contracts.
 
 :::
 
@@ -183,8 +184,8 @@ To run the YCSB benchmark, run the following command, replacing `<PATH_TO_KELPIE
 
 In addition, the following options are available:
 
-- `--only-pre`. Only registers certificates and contracts and loads the data.
-- `--except-pre` Runs a job without registering certificates and contracts and loading the data.
+- `--only-pre`. Only registers certificates and Contracts and loads the data.
+- `--except-pre` Runs a job without registering certificates and Contracts and loading the data.
 
 You can run the benchmark several times by using the `--except-pre` option after the initialization is done by using the `--only-pre` option.
 

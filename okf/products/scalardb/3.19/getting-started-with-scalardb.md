@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/getting-started-with-scalardb.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/getting-started-with-scalardb.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Getting Started with ScalarDB
@@ -638,7 +638,7 @@ Check details about the order by running the following command, replacing `<ORDE
 ./gradlew run --args="GetOrder <ORDER_ID_UUID>"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`:
 
 ```console
 ...
@@ -670,7 +670,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew run --args="GetOrders 1"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`, which shows the history of all orders for customer ID `1`:
 
 ```console
 ...

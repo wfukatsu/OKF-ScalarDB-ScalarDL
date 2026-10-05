@@ -1,44 +1,45 @@
 ---
 type: Product Version
 title: ScalarDL 3.11
-description: Documentation set for ScalarDL 3.11 (newest patch 3.11.3).
+description: Documentation set for ScalarDL 3.11 (newest patch 3.11.4).
 resource: https://scalardl.scalar-labs.com/docs/3.11/
 tags:
 - scalardl
 - v3.11
 - product-version
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 url_path: '3.11'
-maintenance: supported
+maintenance: unmaintained
 is_latest: false
-concept_count: 132
+concept_count: 127
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:30Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/db1535c35d0f746c5b5d8d9772f54afa0c709a34
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/5a0ce6d90acfadea3a0e493f961c676890e2cc1a
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL 3.11
 
-Supported release.
+**Unmaintained release.** Prefer a supported version for new work; kept here for systems still running it.
 
 | | |
 |---|---|
 | Product | ScalarDL |
 | Documentation version | 3.11 |
-| Newest patch release described | 3.11.3 |
+| Newest patch release described | 3.11.4 |
 | Docs site | https://scalardl.scalar-labs.com/docs/3.11/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `db1535c35d0f` |
-| Concepts in this version | 132 |
+| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `5a0ce6d90acf` |
+| Concepts in this version | 127 |
 
 ## By lifecycle phase
 
@@ -59,7 +60,7 @@ Start here when you know which phase of the project you are in.
 ### 実装 / Implement (32)
 
 - [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md)
-- [A Guide on How to Write Function for ScalarDL](./how-to-write-function.md)
+- [A Guide on How to Write Functions for ScalarDL](./how-to-write-function.md)
 - [Advanced Configurations and Operations Overview](./develop-advanced-configurations-overview.md)
 - [Develop Overview](./develop-overview.md)
 - [Generic Contracts and Functions Reference Guide](./generic-contracts-reference.md)
@@ -91,7 +92,7 @@ Start here when you know which phase of the project you are in.
 - [How to Configure a Trial License Key](./scalar-licensing/trial.md)
 - [ScalarDL Benchmarking Tools](./scalardl-benchmarks/README.md)
 
-### 運用 / Operate (91)
+### 運用 / Operate (86)
 
 - [A Guide on How to Backup and Restore Data in ScalarDL](./backup-restore.md)
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore-overview.md)
@@ -114,13 +115,11 @@ Start here when you know which phase of the project you are in.
 - [Configure a custom values file for Scalar Admin for Kubernetes](./helm-charts/configure-custom-values-scalar-admin-for-kubernetes.md)
 - [Configure a custom values file for Scalar Envoy](./helm-charts/configure-custom-values-envoy.md)
 - [Configure a custom values file for Scalar Helm Charts](./helm-charts/configure-custom-values-file.md)
-- [Configure a Custom Values File for Scalar Manager](./helm-charts/configure-custom-values-scalar-manager.md)
 - [Configure a custom values file for ScalarDB Analytics server](./helm-charts/configure-custom-values-scalardb-analytics-server.md)
 - [Configure a custom values file for ScalarDB Cluster](./helm-charts/configure-custom-values-scalardb-cluster.md)
 - [Configure a custom values file for ScalarDL Auditor](./helm-charts/configure-custom-values-scalardl-auditor.md)
 - [Configure a custom values file for ScalarDL Ledger](./helm-charts/configure-custom-values-scalardl-ledger.md)
 - [Configure a custom values file for ScalarDL Schema Loader](./helm-charts/configure-custom-values-scalardl-schema-loader.md)
-- [Deploy Scalar Manager](./helm-charts/getting-started-scalar-manager.md)
 - [Deploy Scalar products using Scalar Helm Charts](./helm-charts/how-to-deploy-scalar-products.md)
 - [Getting Started with Helm Charts (Logging using Loki Stack)](./helm-charts/getting-started-logging.md)
 - [Getting Started with Helm Charts (Monitoring using Prometheus Operator)](./helm-charts/getting-started-monitoring.md)
@@ -181,9 +180,6 @@ Start here when you know which phase of the project you are in.
 - [Envoy Alerts](./scalar-kubernetes/alerts/Envoy.md)
 - [Ledger Alerts](./scalar-kubernetes/alerts/Ledger.md)
 - [Scalar Alerts](./scalar-kubernetes/alerts/README.md)
-- [How to Use Scalar Manager](./scalar-manager/how-to-use-scalar-manager.md)
-- [Scalar Manager Metrics Reference](./scalar-manager/metrics-reference.md)
-- [Scalar Manager Overview](./scalar-manager/overview.md)
 
 ## Sections
 
@@ -194,30 +190,29 @@ Start here when you know which phase of the project you are in.
 - [releases](./releases/index.md)
 - [scalar-kubernetes](./scalar-kubernetes/index.md)
 - [scalar-licensing](./scalar-licensing/index.md)
-- [scalar-manager](./scalar-manager/index.md)
 - [scalardl-benchmarks](./scalardl-benchmarks/index.md)
 
 ## Top-level concepts
 
 - [A Guide on How to Backup and Restore Data in ScalarDL](./backup-restore.md) — Since ScalarDL uses ScalarDB that provides transaction capability on top of non-transactional (possibly transactional) databases non-invasively, you need to take special care of backing up and restoring the databases in a...
-- [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md) — This document sets out some guidelines for writing contracts for ScalarDL.
-- [A Guide on How to Write Function for ScalarDL](./how-to-write-function.md) — This document sets out some guidelines for writing functions for ScalarDL.
+- [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md) — This document sets out some guidelines for writing Contracts for ScalarDL.
+- [A Guide on How to Write Functions for ScalarDL](./how-to-write-function.md) — This document sets out some guidelines for writing Functions for ScalarDL.
 - [Advanced Configurations and Operations Overview](./develop-advanced-configurations-overview.md) — In this category, you can learn how to set advanced configurations and perform advanced operations for ScalarDL.
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore-overview.md) — In this category, you can follow guides to help you back up and restore databases that are used by ScalarDL through ScalarDB.
 - [Deploy Overview](./deploy-overview.md) — In this category, you can follow guides to help you become more familiar with deploying ScalarDL in local and cloud-based Kubernetes environments.
 - [Deploy ScalarDL in a Cloud-Based Kubernetes Environment Overview](./deploy-managed-kubernetes-environment-overview.md) — In this category, you can follow guides to help you become more familiar with deploying ScalarDL in managed, cloud-based Kubernetes environments by using Helm Charts.
 - [Deploy ScalarDL in Your Local Kubernetes Environment Overview](./deploy-local-environment-overview.md) — In this category, you can follow guides to help you become more familiar with deploying ScalarDL in your local Kubernetes environment by using Helm Charts.
 - [Develop Overview](./develop-overview.md) — In this category, you can follow guides to help you become more familiar with ScalarDL, specifically with how to write and run ScalarDL applications.
-- [Generic Contracts and Functions Reference Guide](./generic-contracts-reference.md) — Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than...
+- [Generic Contracts and Functions Reference Guide](./generic-contracts-reference.md) — Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than...
 - [Get Started with ScalarDL Ledger](./getting-started.md) — This getting started tutorial explains how to configure ScalarDL on your preferred database and illustrates the process of creating a simple application where the historical states of data are traced.
 - [Glossary](./glossary.md) — This glossary includes terms that are often used when using ScalarDL.
 - [How to Install ScalarDL in Your Local Environment with Docker](./installation-with-docker.md) — This document shows how to set up a local environment that runs ScalarDL along with the back-end Cassandra server using Docker Compose.
 - [Libraries and Tools for ScalarDL](./libraries-and-tools.md) — ScalarDL provides various libraries and tools to help you build and operate scalable and reliable applications. Below are some key libraries and tools available.
 - [Manage Overview](./manage-overview.md) — In this category, you can follow guides to help you manage ScalarDL.
-- [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md) — This document explains the lifecycle of contracts and functions in ScalarDL—from creating and registering them to updating them when bug fixes or feature additions are needed.
+- [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md) — This document explains the lifecycle of Contracts and Functions in ScalarDL—from creating and registering them to updating them when bug fixes or feature additions are needed.
 - [Model Your Data](./data-modeling.md) — Data modeling (or in other words, organizing your data) is the process of conceptualizing and visualizing how data will be stored and used by identifying the patterns used to access data and the types of queries to be performed within...
-- [Monitor Overview](./manage-monitor-overview.md) — Scalar Manager is a centralized management and monitoring solution for ScalarDL within Kubernetes cluster environments that allows you to:
-- [Quickstart Overview](./quickstart-overview.md) — In this category, you can follow quickstart tutorials for how to get started with running a basic contract through ScalarDL Ledger by using the Java Client SDK.
+- [Monitor Overview](./manage-monitor-overview.md) — Monitoring is essential for maintaining the health and performance of your ScalarDL deployment. This section provides guidance on monitoring ScalarDL in Kubernetes cluster environments, including checking system availability, collecting...
+- [Quickstart Overview](./quickstart-overview.md) — In this category, you can follow quickstart tutorials for how to get started with running a basic Contract through ScalarDL Ledger by using the Java Client SDK.
 - [Requirements](./requirements.md) — This page describes the required tools and their versions to use ScalarDL correctly.
 - [Run a ScalarDL Application Through ScalarDL Ledger](./how-to-run-applications.md) — This guide explains how to run a ScalarDL application through ScalarDL Ledger. This document assumes that you have already tried the Get Started with ScalarDL Ledger tutorial and created your application that integrates ScalarDL by using...
 - [Run a ScalarDL Application Through ScalarDL Ledger and Auditor](./how-to-run-applications-with-auditor.md) — This guide explains how to run a ScalarDL application through ScalarDL Ledger and Auditor. This document assumes that you have already tried the Get Started with ScalarDL Ledger tutorial and created your application that integrates...
@@ -237,9 +232,9 @@ Start here when you know which phase of the project you are in.
 - [ScalarDL Overview](./overview.md) — This page describes what ScalarDL is and its primary use cases.
 - [ScalarDL Roadmap](./roadmap.md) — This roadmap provides a look into the proposed future of ScalarDL. The purpose of this roadmap is to provide visibility into what changes may be coming so that you can more closely follow progress, learn about key milestones, and give...
 - [ScalarDL Schema Loader](./schema-loader.md) — A Docker image that loads the database schemas of ScalarDL using Schema Tool for ScalarDB.
-- [Use Generic Contracts and Functions](./use-generic-contracts.md) — Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than...
-- [Use Table-Oriented Generic Contracts](./use-table-oriented-generic-contracts.md) — Although table-oriented generic contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented generic contracts. For most use cases, using TableStore is...
+- [Use Generic Contracts and Functions](./use-generic-contracts.md) — Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than...
+- [Use Table-Oriented Generic Contracts](./use-table-oriented-generic-contracts.md) — Although table-oriented Generic Contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented Generic Contracts. For most use cases, using TableStore is...
 - [Write a ScalarDL Application in Java](./how-to-write-applications.md) — This document explains how to write ScalarDL applications. You will learn how to integrate ScalarDL into your applications, handle errors, and validate your data.
-- [Write a ScalarDL Application with Generic Contracts](./how-to-write-applications-with-generic-contracts.md) — Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than...
+- [Write a ScalarDL Application with Generic Contracts](./how-to-write-applications-with-generic-contracts.md) — Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than...
 - [Write an Application Overview](./develop-write-an-application-overview.md) — In this category, you can learn how to write a ScalarDL application.
 - [Write Business Logic Overview](./develop-write-business-logic-overview.md) — In this category, you can learn how to write business logic for a ScalarDL application.

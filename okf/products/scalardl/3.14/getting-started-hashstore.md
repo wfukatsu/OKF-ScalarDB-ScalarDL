@@ -21,18 +21,18 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/getting-started-hashstore.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/getting-started-hashstore.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Get Started with ScalarDL HashStore
 
-ScalarDL HashStore is a high-level abstraction on top of a low-level ledger abstraction. It is specially designed for digital evidence preservation and offers two functionalities: object authenticity management and collection authenticity management. By using HashStore, you can manage hash values of objects and a collection of objects in an immutable manner without writing a [contract](./design.md#contract), enabling you to develop authenticity management applications quickly and easily.
+ScalarDL HashStore is a high-level abstraction on top of a low-level ledger abstraction. It is specially designed for digital evidence preservation and offers two functionalities: object authenticity management and collection authenticity management. By using HashStore, you can manage hash values of objects and a collection of objects in an immutable manner without writing a [Contract](./design.md#contracts), enabling you to develop authenticity management applications quickly and easily.
 
 This getting started tutorial explains how to configure ScalarDL HashStore on your preferred database and manage objects and collections in a tamper-evident manner.
 
@@ -749,7 +749,7 @@ Next, you can bootstrap HashStore by running the following command:
 hashstore/bin/scalardl-hashstore bootstrap --properties client.properties
 ```
 
-The bootstrap command internally registers identity information (a certificate or secret) and predefined contracts necessary to use HashStore.
+The bootstrap command internally registers identity information (a certificate or secret) and predefined Contracts necessary to use HashStore.
 
 ## Manage object authenticity
 

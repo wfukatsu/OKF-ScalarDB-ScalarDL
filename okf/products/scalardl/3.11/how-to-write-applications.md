@@ -10,11 +10,12 @@ tags:
 - section:develop
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: how-to-write-applications
 lifecycle_phase: implement
 breadcrumb:
@@ -25,13 +26,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:30Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/how-to-write-applications.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/how-to-write-applications.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Write a ScalarDL Application in Java
@@ -41,7 +42,7 @@ This document explains how to write ScalarDL applications. You will learn how to
 ## Use the ScalarDL Client SDK
 
 You have two options to interact with ScalarDL: using [commands](./scalardl-command-reference.md) as shown in the [getting started guide](./getting-started.md) or using the [Java Client SDK](https://javadoc.io/doc/com.scalar-labs/scalardl-java-client-sdk/latest/index.html).
-Using commands is convenient because you don't need to write applications. However, they invoke a process for each execution, which is slow, so they are mainly for quickly testing your contracts. Instead, using the Java Client SDK is usually recommended when you write ScalarDL-based applications because it is more efficient.
+Using commands is convenient because you don't need to write applications. However, they invoke a process for each execution, which is slow, so they are mainly for quickly testing your Contracts. Instead, using the Java Client SDK is usually recommended when you write ScalarDL-based applications because it is more efficient.
 
 The Java Client SDK is available on [Maven Central](https://search.maven.org/search?q=a:scalardl-java-client-sdk). You can install it in your application by using a build tool such as Gradle. For example, in Gradle, you can add the following dependency to `build.gradle`, replacing `VERSION` with the version of ScalarDL that you want to use.
 
@@ -51,7 +52,7 @@ dependencies {
 }
 ```
 
-The Java Client SDK APIs are provided by a service class called [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.3/com/scalar/dl/client/service/ClientService.html). The following is a code snippet that shows how to use `ClientService` to execute a contract.
+The Java Client SDK APIs are provided by a service class called [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.4/com/scalar/dl/client/service/ClientService.html). The following is a code snippet that shows how to use `ClientService` to execute a Contract.
 
 ```java
   // ClientServiceFactory should always be reused.
@@ -61,7 +62,7 @@ The Java Client SDK APIs are provided by a service class called [`ClientService`
   // but reuses the internal objects and connections as much as possible for better performance and resource usage.
   ClientService service = factory.create(new ClientConfig(new File(properties));
   try {
-    // create an application-specific argument that matches your contract
+    // create an application-specific argument that matches your Contract
     JsonNode jsonArgument = ...;
     ContractExecutionResult result = service.executeContract(contractId, jsonArgument);
     result.getContractResult().ifPresent(System.out::println);
@@ -75,7 +76,7 @@ The Java Client SDK APIs are provided by a service class called [`ClientService`
 
 You should always use `ClientServiceFactory` to create `ClientService` objects. `ClientServiceFactory` caches objects that are required to create `ClientService` and reuses them on the basis of the given configurations, so `ClientServiceFactory` object should always be reused.
 
-`ClientService` is a thread-safe client that interacts with ScalarDL components, like Ledger and Auditor, to register certificates, register contracts, execute contracts, and validate data. When you execute a contract, you need to specify the corresponding argument type of the contract. For example, if your contract extends `JacksonBasedContract`, you need to pass the `JsonNode` argument when you execute the contract.
+`ClientService` is a thread-safe client that interacts with ScalarDL components, like Ledger and Auditor, to register certificates, register Contracts, execute Contracts, and validate data. When you execute a Contract, you need to specify the corresponding argument type of the Contract. For example, if your Contract extends `JacksonBasedContract`, you need to pass the `JsonNode` argument when you execute the Contract.
 
 For more information, please take a look at [Javadoc](https://javadoc.io/doc/com.scalar-labs/scalardl-java-client-sdk/latest/index.html).
 
@@ -85,7 +86,7 @@ If an error occurs in your application, the Client SDK will return an exception 
 
 ### Implement error handling
 
-The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.3/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
+The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.4/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
 
 ```java
 ClientService clientService = ...;
@@ -105,13 +106,13 @@ Status codes explain what kind of status request you ended up with. The status c
 - Validation errors (300-399)
 - The 3xx class of status code indicates that an asset record in the database is in an invalid state and possibly tampered.
 - User errors (400-499)
-- The 4xx class of status code indicates that the server cannot or will not process the request due to an issue that is perceived to be a client error, like when a signature or key pair is invalid, an execution error occurs inside a contract, or a contract is not found.
+- The 4xx class of status code indicates that the server cannot or will not process the request due to an issue that is perceived to be a client error, like when a signature or key pair is invalid, an execution error occurs inside a Contract, or a Contract is not found.
 - Server errors (500-599)
 - The 5xx class of status code indicates that the server, either on the Ledger side or the Auditor side, encountered an unexpected condition that prevented it from fulfilling the request.
 - Client errors (600-699)
 - The 6xx class of status code indicates that the client encountered an unexpected condition that prevented it from fulfilling the request.
 
-For more details, see [`StatusCode`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.3/com/scalar/dl/ledger/service/StatusCode.html).
+For more details, see [`StatusCode`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.4/com/scalar/dl/ledger/service/StatusCode.html).
 
 ### Error codes
 
@@ -132,7 +133,7 @@ When using Ledger and Auditor, the valid state means that the data in Ledger and
 
 Due to this difference, what the validation does differs when using Ledger compared to when using both Ledger and Auditor. When using only Ledger, the validation traverses assets to see if the assets can be re-computed and have a valid hash-chain structure. When using Ledger and Auditor, the validation checks for discrepancies between the states of Ledger and Auditor without centralized coordination.
 
-Also, what and when to validate can be different. When using only Ledger, you should validate assets whenever you want them to be trustworthy since they are not validated without explicit validation. When using Ledger and Auditor, you should validate when you want to use assets that have not been read recently since assets that are read or written by contract execution are validated at execution time.
+Also, what and when to validate can be different. When using only Ledger, you should validate assets whenever you want them to be trustworthy since they are not validated without explicit validation. When using Ledger and Auditor, you should validate when you want to use assets that have not been read recently since assets that are read or written by Contract execution are validated at execution time.
 
 You can do validation by using the `validateLedger` method. However, the error-handling behavior differs when using Ledger compared to when using both Ledger and Auditor.
 
@@ -163,7 +164,7 @@ Common validation-related status codes include:
 
 - `INVALID_HASH`: The hash value of an asset record differs from the expected value.
 - `INVALID_PREV_HASH`: The previous hash value differs from the expected value.
-- `INVALID_CONTRACT`: A previously executed contract produced an invalid asset record.
+- `INVALID_CONTRACT`: A previously executed Contract produced an invalid asset record.
 - `INVALID_OUTPUT`: The data value of an asset record differs from the expected value.
 
 #### When using Ledger and Auditor
@@ -214,7 +215,7 @@ Since Asset Proof is evidence at the time of execution by Ledger, it is difficul
 
 #### How to access Asset Proof from your applications
 
-You can get [`AssetProof`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.3/com/scalar/dl/ledger/asset/AssetProof.html) from the result [`ContractExecutionResult`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.3/com/scalar/dl/ledger/model/ContractExecutionResult.html) of the `executeContract` method of the Client SDK. An Asset Proof can be validated if it is not tampered and it is from Ledger by verifying the signature.
+You can get [`AssetProof`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.4/com/scalar/dl/ledger/asset/AssetProof.html) from the result [`ContractExecutionResult`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.4/com/scalar/dl/ledger/model/ContractExecutionResult.html) of the `executeContract` method of the Client SDK. An Asset Proof can be validated if it is not tampered and it is from Ledger by verifying the signature.
 
 Storing Asset Proofs outside of a domain in which Ledger runs is recommended. This is so that malicious activities in one domain can be detected by the other domain. Storing Asset Proofs in cloud storages for ease of management is also worth considering.
 

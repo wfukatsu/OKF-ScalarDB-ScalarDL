@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 ---
 
 # Dotnet Microservice Transactions Sample With Shared Cluster With Linq
@@ -21,4 +21,4 @@ ScalarDB 3.19 documentation under `scalardb-samples/dotnet-microservice-transact
 
 ## Concepts
 
-- [Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ](./README.md) — This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for the ScalarDB Cluster .NET Client SDK and LINQ.
+- [Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ](./README.md) — The JoinTransactionAsync method that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.

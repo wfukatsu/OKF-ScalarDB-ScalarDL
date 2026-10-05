@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/schema-loader.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/schema-loader.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL Schema Loader
@@ -38,39 +38,51 @@ A Docker image that loads the database schemas of ScalarDL using [Schema Tool fo
 
 ### For Cosmos DB
 
+Run the following command, replacing `<X.Y.Z>` with the version of ScalarDL Schema Loader that you want to use and the contents in the other angle brackets as described:
+
 ```console
-docker run --rm [--env SCHEMA_TYPE=auditor] ghcr.io/scalar-labs/scalardl-schema-loader:<version> \
+docker run --rm [--env SCHEMA_TYPE=auditor] ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --cosmos -h <YOUR_ACCOUNT_URI> -p <YOUR_ACCOUNT_PASSWORD> [-r BASE_RESOURCE_UNIT]
 ```
 
 ### For DynamoDB
 
+Run the following command, replacing `<X.Y.Z>` with the version of ScalarDL Schema Loader that you want to use and the contents in the other angle brackets as described:
+
 ```console
-docker run --rm [--env SCHEMA_TYPE=auditor] ghcr.io/scalar-labs/scalardl-schema-loader:<version> \
+docker run --rm [--env SCHEMA_TYPE=auditor] ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --dynamo --region <REGION> -u <ACCESS_KEY_ID> -p <SECRET_ACCESS_KEY> [-r BASE_RESOURCE_UNIT]
 ```
 
 ### For Cassandra
 
+Run the following command, replacing `<X.Y.Z>` with the version of ScalarDL Schema Loader that you want to use and the contents in the other angle brackets as described:
+
 ```console
-docker run --rm [--env SCHEMA_TYPE=auditor] ghcr.io/scalar-labs/scalardl-schema-loader:<version> \
+docker run --rm [--env SCHEMA_TYPE=auditor] ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --cassandra -h <CASSANDRA_IP> -u <CASSNDRA_USER> -p <CASSANDRA_PASSWORD> [-n <NETWORK_STRATEGY> -R <REPLICATION_FACTOR>]
 ```
 
 ### For using a config file
 
 * For Ledger
+
+  Run the following command, replacing `<X.Y.Z>` with the version of ScalarDL Schema Loader that you want to use and the contents in the other angle brackets as described:
+
 ```console
 docker run --rm \
   -v <PROPERTIES_FILE_PATH>:/scalardl-schema-loader/database.properties \
-  ghcr.io/scalar-labs/scalardl-schema-loader:<version> \
+  ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --config database.properties --coordinator [<SOME_OPTIONS> [, ...]]
 ```
 
 * For Auditor
+
+  Run the following command, replacing `<X.Y.Z>` with the version of ScalarDL Schema Loader that you want to use and the contents in the other angle brackets as described:
+
 ```console
 docker run --rm --env SCHEMA_TYPE=auditor \
   -v <PROPERTIES_FILE_PATH>:/scalardl-schema-loader/database.properties \
-  ghcr.io/scalar-labs/scalardl-schema-loader:<version> \
+  ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --config database.properties [<SOME_OPTIONS> [, ...]]
 ```

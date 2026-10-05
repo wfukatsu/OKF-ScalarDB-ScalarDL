@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalardl-hashstore-command-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/scalardl-hashstore-command-reference.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL HashStore Command Reference
@@ -37,7 +37,7 @@ This page introduces `scalardl-hashstore`, which is a client command for interac
 ## Overview of commands
 
 - **Bootstrap HashStore**
-  - [`bootstrap`](#bootstrap): Bootstrap by registering identity and predefined contracts required to use HashStore.
+  - [`bootstrap`](#bootstrap): Bootstrap by registering identity and predefined Contracts required to use HashStore.
 - **Manage objects**
   - [`get-object`](#get-object): Get an object from HashStore.
   - [`put-object`](#put-object): Put an object to HashStore.
@@ -53,7 +53,7 @@ This page introduces `scalardl-hashstore`, which is a client command for interac
 
 ## `bootstrap`
 
-Bootstrap by registering identity and predefined contracts required to use HashStore.
+Bootstrap by registering identity and predefined Contracts required to use HashStore.
 
 ### Options
 

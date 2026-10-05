@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/configurations.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL Configurations
@@ -93,25 +93,25 @@ This configuration is deprecated and will be deleted in release 5.0.0 since Ledg
 ### `executable_contracts`
 
 - **Field:** `scalar.dl.ledger.executable_contracts`
-- **Description:** Binary names of contracts that can be executed. This field specifies the binary names of executable contracts.
+- **Description:** Binary names of Contracts that can be executed. This field specifies the binary names of executable Contracts.
 - **Default value:** empty
 
 ### `function.enabled`
 
 - **Field:** `scalar.dl.ledger.function.enabled`
-- **Description:** A flag to enable function for mutable database. This field determines whether the function for mutable database is enabled.
+- **Description:** A flag to enable Function for mutable database. This field determines whether the Function for mutable database is enabled.
 - **Default value:** `true`
 
 ### `function.non_privileged_port_registration.enabled`
 
 - **Field:** `scalar.dl.ledger.function.non_privileged_port_registration.enabled`
-- **Description:** A flag to enable function registration via the non-privileged port. When set to `true`, tenants can register functions through the non-privileged port.
+- **Description:** A flag to enable Function registration via the non-privileged port. When set to `true`, tenants can register Functions through the non-privileged port.
 - **Default value:** `false`
 
 ### `function.non_privileged_port_registration.overwrite.enabled`
 
 - **Field:** `scalar.dl.ledger.function.non_privileged_port_registration.overwrite.enabled`
-- **Description:** A flag to allow overwriting an existing function when registering via the non-privileged port. When set to `true`, tenants can overwrite existing functions through the non-privileged port.
+- **Description:** A flag to allow overwriting an existing Function when registering via the non-privileged port. When set to `true`, tenants can overwrite existing Functions through the non-privileged port.
 - **Default value:** `false`
 
 ### `name`
@@ -129,7 +129,7 @@ This configuration is deprecated and will be deleted in release 5.0.0 since Ledg
 ### `proof.enabled`
 
 - **Field:** `scalar.dl.ledger.proof.enabled`
-- **Description:** A flag to enable asset proof that is used to verify assets. This field determines whether asset proof is enabled.
+- **Description:** A flag to enable Asset Proof that is used to verify assets. This field determines whether Asset Proof is enabled.
 - **Default value:** `false`
 
 ### `proof.private_key_path`
@@ -491,7 +491,7 @@ You can configure several settings for clients, such as Ledger server and Audito
 ### `auditor.linearizable_validation.contract_id`
 
 - **Field:** `scalar.dl.client.auditor.linearizable_validation.contract_id`
-- **Description:** The ID of the ValidateLedger contract.
+- **Description:** The ID of the ValidateLedger Contract.
 - **Default value:** `validate-ledger`
 
 ### `auditor.port`

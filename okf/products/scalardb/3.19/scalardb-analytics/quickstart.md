@@ -19,13 +19,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/quickstart.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-analytics/quickstart.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Getting Started with ScalarDB Analytics
@@ -277,44 +277,44 @@ The following entity relationship diagram illustrates the relationships between 
 erDiagram
     "postgres.sample_ns.customer" ||--|{ "scalardb.mysqlns.orders" : "custkey"
     "postgres.sample_ns.customer" {
-      int c_custkey
-      text c_name
-      text c_address
-      int c_nationkey
-      text c_phone
-      double c_acctbal
-      text c_mktsegment
-      text c_comment
+      INT c_custkey
+      TEXT c_name
+      TEXT c_address
+      INT c_nationkey
+      TEXT c_phone
+      DOUBLE c_acctbal
+      TEXT c_mktsegment
+      TEXT c_comment
     }
     "scalardb.mysqlns.orders"  ||--|{ "scalardb.cassandrans.lineitem" : "orderkey"
     "scalardb.mysqlns.orders" {
-      int o_orderkey
-      int o_custkey
-      text o_orderstatus
-      double o_totalprice
-      text o_orderdate
-      text o_orderpriority
-      text o_clerk
-      int o_shippriority
-      text o_comment
+      INT o_orderkey
+      INT o_custkey
+      TEXT o_orderstatus
+      DOUBLE o_totalprice
+      TEXT o_orderdate
+      TEXT o_orderpriority
+      TEXT o_clerk
+      INT o_shippriority
+      TEXT o_comment
     }
     "scalardb.cassandrans.lineitem" {
-     int l_orderkey
-     int l_partkey
-     int l_suppkey
-     int l_linenumber
-     double l_quantity
-     double l_extendedprice
-     double l_discount
-     double l_tax
-     text l_returnflag
-     text l_linestatus
-     text l_shipdate
-     text l_commitdate
-     text l_receiptdate
-     text l_shipinstruct
-     text l_shipmode
-     text l_comment
+     INT l_orderkey
+     INT l_partkey
+     INT l_suppkey
+     INT l_linenumber
+     DOUBLE l_quantity
+     DOUBLE l_extendedprice
+     DOUBLE l_discount
+     DOUBLE l_tax
+     TEXT l_returnflag
+     TEXT l_linestatus
+     TEXT l_shipdate
+     TEXT l_commitdate
+     TEXT l_receiptdate
+     TEXT l_shipinstruct
+     TEXT l_shipmode
+     TEXT l_comment
     }
 ```
 

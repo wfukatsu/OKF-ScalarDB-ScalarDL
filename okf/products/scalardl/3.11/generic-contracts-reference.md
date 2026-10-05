@@ -1,7 +1,7 @@
 ---
 type: Development Guide
 title: Generic Contracts and Functions Reference Guide
-description: Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than...
+description: Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than...
 resource: https://scalardl.scalar-labs.com/docs/3.11/generic-contracts-reference/
 tags:
 - scalardl
@@ -10,11 +10,12 @@ tags:
 - section:develop
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: generic-contracts-reference
 lifecycle_phase: implement
 breadcrumb:
@@ -25,41 +26,41 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/generic-contracts-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/generic-contracts-reference.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Generic Contracts and Functions Reference Guide
 
 :::tip
 
-Although generic contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps generic contracts. For most use cases, using HashStore is simpler and more efficient than using generic contracts directly. For details, see [Get Started with ScalarDL HashStore](https://scalardl.scalar-labs.com/docs/latest/getting-started-hashstore) in the latest version of ScalarDL.
+Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than using Generic Contracts directly. For details, see [Get Started with ScalarDL HashStore](https://scalardl.scalar-labs.com/docs/latest/getting-started-hashstore) in the latest version of ScalarDL.
 
 :::
 
-This guide describes the specifications for generic contracts and functions.
+This guide describes the specifications for Generic Contracts and Functions.
 
-## List of generic contracts and functions
+## List of Generic Contracts and Functions
 
 - **Object management**
-  - [`object.Put`](#objectput-contract) contract: Put an object with the hash value of the object.
-  - [`object.PutToMutableDatabase`](#objectputtomutabledatabase-function) function: Put a mutable record in conjunction with the `object.Put` contract.
-  - [`object.Get`](#objectget-contract) contract: Get an object.
-  - [`object.Validate`](#objectvalidate-contract) contract: Validate hash values of an object.
+  - [`object.Put`](#objectput-contract) Contract: Put an object with the hash value of the object.
+  - [`object.PutToMutableDatabase`](#objectputtomutabledatabase-function) Function: Put a mutable record in conjunction with the `object.Put` Contract.
+  - [`object.Get`](#objectget-contract) Contract: Get an object.
+  - [`object.Validate`](#objectvalidate-contract) Contract: Validate hash values of an object.
 - **Collection management**
-  - [`collection.Create`](#collectioncreate-contract) contract: Create a collection.
-  - [`collection.Add`](#collectionadd-contract) contract: Add IDs to a collection.
-  - [`collection.Remove`](#collectionremove-contract) contract: Remove IDs from a collection.
-  - [`collection.Get`](#collectionget-contract) contract: Get a collection.
-  - [`collection.GetHistory`](#collectiongethistory-contract) contract: Get a history of collection modification.
-  - [`collection.GetCheckpointInterval`](#collectiongetcheckpointinterval-contract) contract: Get a checkpoint interval.
+  - [`collection.Create`](#collectioncreate-contract) Contract: Create a collection.
+  - [`collection.Add`](#collectionadd-contract) Contract: Add IDs to a collection.
+  - [`collection.Remove`](#collectionremove-contract) Contract: Remove IDs from a collection.
+  - [`collection.Get`](#collectionget-contract) Contract: Get a collection.
+  - [`collection.GetHistory`](#collectiongethistory-contract) Contract: Get a history of collection modification.
+  - [`collection.GetCheckpointInterval`](#collectiongetcheckpointinterval-contract) Contract: Get a checkpoint interval.
 
-## `object.Put` contract
+## `object.Put` Contract
 
 Put an object ID with the hash value of the object. If the object already exists, the asset record will be updated. If not, the new asset record will be added.
 
@@ -85,9 +86,9 @@ scalardl generic-contracts execute-contract --properties client.properties \
 --contract-argument '{"objct_id": "a.txt", "hash_value": "a3ae11", "metadata": {"note": "something"}}'
 ```
 
-## `object.PutToMutableDatabase` function
+## `object.PutToMutableDatabase` Function
 
-Put a mutable record into a ScalarDB table in conjunction with the `object.Put` contract. If the record already exists, the record will be updated. If not, the new record will be added. Calling this function is optional.
+Put a mutable record into a ScalarDB table in conjunction with the `object.Put` Contract. If the record already exists, the record will be updated. If not, the new record will be added. Calling this Function is optional.
 
 ### Inputs
 
@@ -123,7 +124,7 @@ scalardl generic-contracts execute-contract --properties client.properties \
 --function-argument '{...}'
 ```
 
-For the function argument, see the following JSON object example.
+For the Function argument, see the following JSON object example.
 
 ```json
 {
@@ -144,7 +145,7 @@ For the function argument, see the following JSON object example.
 }
 ```
 
-## `object.Get` contract
+## `object.Get` Contract
 
 Get an object with the specified ID. If the specified object does not exist, a null value will be returned.
 
@@ -183,7 +184,7 @@ Contract result:
 }
 ```
 
-## `object.Validate` contract
+## `object.Validate` Contract
 
 Validate if the specified hash values of an object are the same as the stored hash values of the object. By default, only the specified number of hash values are validated from the latest ones. By specifying the `all` option, you can also verify if the number of given versions matches the number of versions stored in ScalarDL.
 
@@ -313,7 +314,7 @@ Contract result:
 }
 ```
 
-## `collection.Create` contract
+## `collection.Create` Contract
 
 Create a collection, which is a set of IDs. You can manage arbitrary IDs, for example, a set of object IDs to be audited, a set of collection IDs, or a set of users.
 
@@ -338,9 +339,9 @@ scalardl generic-contracts execute-contract --properties client.properties \
 --contract-argument '{"collection_id": "audit_set", "object_ids": ["a.txt"]}'
 ```
 
-## `collection.Add` contract
+## `collection.Add` Contract
 
-Add IDs to a collection. Typically, the IDs are for objects and collections managed by the generic contracts.
+Add IDs to a collection. Typically, the IDs are for objects and collections managed by the Generic Contracts.
 
 ### Inputs
 
@@ -351,7 +352,7 @@ Specify a JSON object that has the following fields as inputs.
 | `collection_id` | An ID of a collection.                                                                                                                                                                                  |
 | `object_ids`    | An array of string values.                                                                                                                                                                              |
 | `options`       | (Optional) A JSON object for specifying options. Available options:
-<li>`force`: A boolean value to specify whether the contract adds IDs even if the IDs exist. The default value is `false`.</li> |
+<li>`force`: A boolean value to specify whether the Contract adds IDs even if the IDs exist. The default value is `false`.</li> |
 
 ### Outputs
 
@@ -365,9 +366,9 @@ scalardl generic-contracts execute-contract --properties client.properties \
 --contract-argument '{"collection_id": "audit_set", "object_ids": ["a.txt"], "options": {"force": true}}'
 ```
 
-## `collection.Remove` contract
+## `collection.Remove` Contract
 
-Remove IDs from a collection. Typically, the IDs are for objects and collections managed by the generic contracts.
+Remove IDs from a collection. Typically, the IDs are for objects and collections managed by the Generic Contracts.
 
 ### Inputs
 
@@ -377,7 +378,7 @@ Specify a JSON object that has the following fields as inputs.
 |:----------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `collection_id` | An ID of a collection to remove.                                                                                                                                                                                         |
 | `object_ids`    | An array of string values.                                                                                                                                                                                               |
-| `options`       | (Optional) A JSON object for specifying options. Available options: `force`: A boolean value to specify whether the contract continue to remove IDs even if a specified ID does not exist. The default value is `false`. |
+| `options`       | (Optional) A JSON object for specifying options. Available options: `force`: A boolean value to specify whether the Contract continue to remove IDs even if a specified ID does not exist. The default value is `false`. |
 
 ### Outputs
 
@@ -391,7 +392,7 @@ scalardl generic-contracts execute-contract --properties client.properties \
 --contract-argument '{"collection_id": "audit_set", "object_ids": ["a.txt"], "options": {"force": true}}'
 ```
 
-## `collection.Get` contract
+## `collection.Get` Contract
 
 Get a collection with the specified ID. If the specified collection does not exist, a null value will be returned.
 
@@ -422,7 +423,7 @@ Contract result:
 {"object_ids": ["a.txt", "b.txt"]}
 ```
 
-## `collection.GetHistory` contract
+## `collection.GetHistory` Contract
 
 Get a modification event history of a collection with the specified ID. Possible events are `create`, `add`, and `remove`. If the specified collection does not exist, a JSON object with an empty `collection_events` array is returned.
 
@@ -469,15 +470,15 @@ Contract result:
 }
 ```
 
-## `collection.GetCheckpointInterval` contract
+## `collection.GetCheckpointInterval` Contract
 
-Get a checkpoint interval, which is used for efficient collection management. You don’t have to execute this contract directly because it is internally used from other generic contracts, but you can configure the checkpoint interval via contract properties when registering this contract.
+Get a checkpoint interval, which is used for efficient collection management. You don't have to execute this Contract directly because it is internally used from other Generic Contracts, but you can configure the checkpoint interval via Contract properties when registering this Contract.
 
 The checkpoint interval configures how often a snapshot of a collection is created. When adding or removing IDs in the collection, a new asset record only holds the differential data instead of the whole new set of IDs for storage efficiency. Then, when getting the collection, the differential data in the past is merged and returned. To avoid merging all the past data every time, we create a snapshot for each checkpoint age (version). The checkpoint interval is an integer number that indicates how many updates to wait since the previous checkpoint creation.
 
 ### Contract properties
 
-Specify a JSON object that has the following field as a contract property if you would like to change the checkpoint interval.
+Specify a JSON object that has the following field as a Contract property if you would like to change the checkpoint interval.
 
 | Field                 | Description                                   |
 |:----------------------|:----------------------------------------------|
@@ -485,7 +486,7 @@ Specify a JSON object that has the following field as a contract property if you
 
 :::note
 
-If the `collection.GetCheckpointInterval` contract is registered and used by multiple client identities (that is `scalar.dl.client.entity.id`), you must set the same checkpoint interval when registering the contract.
+If the `collection.GetCheckpointInterval` Contract is registered and used by multiple client identities (that is `scalar.dl.client.entity.id`), you must set the same checkpoint interval when registering the Contract.
 
 :::
 
@@ -499,7 +500,7 @@ A JSON object that has the following field is returned.
 
 | Field                 | Description                                                                                                                            |
 |:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------|
-| `checkpoint_interval` | An integer value for the checkpoint interval configured by the contract properties. If you do not configure a value, the default value will be `10`. |
+| `checkpoint_interval` | An integer value for the checkpoint interval configured by the Contract properties. If you do not configure a value, the default value will be `10`. |
 
 ### Examples
 

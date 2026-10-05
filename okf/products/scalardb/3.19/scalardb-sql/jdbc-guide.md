@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/jdbc-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-sql/jdbc-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # ScalarDB JDBC Guide
@@ -109,19 +109,19 @@ The data type mapping between ScalarDB and JDBC is as follows:
 
 | ScalarDB Type | JDBC (Java) Type        |
 |---------------|-------------------------|
-| BOOLEAN       | boolean or Boolean      |
-| INT           | int or Integer          |
-| BIGINT        | long or Long            |
-| FLOAT         | float or Float          |
-| DOUBLE        | double or Double        |
-| TEXT          | String                  |
-| BLOB          | byte[] or java.sql.Blob |
-| DATE          | java.time.LocalDate     |
-| TIME          | java.time.LocalTime     |
-| TIMESTAMP     | java.time.LocalDateTime |
-| TIMESTAMPTZ   | java.time.Instant       |
+| `BOOLEAN`     | `boolean` or `Boolean`       |
+| `INT`         | `int` or `Integer`          |
+| `BIGINT`      | `long` or `Long`            |
+| `FLOAT`       | `float` or `Float`          |
+| `DOUBLE`      | `double` or `Double`        |
+| `TEXT`        | `String`                    |
+| `BLOB`        | `byte[]` or `java.sql.Blob` |
+| `DATE`        | `java.time.LocalDate`       |
+| `TIME`        | `java.time.LocalTime`       |
+| `TIMESTAMP`   | `java.time.LocalDateTime`   |
+| `TIMESTAMPTZ` | `java.time.Instant`         |
 
-For BLOB columns, `java.io.InputStream` is also accepted when writing. See the `PreparedStatement` example below.
+For `BLOB` columns, `java.io.InputStream` is also accepted when writing. See the `PreparedStatement` example below.
 
 How to get the data from a `java.sql.ResultSet` object for each data type is as follows:
 
@@ -215,7 +215,7 @@ try (PreparedStatement preparedStatement = ...) {
 }
 ```
 
-For BLOB columns, the driver also supports writing directly from a stream. The following overloads are available in addition to `setBytes(int, byte[])` and `setBlob(int, java.sql.Blob)`:
+For `BLOB` columns, the driver also supports writing directly from a stream. The following overloads are available in addition to `setBytes(int, byte[])` and `setBlob(int, java.sql.Blob)`:
 
 - `setBlob(int, java.io.InputStream)` and `setBlob(int, java.io.InputStream, long)`, which reads bytes from the stream (the overload with a length reads exactly that many bytes).
 - `setBinaryStream(int, java.io.InputStream)`, `setBinaryStream(int, java.io.InputStream, int)`, and `setBinaryStream(int, java.io.InputStream, long)`, which follow the same pattern.
@@ -279,7 +279,7 @@ try {
     // if the transaction is committed successfully or not and retry it if it failed. How to
     // identify a transaction status is delegated to users
   } else {
-    // For other cases, you can try retrying the transaction
+    // For other cases, you can retry the transaction
 
     // Rollback the transaction
     connection.rollback();

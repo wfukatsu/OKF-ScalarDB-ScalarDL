@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 ---
 
 # Scalardb Cluster
@@ -56,5 +56,6 @@ Section overview: [ScalarDB Cluster](./section-home.md)
 - [ScalarDB Cluster Deployment Patterns for Microservices](./deployment-patterns-for-microservices.md) — When building microservice applications that use ScalarDB Cluster, there are two patterns you can choose for how to deploy ScalarDB Cluster: shared-cluster pattern and separated-cluster pattern. This document first explains those patterns,...
 - [ScalarDB Cluster Error Codes](./scalardb-cluster-status-codes.md) — This page provides a list of error codes in ScalarDB Cluster.
 - [ScalarDB Cluster gRPC API Guide](./scalardb-cluster-grpc-api-guide.md) — This document describes the ScalarDB Cluster gRPC API.
+- [ScalarDB Cluster Java API Guide](./api-guide.md) — The ScalarDB Cluster Java API is composed of the Administrative API and Transaction API, which are part of ScalarDB Core, as well as additional APIs specific to ScalarDB Cluster. This guide explains what kinds of APIs exist, how to use...
 - [ScalarDB Cluster SQL gRPC API Guide](./scalardb-cluster-sql-grpc-api-guide.md) — This document describes the ScalarDB Cluster SQL gRPC API.
 - [ScalarDB Cluster Standalone Mode](./standalone-mode.md) — Instead of setting up a Kubernetes cluster and deploying ScalarDB Cluster on top of it by using a Helm Chart, you can run ScalarDB Cluster in standalone mode, which simplifies development and testing processes. A primary use case for this...

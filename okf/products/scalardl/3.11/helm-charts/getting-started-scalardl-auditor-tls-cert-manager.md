@@ -9,11 +9,12 @@ tags:
 - phase:operate
 - section:deploy
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: helm-charts/getting-started-scalardl-auditor-tls-cert-manager
 lifecycle_phase: operate
 breadcrumb:
@@ -24,13 +25,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/helm-charts/getting-started-scalardl-auditor-tls-cert-manager.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/helm-charts/getting-started-scalardl-auditor-tls-cert-manager.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Getting Started with Helm Charts (ScalarDL Ledger and Auditor with TLS by Using cert-manager / Auditor Mode)
@@ -976,4 +977,3 @@ You can see how to get started with monitoring or logging for Scalar products in
 
 * [Getting Started with Helm Charts (Monitoring using Prometheus Operator)](./getting-started-monitoring.md)
 * [Getting Started with Helm Charts (Logging using Loki Stack)](./getting-started-logging.md)
-* [Getting Started with Helm Charts (Scalar Manager)](./getting-started-scalar-manager.md)

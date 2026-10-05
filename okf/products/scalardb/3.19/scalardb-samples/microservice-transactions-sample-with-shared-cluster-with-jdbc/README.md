@@ -1,7 +1,7 @@
 ---
 type: Sample Application
 title: Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using ScalarDB JDBC
-description: This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for ScalarDB Cluster by using ScalarDB JDBC.
+description: The JOIN statement that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.
 resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README/
 tags:
 - scalardb
@@ -19,16 +19,22 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using ScalarDB JDBC
+
+:::warning Deprecation notice
+
+The `JOIN` statement that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for ScalarDB Cluster by using ScalarDB JDBC.
 
@@ -251,7 +257,7 @@ You should see the following output:
 }
 ```
 
-At this time, `credit_total` isn't shown, which means the current value of `credit_total` is `0`.
+At this time, `creditTotal` isn't shown, which means the current value of `creditTotal` is `0`.
 
 ### Place an order
 
@@ -267,7 +273,7 @@ The order format in this command is `./gradlew run --args="PlaceOrder <CUSTOMER_
 ./gradlew :client:run --args="PlaceOrder 1 1:3,2:2" -q
 ```
 
-You should see a similar output as below, with a different UUID for `order_id`, which confirms that the order was successful:
+You should see a similar output as below, with a different UUID for `orderId`, which confirms that the order was successful:
 
 ```console
 {
@@ -277,13 +283,13 @@ You should see a similar output as below, with a different UUID for `order_id`, 
 
 ### Check the order details
 
-Check details about the order by running the following command, replacing `<ORDER_ID_UUID>` with the UUID for the `order_id` that was shown after running the previous command:
+Check details about the order by running the following command, replacing `<ORDER_ID_UUID>` with the UUID for the `orderId` that was shown after running the previous command:
 
 ```console
 ./gradlew :client:run --args="GetOrder <ORDER_ID_UUID>" -q
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `orderId` and a different value for `timestamp`:
 
 ```console
 {
@@ -312,13 +318,13 @@ You should see a similar output as below, with different UUIDs for `order_id` an
 
 ### Place another order
 
-Place an order for one melon that uses the remaining amount in `credit_total` for customer ID `1` by running the following command:
+Place an order for one melon that uses the remaining amount in `creditTotal` for customer ID `1` by running the following command:
 
 ```console
 ./gradlew :client:run --args="PlaceOrder 1 5:1" -q
 ```
 
-You should see a similar output as below, with a different UUID for `order_id`, which confirms that the order was successful:
+You should see a similar output as below, with a different UUID for `orderId`, which confirms that the order was successful:
 
 ```console
 {
@@ -334,7 +340,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew :client:run --args="GetOrders 1" -q
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `orderId` and a different value for `timestamp`, which shows the history of all orders for customer ID `1`:
 
 ```console
 {
@@ -382,7 +388,7 @@ Get the credit total for customer ID `1` by running the following command:
 ./gradlew :client:run --args="GetCustomerInfo 1" -q
 ```
 
-You should see the following output, which shows that customer ID `1` has reached their `credit_limit` in `credit_total` and cannot place anymore orders:
+You should see the following output, which shows that customer ID `1` has reached their `creditLimit` in `creditTotal` and cannot place anymore orders:
 
 ```console
 {
@@ -399,7 +405,7 @@ Try to place an order for one grape and one mango by running the following comma
 ./gradlew :client:run --args="PlaceOrder 1 3:1,4:1" -q
 ```
 
-You should see the following output, which shows that the order failed because the `credit_total` amount would exceed the `credit_limit` amount:
+You should see the following output, which shows that the order failed because the `creditTotal` amount would exceed the `creditLimit` amount:
 
 ```console
 io.grpc.StatusRuntimeException: FAILED_PRECONDITION: Credit limit exceeded
@@ -422,7 +428,7 @@ io.grpc.StatusRuntimeException: FAILED_PRECONDITION: Credit limit exceeded
 
 ### Make a payment
 
-To continue making orders, customer ID `1` must make a payment to reduce the `credit_total` amount.
+To continue making orders, customer ID `1` must make a payment to reduce the `creditTotal` amount.
 
 Make a payment by running the following command:
 
@@ -430,13 +436,13 @@ Make a payment by running the following command:
 ./gradlew :client:run --args="Repayment 1 8000" -q
 ```
 
-Then, check the `credit_total` amount for customer ID `1` by running the following command:
+Then, check the `creditTotal` amount for customer ID `1` by running the following command:
 
 ```console
 ./gradlew :client:run --args="GetCustomerInfo 1" -q
 ```
 
-You should see the following output, which shows that a payment was applied to customer ID `1`, reducing the `credit_total` amount:
+You should see the following output, which shows that a payment was applied to customer ID `1`, reducing the `creditTotal` amount:
 
 ```console
 {
@@ -453,7 +459,7 @@ Now that customer ID `1` has made a payment, place an order for one grape and on
 ./gradlew :client:run --args="PlaceOrder 1 3:1,4:1" -q
 ```
 
-You should see a similar output as below, with a different UUID for `order_id`, which confirms that the order was successful:
+You should see a similar output as below, with a different UUID for `orderId`, which confirms that the order was successful:
 
 ```console
 {
