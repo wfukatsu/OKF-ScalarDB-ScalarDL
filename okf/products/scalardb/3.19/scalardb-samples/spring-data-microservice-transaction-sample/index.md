@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 ---
 
 # Spring Data Microservice Transaction Sample
@@ -21,4 +21,4 @@ ScalarDB 3.19 documentation under `scalardb-samples/spring-data-microservice-tra
 
 ## Concepts
 
-- [Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions](./README.md) — This tutorial describes how to create a sample Spring Boot application for microservice transactions by using Spring Data JDBC for ScalarDB.
+- [Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions](./README.md) — The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.

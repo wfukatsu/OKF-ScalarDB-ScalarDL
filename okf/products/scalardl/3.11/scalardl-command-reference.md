@@ -10,11 +10,12 @@ tags:
 - section:develop
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: scalardl-command-reference
 lifecycle_phase: implement
 breadcrumb:
@@ -25,13 +26,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:30Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/scalardl-command-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/scalardl-command-reference.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL Client Command Reference
@@ -44,17 +45,17 @@ This page introduces `scalardl`, which is a client command for interacting with 
   - [`register-cert`](#register-cert): Register a specified certificate.
   - [`register-secret`](#register-secret): Register a specified secret.
 - **Register business logic**
-  - [`register-contract`](#register-contract): Register a specified contract.
-  - [`register-contracts`](#register-contracts): Register specified contracts.
-  - [`register-function`](#register-function): Register a specified function.
-  - [`register-functions`](#register-functions): Register specified functions.
+  - [`register-contract`](#register-contract): Register a specified Contract.
+  - [`register-contracts`](#register-contracts): Register specified Contracts.
+  - [`register-function`](#register-function): Register a specified Function.
+  - [`register-functions`](#register-functions): Register specified Functions.
 - **Execute and list the registered business logic**
-  - [`execute-contract`](#execute-contract): Execute a specified contract.
-  - [`list-contracts`](#list-contracts): List registered contracts.
+  - [`execute-contract`](#execute-contract): Execute a specified Contract.
+  - [`list-contracts`](#list-contracts): List registered Contracts.
 - **Validate a ledger**
   - [`validate-ledger`](#validate-ledger): Validate a specified asset in a ledger.
-- **Run commands for generic-contracts**
-  - [`generic-contracts`](#generic-contracts): Run commands for a generic-contracts-based setup.
+- **Run commands for Generic Contracts**
+  - [`generic-contracts`](#generic-contracts): Run commands for a setup that uses Generic Contracts.
 
 ## `register-cert`
 
@@ -94,18 +95,18 @@ scalardl register-secret --properties client.properties
 
 ## `register-contract`
 
-Register a specified contract.
+Register a specified Contract.
 
 ### Options
 
 | Option                     | Description                                                                                    |
 |:---------------------------|:-----------------------------------------------------------------------------------------------|
 | `--config`, `--properties` | A configuration file in properties format.                                                     |
-| `--contract-binary-name`   | A binary name of a contract to register.                                                       |
-| `--contract-class-file`    | A contract class file to register.                                                             |
-| `--contract-id`            | An ID of a contract to register.                                                               |
+| `--contract-binary-name`   | A binary name of a Contract to register.                                                       |
+| `--contract-class-file`    | A Contract class file to register.                                                             |
+| `--contract-id`            | An ID of a Contract to register.                                                               |
 | `--contract-properties`    | Contract properties in a serialized format.                                                  |
-| `--deserialization-format` | A deserialization format for contract properties. Valid values: JSON or STRING (default: JSON) |
+| `--deserialization-format` | A deserialization format for Contract properties. Valid values: JSON or STRING (default: JSON) |
 
 [Common utility options](#common-utility-options) are also available.
 
@@ -117,14 +118,14 @@ scalardl register-contract --properties client.properties --contract-id StateUpd
 
 ## `register-contracts`
 
-Register specified contracts.
+Register specified Contracts.
 
 ### Options
 
 | Option                     | Description                                            |
 |:---------------------------|:-------------------------------------------------------|
 | `--config`, `--properties` | A configuration file in properties format.             |
-| `--contracts-file`         | A file that includes contracts to register in TOML format. |
+| `--contracts-file`         | A file that includes Contracts to register in TOML format. |
 
 [Common utility options](#common-utility-options) are also available.
 
@@ -134,7 +135,7 @@ Register specified contracts.
 scalardl register-contracts --properties client.properties --contracts-file /path/to/contracts-file
 ```
 
-An example of the contracts file is as follows.
+An example of the Contracts file is as follows.
 
 ```toml
 [[contracts]]
@@ -150,16 +151,16 @@ contract-class-file = "build/classes/java/main/com/org1/contract/StateReader.cla
 
 ## `register-function`
 
-Register a specified function.
+Register a specified Function.
 
 ### Options
 
 | Option                     | Description                                                                                    |
 |:---------------------------|:-----------------------------------------------------------------------------------------------|
 | `--config`, `--properties` | A configuration file in properties format.                                                     |
-| `--function-binary-name`   | A binary name of a function to register.                                                       |
-| `--function-class-file`    | A function class file to register.                                                             |
-| `--function-id`            | An ID of a function to register.                                                               |
+| `--function-binary-name`   | A binary name of a Function to register.                                                       |
+| `--function-class-file`    | A Function class file to register.                                                             |
+| `--function-id`            | An ID of a Function to register.                                                               |
 
 [Common utility options](#common-utility-options) are also available.
 
@@ -171,14 +172,14 @@ scalardl register-function --properties client.properties --function-id test-fun
 
 ## `register-functions`
 
-Register specified functions.
+Register specified Functions.
 
 ### Options
 
 | Option                     | Description                                            |
 |:---------------------------|:-------------------------------------------------------|
 | `--config`, `--properties` | A configuration file in properties format.             |
-| `--functions-file`         | A file that includes functions to register in TOML format. |
+| `--functions-file`         | A file that includes Functions to register in TOML format. |
 
 [Common utility options](#common-utility-options) are also available.
 
@@ -188,7 +189,7 @@ Register specified functions.
 scalardl register-functions --properties client.properties --functions-file /path/to/functions-file
 ```
 
-An example of the functions file is as follows.
+An example of the Functions file is as follows.
 
 ```toml
 [[functions]]
@@ -204,29 +205,29 @@ function-class-file = "build/classes/java/main/com/org1/function/TestFunction2.c
 
 ## `execute-contract`
 
-Execute a specified contract.
+Execute a specified Contract.
 
 ### Options
 
 | Option                     | Description                                                                                              |
 |:---------------------------|:---------------------------------------------------------------------------------------------------------|
 | `--config`, `--properties` | A configuration file in properties format.                                                               |
-| `--contract-argument`      | An argument for a contract to execute in a serialized format.                                            |
-| `--contract-id`            | An ID of a contract to execute.                                                                          |
-| `--deserialization-format` | A deserialization format for contract and function arguments. Valid values: JSON or STRING (default: JSON) |
-| `--function-id`            | An ID of a function to execute.                                                                          |
+| `--contract-argument`      | An argument for a Contract to execute in a serialized format.                                            |
+| `--contract-id`            | An ID of a Contract to execute.                                                                          |
+| `--deserialization-format` | A deserialization format for Contract and Function arguments. Valid values: JSON or STRING (default: JSON) |
+| `--function-id`            | An ID of a Function to execute.                                                                          |
 
 [Common utility options](#common-utility-options) are also available.
 
 ### Examples
 
-Execute a contract without a function.
+Execute a Contract without a Function.
 
 ```console
 scalardl execute-contract --properties client.properties --contract-id StateUpdater --contract-argument '{"asset_id":"some_asset", "state":3}'
 ```
 
-Execute a contract with a function.
+Execute a Contract with a Function.
 
 ```console
 scalardl execute-contract --properties client.properties --contract-id TestContract --contract-argument '{...}' --function-id TestFunction --function-argument '{...}'
@@ -234,26 +235,26 @@ scalardl execute-contract --properties client.properties --contract-id TestContr
 
 ## `list-contracts`
 
-List registered contracts.
+List registered Contracts.
 
 ### Options
 
 | Option                     | Description                                |
 |:---------------------------|:-------------------------------------------|
 | `--config`, `--properties` | A configuration file in properties format. |
-| `--contract-id`            | The ID of a contract to show.               |
+| `--contract-id`            | The ID of a Contract to show.               |
 
 [Common utility options](#common-utility-options) are also available.
 
 ### Examples
 
-List all contracts registered by the specified entity.
+List all Contracts registered by the specified entity.
 
 ```console
 scalardl list-contracts --properties client.properties
 ```
 
-Show a specified contract only.
+Show a specified Contract only.
 
 ```console
 scalardl list-contracts --properties client.properties --contract-id StateUpdater
@@ -288,7 +289,13 @@ scalardl validate-ledger --properties client.properties --asset-id 'some_asset,0
 
 ## `generic-contracts`
 
-Run commands for a generic-contracts-based setup, which are almost the same subcommands for the `scalardl` command. The only difference is in the `validate-ledger` subcommand, where you can specify assets by object IDs of the generic-contracts context instead of the raw asset IDs. For the other subcommands, see each corresponding command in the following [Subcommands](#subcommands) section.
+:::tip
+
+Although Generic Contracts were introduced in ScalarDL 3.10, HashStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps Generic Contracts. For most use cases, using HashStore is simpler and more efficient than using Generic Contracts directly. For details, see [Get Started with ScalarDL HashStore](https://scalardl.scalar-labs.com/docs/latest/getting-started-hashstore) in the latest version of ScalarDL.
+
+:::
+
+Run commands for a Generic Contracts–based setup, which are almost the same subcommands for the `scalardl` command. The only difference is in the `validate-ledger` subcommand, where you can specify assets by object IDs of the Generic Contracts context instead of the raw asset IDs. For the other subcommands, see each corresponding command in the following [Subcommands](#subcommands) section.
 
 :::tip
 
@@ -302,21 +309,21 @@ You can also use the `scalardl-gc` top-level command and the `gc` subcommand as 
 |:------------------------------------------------------------|:----------------------------------------|
 | [`register-cert`](#register-cert)                           | Register a specified certificate.       |
 | [`register-secret`](#register-secret)                       | Register a specified secret.            |
-| [`register-contract`](#register-contract)                   | Register a specified contract.          |
-| [`register-contracts`](#register-contracts)                 | Register multiple specified contracts.  |
-| [`register-function`](#register-function)                   | Register a specified function.          |
-| [`register-functions`](#register-functions)                 | Register multiple specified functions.    |
-| [`execute-contract`](#execute-contract)                     | Execute a specified contract.           |
-| [`list-contracts`](#list-contracts)                         | List the registered contracts.          |
+| [`register-contract`](#register-contract)                   | Register a specified Contract.          |
+| [`register-contracts`](#register-contracts)                 | Register multiple specified Contracts.  |
+| [`register-function`](#register-function)                   | Register a specified Function.          |
+| [`register-functions`](#register-functions)                 | Register multiple specified Functions.    |
+| [`execute-contract`](#execute-contract)                     | Execute a specified Contract.           |
+| [`list-contracts`](#list-contracts)                         | List the registered Contracts.          |
 | [`validate-ledger`](#validate-ledger-for-generic-contracts) | Validate a specified asset in a ledger. |
 
-### `validate-ledger` for generic contracts
+### `validate-ledger` for Generic Contracts
 
 Validate a specified [asset](./data-modeling.md#asset) in a ledger.
 
 :::note
 
-Generic contracts internally assign a dedicated asset ID to an [asset record](./data-modeling.md#asset-record) that represents an object or collection. The asset ID consists of a prefix for the asset type and keys; for example, a prefix `o_` and an object ID for an object. Therefore, you will see such raw asset IDs after running the `validate-ledger` command.
+Generic Contracts internally assign a dedicated asset ID to an [asset record](./data-modeling.md#asset-record) that represents an object or collection. The asset ID consists of a prefix for the asset type and keys; for example, a prefix `o_` and an object ID for an object. Therefore, you will see such raw asset IDs after running the `validate-ledger` command.
 
 :::
 
@@ -325,8 +332,8 @@ Generic contracts internally assign a dedicated asset ID to an [asset record](./
 | Option                     | Description                                                          |
 |:---------------------------|:---------------------------------------------------------------------|
 | `--config`, `--properties` | A configuration file in the .properties format.                      |
-| `--object-id`              | The ID of an object created by the `object.Put` contract.            |
-| `--collection-id`          | The ID of a collection created by the `collection.Create` contract.  |
+| `--object-id`              | The ID of an object created by the `object.Put` Contract.            |
+| `--collection-id`          | The ID of a collection created by the `collection.Create` Contract.  |
 | `--start-age`              | The validation start age of the asset (optional).                    |
 | `--end-age`                | The validation end age of the asset (optional).                      |
 
@@ -346,37 +353,37 @@ Register a specified secret. For available options, see [`register-secret`](#reg
 scalardl generic-contracts register-secret --properties client.properties
 ```
 
-Register a specified contract. For available options, see [`register-contract`](#register-contract).
+Register a specified Contract. For available options, see [`register-contract`](#register-contract).
 
 ```console
 scalardl generic-contracts register-contract --properties client.properties --contract-id object.Put --contract-binary-name com.scalar.dl.genericcontracts.object.Put --contract-class-file /path/to/Put.class
 ```
 
-Register specified contracts. For available options, see [`register-contracts`](#register-contracts).
+Register specified Contracts. For available options, see [`register-contracts`](#register-contracts).
 
 ```console
 scalardl generic-contracts register-contracts --properties client.properties --contracts-file /path/to/contracts-file
 ```
 
-Register a specified function. For available options, see [`register-function`](#register-function).
+Register a specified Function. For available options, see [`register-function`](#register-function).
 
 ```console
 scalardl generic-contracts register-function --properties client.properties --function-id object.PutToMutableDatabase --function-binary-name com.scalar.dl.genericcontracts.object.PutToMutableDatabase --function-class-file /path/to/PutToMutableDatabase.class
 ```
 
-Register specified functions. For available options, see [`register-functions`](#register-functions).
+Register specified Functions. For available options, see [`register-functions`](#register-functions).
 
 ```console
 scalardl generic-contracts register-functions --properties client.properties --functions-file /path/to/functions-file
 ```
 
-Execute a specified contract. For available options, see [`execute-contract`](#execute-contract).
+Execute a specified Contract. For available options, see [`execute-contract`](#execute-contract).
 
 ```console
 scalardl generic-contracts execute-contract --properties client.properties --contract-id object.Put --contract-argument '{"object_id": "a.txt", "hash_value": "b97a42c87a46ffebe1439f8c1cd2f86e2f9b84dad89c8e9ebb257a19b6fdfe1c", "metadata": {"note": "updated"}}'
 ```
 
-List registered contracts. For available options, see [`list-contracts`](#list-contracts).
+List registered Contracts. For available options, see [`list-contracts`](#list-contracts).
 
 ```console
 scalardl generic-contracts list-contracts --properties client.properties

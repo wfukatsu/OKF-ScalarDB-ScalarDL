@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster-dotnet-client-sdk/getting-started-with-distributed-sql-transactions.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-cluster-dotnet-client-sdk/getting-started-with-distributed-sql-transactions.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Getting Started with Distributed SQL Transactions in the ScalarDB Cluster .NET Client SDK
@@ -133,6 +133,12 @@ You can also resume a transaction that has already been started as follows:
 ```c#
 var transaction = manager.Resume(transactionIdString);
 ```
+
+:::warning Deprecation notice
+
+The `Resume` method is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 :::note
 

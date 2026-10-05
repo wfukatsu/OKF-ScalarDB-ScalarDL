@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # ScalarDB Cluster Configurations
@@ -450,19 +450,19 @@ The following properties have been removed and will be ignored if set. If these 
 #### `jdbc.db2.variable_key_column_size`
 
 - **Field:** `scalar.db.jdbc.db2.variable_key_column_size`
-- **Description:** Column size for TEXT and BLOB columns in IBM Db2 when they are used as a primary key or secondary key. Minimum 64 bytes.
+- **Description:** Column size for `TEXT` and `BLOB` columns in IBM Db2 when they are used as a primary key or secondary key. Minimum 64 bytes.
 - **Default value:** `128`
 
 #### `jdbc.db2.time_column.default_date_component`
 
 - **Field:** `scalar.db.jdbc.db2.time_column.default_date_component`
-- **Description:** Value of the date component used for storing `TIME` data in IBM Db2. Since the IBM Db2 TIMESTAMP type is used to store ScalarDB `TIME` type data because it provides fractional-second precision, ScalarDB stores `TIME` data with the same date component value for ease of comparison and sorting.
+- **Description:** Value of the date component used for storing `TIME` data in IBM Db2. Since the IBM Db2 `TIMESTAMP` type is used to store ScalarDB `TIME` type data because it provides fractional-second precision, ScalarDB stores `TIME` data with the same date component value for ease of comparison and sorting.
 - **Default value:** `1970-01-01`
 
 #### `jdbc.spanner.time_column.default_date_component`
 
 - **Field:** `scalar.db.jdbc.spanner.time_column.default_date_component`
-- **Description:** Value of the date component used for storing `TIME` data in Spanner. Because Spanner's PostgreSQL dialect has no native TIME type, ScalarDB stores `TIME` data as Spanner `TIMESTAMP WITH TIME ZONE` data with a fixed date component to enable comparison and sorting.
+- **Description:** Value of the date component used for storing `TIME` data in Spanner. Because Spanner's PostgreSQL dialect has no native `time` type, ScalarDB stores `TIME` data as Spanner `timestamp with time zone` data with a fixed date component to enable comparison and sorting.
 - **Default value:** `1970-01-01`
 :::note
 
@@ -957,6 +957,12 @@ The configurations for ScalarDB Cluster SQL are as follows:
 - **Description:** Default transaction mode. `TRANSACTION` or `TWO_PHASE_COMMIT_TRANSACTION` can be set.
 - **Default value:** `TRANSACTION`
 
+:::warning Deprecation notice
+
+The `TWO_PHASE_COMMIT_TRANSACTION` transaction mode is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
 #### `sql.default_namespace_name`
 
 - **Field:** `scalar.db.sql.default_namespace_name`
@@ -976,7 +982,7 @@ The following shows the authentication and authorization configurations for Scal
 #### `auth.cache_expiration_time_millis`
 
 - **Field:** `scalar.db.cluster.auth.cache_expiration_time_millis`
-- **Description:** Cache expiration time for authentication and authorization information in milliseconds.
+- **Description:** Cache expiration time for authentication and authorization information in milliseconds. Each cluster node caches this information separately, so if you update authentication and authorization information, for example, by revoking a privilege or dropping a user, you might need to wait until this expiration time is reached for the change to be applied on all cluster nodes.
 - **Default value:** `60000` (1 minute)
 
 #### `auth.auth_token_expiration_time_minutes`
@@ -1846,7 +1852,7 @@ The following configurations specify the ScalarDB Clusters that the Transaction 
 #### `cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_points`
 
 - **Field:** `scalar.db.cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_points`
-- **Description:** Contact point of the target cluster, with `<CLUSTER_ID>` being one of the cluster IDs specified in the `scalar.db.cluster.transaction_coordinator.clusters` property. This property is required for each cluster ID that you specify in that property. If you use the `indirect` mode, specify the IP address or the host name of the load balancer in front of the cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the `default` namespace is used.
+- **Description:** Contact point of the target cluster, with `<CLUSTER_ID>` being one of the cluster IDs specified in the `scalar.db.cluster.transaction_coordinator.clusters` property. This property is required for each cluster ID that you specify in that property. If you use the `indirect` mode, specify the IP address or the host name of the load balancer in front of the cluster nodes by using the format `indirect:<LOAD_BALANCER_IP_ADDRESS_OR_HOST_NAME>`. If you use the `direct-kubernetes` mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>` or just `direct-kubernetes:<ENDPOINT_NAME>`. If you don't specify the namespace name, the `default` namespace is used.
 - **Default value:** empty
 
 #### `cluster.transaction_coordinator.clusters.<CLUSTER_ID>.contact_port`
@@ -1996,7 +2002,7 @@ The following shows the general configurations for the Java Client SDK when usin
 #### `contact_points`
 
 - **Field:** `scalar.db.contact_points`
-- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
+- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<LOAD_BALANCER_IP_ADDRESS_OR_HOST_NAME>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>` or just `direct-kubernetes:<ENDPOINT_NAME>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
 - **Default value:** empty
 
 :::note
@@ -2091,7 +2097,7 @@ The following shows the configurations for connecting to the Transaction Coordin
 ##### `cluster.client.transaction_coordinator.contact_points`
 
 - **Field:** `scalar.db.cluster.client.transaction_coordinator.contact_points`
-- **Description:** Contact point of the Transaction Coordinator. This property is required when `scalar.db.cluster.client.transaction_coordinator.enabled` is set to `true`. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of the Transaction Coordinator nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
+- **Description:** Contact point of the Transaction Coordinator. This property is required when `scalar.db.cluster.client.transaction_coordinator.enabled` is set to `true`. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of the Transaction Coordinator nodes by using the format `indirect:<LOAD_BALANCER_IP_ADDRESS_OR_HOST_NAME>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>` or just `direct-kubernetes:<ENDPOINT_NAME>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
 - **Default value:** empty
 
 ##### `cluster.client.transaction_coordinator.contact_port`
@@ -2116,7 +2122,7 @@ When `scalar.db.cluster.client.transaction_coordinator.enabled` is set to `true`
 
 The following shows the authentication and authorization configurations for the Java Client SDK when using the primitive interface.
 
-When you run applications or tools that use the Java Client SDK and the primitive interface (such as the [Schema Loader for Cluster](./developer-guide-for-scalardb-cluster-with-java-api.md#schema-loader-for-cluster) or [ScalarDB Benchmarking Tools](../scalardb-benchmarks/README.md)), you need to set the following configurations in your client-side `database.properties` file, especially if authentication and authorization are enabled on the cluster.
+When you run applications or tools that use the Java Client SDK and the primitive interface (such as the [Schema Loader for Cluster](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-schema-loader) or [ScalarDB Benchmarking Tools](../scalardb-benchmarks/README.md)), you need to set the following configurations in your client-side `database.properties` file, especially if authentication and authorization are enabled on the cluster.
 
 ##### `auth.enabled`
 
@@ -2203,7 +2209,7 @@ The following shows the configurations for the Java Client SDK when using the SQ
 #### `sql.cluster_mode.contact_points`
 
 - **Field:** `scalar.db.sql.cluster_mode.contact_points`
-- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
+- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<LOAD_BALANCER_IP_ADDRESS_OR_HOST_NAME>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>` or just `direct-kubernetes:<ENDPOINT_NAME>`. If you don't specify the namespace name, the Java Client SDK will use the `default` namespace.
 - **Default value:** empty
 
 :::note
@@ -2239,6 +2245,12 @@ For details about how to configure Spring Data JDBC for ScalarDB, see [Configura
 - **Field:** `scalar.db.sql.default_transaction_mode`
 - **Description:** Default transaction mode. `TRANSACTION` or `TWO_PHASE_COMMIT_TRANSACTION` can be set.
 - **Default value:** `TRANSACTION`
+
+:::warning Deprecation notice
+
+The `TWO_PHASE_COMMIT_TRANSACTION` transaction mode is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 #### `sql.default_namespace_name`
 
@@ -2336,7 +2348,7 @@ The following shows the configurations for the Embedding Client SDK (`scalardb-c
 #### `embedding.client.contact_points`
 
 - **Field:** `scalar.db.embedding.client.contact_points`
-- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<the load balancer IP address or host name>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<namespace name>/<endpoint name>` or just `direct-kubernetes:<endpoint name>`. If you don't specify the namespace name, the Embedding Client SDK will use the `default` namespace.
+- **Description:** Contact point of the cluster. If you use the `indirect` client mode, specify the IP address or the host name of the load balancer in front of your cluster nodes by using the format `indirect:<LOAD_BALANCER_IP_ADDRESS_OR_HOST_NAME>`. If you use the `direct-kubernetes` client mode, specify the namespace name (optional) and the name of the [endpoint resource](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to get the membership information by using the format `direct-kubernetes:<NAMESPACE_NAME>/<ENDPOINT_NAME>` or just `direct-kubernetes:<ENDPOINT_NAME>`. If you don't specify the namespace name, the Embedding Client SDK will use the `default` namespace.
 - **Default value:** empty
 
 #### `embedding.client.contact_port`

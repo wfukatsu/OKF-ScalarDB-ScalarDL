@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalardl-benchmarks/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/scalardl-benchmarks/README.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL Benchmarking Tools
@@ -66,7 +66,7 @@ Set up the above components, and then configure the properties for client, Ledge
 
 :::note
 
-You don't need to download the client SDK and manually register your certificate. As described later in this tutorial, the benchmarking tools will automatically register the required certificate and contracts.
+You don't need to download the client SDK and manually register your certificate. As described later in this tutorial, the benchmarking tools will automatically register the required certificate and Contracts.
 
 :::
 
@@ -90,13 +90,13 @@ cd scalardl-benchmarks
 
 ### Change the client SDK version
 
-Check the `build.gradle` file to see if the ScalarDL Java Client SDK version is a supported version for the target ScalarDL Ledger and Auditor, based on [ScalarDL compatibility with client SDKs](../compatibility.md). If it is not supported, change `<VERSION>` in the following part of the `build.gradle` file to a version like `X.Y.Z` (for example, `3.11.0`).
+Check the `build.gradle` file to see if the ScalarDL Java Client SDK version is a supported version for the target ScalarDL Ledger and Auditor, based on [ScalarDL compatibility with client SDKs](../compatibility.md). If it is not supported, change `<X.Y.Z>` in the following part of the `build.gradle` file to your version.
 
 ```gradle
 dependencies {
     implementation group: 'com.google.inject', name: 'guice', version: '5.0.1'
     implementation group: 'com.scalar-labs', name: 'kelpie', version: '1.2.3'
-    implementation group: 'com.scalar-labs', name: 'scalardl-java-client-sdk', version: '<VERSION>'
+    implementation group: 'com.scalar-labs', name: 'scalardl-java-client-sdk', version: '<X.Y.Z>'
     implementation group: 'io.github.resilience4j', name: 'resilience4j-retry', version: '1.3.1'
 }
 ```
@@ -179,8 +179,8 @@ To run the YCSB benchmark, run the following command, replacing `<PATH_TO_KELPIE
 
 In addition, the following options are available:
 
-- `--only-pre`. Only registers certificates and contracts and loads the data.
-- `--except-pre` Runs a job without registering certificates and contracts and loading the data.
+- `--only-pre`. Only registers certificates and Contracts and loads the data.
+- `--except-pre` Runs a job without registering certificates and Contracts and loading the data.
 
 You can run the benchmark several times by using the `--except-pre` option after the initialization is done by using the `--only-pre` option.
 

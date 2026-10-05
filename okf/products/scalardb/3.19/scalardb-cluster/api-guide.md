@@ -1,13 +1,12 @@
 ---
 type: Reference
-title: ScalarDB Java API Guide
-description: The ScalarDB Java API is mainly composed of the Administrative API and Transaction API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
-resource: https://scalardb.scalar-labs.com/docs/latest/api-guide/
+title: ScalarDB Cluster Java API Guide
+description: The ScalarDB Cluster Java API is composed of the Administrative API and Transaction API, which are part of ScalarDB Core, as well as additional APIs specific to ScalarDB Cluster. This guide explains what kinds of APIs exist, how to use...
+resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/api-guide/
 tags:
 - scalardb
 - v3.19
 - phase:implement
-- edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -15,10 +14,9 @@ product: scalardb
 product_title: ScalarDB
 version: '3.19'
 patch_version: 3.19.1
-doc_id: api-guide
+doc_id: scalardb-cluster/api-guide
 lifecycle_phase: implement
 editions:
-- Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
@@ -26,15 +24,15 @@ generated:
   at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-cluster/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
   last_modified: '2026-10-02T09:01:14Z'
 ---
 
-# ScalarDB Java API Guide
+# ScalarDB Cluster Java API Guide
 
-The ScalarDB Java API is mainly composed of the Administrative API and Transaction API. This guide briefly explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
+The ScalarDB Cluster Java API is composed of the Administrative API and Transaction API, which are part of ScalarDB Core, as well as additional APIs specific to ScalarDB Cluster. This guide explains what kinds of APIs exist, how to use them, and related topics like how to handle exceptions.
 
 ## Administrative API
 
@@ -42,16 +40,16 @@ This section explains how to execute administrative operations programmatically 
 
 :::warning
 
-When an Administrative API call writes to the underlying databases, it triggers several write operations. However, these operations are not executed atomically, meaning that if the call fails midway, you may encounter inconsistent states. To resolve this inconsistency issue, you can repair the table. For details, see the following pages:
+When an Administrative API call writes to the underlying databases, it triggers several write operations. However, these operations are not executed atomically, meaning that if the call fails midway, you may encounter inconsistent states. To resolve this inconsistency issue, you can repair the namespace or table. For details, see the following pages:
 
-- [Repair a table](#repair-a-table) by using the Java API
-- [Repair tables](./schema-loader.md#repair-tables) by using ScalarDB Schema Loader
+- [Repair a namespace](#repair-a-namespace) and [Repair a table](#repair-a-table) by using the Java API
+- [Repair namespaces and tables](../schema-loader.md#repair-namespaces-and-tables) by using ScalarDB Schema Loader
 
 :::
 
 :::note
 
-Another method for executing administrative operations is to use [Schema Loader](./schema-loader.md).
+Another method for executing administrative operations is to use [Schema Loader](../schema-loader.md).
 
 :::
 
@@ -66,7 +64,7 @@ TransactionFactory transactionFactory = TransactionFactory.create("<CONFIGURATIO
 DistributedTransactionAdmin admin = transactionFactory.getTransactionAdmin();
 ```
 
-For details about configurations, see [ScalarDB Configurations](./configurations.md).
+For details about configurations, see [ScalarDB Configurations](../configurations.md).
 
 After you have executed all administrative operations, you should close the `DistributedTransactionAdmin` instance as follows:
 
@@ -119,7 +117,7 @@ No options are available.
 | Name                 | Description                                                                            | Default          |
 |----------------------|----------------------------------------------------------------------------------------|------------------|
 | replication-strategy | Cassandra replication strategy. Must be `SimpleStrategy` or `NetworkTopologyStrategy`. | `SimpleStrategy` |
-| replication-factor   | Cassandra replication factor.                                                          | 1                |
+| replication-factor   | Cassandra replication factor.                                                          | 3                |
 
 **Object Storage**
 
@@ -147,7 +145,7 @@ TableMetadata tableMetadata =
         .build();
 ```
 
-For details about the data model of ScalarDB, see [Model Your Data](./data-modeling.md).
+For details about the data model of ScalarDB, see [Model Your Data](../data-modeling.md).
 
 Then, create a table as follows:
 
@@ -174,7 +172,7 @@ Select your database to see the options available:
 
 | Name       | Description                             | Default |
 |------------|-----------------------------------------|---------|
-| transaction-metadata-decoupling | Enable [transaction metadata decoupling](./consensus-commit.md#transaction-metadata-decoupling) when using Consensus Commit, which manages the transaction metadata in a separate table from application data. | false   |
+| transaction-metadata-decoupling | Enable [transaction metadata decoupling](../consensus-commit.md#transaction-metadata-decoupling) when using Consensus Commit, which manages the transaction metadata in a separate table from application data. | false   |
 
 **DynamoDB**
 
@@ -217,7 +215,7 @@ admin.createIndex("ns", "tbl", "c5", options);
 
 :::warning
 
-When using Consensus Commit, `createIndex()` on a non-primary-key column also creates a companion before-image secondary index. For details, see [Correctness of index-based reads](./consensus-commit.md#correctness-of-index-based-reads).
+When using Consensus Commit, `createIndex()` on a non-primary-key column also creates a companion before-image secondary index. For details, see [Correctness of index-based reads](../consensus-commit.md#correctness-of-index-based-reads).
 
 :::
 
@@ -391,7 +389,7 @@ admin.dropIndex("ns", "tbl", "c5", ifExists);
 
 :::warning
 
-When using Consensus Commit, `dropIndex()` also drops the companion before-image secondary index. For details, see [Correctness of index-based reads](./consensus-commit.md#correctness-of-index-based-reads).
+When using Consensus Commit, `dropIndex()` also drops the companion before-image secondary index. For details, see [Correctness of index-based reads](../consensus-commit.md#correctness-of-index-based-reads).
 
 :::
 
@@ -429,12 +427,6 @@ You can get the existing namespaces as follows:
 Set<String> namespaces = admin.getNamespaceNames();
 ```
 
-:::note
-
-This method extracts the namespace names of user tables dynamically. As a result, only namespaces that contain tables are returned. Starting from ScalarDB 4.0, we plan to improve the design to remove this limitation.
-
-:::
-
 ### Get the tables of a namespace
 
 You can get the tables of a namespace as follows:
@@ -452,9 +444,24 @@ You can get table metadata as follows:
 // Get the table metadata for "ns.tbl".
 TableMetadata tableMetadata = admin.getTableMetadata("ns", "tbl");
 ```
+
+### Repair a namespace
+
+If a namespace is in an unknown state, such as the namespace exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the namespace and its metadata if necessary.
+
+You can repair the namespace as follows:
+
+```java
+// Repair the namespace "ns" with options.
+Map<String, String> options = ...;
+admin.repairNamespace("ns", options);
+```
+
 ### Repair a table
 
-You can repair the table metadata of an existing table as follows:
+If a table is in an unknown state, such as the table exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the table, its secondary indexes, and their metadata if necessary.
+
+You can repair the table as follows:
 
 ```java
 // Repair the table "ns.tbl" with options.
@@ -468,9 +475,19 @@ admin.repairTable("ns", "tbl", tableMetadata, options);
 
 :::warning
 
-When using Consensus Commit, after upgrading to ScalarDB 3.16.5, 3.17.3, or 3.18.0 from an earlier version, you must run `repairTable()` on each existing table to create the companion before-image secondary indexes that index-based reads require. For details, see [Correctness of index-based reads](./consensus-commit.md#correctness-of-index-based-reads).
+When using Consensus Commit, after upgrading to ScalarDB 3.16.5, 3.17.3, or 3.18.0 from an earlier version, you must run `repairTable()` on each existing table to create the companion before-image secondary indexes that index-based reads require. For details, see [Correctness of index-based reads](../consensus-commit.md#correctness-of-index-based-reads).
 
 :::
+
+### Upgrade the environment to support the latest ScalarDB API
+
+You can upgrade the ScalarDB environment to support the latest version of the ScalarDB API. Typically, as indicated in the release notes, you will need to run this method after updating the ScalarDB version that your application environment uses.
+
+```java
+// Upgrade the ScalarDB environment.
+Map<String, String> options = ...;
+admin.upgrade(options);
+```
 
 ### Specify operations for the Coordinator table
 
@@ -529,11 +546,386 @@ admin.importTable("ns", "tbl", options, overrideColumnsType);
 
 :::warning
 
-When using Consensus Commit, you should carefully plan to import a table to ScalarDB in production because it will add transaction metadata columns to your database tables and the ScalarDB metadata tables. In this case, there would also be several differences between your database and ScalarDB, as well as some limitations. For details, see [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](./schema-loader-import.md).
+When using Consensus Commit, you should carefully plan to import a table to ScalarDB in production because it will add transaction metadata columns to your database tables and the ScalarDB metadata tables. In this case, there would also be several differences between your database and ScalarDB, as well as some limitations. For details, see [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](../schema-loader-import.md).
 
-You can also enable *transaction metadata decoupling* by specifying the `transaction-metadata-decoupling` option to `true` to store transaction metadata in a separate table from application data. For details, see [Decoupling transaction metadata](./schema-loader.md#decoupling-transaction-metadata).
+You can also enable *transaction metadata decoupling* by specifying the `transaction-metadata-decoupling` option to `true` to store transaction metadata in a separate table from application data. For details, see [Decoupling transaction metadata](../schema-loader.md#decoupling-transaction-metadata).
 
 :::
+
+### Authentication and authorization API
+
+ScalarDB Cluster supports authentication and authorization. To manage users, roles, and privileges programmatically via Java, use [`ClusterClientTransactionAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb-cluster-java-client-sdk/3.19.1/com/scalar/db/cluster/client/ClusterClientTransactionAdmin.html), which implements [`AuthAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/AuthAdmin.html).
+
+For authentication and authorization concepts, including users, roles, and privileges, see [Authenticate and authorize users](./scalardb-auth-with-sql.md).
+
+#### Manage users
+
+The following operations let you create, modify, and retrieve users.
+
+When creating or altering a user, you can specify the following options by using the `UserOption` enum:
+
+| Option         | Description                                                                                      |
+|----------------|--------------------------------------------------------------------------------------------------|
+| `SUPERUSER`    | Creates or sets the user as a superuser.                                                         |
+| `NO_SUPERUSER` | Creates or sets the user as a non-superuser. This is the default if neither option is specified. |
+
+You can also specify one or more authentication methods for a user by using the `AuthenticationMethod` enum:
+
+| Authentication method | Description                                 |
+|-----------------------|---------------------------------------------|
+| `USERPASS`            | Username and password-based authentication. |
+| `OIDC`                | OpenID Connect (OIDC) authentication.       |
+
+##### Create a user
+
+You can create a user as follows:
+
+```java
+// Create a regular (non-superuser) user with a password.
+admin.createUser("username", "password");
+
+// Create a superuser.
+admin.createUser("username", "password", AuthAdmin.UserOption.SUPERUSER);
+
+// Create a user without a password for OIDC authentication.
+admin.createUser("username", null, ImmutableSet.of(AuthAdmin.AuthenticationMethod.OIDC));
+
+// Create a user with specific authentication methods.
+admin.createUser("username", "password", ImmutableSet.of(AuthAdmin.AuthenticationMethod.USERPASS, AuthAdmin.AuthenticationMethod.OIDC));
+```
+
+##### Alter a user
+
+You can alter (modify) an existing user as follows:
+
+```java
+// Change the password of an existing user.
+admin.alterUser("username", "newpassword");
+
+// Remove the password of an existing user (pass an empty string to delete the password).
+admin.alterUser("username", "");
+
+// Promote an existing user to superuser.
+admin.alterUser("username", null, AuthAdmin.UserOption.SUPERUSER);
+
+// Change the authentication methods of an existing user.
+admin.alterUser("username", null, ImmutableSet.of(AuthAdmin.AuthenticationMethod.OIDC));
+```
+
+:::note
+
+When `null` is passed as the password in `alterUser`, the password is not changed. When an empty string is passed, the password is deleted.
+
+:::
+
+##### Drop a user
+
+You can drop (delete) a user as follows:
+
+```java
+admin.dropUser("username");
+```
+
+##### Get a user
+
+You can get an existing user as follows:
+
+```java
+Optional<AuthAdmin.User> user = admin.getUser("username");
+user.ifPresent(u -> {
+  System.out.println("Name: " + u.getName());
+  System.out.println("Superuser: " + u.isSuperuser());
+  System.out.println("Authentication methods: " + u.getAuthenticationMethods());
+});
+```
+
+##### Get all users
+
+You can get all users as follows:
+
+```java
+List<AuthAdmin.User> users = admin.getUsers();
+for (AuthAdmin.User user : users) {
+  System.out.println("Name: " + user.getName());
+  System.out.println("Superuser: " + user.isSuperuser());
+}
+```
+
+##### Get the current user
+
+You can get the currently logged-in user as follows:
+
+```java
+AuthAdmin.User currentUser = admin.getCurrentUser();
+System.out.println("Current user: " + currentUser.getName());
+System.out.println("Superuser: " + currentUser.isSuperuser());
+```
+
+#### Manage privileges for users
+
+The following operations let you grant, revoke, and check privileges for users.
+
+The `Privilege` enum defines the following values:
+
+| Privilege  | Description                                            |
+|------------|--------------------------------------------------------|
+| `READ`     | Read operations (`Get` and `Scan`)                     |
+| `WRITE`    | Write operations (`Put`, `Insert`, `Upsert`, `Update`) |
+| `DELETE`   | Delete operations (`Delete`)                           |
+| `CREATE`   | Creating tables and indexes                            |
+| `DROP`     | Dropping tables and indexes                            |
+| `TRUNCATE` | Truncating tables                                      |
+| `ALTER`    | Altering tables                                        |
+| `GRANT`    | Granting and revoking privileges on tables             |
+
+:::note
+
+These privilege names differ from the SQL-level privilege names (such as `SELECT`, `INSERT`, and `UPDATE`) used by [DCL in ScalarDB SQL](../scalardb-sql/grammar.md#dcl). When using the Java API directly, use the `Privilege` enum values listed above.
+
+:::
+
+##### Grant privileges to a user
+
+You can grant privileges to a user for all tables in a namespace or for a specific table as follows:
+
+```java
+// Grant READ and WRITE privileges to a user for all tables in a namespace.
+admin.grant("username", "namespace", AuthAdmin.Privilege.READ, AuthAdmin.Privilege.WRITE);
+
+// Grant READ and WRITE privileges to a user for a specific table.
+admin.grant("username", "namespace", "table", AuthAdmin.Privilege.READ, AuthAdmin.Privilege.WRITE);
+```
+
+##### Revoke privileges from a user
+
+You can revoke privileges from a user for all tables in a namespace or for a specific table as follows:
+
+```java
+// Revoke READ privilege from a user for all tables in a namespace.
+admin.revoke("username", "namespace", AuthAdmin.Privilege.READ);
+
+// Revoke READ privilege from a user for a specific table.
+admin.revoke("username", "namespace", "table", AuthAdmin.Privilege.READ);
+```
+
+:::note
+
+A privilege can only be revoked at the scope it was granted at. Revoking a privilege at a scope where it wasn't granted is a no-op—it doesn't raise an error, and it doesn't remove the privilege granted at a different scope.
+
+For example, revoking a `READ` privilege on a specific table has no effect if that privilege was granted at the namespace level. Because table-level privilege checks also consider namespace-level privileges, as described in [Check if a user has a privilege](#check-if-a-user-has-a-privilege), a namespace-wide grant continues to grant access to the table even after a table-scoped revoke.
+
+:::
+
+##### Get privileges for a user
+
+You can get the privileges a user has for all tables in a namespace or for a specific table as follows:
+
+```java
+// Get privileges for a user for all tables in a namespace.
+Set<AuthAdmin.Privilege> nsPrivileges = admin.getPrivileges("username", "namespace");
+
+// Get privileges for a user for a specific table.
+Set<AuthAdmin.Privilege> tablePrivileges = admin.getPrivileges("username", "namespace", "table");
+```
+
+:::note
+
+`getPrivileges()` returns directly granted privileges only. It doesn't include role-inherited privileges, namespace-level privileges that apply to a table, or superuser access. To check a user's effective access, use `hasPrivilege()`.
+
+:::
+
+##### Check if a user has a privilege
+
+You can check whether a user has a specific privilege for a namespace or for a specific table as follows:
+
+```java
+// Check if a user has READ privilege on the namespace.
+boolean hasNsPrivilege = admin.hasPrivilege("username", "namespace", AuthAdmin.Privilege.READ);
+
+// Check if a user has READ privilege for a specific table.
+boolean hasTablePrivilege = admin.hasPrivilege("username", "namespace", "table", AuthAdmin.Privilege.READ);
+```
+
+:::note
+
+When checking a privilege on a specific table, both table-level and namespace-level privileges are considered, including privileges granted transitively via roles. When checking a privilege on a namespace, only namespace-level privileges (including those granted transitively via roles) are considered. Superusers always return `true` for any privilege check.
+
+:::
+
+#### Manage roles and privileges
+
+The following operations let you create, modify, and retrieve roles, as well as grant and revoke roles to users and other roles.
+
+##### Create a role
+
+You can create a role as follows:
+
+```java
+admin.createRole("rolename");
+```
+
+##### Drop a role
+
+You can drop (delete) a role as follows:
+
+```java
+admin.dropRole("rolename");
+```
+
+##### Get a role
+
+You can get an existing role as follows:
+
+```java
+Optional<AuthAdmin.Role> role = admin.getRole("rolename");
+role.ifPresent(r -> {
+  System.out.println("Name: " + r.getName());
+  System.out.println("Granted roles: " + r.getGrantedRoles());
+});
+```
+
+##### Get all roles
+
+You can get all roles as follows:
+
+```java
+List<AuthAdmin.Role> roles = admin.getRoles();
+for (AuthAdmin.Role role : roles) {
+  System.out.println("Name: " + role.getName());
+}
+```
+
+##### Get roles for a user
+
+You can get the roles granted to a user as follows:
+
+```java
+List<AuthAdmin.RoleForUser> roles = admin.getRolesForUser("username");
+for (AuthAdmin.RoleForUser role : roles) {
+  System.out.println("Role: " + role.getName());
+  System.out.println("Has admin option: " + role.hasAdminOptionOnUser());
+}
+```
+
+##### Grant a role to a user
+
+You can grant a role to a user as follows:
+
+```java
+// Grant a role to a user without admin option.
+admin.grantRoleToUser("username", "rolename", false);
+
+// Grant a role to a user with admin option (the user can then grant this role to others).
+admin.grantRoleToUser("username", "rolename", true);
+```
+
+##### Revoke a role from a user
+
+You can revoke a role from a user as follows:
+
+```java
+admin.revokeRoleFromUser("username", "rolename");
+```
+
+##### Revoke admin option from a user for a role
+
+You can revoke only the admin option (without revoking the role itself) from a user as follows:
+
+```java
+admin.revokeAdminOptionFromUser("username", "rolename");
+```
+
+##### Get grantee users for a role
+
+You can get the users who have been granted a specific role as follows:
+
+```java
+List<AuthAdmin.GranteeUserRef> grantees = admin.getGranteeUsersForRole("rolename");
+for (AuthAdmin.GranteeUserRef grantee : grantees) {
+  System.out.println("User: " + grantee.getName());
+  System.out.println("Has admin option: " + grantee.hasAdminOption());
+}
+```
+
+##### Grant a member role to a role
+
+You can grant a member role to a role so that users with that role inherit the member role's privileges as follows:
+
+```java
+// Grant a member role to a role without admin option.
+admin.grantRoleToRole("rolename", "memberrolename", false);
+
+// Grant a member role to a role with admin option.
+admin.grantRoleToRole("rolename", "memberrolename", true);
+```
+
+##### Revoke a member role from a role
+
+You can revoke a member role from a role as follows:
+
+```java
+admin.revokeRoleFromRole("rolename", "memberrolename");
+```
+
+##### Revoke admin option from a role for another role
+
+You can revoke only the admin option for a role-to-role grant as follows:
+
+```java
+admin.revokeAdminOptionFromRole("rolename", "memberrolename");
+```
+
+##### Grant privileges to a role
+
+You can grant privileges to a role for all tables in a namespace or for a specific table as follows:
+
+```java
+// Grant READ and WRITE privileges to a role for all tables in a namespace.
+admin.grantPrivilegeToRole("rolename", "namespace", AuthAdmin.Privilege.READ, AuthAdmin.Privilege.WRITE);
+
+// Grant READ and WRITE privileges to a role for a specific table.
+admin.grantPrivilegeToRole("rolename", "namespace", "table", AuthAdmin.Privilege.READ, AuthAdmin.Privilege.WRITE);
+```
+
+##### Revoke privileges from a role
+
+You can revoke privileges from a role for all tables in a namespace or for a specific table as follows:
+
+```java
+// Revoke READ privilege from a role for all tables in a namespace.
+admin.revokePrivilegeFromRole("rolename", "namespace", AuthAdmin.Privilege.READ);
+
+// Revoke READ privilege from a role for a specific table.
+admin.revokePrivilegeFromRole("rolename", "namespace", "table", AuthAdmin.Privilege.READ);
+```
+
+:::note
+
+A privilege can only be revoked at the scope it was granted at. Revoking a privilege at a scope where it wasn't granted is a no-op—it doesn't raise an error, and it doesn't remove the privilege granted at a different scope.
+
+For example, revoking a `READ` privilege on a specific table has no effect if that privilege was granted at the namespace level. Because table-level privilege checks also consider namespace-level privileges, as described in [Check if a user has a privilege](#check-if-a-user-has-a-privilege), a namespace-wide grant continues to grant access to the table even after a table-scoped revoke.
+
+:::
+
+##### Get privileges for a role
+
+You can get the privileges a role has for all tables in a namespace or for a specific table as follows:
+
+```java
+// Get privileges for a role for all tables in a namespace.
+Set<AuthAdmin.Privilege> nsPrivileges = admin.getRolePrivileges("rolename", "namespace");
+
+// Get privileges for a role for a specific table.
+Set<AuthAdmin.Privilege> tablePrivileges = admin.getRolePrivileges("rolename", "namespace", "table");
+```
+
+:::note
+
+`getRolePrivileges()` returns privileges granted directly to the role only. It doesn't include privileges inherited from member roles or namespace-level privileges that apply to a table.
+
+:::
+
+For details about handling failures from these APIs, see [Handle authentication and authorization exceptions](#handle-authentication-and-authorization-exceptions).
 
 ## Transaction API
 
@@ -1642,7 +2034,7 @@ The following attributes are available. Setting an attribute on an operation tha
 
 ###### Cross-partition scan attributes
 
-The following attributes apply to a cross-partition `Scan` operation (a `Scan` operation without a partition key). When set on the operation, they take precedence over the corresponding `scalar.db.cross_partition_scan.*` configuration values for that operation. For details on the configurations, see [Cross-partition scan configurations](./configurations.md#cross-partition-scan-configurations).
+The following attributes apply to a cross-partition `Scan` operation (a `Scan` operation without a partition key). When set on the operation, they take precedence over the corresponding `scalar.db.cross_partition_scan.*` configuration values for that operation. For details on the configurations, see [Cross-partition scan configurations](../configurations.md#cross-partition-scan-configurations).
 
 - **`db-cross-partition-scan-enabled`:** Whether cross-partition scan is enabled for the operation. The value must be `true` or `false`.
 - **`db-cross-partition-scan-filtering-enabled`:** Whether cross-partition scan with filtering is enabled for the operation. The value must be `true` or `false`.
@@ -1652,9 +2044,9 @@ You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.sc
 
 ###### Consensus Commit attributes
 
-The following attribute applies to transactions executed under [Consensus Commit](./consensus-commit.md).
+The following attribute applies to transactions executed under [Consensus Commit](../consensus-commit.md).
 
-- **`cc-transaction-isolation`:** The isolation level for the transaction. The value must be `SNAPSHOT`, `SERIALIZABLE`, or `READ_COMMITTED`. When set, this overrides the configured default isolation level for the transaction. For details on isolation levels, see [Isolation levels](./consensus-commit.md#isolation-levels).
+- **`cc-transaction-isolation`:** The isolation level for the transaction. The value must be `SNAPSHOT`, `SERIALIZABLE`, or `READ_COMMITTED`. When set, this overrides the configured default isolation level for the transaction. For details on isolation levels, see [Isolation levels](../consensus-commit.md#isolation-levels).
 
 :::warning
 
@@ -2137,3 +2529,16 @@ In the sample code, for `UnknownTransactionStatusException`, the transaction is 
 In the sample code, the transaction is retried three times maximum and sleeps for 100 milliseconds before it is retried. But you can choose a retry policy, such as exponential backoff, according to your application requirements.
 
 :::
+
+### Handle authentication and authorization exceptions
+
+When authentication and authorization are enabled, an operation can fail because the current user isn't authenticated or doesn't have the required privilege. Both the Administrative API and the Transaction API report such failures through the same four methods:
+
+- `isAuthenticationError()` returns `true` if the current user isn't authenticated.
+- `isAuthorizationError()` returns `true` if the current user doesn't have the required privilege.
+- `isSuperuserRequired()` returns `true` if the operation requires superuser privileges.
+- `getRequiredPrivilege()` returns the privilege that the operation requires, if the failure was caused by a missing privilege.
+
+For the Administrative API, these methods are on `ExecutionException`. For the Transaction API, they are on `TransactionException` and its subclasses. For example, if the current user doesn't have the `READ` privilege on a table, `get()` throws `CrudException` for which `isAuthorizationError()` returns `true`.
+
+For details about authentication and authorization status codes, see [Authentication and Authorization Error Codes](./scalardb-auth-status-codes.md).

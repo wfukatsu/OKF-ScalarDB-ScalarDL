@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 ---
 
 # Microservice Transactions Sample With Shared Cluster With Jdbc
@@ -21,4 +21,4 @@ ScalarDB 3.19 documentation under `scalardb-samples/microservice-transactions-sa
 
 ## Concepts
 
-- [Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using ScalarDB JDBC](./README.md) — This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for ScalarDB Cluster by using ScalarDB JDBC.
+- [Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using ScalarDB JDBC](./README.md) — The JOIN statement that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.

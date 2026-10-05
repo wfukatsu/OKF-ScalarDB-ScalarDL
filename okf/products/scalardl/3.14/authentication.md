@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/authentication.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/authentication.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL Authentication Guide
@@ -41,7 +41,7 @@ ScalarDL uses authentication in the following three situations:
 * Client authentication (for Ledger and Auditor)
 * Ledger and Auditor authenticate clients by using client-generated signatures attached to requests from the clients.
 * Ledger authentication (for Auditor)
-* Auditor authenticates Ledger by using Ledger-generated signatures attached to [asset proofs](./how-to-write-applications.md#what-is-asset-proof).
+* Auditor authenticates Ledger by using Ledger-generated signatures attached to [Asset Proofs](./how-to-write-applications.md#what-is-asset-proof).
 * Auditor authentication (for Ledger)
 * Ledger authenticates Auditor by using Auditor-generated signatures attached to client requests.
 
@@ -57,7 +57,7 @@ Both of these methods have advantages and disadvantages, as described below, but
 ### Digital signatures
 
 * Advantages
-  * Client requests, asset records, and asset proofs have the nonrepudiation property. Specifically, a digital signature attached to a client request is stored with the corresponding asset records that the request produces so that a client request and the corresponding records have the nonrepudiation property, i.e., we can ensure that the owner of the private key that signed the request created the records. Moreover, digital signatures attached to asset proofs that are returned to a client as the result of execution ensure that Ledger and Auditor created the proofs, respectively. If a client (application) keeps the proofs, the client can verify the results with the proofs as necessary.
+  * Client requests, asset records, and Asset Proofs have the nonrepudiation property. Specifically, a digital signature attached to a client request is stored with the corresponding asset records that the request produces so that a client request and the corresponding records have the nonrepudiation property, i.e., we can ensure that the owner of the private key that signed the request created the records. Moreover, digital signatures attached to Asset Proofs that are returned to a client as the result of execution ensure that Ledger and Auditor created the proofs, respectively. If a client (application) keeps the proofs, the client can verify the results with the proofs as necessary.
 * Disadvantages
   * Digital signatures are very slow. They will add nonnegligible performance overhead in exchange for the above benefits.
 
@@ -66,14 +66,14 @@ Both of these methods have advantages and disadvantages, as described below, but
 * Advantages
 * HMAC is much faster than digital signatures.
 * Disadvantages
-* Client requests, asset records, and asset proofs do not have the nonrepudiation property.
+* Client requests, asset records, and Asset Proofs do not have the nonrepudiation property.
 
 ### Which should I use?
 
 If you do not require the nonrepudiation property, you should always use HMAC.
 Technically, you could mix authentication methods, like using digital signatures for client authentication and HMAC for Ledger/Auditor authentication. However, because mixing methods can be very confusing, ScalarDL prohibits such usage.
 
-Note that we plan to update ScalarDL to use only HMAC for Ledger and Auditor authentication for better performance. Similarly, we plan to unbundle Ledger and Auditor authentication from how we sign asset proofs. With the above changes, we will be able to return digitally signed asset proofs while using HMAC authentication between Ledger and Auditor.
+Note that we plan to update ScalarDL to use only HMAC for Ledger and Auditor authentication for better performance. Similarly, we plan to unbundle Ledger and Auditor authentication from how we sign Asset Proofs. With the above changes, we will be able to return digitally signed Asset Proofs while using HMAC authentication between Ledger and Auditor.
 
 ## Configure
 
@@ -101,14 +101,14 @@ This section explains what variables you need to configure to use ScalarDL authe
 * Ledger authentication
 * Ledger-side properties
 * `scalar.dl.ledger.proof.enabled` (set to `true`)
-* Required because Ledger authentication uses the signatures of asset proofs.
+* Required because Ledger authentication uses the signatures of Asset Proofs.
 * `scalar.dl.ledger.proof.private_key_pem` or `scalar.dl.ledger.proof.private_key_path`
-* Used for signing asset proofs.
+* Used for signing Asset Proofs.
 * See [this](./ca/caclient-getting-started.md#generate-a-private-key-and-a-csr) for how to get a private key.
 * Auditor-side properties
 * `scalar.dl.auditor.ledger.cert_holder_id`
 * `scalar.dl.auditor.ledger.cert_version`
-* Used for verifying the signatures of asset proofs.
+* Used for verifying the signatures of Asset Proofs.
 * Auditor authentication
 * Ledger-side properties
 * `scalar.dl.ledger.auditor.cert_holder_id`
@@ -143,7 +143,7 @@ This section explains what variables you need to configure to use ScalarDL authe
 * Ledger and Auditor authentication
 * Ledger-side properties
 * `scalar.dl.ledger.proof.enabled` (set to `true`)
-* Required because Ledger authentication uses the signatures of asset proofs.
+* Required because Ledger authentication uses the signatures of Asset Proofs.
 * `scalar.dl.ledger.servers.authentication.hmac.secret_key`
 * Used for signing and verifying messages and requests between Ledger and Auditor.
 * A secret key should be a random, lengthy value (e.g., 32-character length hex string).
@@ -170,10 +170,10 @@ This section explains what variables you need to configure to use ScalarDL authe
 * Required only if Auditor is enabled.
 * Register Ledger's certificates to Auditor.
 * Required only if Auditor is enabled.
-* Register contracts to Ledger (and Auditor, if enabled).
+* Register Contracts to Ledger (and Auditor, if enabled).
 
 ### HMAC
 
 * Register clients' secret keys to Ledger (and Auditor, if enabled).
   * Use the client library or the command-line tool (`register-secret`).
-* Register contracts to Ledger (and Auditor).
+* Register Contracts to Ledger (and Auditor).

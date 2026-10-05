@@ -9,11 +9,12 @@ tags:
 - phase:operate
 - section:deploy
 - edition:community
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: helm-charts/getting-started-monitoring
 lifecycle_phase: operate
 breadcrumb:
@@ -24,13 +25,13 @@ editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/helm-charts/getting-started-monitoring.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/helm-charts/getting-started-monitoring.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Getting Started with Helm Charts (Monitoring using Prometheus Operator)
@@ -106,14 +107,6 @@ prometheus:
    * Note:
 * If you want to customize the Prometheus Operator deployment by using Helm Charts, you'll need to set the following configurations to monitor Scalar products:
 * Set `serviceMonitorSelectorNilUsesHelmValues` and `ruleSelectorNilUsesHelmValues` to `false` (`true` by default) so that Prometheus Operator can detect `ServiceMonitor` and `PrometheusRule` for Scalar products.
-
-* If you want to use Scalar Manager, you'll need to set the following configurations to enable Scalar Manager to collect CPU and memory resources:
-* Set `kubeStateMetrics.enabled`, `nodeExporter.enabled`, and `kubelet.enabled` to `true`.
-
-* If you want to use Scalar Manager, you'll need to set the following configurations to enable Scalar Manager to embed Grafana:
-* Set `grafana.ini.security.allow_embedding` and `grafana.ini.auth.anonymous.enabled` to `true`.
-* Set `grafana.ini.auth.anonymous.org_name` to the organization you are using. If you're using the sample custom values, the value is `Main Org.`.
-* Set `grafana.ini.auth.anonymous.org_role` to `Editor`.
 
 ## Step 3. Deploy `kube-prometheus-stack`
 

@@ -10,11 +10,12 @@ tags:
 - section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: helm-charts/getting-started-scalar-helm-charts
 lifecycle_phase: operate
 breadcrumb:
@@ -26,13 +27,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/helm-charts/getting-started-scalar-helm-charts.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/helm-charts/getting-started-scalar-helm-charts.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Getting Started with Scalar Helm Charts
@@ -107,5 +108,4 @@ After the Kubernetes cluster starts, you can try each Scalar Helm Charts on it. 
 * [ScalarDL Ledger and Auditor (Auditor mode)](./getting-started-scalardl-auditor.md)
 * [Monitoring using Prometheus Operator](./getting-started-monitoring.md)
   * [Logging using Loki Stack](./getting-started-logging.md)
-  * [Scalar Manager](./getting-started-scalar-manager.md)
 * [[Deprecated] ScalarDB Server](./getting-started-scalardb.md)

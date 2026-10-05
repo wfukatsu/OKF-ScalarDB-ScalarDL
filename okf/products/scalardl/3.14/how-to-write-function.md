@@ -1,7 +1,7 @@
 ---
 type: Development Guide
-title: A Guide on How to Write Function for ScalarDL
-description: This document sets out some guidelines for writing functions for ScalarDL.
+title: A Guide on How to Write Functions for ScalarDL
+description: This document sets out some guidelines for writing Functions for ScalarDL.
 resource: https://scalardl.scalar-labs.com/docs/latest/how-to-write-function/
 tags:
 - scalardl
@@ -21,22 +21,22 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/how-to-write-function.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/how-to-write-function.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
-# A Guide on How to Write Function for ScalarDL
+# A Guide on How to Write Functions for ScalarDL
 
-This document sets out some guidelines for writing functions for ScalarDL.
+This document sets out some guidelines for writing Functions for ScalarDL.
 
-## What is a function for ScalarDL ?
+## What is a Function for ScalarDL?
 
-A Function (Smart Function) for ScalarDL is a Java program, which extends the predefined base functions such as [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/JacksonBasedFunction.html) class, written for implementing single business logic. A Function mainly manages the data of a ScalarDL application whereas a Contract manages the evidence of the data. Before looking at this, please check [Getting Started with ScalarDL](./getting-started.md) and [How to Write Contract For ScalarDL](./how-to-write-contract.md) to understand what ScalarDL is and what ScalarDL can do with contracts.
+A Function (smart function) for ScalarDL is a Java program, which extends the predefined base Functions such as [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/JacksonBasedFunction.html) class, written for implementing single business logic. A Function mainly manages the data of a ScalarDL application whereas a Contract manages the evidence of the data. Before looking at this, please check [Getting Started with ScalarDL](./getting-started.md) and [How to Write Contract For ScalarDL](./how-to-write-contract.md) to understand what ScalarDL is and what ScalarDL can do with Contracts.
 
 ## Background
 
@@ -44,7 +44,7 @@ Assets managed by Contracts in ScalarDL are tamper-evident and append-only, so t
 
 ## Write a Function
 
-Let's take a closer look at `Payment` Function to better understand how to write a function.
+Let's take a closer look at `Payment` Function to better understand how to write a Function.
 
 ```java
 public class Payment extends JacksonBasedFunction {
@@ -134,9 +134,9 @@ The old [`Function`](https://javadoc.io/static/com.scalar-labs/scalardl-java-cli
 
 Similar to a Contract using `Ledger` object to manage assets, a Function uses `Database` object to manage records of the underlying database. Note that `Database` implements [ScalarDB](https://github.com/scalar-labs/scalardb) interface so that you can do the CRUD operations based on the [data model](https://scalardb.scalar-labs.com/docs/latest/data-modeling#scalardb-data-model) of ScalarDB.
 
-A `functionArgument` is a runtime argument for the Function specified by the requester. The argument is not digitally signed as opposed to the contract argument so that it can be used to pass data that is stored in the database but it might be deleted at some later point for some reason.
+A `functionArgument` is a runtime argument for the Function specified by the requester. The argument is not digitally signed as opposed to the Contract argument so that it can be used to pass data that is stored in the database but it might be deleted at some later point for some reason.
 
-`contractArgument` and `contractProperties` are the corresponding contract's argument and properties. See [How to Write a Contract](./how-to-write-contract.md) to understand what they are.
+`contractArgument` and `contractProperties` are the corresponding Contract's argument and properties. See [How to Write a Contract](./how-to-write-contract.md) to understand what they are.
 
 ### Namespace access control
 
@@ -146,9 +146,7 @@ When a Function is executed in a non-default context namespace (for example, in 
 
 ### Receive information from Contracts
 
-In non-deprecated Functions like `JacksonBasedFunction`, you can receive some information from Contracts by calling `T getContractContext()`.
-Note that the return value can be null if Contracts has nothing set and the base Function class that you use will decide the return value type `T`.
-For details on how to send information to Functions from Contracts, see [Send information to Functions](./how-to-write-contract.md#send-information-to-functions).
+In non-deprecated Functions like `JacksonBasedFunction`, you can receive some information from Contracts by calling `T getContractContext()`. Note that the return value can be null if Contracts has nothing set and the base Function class that you use will decide the return value type `T`. For details on how to send information to Functions from Contracts, see [Send information to Functions](./how-to-write-contract.md#send-information-to-functions).
 
 ```Java
 JsonNode context = getContractContext();
@@ -173,7 +171,7 @@ client/bin/scalardl register-function --properties client.properties --function-
 #### Execute a Function
 
 You can specify a Function to execute along with a Contract to execute.
-For example, you can execute a function as follows with the command-line tool.
+For example, you can execute a Function as follows with the command-line tool.
 
 ```
 client/bin/scalardl execute-contract --properties client.properties --contract-id test-contract --contract-argument '{...}' --function-id test-function --function-argument '{...}'

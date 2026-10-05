@@ -7,12 +7,12 @@ tags:
 - scalardl
 - v3.11
 - index
-status: stable
+status: deprecated
 product: scalardl
 version: '3.11'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:30Z'
 ---
 
 # Releases

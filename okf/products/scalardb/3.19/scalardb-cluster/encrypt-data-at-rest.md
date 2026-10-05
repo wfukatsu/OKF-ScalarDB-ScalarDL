@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/encrypt-data-at-rest.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-cluster/encrypt-data-at-rest.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Encrypt Data at Rest
@@ -121,7 +121,7 @@ There are some limitations to the encryption feature:
 - Primary-key columns (partition-key columns and clustering-key columns) cannot be encrypted.
 - Secondary-index columns cannot be encrypted.
 - Encrypted columns cannot be specified in the WHERE clauses or ORDER BY clauses.
-- Encrypted columns are stored in the underlying database as the BLOB type, so encrypted columns that are larger than the maximum size of the BLOB type cannot be stored. To see if the database you're using has a maximum size for the BLOB type, see [Database Adapters](../database-adapters.md).
+- Encrypted columns are stored in the underlying database as the `BLOB` type, so encrypted columns that are larger than the maximum size of the `BLOB` type cannot be stored. To see if the database you're using has a maximum size for the `BLOB` type, see [Database Adapters](../database-adapters.md).
 - Encrypted columns cannot be renamed.
 - Encrypted columns cannot be altered to change their data types.
 

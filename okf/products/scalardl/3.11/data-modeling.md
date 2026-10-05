@@ -10,11 +10,12 @@ tags:
 - section:develop
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: data-modeling
 lifecycle_phase: implement
 breadcrumb:
@@ -25,13 +26,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/data-modeling.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/data-modeling.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Model Your Data
@@ -60,27 +61,27 @@ An asset can be arbitrary data but is more compatible to being viewed as a histo
 
 #### Asset record
 
-An asset is composed of one or more asset records where each asset record is identified by an asset ID and an age. An asset record has data in any string format (typically JSON format) and several internal metadata to validate the authenticity of the record, such as a cryptographic hash. Asset records are read and written by a contract.
+An asset is composed of one or more asset records where each asset record is identified by an asset ID and an age. An asset record has data in any string format (typically JSON format) and several internal metadata to validate the authenticity of the record, such as a cryptographic hash. Asset records are read and written by a Contract.
 
 :::note
 
-A contract is a Java program written for implementing single business logic and must be registered with the ledger in advance to be called. You can create, update, or get an asset by using a contract. When creating or updating the asset, a new age (that is, a new version) of the asset record is added in a tamper-evident manner.
+A Contract is a Java program written for implementing single business logic and must be registered with the ledger in advance to be called. You can create, update, or get an asset by using a Contract. When creating or updating the asset, a new age (that is, a new version) of the asset record is added in a tamper-evident manner.
 
 :::
 
 #### Mutable database
 
-Assets managed by contracts are tamper evident and append only, so their data structure is limited in modeling various applications. Moreover, assets cannot be deleted to guarantee tamper evidence. To compensate for these limitations, you can use a mutable database abstraction for more powerful and easy-to-use modeling capabilities.
+Assets managed by Contracts are tamper evident and append only, so their data structure is limited in modeling various applications. Moreover, assets cannot be deleted to guarantee tamper evidence. To compensate for these limitations, you can use a mutable database abstraction for more powerful and easy-to-use modeling capabilities.
 
 A mutable database corresponds to a ScalarDB namespace, which is a collection of tables. A table is a collection of partitions, and a partition is a collection of mutable records. For details on the ScalarDB data model, see [ScalarDB data model](https://scalardb.scalar-labs.com/docs/latest/data-modeling#scalardb-data-model).
 
 #### Mutable record
 
-A mutable record is a set of columns, which are fundamental data elements. Mutable records are read, written, or deleted by using a function.
+A mutable record is a set of columns, which are fundamental data elements. Mutable records are read, written, or deleted by using a Function.
 
 :::note
 
-A function is also a Java program written for implementing single business logic and must be registered with the ledger in advance to be called. You can create, update, get, or delete mutable records by using a subset of ScalarDB APIs through the function, which is atomically executed with a contract.
+A Function is also a Java program written for implementing single business logic and must be registered with the ledger in advance to be called. You can create, update, get, or delete mutable records by using a subset of ScalarDB APIs through the Function, which is atomically executed with a Contract.
 
 :::
 
@@ -94,7 +95,7 @@ You can get the latest asset record by specifying an asset ID.
 
 #### Scan asset records of an asset
 
-You can scan multiple records of an asset (in other words, histories of an asset) by specifying an asset ID and age. Specifically, the asset ID and age can be specified in the `AssetFilter` class. For details about the specification, see the [`AssetFilter`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.3/com/scalar/dl/ledger/database/AssetFilter.html) page in the Javadoc.
+You can scan multiple records of an asset (in other words, histories of an asset) by specifying an asset ID and age. Specifically, the asset ID and age can be specified in the `AssetFilter` class. For details about the specification, see the [`AssetFilter`](https://javadoc.io/static/com.scalar-labs/scalardl-common/3.11.4/com/scalar/dl/ledger/database/AssetFilter.html) page in the Javadoc.
 
 ### How to locate mutable records
 
@@ -125,11 +126,11 @@ For example, if you manage audit trail log files and users who can verify the au
 You might often want to search for assets based on their various attributes. In those cases, you have two options to achieve such flexibility when searching:
 
 - **Option 1:** Prepare a kind of index table as an asset so that each index asset has corresponding asset IDs as pointers. Although this approach introduces performance overheads to manage the index on the ledger, you can achieve strictly secure data management since the index information is also preserved in a tamper-evident manner.
-- **Option 2:** Use a ScalarDB table as an index of assets. When putting an asset record in the ledger, you can atomically update a ScalarDB table with secondary indexes by using a function so that a record in the ScalarDB table points to the asset or asset record. Although this approach is more flexible and efficient than the first approach, you should note that the index information could be tampered with and consider whether this is acceptable in your use cases.
+- **Option 2:** Use a ScalarDB table as an index of assets. When putting an asset record in the ledger, you can atomically update a ScalarDB table with secondary indexes by using a Function so that a record in the ScalarDB table points to the asset or asset record. Although this approach is more flexible and efficient than the first approach, you should note that the index information could be tampered with and consider whether this is acceptable in your use cases.
 
 #### Determine the scope of tamper-evident assets
 
-As described above, you can organize your data, both tamper evident and non-tamper evident, by using contracts and functions. How you choose to manage certain data depends on your use case and requirements. Thus, you should clarify what data you want to guarantee authenticity for.
+As described above, you can organize your data, both tamper evident and non-tamper evident, by using Contracts and Functions. How you choose to manage certain data depends on your use case and requirements. Thus, you should clarify what data you want to guarantee authenticity for.
 
 For example, if you manage a list or index of assets in non-tamper-evident ScalarDB tables, you must understand the risks when those assets are tampered with. More specifically, suppose you have a list of IDs of audit trail log files whose contents are managed in ScalarDL in a tamper-evident manner. If losing the list due to malicious behavior is not acceptable, it should also be managed in ScalarDL.
 
@@ -139,4 +140,4 @@ Depending on the characteristics of your data and its access patterns, there are
 
 A simple way to store data in an asset is to always store the latest state of the data in its entirety. However, this approach is sometimes inefficient from a storage cost perspective because, if a small part of the data is updated frequently, almost all the parts of the data are stored as duplicates in the asset records.
 
-In such a case, you can choose to put only the differential data when updating the asset and merge all the asset records when you want to get the whole image of the latest data. Although this approach is efficient from a storage cost perspective, it affects query performance since it requires scanning all asset records. To limit the affects of this trade-off, creating a snapshot at some point in time is also an option so that you do not have to scan all asset records every time. [The generic contracts for collection authenticity management](./use-generic-contracts.md#manage-collection-authenticity) follow this design pattern.
+In such a case, you can choose to put only the differential data when updating the asset and merge all the asset records when you want to get the whole image of the latest data. Although this approach is efficient from a storage cost perspective, it affects query performance since it requires scanning all asset records. To limit the effects of this trade-off, creating a snapshot at some point in time is also an option so that you do not have to scan all asset records every time. You can see how the predefined Contracts used internally by HashStore for collection authenticity management follow this design pattern in the [source code](https://github.com/scalar-labs/scalardl/tree/master/generic-contracts/src/main/java/com/scalar/dl/genericcontracts/collection).

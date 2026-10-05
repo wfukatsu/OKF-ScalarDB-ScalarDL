@@ -19,13 +19,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/how-to-run-applications-with-auditor.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/how-to-run-applications-with-auditor.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Run a ScalarDL Application Through ScalarDL Ledger and Auditor
@@ -976,7 +976,7 @@ Depending on the abstraction that your application is based on (specifically, Ha
 
 ### Bootstrap HashStore clients
 
-When creating `HashStoreClientService` in your application, the client certificate or secret key and the necessary contracts for using HashStore are automatically registered based on the configuration in `ClientConfig`. Thus, you don't have to manually bootstrap HashStore. If you would like to do it manually, for example, for testing purposes, download the HashStore Client SDK by following [Download the Client SDK](./getting-started-hashstore.md#download-the-client-sdk) and run the following command.
+When creating `HashStoreClientService` in your application, the client certificate or secret key and the necessary Contracts for using HashStore are automatically registered based on the configuration in `ClientConfig`. Thus, you don't have to manually bootstrap HashStore. If you would like to do it manually, for example, for testing purposes, download the HashStore Client SDK by following [Download the Client SDK](./getting-started-hashstore.md#download-the-client-sdk) and run the following command.
 
 ```console
 scalardl-hashstore bootstrap --properties <CLIENT_PROPERTIES_FILE>
@@ -986,7 +986,7 @@ scalardl-hashstore bootstrap --properties <CLIENT_PROPERTIES_FILE>
 
 ### Bootstrap TableStore clients
 
-When creating `TableStoreClientService` in your application, the client certificate or secret key and the necessary contracts for using TableStore are automatically registered based on the configuration in `ClientConfig`. Thus, you don't have to manually bootstrap TableStore. If you would like to do it manually, for example, for testing purposes, download the TableStore Client SDK by following [Download the Client SDK](./getting-started-tablestore.md#download-the-client-sdk) and run the following command.
+When creating `TableStoreClientService` in your application, the client certificate or secret key and the necessary Contracts for using TableStore are automatically registered based on the configuration in `ClientConfig`. Thus, you don't have to manually bootstrap TableStore. If you would like to do it manually, for example, for testing purposes, download the TableStore Client SDK by following [Download the Client SDK](./getting-started-tablestore.md#download-the-client-sdk) and run the following command.
 
 ```console
 scalardl-tablestore bootstrap --properties <CLIENT_PROPERTIES_FILE>
@@ -996,7 +996,7 @@ scalardl-tablestore bootstrap --properties <CLIENT_PROPERTIES_FILE>
 
 ### Bootstrap Ledger clients
 
-Register the client identity and system contracts by running the following `bootstrap` command:
+Register the client identity and system Contracts by running the following `bootstrap` command:
 
 ```console
 scalardl bootstrap --properties <CLIENT_PROPERTIES_FILE>
@@ -1012,25 +1012,25 @@ The bootstrap command registers the client certificate or secret key based on th
 
 You can also bootstrap by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
 
-### Register contracts and functions
+### Register Contracts and Functions
 
-You can register contracts by using the `register-contract` command.
+You can register Contracts by using the `register-contract` command.
 
 ```console
 scalardl register-contract --properties <CLIENT_PROPERTIES_FILE> --contract-id <CONTRACT_ID> --contract-binary-name <CONTRACT_BINARY_NAME> --contract-class-file <CONTRACT_CLASS_FILE>
 ```
 
-You can register functions by using the `register-function` command.
+You can register Functions by using the `register-function` command.
 
 ```console
 scalardl register-function --properties <CLIENT_PROPERTIES_FILE> --function-id <FUNCTION_ID> --function-binary-name <FUNCTION_BINARY_NAME> --function-class-file <FUNCTION_CLASS_FILE>
 ```
 
-You can also register contracts and functions by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
+You can also register Contracts and Functions by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
 
 ## Run your application
 
-Now that you have registered the necessary identities and contracts, you can run your application that integrates ScalarDL.
+Now that you have registered the necessary identities and Contracts, you can run your application that integrates ScalarDL.
 
 ## See also
 

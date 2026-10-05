@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/getting-started-with-scalardb-cluster-sql-spring-data-jdbc.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-cluster/getting-started-with-scalardb-cluster-sql-spring-data-jdbc.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Getting Started with ScalarDB Cluster SQL via Spring Data JDBC for ScalarDB
@@ -108,7 +108,7 @@ For details about the client modes, see [Developer Guide for ScalarDB Cluster wi
 
 ## Step 3. Load a schema
 
-To load a schema, you need to use [the SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#sql-cli). You can download the SQL CLI from [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases/tag/v3.19.0). After downloading the JAR file, you can use SQL CLI for Cluster by running the following command:
+To load a schema, you need to use [the SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-sql-cli). You can download the SQL CLI from [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases/tag/v3.19.0). After downloading the JAR file, you can use SQL CLI for Cluster by running the following command:
 
 ```console
 java -jar scalardb-cluster-sql-cli-3.19.0-all.jar --config scalardb-sql.properties --file schema.sql

@@ -10,11 +10,12 @@ tags:
 - section:develop
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: how-to-run-applications
 lifecycle_phase: implement
 breadcrumb:
@@ -25,13 +26,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:30Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/how-to-run-applications.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/how-to-run-applications.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Run a ScalarDL Application Through ScalarDL Ledger
@@ -143,24 +144,24 @@ For the HMAC authentication method, you can register a secret key with Ledger by
 scalardl register-secret --properties <CLIENT_PROPERTIES_FILE>
 ```
 
-You can also register certificates and secrets by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.3/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
+You can also register certificates and secrets by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.4/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
 
-## Register contracts and functions from a client
+## Register Contracts and Functions from a client
 
-You can register contracts with Ledger by using the following command. For details about the command, see the [ScalarDL Client Command Reference](./scalardl-command-reference.md#register-contract).
+You can register Contracts with Ledger by using the following command. For details about the command, see the [ScalarDL Client Command Reference](./scalardl-command-reference.md#register-contract).
 
 ```shell
 scalardl register-contract --properties <CLIENT_PROPERTIES_FILE> --contract-id <CONTRACT_ID> --contract-binary-name <CONTRACT_BINARY_NAME> --contract-class-file <CONTRACT_CLASS_FILE>
 ```
 
-You can register functions with Ledger by using the following command. For details about the command, see the [ScalarDL Client Command Reference](./scalardl-command-reference.md#register-function).
+You can register Functions with Ledger by using the following command. For details about the command, see the [ScalarDL Client Command Reference](./scalardl-command-reference.md#register-function).
 
 ```shell
 scalardl register-function --properties <CLIENT_PROPERTIES_FILE> --function-id <FUNCTION_ID> --function-binary-name <FUNCTION_BINARY_NAME> --function-class-file <FUNCTION_CLASS_FILE>
 ```
 
-You can also register contracts and functions with Ledger by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.3/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
+You can also register Contracts and Functions with Ledger by using [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.11.4/com/scalar/dl/client/service/ClientService.html) in the [ScalarDL Java Client SDK](./how-to-write-applications.md#use-the-scalardl-client-sdk).
 
 ## Run your application
 
-Now that you have registered contracts and functions from a client, you can now run your application that integrates ScalarDL.
+Now that you have registered Contracts and Functions from a client, you can now run your application that integrates ScalarDL.

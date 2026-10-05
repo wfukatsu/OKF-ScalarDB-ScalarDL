@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster-dotnet-client-sdk/common-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-cluster-dotnet-client-sdk/common-reference.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # ScalarDB Cluster .NET Client SDK Reference
@@ -181,17 +181,17 @@ In the following table, you can find how types are converted:
 
 | ScalarDB type | .NET type                  | C# alias |
 |---------------|----------------------------|----------|
-| TEXT          | System.String              | string   |
-| INT           | System.Int32               | int      |
-| BIGINT        | System.Int64               | long     |
-| FLOAT         | System.Single              | float    |
-| DOUBLE        | System.Double              | double   |
-| BOOLEAN       | System.Boolean             | bool     |
-| BLOB          | Google.Protobuf.ByteString |          |
-| DATE          | NodaTime.LocalDate         |          |
-| TIME          | NodaTime.LocalTime         |          |
-| TIMESTAMP     | NodaTime.LocalDateTime     |          |
-| TIMESTAMPTZ   | NodaTime.Instant           |          |
+| `TEXT`        | `System.String`              | `string` |
+| `INT`         | `System.Int32`               | `int`    |
+| `BIGINT`      | `System.Int64`               | `long`   |
+| `FLOAT`       | `System.Single`              | `float`  |
+| `DOUBLE`      | `System.Double`              | `double` |
+| `BOOLEAN`     | `System.Boolean`             | `bool`   |
+| `BLOB`        | `Google.Protobuf.ByteString` |          |
+| `DATE`        | `NodaTime.LocalDate`         |          |
+| `TIME`        | `NodaTime.LocalTime`         |          |
+| `TIMESTAMP`   | `NodaTime.LocalDateTime`     |          |
+| `TIMESTAMPTZ` | `NodaTime.Instant`           |          |
 
 :::note
 

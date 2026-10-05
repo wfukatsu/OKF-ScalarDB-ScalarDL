@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/releases/release-support-policy.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/releases/release-support-policy.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # Release Support Policy
@@ -41,6 +41,13 @@ This page describes Scalar's support policy for major and minor version releases
 - **Extended Support:** Extended Support is available as an add-on for customers with a commercial license who want support for a version that is no longer under Maintenance Support or Assistance Support.
 
 ## Release support timelines
+
+:::note
+
+- "TBD" will be replaced with a date after the next minor version is released.
+- A grayed-out date indicates that type of support has already ended for that version.
+
+:::
 
 <table>
   <thead>
@@ -56,8 +63,8 @@ This page describes Scalar's support policy for major and minor version releases
 <tr>
 <td>[3.19](https://scalardb.scalar-labs.com/docs/latest/releases/release-notes#v3190)</td>
 <td>2026-08-02</td>
-<td>TBD*</td>
-<td>TBD*</td>
+<td>TBD</td>
+<td>TBD</td>
 <td>[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
@@ -88,78 +95,95 @@ This page describes Scalar's support policy for major and minor version releases
 <td>2026-12-20</td>
 <td>[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
+  </tbody>
+</table>
+
+<details>
+  <summary>Versions no longer under Assistance Support</summary>
+
+<table>
+  <thead>
 <tr>
-<td class="version-out-of-support">[3.14](https://docs-archive.scalar-labs.com/scalardb/3.14/releases/release-notes#v3140)**</td>
+<th>Version</th>
+<th>Release Date</th>
+<th>Maintenance Support Ends</th>
+<th>Assistance Support Ends</th>
+<th>Extended Support</th>
+</tr>
+  </thead>
+  <tbody>
+<tr>
+<td class="version-out-of-support">[3.14](https://docs-archive.scalar-labs.com/scalardb/3.14/releases/release-notes#v3140)</td>
 <td class="version-out-of-support">2024-11-22</td>
 <td class="version-out-of-support">2026-02-20</td>
 <td class="version-out-of-support">2026-08-18</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.13](https://docs-archive.scalar-labs.com/scalardb/3.13/releases/release-notes#v3130)**</td>
+<td class="version-out-of-support">[3.13](https://docs-archive.scalar-labs.com/scalardb/3.13/releases/release-notes#v3130)</td>
 <td class="version-out-of-support">2024-07-08</td>
 <td class="version-out-of-support">2025-11-22</td>
 <td class="version-out-of-support">2026-05-21</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.12](https://docs-archive.scalar-labs.com/scalardb/3.12/releases/release-notes#v3120)**</td>
+<td class="version-out-of-support">[3.12](https://docs-archive.scalar-labs.com/scalardb/3.12/releases/release-notes#v3120)</td>
 <td class="version-out-of-support">2024-02-17</td>
 <td class="version-out-of-support">2025-07-08</td>
 <td class="version-out-of-support">2026-01-04</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.11](https://docs-archive.scalar-labs.com/scalardb/3.11/releases/release-notes#v3110)**</td>
+<td class="version-out-of-support">[3.11](https://docs-archive.scalar-labs.com/scalardb/3.11/releases/release-notes#v3110)</td>
 <td class="version-out-of-support">2023-12-27</td>
 <td class="version-out-of-support">2025-02-16</td>
 <td class="version-out-of-support">2025-08-15</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.10](https://docs-archive.scalar-labs.com/scalardb/3.10/releases/release-notes#v3100)**</td>
+<td class="version-out-of-support">[3.10](https://docs-archive.scalar-labs.com/scalardb/3.10/releases/release-notes#v3100)</td>
 <td class="version-out-of-support">2023-07-20</td>
 <td class="version-out-of-support">2024-12-26</td>
 <td class="version-out-of-support">2025-06-24</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.9](https://docs-archive.scalar-labs.com/scalardb/3.9/releases/release-notes#v390)**</td>
+<td class="version-out-of-support">[3.9](https://docs-archive.scalar-labs.com/scalardb/3.9/releases/release-notes#v390)</td>
 <td class="version-out-of-support">2023-04-27</td>
 <td class="version-out-of-support">2024-07-19</td>
 <td class="version-out-of-support">2025-01-15</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.8](https://docs-archive.scalar-labs.com/scalardb/3.8/releases/release-notes#v380)**</td>
+<td class="version-out-of-support">[3.8](https://docs-archive.scalar-labs.com/scalardb/3.8/releases/release-notes#v380)</td>
 <td class="version-out-of-support">2023-01-17</td>
 <td class="version-out-of-support">2024-04-26</td>
 <td class="version-out-of-support">2024-10-23</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.7](https://docs-archive.scalar-labs.com/scalardb/3.7/releases/release-notes#v370)**</td>
+<td class="version-out-of-support">[3.7](https://docs-archive.scalar-labs.com/scalardb/3.7/releases/release-notes#v370)</td>
 <td class="version-out-of-support">2022-09-03</td>
 <td class="version-out-of-support">2024-01-17</td>
 <td class="version-out-of-support">2024-07-15</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.6](https://docs-archive.scalar-labs.com/scalardb/3.6/releases/release-notes#v360)**</td>
+<td class="version-out-of-support">[3.6](https://docs-archive.scalar-labs.com/scalardb/3.6/releases/release-notes#v360)</td>
 <td class="version-out-of-support">2022-07-08</td>
 <td class="version-out-of-support">2023-09-03</td>
 <td class="version-out-of-support">2024-03-01</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.5](https://docs-archive.scalar-labs.com/scalardb/3.5/releases/release-notes#v350)**</td>
+<td class="version-out-of-support">[3.5](https://docs-archive.scalar-labs.com/scalardb/3.5/releases/release-notes#v350)</td>
 <td class="version-out-of-support">2022-02-16</td>
 <td class="version-out-of-support">2023-07-08</td>
 <td class="version-out-of-support">2024-01-04</td>
 <td class="version-out-of-support">[Contact us](https://www.scalar-labs.com/contact)</td>
 </tr>
 <tr>
-<td class="version-out-of-support">[3.4](https://docs-archive.scalar-labs.com/scalardb/3.4/releases/release-notes#v340)**</td>
+<td class="version-out-of-support">[3.4](https://docs-archive.scalar-labs.com/scalardb/3.4/releases/release-notes#v340)</td>
 <td class="version-out-of-support">2021-12-02</td>
 <td class="version-out-of-support">2023-02-16</td>
 <td class="version-out-of-support">2023-08-15</td>
@@ -168,6 +192,4 @@ This page describes Scalar's support policy for major and minor version releases
   </tbody>
 </table>
 
-\* "TBD" will be replaced with a date after the next minor version is released.
-
-\*\* This product version is no longer supported under Maintenance Support or Assistance Support.
+</details>

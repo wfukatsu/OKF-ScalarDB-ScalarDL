@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/sql-grammar.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/sql-grammar.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL TableStore SQL Grammar
@@ -235,7 +235,7 @@ UPDATE tbl SET c4 = 200, c5 = false WHERE c1 = 10 AND c5 = true;
 
 ## Others
 
-This section covers additional commands and functions that extend beyond the standard DDL and DML categories.
+This section covers additional commands and Functions that extend beyond the standard DDL and DML categories.
 
 ### Show tables
 
@@ -263,7 +263,7 @@ SELECT * FROM information_schema.tables WHERE table_name = 'tbl';
 
 ### Show record histories
 
-You can show a history of the specified record by using the `history()` function.
+You can show a history of the specified record by using the `history()` Function.
 
 #### Grammar
 

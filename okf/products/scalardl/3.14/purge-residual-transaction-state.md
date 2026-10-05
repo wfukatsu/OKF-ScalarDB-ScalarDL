@@ -19,13 +19,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/purge-residual-transaction-state.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/purge-residual-transaction-state.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Purge the Residual Transaction State
@@ -52,7 +52,7 @@ If your operations require transaction outcomes to remain determinable after the
 
 :::warning
 
-Purging a request proof also removes the information that ScalarDL uses to detect a replayed request. If a man-in-the-middle intercepts a contract execution request and re-executes it after its request proof has been purged, ScalarDL can no longer detect the replay. To prevent this, protecting all communication paths between clients, Ledger, and Auditor with TLS is strongly recommended. For details about TLS configurations, see [ScalarDL Configurations](./configurations.md).
+Purging a request proof also removes the information that ScalarDL uses to detect a replayed request. If a man-in-the-middle intercepts a Contract execution request and re-executes it after its request proof has been purged, ScalarDL can no longer detect the replay. To prevent this, protecting all communication paths between clients, Ledger, and Auditor with TLS is strongly recommended. For details about TLS configurations, see [ScalarDL Configurations](./configurations.md).
 
 :::
 
@@ -92,7 +92,7 @@ scalar.db.consensus_commit.coordinator.write_set_logging.enabled=true
 ```console
 docker run --rm \
   -v <PROPERTIES_FILE_PATH>:/scalardl-schema-loader/database.properties \
-  ghcr.io/scalar-labs/scalardl-schema-loader:<VERSION> \
+  ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --config database.properties --coordinator --repair-all
 ```
 
@@ -101,7 +101,7 @@ docker run --rm \
 ```console
 docker run --rm --env SCHEMA_TYPE=auditor \
   -v <PROPERTIES_FILE_PATH>:/scalardl-schema-loader/database.properties \
-  ghcr.io/scalar-labs/scalardl-schema-loader:<VERSION> \
+  ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --config database.properties
 ```
 
@@ -112,7 +112,7 @@ docker run --rm --env SCHEMA_TYPE=auditor \
 ```console
 docker run --rm --env SCHEMA_TYPE=auditor \
   -v <PROPERTIES_FILE_PATH>:/scalardl-schema-loader/database.properties \
-  ghcr.io/scalar-labs/scalardl-schema-loader:<VERSION> \
+  ghcr.io/scalar-labs/scalardl-schema-loader:<X.Y.Z> \
   --config database.properties --alter
 ```
 

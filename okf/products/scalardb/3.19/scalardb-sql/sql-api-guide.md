@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-05T04:25:25Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/sql-api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/c10ecd1aa5f9dec8f12d1f0a5f42c95e4f44a131/docs/scalardb-sql/sql-api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-02T09:01:14Z'
 ---
 
 # ScalarDB SQL API Guide
@@ -363,7 +363,7 @@ try {
   // the transaction is committed successfully or not and retry it if it failed. How to identify a
   // transaction status is delegated to users
 } catch (SqlException e) {
-  // For other exceptions, you can try retrying the transaction
+  // For other exceptions, you can retry the transaction
 
   // Rollback the transaction
   sqlSession.rollback();
@@ -379,7 +379,7 @@ In such a case, you need to check if the transaction is committed successfully o
 How to identify a transaction status is delegated to users.
 You may want to create a transaction status table and update it transactionally with other application data so that you can get the status of a transaction from the status table.
 
-If you catch another exception, you can try retrying the transaction.
+If you catch another exception, you can retry the transaction.
 For `TransactionRetryableException`, you can basically retry the transaction.
 However, for the other exceptions, the transaction may still fail if the cause of the exception is nontransient.
 For such a case, you need to limit the number of retries and give up retrying.
@@ -439,7 +439,7 @@ try {
   // In such a case, you need to check if the transaction is committed successfully or not and
   // retry it if it failed. How to identify a transaction status is delegated to users
 } catch (SqlException e) {
-  // For other exceptions, you can try retrying the transaction
+  // For other exceptions, you can retry the transaction
 
   // Rollback the transaction
   sqlSession.rollback();

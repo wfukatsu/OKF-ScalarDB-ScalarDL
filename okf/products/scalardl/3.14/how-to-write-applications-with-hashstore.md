@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/how-to-write-applications-with-hashstore.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/how-to-write-applications-with-hashstore.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Write a ScalarDL Application with the HashStore Abstraction
@@ -43,11 +43,11 @@ You have two options to use ScalarDL HashStore:
 
 Using commands is a convenient way to try HashStore without writing an application. For building HashStore-based applications, however, the HashStore Client SDK is recommended, as it runs more efficiently without launching a separate process for each operation.
 
-The HashStore Client SDK is available on [Maven Central](https://central.sonatype.com/artifact/com.scalar-labs/scalardl-hashstore-java-client-sdk). You can install it in your application by using a build tool such as Gradle. For example, in Gradle, you can add the following dependency to `build.gradle`, replacing `VERSION` with the version of ScalarDL that you want to use.
+The HashStore Client SDK is available on [Maven Central](https://central.sonatype.com/artifact/com.scalar-labs/scalardl-hashstore-java-client-sdk). You can install it in your application by using a build tool such as Gradle. For example, in Gradle, you can add the following dependency to `build.gradle`, replacing `<X.Y.Z>` with the version of ScalarDL that you want to use.
 
 ```gradle
 dependencies {
-    implementation group: 'com.scalar-labs', name: 'scalardl-hashstore-java-client-sdk', version: '<VERSION>'
+    implementation group: 'com.scalar-labs', name: 'scalardl-hashstore-java-client-sdk', version: '<X.Y.Z>'
 }
 ```
 

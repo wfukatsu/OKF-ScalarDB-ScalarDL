@@ -10,11 +10,12 @@ tags:
 - section:about-scalardl
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: design
 lifecycle_phase: design
 breadcrumb:
@@ -24,13 +25,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:29Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/design.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/design.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # ScalarDL Design Document
@@ -51,13 +52,13 @@ ScalarDL abstracts data as a set of assets. An asset can be arbitrary data but i
 
 An asset is composed of one or more asset records where each asset record is identified by an asset ID and an age. An asset record with age `M` has a cryptographic hash of the previous asset record with age `M-1`, forming a hash-chain, so that removing or updating an intermediate asset record may be detected by traversing the chain.
 
-In addition, a chain structure exists between multiple assets. This chain is a relationship constructed by business or application logic, which is referred to as a "contract" in ScalarDL. For example, in a banking application, a payment sent from one account to another account would update both accounts, which would create such a relationship between assets.
+In addition, a chain structure exists between multiple assets. This chain is a relationship constructed by business or application logic, which is referred to as a "Contract" in ScalarDL. For example, in a banking application, a payment sent from one account to another account would update both accounts, which would create such a relationship between assets.
 
-## Contract
+## Contracts
 
-ScalarDL manages contracts (also known as a smart contracts) as digitally signed business logic. A contract and its arguments are digitally signed with the contract owner's private key and passed to ScalarDL. This mechanism allows the contract to be executed only by the owner and makes it possible for the system to detect malicious activity, such as data tampering.
+ScalarDL manages Contracts (also known as a smart contracts) as digitally signed business logic. A Contract and its arguments are digitally signed with the Contract owner's private key and passed to ScalarDL. This mechanism allows the Contract to be executed only by the owner and makes it possible for the system to detect malicious activity, such as data tampering.
 
-Users can define arbitrary business logic in a contract by using interfaces, such as for reading and writing assets to and from the ledger. For example, in a bank application, creating accounts, depositing, withdrawing, and making payments can be written as a contract. For more details, see the [simple bank account application sample](./applications/simple-bank-account/README.md).
+Users can define arbitrary business logic in a Contract by using interfaces, such as for reading and writing assets to and from the ledger. For example, in a bank application, creating accounts, depositing, withdrawing, and making payments can be written as a Contract. For more details, see the [simple bank account application sample](./applications/simple-bank-account/README.md).
 
 ## How and when ScalarDL detects Byzantine faults
 

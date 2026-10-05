@@ -1,7 +1,7 @@
 ---
 type: Development Guide
 title: Use Table-Oriented Generic Contracts
-description: Although table-oriented generic contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented generic contracts. For most use cases, using TableStore is...
+description: Although table-oriented Generic Contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented Generic Contracts. For most use cases, using TableStore is...
 resource: https://scalardl.scalar-labs.com/docs/3.11/use-table-oriented-generic-contracts/
 tags:
 - scalardl
@@ -11,11 +11,12 @@ tags:
 - edition:community
 - edition:enterprise
 - feature-status:private-preview
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: use-table-oriented-generic-contracts
 lifecycle_phase: implement
 breadcrumb:
@@ -28,38 +29,38 @@ feature_status:
 - Private Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-05T04:25:30Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/use-table-oriented-generic-contracts.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/versioned_docs/version-3.11/use-table-oriented-generic-contracts.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Use Table-Oriented Generic Contracts
 
 :::tip
 
-Although table-oriented generic contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented generic contracts. For most use cases, using TableStore is simpler and more efficient than using table-oriented generic contracts directly. For details, see [Get Started with ScalarDL TableStore](https://scalardl.scalar-labs.com/docs/latest/getting-started-tablestore) in the latest version of ScalarDL.
+Although table-oriented Generic Contracts were introduced in ScalarDL 3.11, TableStore, released in ScalarDL 3.12, provides a higher-level abstraction that wraps table-oriented Generic Contracts. For most use cases, using TableStore is simpler and more efficient than using table-oriented Generic Contracts directly. For details, see [Get Started with ScalarDL TableStore](https://scalardl.scalar-labs.com/docs/latest/getting-started-tablestore) in the latest version of ScalarDL.
 
 :::
 
-Table-oriented generic contracts in ScalarDL are a type of [generic contract](./use-generic-contracts.md) that provide a data model similar to the relational data model and a user-friendly interface for managing ledger data, enabling easy application development. This guide explains how to use table-oriented generic contracts.
+Table-oriented Generic Contracts in ScalarDL are a type of [Generic Contract](./use-generic-contracts.md) that provide a data model similar to the relational data model and a user-friendly interface for managing ledger data, enabling easy application development. This guide explains how to use table-oriented Generic Contracts.
 
 :::note
 
-The table-oriented generic contracts are currently in Private Preview, which means that future versions might have backward-incompatible updates.
+The table-oriented Generic Contracts are currently in Private Preview, which means that future versions might have backward-incompatible updates.
 
 :::
 
 ## Set up an environment
 
-In this section, you'll set up the environment for using the table-oriented generic contracts through the ScalarDL client tools. If you want to interact with generic contracts in your applications, you can use the ScalarDL Client SDK APIs. For details, see [Write a ScalarDL Application with Generic Contracts](./how-to-write-applications-with-generic-contracts.md). In addition, the SQL-based interface will be provided in the near future.
+In this section, you'll set up the environment for using the table-oriented Generic Contracts through the ScalarDL client tools. If you want to interact with Generic Contracts in your applications, you can use the ScalarDL Client SDK APIs. For details, see [Write a ScalarDL Application with Generic Contracts](./how-to-write-applications-with-generic-contracts.md). In addition, the SQL-based interface will be provided in the near future.
 
 ### Install a JDK
 
-In this guide, you'll only use a Java runtime environment for seeing how generic contracts work. However, it is recommended that you install one of the following Java Development Kits (JDKs), which will be required to build your own ScalarDL application outside of this guide.
+In this guide, you'll only use a Java runtime environment for seeing how Generic Contracts work. However, it is recommended that you install one of the following Java Development Kits (JDKs), which will be required to build your own ScalarDL application outside of this guide.
 
 - One of the following Java Development Kits (JDKs):
 
@@ -77,11 +78,11 @@ For a production environment, ScalarDL is available as container images. For det
 
 :::note
 
-The table-oriented generic contracts are supported in ScalarDL version 3.11 or later versions.
+The table-oriented Generic Contracts are supported in ScalarDL version 3.11 or later versions.
 
 :::
 
-### Download the necessary tools and the generic contracts
+### Download the necessary tools and the Generic Contracts
 
 Specify a ScalarDL version that is equal to or greater than 3.11.0 by running the following command. For available versions, see [Tags](https://github.com/scalar-labs/scalardl/tags).
 
@@ -89,7 +90,7 @@ Specify a ScalarDL version that is equal to or greater than 3.11.0 by running th
 VERSION=X.Y.Z
 ```
 
-Also, specify the table-oriented generic contract version by running the following command. Use the following mapping table to identify the version corresponding to the ScalarDL version. Make sure to replace the separator `.` to `_`, for example, `1_0_0` for the version `1.0.0`.
+Also, specify the table-oriented Generic Contract version by running the following command, replacing `<X_Y_Z>` with the version from the mapping table below. Use the following mapping table to identify the version corresponding to the ScalarDL version. Make sure to replace the separator `.` to `_`, for example, `1_0_0` for the version `1.0.0`.
 
 | ScalarDL Version | Table-Oriented Generic Contract Version |
 |:-----------------|:----------------------------------------|
@@ -99,7 +100,7 @@ Also, specify the table-oriented generic contract version by running the followi
 TGC_VERSION=X_Y_Z
 ```
 
-Then, download the tools and the generic contracts by running the following commands:
+Then, download the tools and the Generic Contracts by running the following commands:
 
 ```console
 curl -OL https://github.com/scalar-labs/scalardl/releases/download/v$VERSION/scalardl-java-client-sdk-$VERSION.zip
@@ -110,9 +111,9 @@ unzip scalardl-generic-contracts-$VERSION.zip
 mv scalardl-generic-contracts-$VERSION generic-contracts
 ```
 
-## Register a certificate and the table-oriented generic contracts
+## Register a certificate and the table-oriented Generic Contracts
 
-This section describes how to register a certificate and the generic contracts.
+This section describes how to register a certificate and the Generic Contracts.
 
 ### Configure the properties
 
@@ -134,17 +135,17 @@ You can also use HMAC authentication instead of using a certificate. For details
 
 :::
 
-### Register the table-oriented generic contracts
+### Register the table-oriented Generic Contracts
 
-After registering the certificate, you can register the table-oriented generic contracts by running the following commands:
+After registering the certificate, you can register the table-oriented Generic Contracts by running the following commands:
 
 ```console
 client/bin/scalardl generic-contracts register-contracts --properties client.properties --contracts-file generic-contracts/conf/table-authenticity-management-contracts.toml
 ```
 
-## Interact with table-oriented generic contracts
+## Interact with table-oriented Generic Contracts
 
-Now you can execute the table-oriented generic contracts. In this section, you'll try the following functionalities through two sample tables (`employee` and `department`) that can be joined through the department IDs of employees.
+Now you can execute the table-oriented Generic Contracts. In this section, you'll try the following functionalities through two sample tables (`employee` and `department`) that can be joined through the department IDs of employees.
 
 - [Create and show tables](#create-and-show-tables)
 - [Insert records](#insert-records)
@@ -319,7 +320,7 @@ client/bin/scalardl generic-contracts execute-contract --properties client.prope
 --contract-argument '{ "table": "employee", "values": {"salary": 754.3}, "conditions": [ {"column": "department", "value": "sales", "operator": "EQ"} ] }'
 ```
 
-Make sure to specify at least a primary key or an index key to update the records, in the same way as using the `Select` contract.
+Make sure to specify at least a primary key or an index key to update the records, in the same way as using the `Select` Contract.
 
 ### Get record histories
 
@@ -377,9 +378,9 @@ Contract result:
 } ]
 ```
 
-## Validate data created by the table-oriented generic contracts
+## Validate data created by the table-oriented Generic Contracts
 
-In ScalarDL, you occasionally need to validate your data to make sure all the data is in a valid state. You can use the `validate-ledger` command to validate assets created by the table-oriented generic contracts. If you want to validate them in your applications, you can use the ScalarDL Client SDK APIs. For details, see [Validate your data](./how-to-write-applications-with-generic-contracts.md#validate-your-data).
+In ScalarDL, you occasionally need to validate your data to make sure all the data is in a valid state. You can use the `validate-ledger` command to validate assets created by the table-oriented Generic Contracts. If you want to validate them in your applications, you can use the ScalarDL Client SDK APIs. For details, see [Validate your data](./how-to-write-applications-with-generic-contracts.md#validate-your-data).
 
 You can validate the table schema by running the following commands:
 
@@ -452,13 +453,13 @@ You should get a result like the following:
 
 :::note
 
-Generic contracts internally assign a dedicated asset ID to an [asset record](./data-modeling.md#asset-record). The asset ID consists of a prefix for the asset type and keys for identification; for example, a prefix `rec_`, table name, primary key column name, and column value are used for the asset ID of a record. Therefore, you will see such raw asset IDs in the result of `validate-ledger`.
+Generic Contracts internally assign a dedicated asset ID to an [asset record](./data-modeling.md#asset-record). The asset ID consists of a prefix for the asset type and keys for identification; for example, a prefix `rec_`, table name, primary key column name, and column value are used for the asset ID of a record. Therefore, you will see such raw asset IDs in the result of `validate-ledger`.
 
 :::
 
 ## See also
 
-To interact with the table-oriented generic contracts in your Java applications, see the following:
+To interact with the table-oriented Generic Contracts in your Java applications, see the following:
 
 * [Write a ScalarDL Application with Generic Contracts](./how-to-write-applications-with-generic-contracts.md)
 * [Javadocs for the ScalarDL Java Client SDK](https://javadoc.io/doc/com.scalar-labs/scalardl-java-client-sdk/latest/index.html)

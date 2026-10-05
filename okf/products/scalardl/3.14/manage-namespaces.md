@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-05T04:25:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/manage-namespaces.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/5a0ce6d90acfadea3a0e493f961c676890e2cc1a/docs/manage-namespaces.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-05T02:43:25Z'
 ---
 
 # Manage Namespaces
@@ -47,7 +47,7 @@ Namespaces allow you to logically group and isolate resources within a Ledger. E
 - **Assets:** The immutable, tamper-evident data stored in the ledger.
 - **Credentials:** Certificates or secret keys used for authentication.
 - **Contracts:** The business logic that manages assets in the ledger.
-- **Functions:** The business logic that works with contracts to manage mutable records in an external database.
+- **Functions:** The business logic that works with Contracts to manage mutable records in an external database.
 
 By default, all resources are stored in a namespace called `default`. You can create additional namespaces to separate resources for different use cases, such as multi-tenancy, data lifecycle management, or cost optimization.
 
@@ -63,20 +63,20 @@ The cross-namespace access model is suitable for use cases such as the following
 - **Efficient data lifecycle management:** Separate data into namespaces by time period (for example, 1 year), and then bulk-delete data by namespace after the legally required retention period (for example, 10 years) has passed.
 - **Cost optimization through storage tiering:** Prepare namespaces on multiple storage systems with different performance characteristics and costs, and store data in different namespaces based on access frequency and importance.
 
-To perform cross-namespace data access, implement contracts by using namespace-aware interfaces and register those contracts in the `default` namespace. Contracts registered in the `default` namespace have a global access scope, allowing them to get, put, and scan assets in any namespace.
+To perform cross-namespace data access, implement Contracts by using namespace-aware interfaces and register those Contracts in the `default` namespace. Contracts registered in the `default` namespace have a global access scope, allowing them to get, put, and scan assets in any namespace.
 
-For details on developing namespace-aware contracts, see [Manage assets with a namespace](./how-to-write-contract.md#manage-assets-with-a-namespace).
+For details on developing namespace-aware Contracts, see [Manage assets with a namespace](./how-to-write-contract.md#manage-assets-with-a-namespace).
 
 ## Restricted access model
 
 The restricted access model is suitable for use cases such as the following:
 
-- **SaaS applications:** Host multiple customers running the same application on a shared ScalarDL cluster while ensuring each customer's data and contracts are completely isolated from one another.
-- **Infrastructure consolidation:** Run multiple independent applications from different departments or business units on a single cluster, reducing infrastructure costs while maintaining secure isolation between each application's data and contracts.
+- **SaaS applications:** Host multiple customers running the same application on a shared ScalarDL cluster while ensuring each customer's data and Contracts are completely isolated from one another.
+- **Infrastructure consolidation:** Run multiple independent applications from different departments or business units on a single cluster, reducing infrastructure costs while maintaining secure isolation between each application's data and Contracts.
 
-ScalarDL supports these scenarios by restricting access to each namespace so that it is independently managed and inaccessible from other namespaces. To set up a namespace with restricted access, first create a namespace, and then register the certificates or secrets of tenant clients that will use each namespace. Then, register contracts and functions for their application through the registered clients. Only clients registered in a namespace can register and execute contracts and functions or validate assets within that namespace.
+ScalarDL supports these scenarios by restricting access to each namespace so that it is independently managed and inaccessible from other namespaces. To set up a namespace with restricted access, first create a namespace, and then register the certificates or secrets of tenant clients that will use each namespace. Then, register Contracts and Functions for their application through the registered clients. Only clients registered in a namespace can register and execute Contracts and Functions or validate assets within that namespace.
 
-Unlike contracts registered in the `default` namespace, contracts registered in namespaces with restricted access have only a local access scope and cannot access assets in other namespaces. Likewise, functions registered in namespaces with restricted access can only access the ScalarDB namespace that has the same name as their namespace or a namespace whose name starts with their namespace followed by an underscore, and cannot access any other namespace.
+Unlike Contracts registered in the `default` namespace, Contracts registered in namespaces with restricted access have only a local access scope and cannot access assets in other namespaces. Likewise, Functions registered in namespaces with restricted access can only access the ScalarDB namespace that has the same name as their namespace or a namespace whose name starts with their namespace followed by an underscore, and cannot access any other namespace.
 
 For details on how to set up namespaces and access them in a restricted manner, see [Access Namespaces in a Restricted Manner](./access-namespaces-in-a-restricted-manner.md).
 
