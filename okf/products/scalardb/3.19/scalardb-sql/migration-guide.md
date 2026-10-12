@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/migration-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/scalardb-sql/migration-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # How to Migrate Your Applications and Databases into a ScalarDB-Based Environment
@@ -80,7 +80,7 @@ BM===>AM
 Before starting the migration, check the following questions. If the answer to any of these questions is "No", you must address them before proceeding with the migration.
 
 - Are your target database and version one of the [supported relational databases (called JDBC databases in ScalarDB) and versions](../requirements.md#relational-databases)?
-- Do you have a fully privileged account that can manage the target database? For details, see [the general requirements](../database-configurations.md#general-requirements).
+- Do you have a fully privileged account that can manage the target database? For details, see [General requirements for the underlying databases](../database-configurations.md#general-requirements-for-the-underlying-databases).
 - Do all target tables have primary keys?
 - Is the data type of each column supported in ScalarDB? For supported data types and how they are mapped to ScalarDB data types, see [Data-type mapping from JDBC databases to ScalarDB](../schema-loader-import.md#data-type-mapping-from-jdbc-databases-to-scalardb).
 - Do the functionality and grammar of the queries in your application comply with the [ScalarDB SQL specifications](./grammar.md)? Or, for non-compliant queries, can you re-write them for ScalarDB? For examples of re-writes, see [How to migrate your application](#how-to-migrate-your-application).

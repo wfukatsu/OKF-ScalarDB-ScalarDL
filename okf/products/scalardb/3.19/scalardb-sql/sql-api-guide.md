@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/sql-api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/scalardb-sql/sql-api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # ScalarDB SQL API Guide
@@ -34,28 +34,28 @@ This guide describes how to use ScalarDB SQL API.
 
 ## Add ScalarDB SQL API to your project
 
-To add the dependencies on ScalarDB SQL API by using Gradle, use the following, replacing `<VERSION>` with the versions of ScalarDB SQL API and the related library, respectively, that you are using:
+To add the dependencies on ScalarDB SQL API by using Gradle, use the following, replacing `<X.Y.Z>` with the versions of ScalarDB SQL API and the related library, respectively, that you are using:
 
 ```gradle
 dependencies {
-    implementation 'com.scalar-labs:scalardb-sql:<VERSION>'
-    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<VERSION>'
+    implementation 'com.scalar-labs:scalardb-sql:<X.Y.Z>'
+    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<X.Y.Z>'
 }
 ```
 
-To add the dependencies by using Maven, use the following, replacing `...` with the version of ScalarDB SQL API that you are using:
+To add the dependencies by using Maven, use the following, replacing `<X.Y.Z>` with the version of ScalarDB SQL API that you are using:
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-sql</artifactId>
-        <version>...</version>
+        <version><X.Y.Z></version>
     </dependency>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-cluster-java-client-sdk</artifactId>
-        <version>...</version>
+        <version><X.Y.Z></version>
     </dependency>
 </dependencies>
 ```
@@ -363,7 +363,7 @@ try {
   // the transaction is committed successfully or not and retry it if it failed. How to identify a
   // transaction status is delegated to users
 } catch (SqlException e) {
-  // For other exceptions, you can try retrying the transaction
+  // For other exceptions, you can retry the transaction
 
   // Rollback the transaction
   sqlSession.rollback();
@@ -379,7 +379,7 @@ In such a case, you need to check if the transaction is committed successfully o
 How to identify a transaction status is delegated to users.
 You may want to create a transaction status table and update it transactionally with other application data so that you can get the status of a transaction from the status table.
 
-If you catch another exception, you can try retrying the transaction.
+If you catch another exception, you can retry the transaction.
 For `TransactionRetryableException`, you can basically retry the transaction.
 However, for the other exceptions, the transaction may still fail if the cause of the exception is nontransient.
 For such a case, you need to limit the number of retries and give up retrying.
@@ -439,7 +439,7 @@ try {
   // In such a case, you need to check if the transaction is committed successfully or not and
   // retry it if it failed. How to identify a transaction status is delegated to users
 } catch (SqlException e) {
-  // For other exceptions, you can try retrying the transaction
+  // For other exceptions, you can retry the transaction
 
   // Rollback the transaction
   sqlSession.rollback();

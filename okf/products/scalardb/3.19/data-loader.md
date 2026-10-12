@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/data-loader.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/data-loader.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # ScalarDB Data Loader
@@ -259,12 +259,12 @@ Select your preferred method to set up Data Loader, and follow the instructions.
 
 **Fat JAR**
 
-Download **`scalardb-cluster-data-loader-<VERSION>-all.jar`** from the [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases) page.
+Download **`scalardb-cluster-data-loader-<X.Y.Z>-all.jar`** from the [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases) page.
 
-Verify the installation by running the following command, replacing `<VERSION>` with the version number:
+Verify the installation by running the following command, replacing `<X.Y.Z>` with the version number:
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar --help
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar --help
 ```
 
 If successful, you'll see the list of available commands and options.
@@ -274,31 +274,31 @@ If successful, you'll see the list of available commands and options.
 You can pull the Docker image from the [Scalar container registry](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-cluster-data-loader-cli) by running the following command, replacing the contents in the angle brackets as described:
 
 ```console
-docker pull ghcr.io/scalar-labs/scalardb-cluster-data-loader-cli:<VERSION>
+docker pull ghcr.io/scalar-labs/scalardb-cluster-data-loader-cli:<X.Y.Z>
 ```
 
 You can run Data Loader commands by using the container. The following example shows how to verify the installation:
 
 ```console
-docker run --rm ghcr.io/scalar-labs/scalardb-cluster-data-loader-cli:<VERSION> --help
+docker run --rm ghcr.io/scalar-labs/scalardb-cluster-data-loader-cli:<X.Y.Z> --help
 ```
 
 If successful, you'll see the list of available commands and options.
 
 :::note
 
-All command examples in this documentation use the JAR file syntax. You can run the same commands with the container by replacing `java -jar scalardb-cluster-data-loader-<VERSION>-all.jar` with the Docker equivalent and mounting your local files as volumes. For example:
+All command examples in this documentation use the JAR file syntax. You can run the same commands with the container by replacing `java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar` with the Docker equivalent and mounting your local files as volumes. For example:
 
 ```console
 # JAR syntax
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar import \
   --config scalardb.properties --file data.json ...
 
 # Docker equivalent
 docker run --rm \
   -v ./scalardb.properties:/scalardb.properties \
   -v ./data.json:/data.json \
-  ghcr.io/scalar-labs/scalardb-cluster-data-loader-cli:<VERSION> \
+  ghcr.io/scalar-labs/scalardb-cluster-data-loader-cli:<X.Y.Z> \
   import --config /scalardb.properties --file /data.json ...
 ```
 
@@ -310,12 +310,12 @@ Select your preferred method to set up Data Loader, and follow the instructions.
 
 **Fat JAR**
 
-Download **`scalardb-data-loader-<VERSION>.jar`** from the [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases) page.
+Download **`scalardb-data-loader-<X.Y.Z>.jar`** from the [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases) page.
 
-Verify the installation by running the following command, replacing `<VERSION>` with the version number:
+Verify the installation by running the following command, replacing `<X.Y.Z>` with the version number:
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar --help
+java -jar scalardb-data-loader-<X.Y.Z>.jar --help
 ```
 
 If successful, you'll see the list of available commands and options.
@@ -325,31 +325,31 @@ If successful, you'll see the list of available commands and options.
 You can pull the Docker image from the [Scalar container registry](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-data-loader-cli) by running the following command, replacing the contents in the angle brackets as described:
 
 ```console
-docker pull ghcr.io/scalar-labs/scalardb-data-loader-cli:<VERSION>
+docker pull ghcr.io/scalar-labs/scalardb-data-loader-cli:<X.Y.Z>
 ```
 
 You can run Data Loader commands by using the container. The following example shows how to verify the installation:
 
 ```console
-docker run --rm ghcr.io/scalar-labs/scalardb-data-loader-cli:<VERSION> --help
+docker run --rm ghcr.io/scalar-labs/scalardb-data-loader-cli:<X.Y.Z> --help
 ```
 
 If successful, you'll see the list of available commands and options.
 
 :::note
 
-All command examples in this documentation use the JAR file syntax. You can run the same commands with the container by replacing `java -jar scalardb-data-loader-<VERSION>.jar` with the Docker equivalent and mounting your local files as volumes. For example:
+All command examples in this documentation use the JAR file syntax. You can run the same commands with the container by replacing `java -jar scalardb-data-loader-<X.Y.Z>.jar` with the Docker equivalent and mounting your local files as volumes. For example:
 
 ```console
 # JAR syntax
-java -jar scalardb-data-loader-<VERSION>.jar import \
+java -jar scalardb-data-loader-<X.Y.Z>.jar import \
   --config scalardb.properties --file data.json ...
 
 # Docker equivalent
 docker run --rm \
   -v ./scalardb.properties:/scalardb.properties \
   -v ./data.json:/data.json \
-  ghcr.io/scalar-labs/scalardb-data-loader-cli:<VERSION> \
+  ghcr.io/scalar-labs/scalardb-data-loader-cli:<X.Y.Z> \
   import --config /scalardb.properties --file /data.json ...
 ```
 
@@ -374,7 +374,7 @@ To import a JSON file into your table, run the following command, replacing the 
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -386,7 +386,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar import \
+java -jar scalardb-data-loader-<X.Y.Z>.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -423,7 +423,7 @@ To import a JSONL file into your table, run the following command, replacing the
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -435,7 +435,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar import \
+java -jar scalardb-data-loader-<X.Y.Z>.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -462,7 +462,7 @@ To import a CSV file into your table, run the following command, replacing the c
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -474,7 +474,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar import \
+java -jar scalardb-data-loader-<X.Y.Z>.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -519,7 +519,7 @@ To update existing records instead of inserting new ones, run the following comm
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -532,7 +532,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar import \
+java -jar scalardb-data-loader-<X.Y.Z>.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -551,7 +551,7 @@ To import with custom field mapping using a control file, run the following comm
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --file <FILE_PATH>.json \
@@ -562,7 +562,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar import \
+java -jar scalardb-data-loader-<X.Y.Z>.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --file <FILE_PATH>.json \
@@ -577,7 +577,7 @@ To import CSV data with a custom delimiter, run the following command, replacing
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -590,7 +590,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar import \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar import \
+java -jar scalardb-data-loader-<X.Y.Z>.jar import \
   --config scalardb.properties \
   --mode TRANSACTION \
   --namespace <NAMESPACE_NAME> \
@@ -889,7 +889,7 @@ To export a table to JSON format, run the following command, replacing the conte
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -899,7 +899,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar export \
+java -jar scalardb-data-loader-<X.Y.Z>.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -934,7 +934,7 @@ To export a table to JSONL (JSON Lines) format, run the following command, repla
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -944,7 +944,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar export \
+java -jar scalardb-data-loader-<X.Y.Z>.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -969,7 +969,7 @@ To export a table to CSV format, run the following command, replacing the conten
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -979,7 +979,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar export \
+java -jar scalardb-data-loader-<X.Y.Z>.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1039,7 +1039,7 @@ To export data to a specific file and format, run the following command, replaci
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1050,7 +1050,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar export \
+java -jar scalardb-data-loader-<X.Y.Z>.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1065,7 +1065,7 @@ To export specific columns only, run the following command, replacing the conten
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1075,7 +1075,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar export \
+java -jar scalardb-data-loader-<X.Y.Z>.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1089,7 +1089,7 @@ To export data for a specific partition key, run the following command, replacin
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1099,7 +1099,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar export \
+java -jar scalardb-data-loader-<X.Y.Z>.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1113,7 +1113,7 @@ To export with a row limit, run the following command, replacing the contents of
 **ScalarDB Cluster**
 
 ```console
-java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
+java -jar scalardb-cluster-data-loader-<X.Y.Z>-all.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
@@ -1123,7 +1123,7 @@ java -jar scalardb-cluster-data-loader-<VERSION>-all.jar export \
 **Direct database access**
 
 ```console
-java -jar scalardb-data-loader-<VERSION>.jar export \
+java -jar scalardb-data-loader-<X.Y.Z>.jar export \
   --config scalardb.properties \
   --namespace <NAMESPACE_NAME> \
   --table <TABLE_NAME> \
