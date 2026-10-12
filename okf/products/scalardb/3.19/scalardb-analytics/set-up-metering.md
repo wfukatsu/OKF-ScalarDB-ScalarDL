@@ -19,13 +19,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/set-up-metering.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/scalardb-analytics/set-up-metering.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # Set Up Usage Metering in ScalarDB Analytics
@@ -34,7 +34,7 @@ The ScalarDB Analytics server measures how much compute your analytical workload
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 

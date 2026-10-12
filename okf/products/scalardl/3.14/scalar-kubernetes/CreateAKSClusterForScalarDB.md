@@ -24,13 +24,13 @@ feature_status:
 - Deprecated
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-12T04:40:05Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalar-kubernetes/CreateAKSClusterForScalarDB.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/603f940d61f7886e62805f34643d0aa3a49db725/docs/scalar-kubernetes/CreateAKSClusterForScalarDB.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-09T03:44:05Z'
 ---
 
 # Guidelines for creating an AKS cluster for ScalarDB Server

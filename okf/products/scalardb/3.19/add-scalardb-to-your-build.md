@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/add-scalardb-to-your-build.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/add-scalardb-to-your-build.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # Add ScalarDB to Your Build
@@ -42,22 +42,22 @@ Select your build tool, and follow the instructions to add the build dependency 
 
 **Gradle**
 
-To add the build dependency for ScalarDB by using Gradle, add the following to `build.gradle` in your application, replacing `<VERSION>` with the version of ScalarDB that you want to use:
+To add the build dependency for ScalarDB by using Gradle, add the following to `build.gradle` in your application, replacing `<X.Y.Z>` with the version of ScalarDB that you want to use:
 
 ```gradle
 dependencies {
-  implementation 'com.scalar-labs:scalardb:<VERSION>'
+  implementation 'com.scalar-labs:scalardb:<X.Y.Z>'
 }
 ```
 
 **Maven**
 
-To add the build dependency for ScalarDB by using Maven, add the following to `pom.xml` in your application, replacing `<VERSION>` with the version of ScalarDB that you want to use:
+To add the build dependency for ScalarDB by using Maven, add the following to `pom.xml` in your application, replacing `<X.Y.Z>` with the version of ScalarDB that you want to use:
 
 ```xml
 <dependency>
   <groupId>com.scalar-labs</groupId>
   <artifactId>scalardb</artifactId>
-  <version><VERSION></version>
+  <version><X.Y.Z></version>
 </dependency>
 ```

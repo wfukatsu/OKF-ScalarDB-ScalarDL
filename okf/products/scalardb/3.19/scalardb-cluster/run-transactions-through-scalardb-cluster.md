@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/run-transactions-through-scalardb-cluster.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/scalardb-cluster/run-transactions-through-scalardb-cluster.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # Run Transactions Through ScalarDB Cluster
@@ -36,7 +36,7 @@ This guide explains how to configure your ScalarDB properties file and create sc
 
 :::warning
 
-You need to have a license key (trial license or commercial license) for ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -511,12 +511,6 @@ ScalarDB Cluster Data Loader is a utility for importing and exporting data with 
 ## Run transactions
 
 You can run transactions by using a one-phase or a two-phase commit interface. Select your method for running transactions.
-
-:::note
-
-If you are building a monolithic application, you should use the one-phase commit interface. However, if you are building a microservice application, see [ScalarDB Cluster Deployment Patterns for Microservices](./deployment-patterns-for-microservices.md) to decide which interface to use.
-
-:::
 
 **Java**
 

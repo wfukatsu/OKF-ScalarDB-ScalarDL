@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/consensus-commit.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/consensus-commit.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # Consensus Commit Protocol
@@ -203,7 +203,7 @@ As described above, serializable is preferable from a correctness perspective, b
 
 :::note
 
-The Consensus Commit protocol of ScalarDB requires each underlying database to provide linearizable operations, as described in [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md#transactions); thus, it guarantees strict serializability.
+The Consensus Commit protocol of ScalarDB requires each underlying database to provide linearizable operations, as described in [General requirements for the underlying databases](./database-configurations.md#general-requirements-for-the-underlying-databases); thus, it guarantees strict serializability.
 
 :::
 

@@ -15,16 +15,16 @@ patch_version: 3.19.1
 url_path: latest
 maintenance: supported
 is_latest: true
-concept_count: 203
+concept_count: 205
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/tree/c882c4103fe6e0aedff74e7afa67c2587a78ec9b
+  resource: https://github.com/scalar-labs/docs-scalardb/tree/970134cc9f2dffc6092f1719dfdf518f2ebe1592
   title: ScalarDB documentation repository
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # ScalarDB 3.19
@@ -37,8 +37,8 @@ Supported release.
 | Documentation version | 3.19 |
 | Newest patch release described | 3.19.1 |
 | Docs site | https://scalardb.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `c882c4103fe6` |
-| Concepts in this version | 203 |
+| Upstream source | https://github.com/scalar-labs/docs-scalardb @ `970134cc9f2d` |
+| Concepts in this version | 205 |
 
 ## By lifecycle phase
 
@@ -58,16 +58,16 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB Analytics Design and Implementation](./scalardb-analytics/design.md)
 - [ScalarDB Cluster Compatibility Matrix](./scalardb-cluster/compatibility.md)
 
-### 実装 / Implement (91)
+### 実装 / Implement (93)
 
 - [Add ScalarDB to Your Build](./add-scalardb-to-your-build.md)
-- [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md)
-- [Database Adapters](./database-adapters.md)
+- [Configure Databases for ScalarDB](./database-configurations.md)
 - [Develop Overview](./develop-overview.md)
 - [Getting Started with Benchmarking ScalarDB](./getting-started-with-benchmarking-scalardb.md)
 - [Getting Started with ScalarDB](./getting-started-with-scalardb.md)
 - [Getting Started with ScalarDB by Using Kotlin](./getting-started-with-scalardb-by-using-kotlin.md)
 - [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](./schema-loader-import.md)
+- [Learn About Database Adapters](./database-adapters.md)
 - [Libraries and Tools for ScalarDB](./libraries-and-tools.md)
 - [Migrate Overview](./migrate-overview.md)
 - [Multi-Storage Transactions](./multi-storage-transactions.md)
@@ -119,6 +119,7 @@ Start here when you know which phase of the project you are in.
 - [ScalarDB Cluster](./scalardb-cluster/section-home.md)
 - [ScalarDB Cluster Configurations](./scalardb-cluster/scalardb-cluster-configurations.md)
 - [ScalarDB Cluster gRPC API Guide](./scalardb-cluster/scalardb-cluster-grpc-api-guide.md)
+- [ScalarDB Cluster Java API Guide](./scalardb-cluster/api-guide.md)
 - [ScalarDB Cluster SQL gRPC API Guide](./scalardb-cluster/scalardb-cluster-sql-grpc-api-guide.md)
 - [ScalarDB Cluster Standalone Mode](./scalardb-cluster/standalone-mode.md)
 - [Exception Handling in the ScalarDB Cluster .NET Client SDK](./scalardb-cluster-dotnet-client-sdk/exception-handling.md)
@@ -141,6 +142,7 @@ Start here when you know which phase of the project you are in.
 - [Run Sample Applications Overview](./scalardb-samples/README.md)
 - [Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ](./scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README.md)
 - [Create a Sample Application That Supports Microservice Transactions](./scalardb-samples/microservice-transaction-sample/README.md)
+- [Create an Application That Supports Microservice Transactions by Using the Microservice Transaction API](./scalardb-samples/microservice-transaction-sample-with-cluster/README.md)
 - [Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using ScalarDB JDBC](./scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README.md)
 - [Create a Sample Application That Supports Multi-Storage Transactions](./scalardb-samples/multi-storage-transaction-sample/README.md)
 - [Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions](./scalardb-samples/spring-data-microservice-transaction-sample/README.md)
@@ -276,9 +278,8 @@ Start here when you know which phase of the project you are in.
 
 - [Add ScalarDB to Your Build](./add-scalardb-to-your-build.md) — The ScalarDB library is available on the Maven Central Repository. You can add the library as a build dependency to your application by using Gradle or Maven.
 - [Back Up and Restore Databases Overview](./manage-backup-and-restore.md) — In this category, you can learn how to back up and restore databases that are used by ScalarDB.
-- [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md) — This document explains how to configure the underlying databases of ScalarDB to make applications that use ScalarDB work correctly and efficiently.
+- [Configure Databases for ScalarDB](./database-configurations.md) — This document explains how to configure the underlying databases of ScalarDB to make applications that use ScalarDB work correctly and efficiently.
 - [Consensus Commit Protocol](./consensus-commit.md) — Consensus Commit is the transaction protocol used in ScalarDB and is designed for executing transactions spanning multiple diverse databases. Its uniqueness is that the protocol achieves ACID transactions without relying on the transaction...
-- [Database Adapters](./database-adapters.md) — ScalarDB provides a database-agnostic abstraction layer that enables applications to perform ACID transactions across different databases without being tied to any specific database product. To achieve this, ScalarDB uses database adapters...
 - [Deploy Overview](./deploy-overview.md) — In this category, you can follow guides to help you become more familiar with deploying ScalarDB, specifically ScalarDB Cluster and ScalarDB Analytics, in local and cloud-based Kubernetes environments.
 - [Develop Overview](./develop-overview.md) — In this category, you can follow guides to help you become more familiar with ScalarDB, specifically with how to run transactions, analytical queries, and non-transactional storage operations.
 - [Getting Started with Benchmarking ScalarDB](./getting-started-with-benchmarking-scalardb.md) — This guide walks you through planning, running, and analyzing benchmarks for ScalarDB. A structured benchmarking methodology produces reliable, meaningful performance measurements that you can use to make informed decisions about system...
@@ -287,6 +288,7 @@ Start here when you know which phase of the project you are in.
 - [Glossary](./glossary.md) — This glossary includes database and distributed-system terms that are often used when using ScalarDB.
 - [How to Back Up and Restore Databases Used Through ScalarDB](./backup-restore.md) — Since ScalarDB provides transaction capabilities on top of non-transactional or transactional databases non-invasively, you need to take special care to back up and restore the databases in a transactionally consistent way.
 - [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](./schema-loader-import.md) — You might want to use ScalarDB (e.g., for database-spanning transactions) with your existing databases. In that case, you can import those databases under the ScalarDB control using ScalarDB Schema Loader. ScalarDB Schema Loader...
+- [Learn About Database Adapters](./database-adapters.md) — ScalarDB provides a database-agnostic abstraction layer that enables applications to perform ACID transactions across different databases without being tied to any specific database product. To achieve this, ScalarDB uses database adapters...
 - [Libraries and Tools for ScalarDB](./libraries-and-tools.md) — ScalarDB provides various libraries and tools to help you build and operate scalable and reliable applications. Below are some key libraries and tools available.
 - [Manage Overview](./manage-overview.md) — In this category, you can follow guides to help you manage ScalarDB.
 - [Migrate Overview](./migrate-overview.md) — For details on importing your tables or migrating your applications and databases to a ScalarDB-based environment, see the following guides.

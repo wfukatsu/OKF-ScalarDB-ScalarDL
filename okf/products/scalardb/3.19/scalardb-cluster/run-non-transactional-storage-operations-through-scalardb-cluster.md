@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-12T04:40:02Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/run-non-transactional-storage-operations-through-scalardb-cluster.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/970134cc9f2dffc6092f1719dfdf518f2ebe1592/docs/scalardb-cluster/run-non-transactional-storage-operations-through-scalardb-cluster.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-09T07:09:42Z'
 ---
 
 # Run Non-Transactional Storage Operations Through ScalarDB Cluster
@@ -36,7 +36,7 @@ This guide explains how to run non-transactional storage operations through Scal
 
 :::warning
 
-You need to have a license key (trial license or commercial license) for ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -506,7 +506,7 @@ docker compose up -d scalardb-cluster-node
 
 ScalarDB has its own data model and schema that maps to the implementation-specific data model and schema.
 
-- **Need to create a database schema?** See [Schema Loader for Cluster](./developer-guide-for-scalardb-cluster-with-java-api.md#schema-loader-for-cluster).
+- **Need to create a database schema?** See [Schema Loader for Cluster](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-schema-loader).
 - **Need to import an existing database?** See [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](../schema-loader-import.md).
 
 ## Load initial data as necessary
@@ -528,23 +528,23 @@ Select your build tool, and follow the instructions to add the build dependency 
 
 **Gradle**
 
-To add the build dependency for the ScalarDB Cluster Java Client SDK by using Gradle, add the following to `build.gradle` in your application:
+To add the build dependency for the ScalarDB Cluster Java Client SDK by using Gradle, add the following to `build.gradle` in your application, replacing `<X.Y.Z>` with the version of the ScalarDB Cluster Java Client SDK that you want to use:
 
 ```gradle
 dependencies {
-  implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:3.19.0'
+  implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<X.Y.Z>'
 }
 ```
 
 **Maven**
 
-To add the build dependency for the ScalarDB Cluster Java Client SDK by using Maven, add the following to `pom.xml` in your application:
+To add the build dependency for the ScalarDB Cluster Java Client SDK by using Maven, add the following to `pom.xml` in your application, replacing `<X.Y.Z>` with the version of the ScalarDB Cluster Java Client SDK that you want to use:
 
 ```xml
 <dependency>
   <groupId>com.scalar-labs</groupId>
   <artifactId>scalardb-cluster-java-client-sdk</artifactId>
-  <version>3.19.0</version>
+  <version><X.Y.Z></version>
 </dependency>
 ```
 
