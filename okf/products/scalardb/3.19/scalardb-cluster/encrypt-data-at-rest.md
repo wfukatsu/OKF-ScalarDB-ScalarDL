@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/encrypt-data-at-rest.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-cluster/encrypt-data-at-rest.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Encrypt Data at Rest
@@ -121,7 +121,7 @@ There are some limitations to the encryption feature:
 - Primary-key columns (partition-key columns and clustering-key columns) cannot be encrypted.
 - Secondary-index columns cannot be encrypted.
 - Encrypted columns cannot be specified in the WHERE clauses or ORDER BY clauses.
-- Encrypted columns are stored in the underlying database as the BLOB type, so encrypted columns that are larger than the maximum size of the BLOB type cannot be stored. To see if the database you're using has a maximum size for the BLOB type, see [Database Adapters](../database-adapters.md).
+- Encrypted columns are stored in the underlying database as the `BLOB` type, so encrypted columns that are larger than the maximum size of the `BLOB` type cannot be stored. To see if the database you're using has a maximum size for the `BLOB` type, see [Learn About Database Adapters](../database-adapters.md).
 - Encrypted columns cannot be renamed.
 - Encrypted columns cannot be altered to change their data types.
 
@@ -144,7 +144,7 @@ This tutorial explains how to encrypt data stored through ScalarDB by using Hash
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -181,7 +181,7 @@ scalar.db.cluster.node.licensing.license_check_cert_pem=<LICENSE_CHECK_CERT_PEM>
 
 ### Step 3. Create the Docker Compose configuration file
 
-Create the following configuration file as `docker-compose.yaml`.
+Create the following configuration file as `docker-compose.yaml`, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you want to use.
 
 ```yaml
 services:
@@ -212,7 +212,7 @@ services:
 
   scalardb-cluster-standalone:
     container_name: "scalardb-cluster-node"
-    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:3.19.0"
+    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:<X.Y.Z>"
     ports:
       - 60053:60053
       - 9080:9080
@@ -258,7 +258,7 @@ It may take a few minutes for ScalarDB Cluster to fully start.
 
 ### Step 7. Connect to ScalarDB Cluster
 
-To connect to ScalarDB Cluster, this tutorial uses the SQL CLI, a tool for connecting to ScalarDB Cluster and executing SQL queries. You can download the SQL CLI from the [ScalarDB releases page](https://github.com/scalar-labs/scalardb/releases).
+To connect to ScalarDB Cluster, this tutorial uses the SQL CLI, a tool for connecting to ScalarDB Cluster and executing SQL queries. Download the version of the SQL CLI that matches the version of ScalarDB Cluster that you're using from the [ScalarDB releases page](https://github.com/scalar-labs/scalardb/releases).
 
 Create a configuration file named `scalardb-cluster-sql-cli.properties`. This file will be used to connect to ScalarDB Cluster by using the SQL CLI.
 
@@ -267,10 +267,10 @@ scalar.db.sql.connection_mode=cluster
 scalar.db.sql.cluster_mode.contact_points=indirect:localhost
 ```
 
-Then, start the SQL CLI by running the following command.
+Then, start the SQL CLI by running the following command, replacing `<X.Y.Z>` with the version that you previously downloaded.
 
 ```console
-java -jar scalardb-cluster-sql-cli-3.19.0-all.jar --config scalardb-cluster-sql-cli.properties
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-sql-cli.properties
 ```
 
 To begin, create the Coordinator tables required for ScalarDB transaction execution.

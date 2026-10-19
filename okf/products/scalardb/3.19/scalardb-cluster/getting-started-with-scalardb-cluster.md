@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/getting-started-with-scalardb-cluster.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-cluster/getting-started-with-scalardb-cluster.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Getting Started with ScalarDB Cluster
@@ -137,13 +137,13 @@ cd scalardb-samples/scalardb-sample
 
 ### Modify `build.gradle`
 
-To use ScalarDB Cluster, open `build.gradle` in your preferred text editor. Then, delete the existing dependency for `com.scalar-labs:scalardb` from the `dependencies` section, and add the following dependency to the `dependencies` section:
+To use ScalarDB Cluster, open `build.gradle` in your preferred text editor. Then, delete the existing dependency for `com.scalar-labs:scalardb` from the `dependencies` section, and add the following dependency to the `dependencies` section, replacing `<X.Y.Z>` with the version of the ScalarDB Cluster Java Client SDK that you want to use:
 
 ```gradle
 dependencies {
     ...
 
-    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:3.19.0'
+    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<X.Y.Z>'
 }
 ```
 
@@ -189,12 +189,12 @@ For details about the client modes, see [Developer Guide for ScalarDB Cluster wi
 
 The database schema (the method in which the data will be organized) for the sample application has already been defined in [`schema.json`](https://github.com/scalar-labs/scalardb-samples/tree/main/scalardb-sample/schema.json).
 
-To apply the schema, go to [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases/tag/v3.19.0) and download the ScalarDB Cluster Schema Loader to the `scalardb-samples/scalardb-sample` folder.
+To apply the schema, go to [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases), and download the version of the ScalarDB Cluster Schema Loader that matches the version of ScalarDB Cluster that you're using to the `scalardb-samples/scalardb-sample` folder.
 
-Then, run the following command:
+Then, run the following command, replacing `<X.Y.Z>` with the version that you previously downloaded:
 
 ```console
-java -jar scalardb-cluster-schema-loader-3.19.0-all.jar --config database.properties -f schema.json --coordinator
+java -jar scalardb-cluster-schema-loader-<X.Y.Z>-all.jar --config database.properties -f schema.json --coordinator
 ```
 
 #### Schema details
@@ -290,7 +290,7 @@ Check details about the order by running the following command, replacing `<ORDE
 ./gradlew run --args="GetOrder <ORDER_ID_UUID>"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`:
 
 ```console
 ...
@@ -322,7 +322,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew run --args="GetOrders 1"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`, which shows the history of all orders for customer ID `1`:
 
 ```console
 ...

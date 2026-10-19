@@ -1,7 +1,7 @@
 ---
 type: Sample Application
 title: Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions
-description: This tutorial describes how to create a sample Spring Boot application for microservice transactions by using Spring Data JDBC for ScalarDB.
+description: The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
 resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/README/
 tags:
 - scalardb
@@ -19,16 +19,22 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/spring-data-microservice-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-samples/spring-data-microservice-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 This tutorial describes how to create a sample Spring Boot application for microservice transactions by using Spring Data JDBC for ScalarDB.
 
@@ -45,13 +51,7 @@ For details about these features, see [Two-phase Commit Transactions](../../two-
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
-
-:::
-
-:::warning Deprecation notice
-
-The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/scalar-licensing/trial/). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -227,18 +227,18 @@ To apply the schema, go to the [ScalarDB Releases](https://github.com/scalar-lab
 
 #### MySQL
 
-To load the schema for [`schema-for-customer-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-customer-service.sql) into MySQL, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`schema-for-customer-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-customer-service.sql) into MySQL, run the following command, replacing `<X.Y.Z>` with the version of the SQL CLI tool that you downloaded:
 
 ```console
-java -jar scalardb-cluster-sql-cli-<VERSION>-all.jar --config scalardb-cluster-node-for-customer-service-client.properties --file schema-for-customer-service.sql
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-node-for-customer-service-client.properties --file schema-for-customer-service.sql
 ```
 
 #### Cassandra
 
-To load the schema for [`schema-for-order-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-order-service.sql) into Cassandra, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`schema-for-order-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-order-service.sql) into Cassandra, run the following command, replacing `<X.Y.Z>` with the version of the SQL CLI tool that you downloaded:
 
 ```console
-java -jar scalardb-cluster-sql-cli-<VERSION>-all.jar --config scalardb-cluster-node-for-order-service-client.properties --file schema-for-order-service.sql
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-node-for-order-service-client.properties --file schema-for-order-service.sql
 ```
 
 #### Schema details

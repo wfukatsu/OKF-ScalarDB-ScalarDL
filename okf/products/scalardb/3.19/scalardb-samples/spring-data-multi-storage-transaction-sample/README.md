@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/spring-data-multi-storage-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-samples/spring-data-multi-storage-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Sample application of Spring Data JDBC for ScalarDB with Multi-storage Transactions
@@ -43,7 +43,7 @@ This tutorial describes how to create a sample Spring Boot application by using 
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/scalar-licensing/trial/). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -210,10 +210,10 @@ Please note that starting the containers may take more than one minute.
 ### Load schema
 
 You then need to apply the schema with the following command.
-To download the SQL CLI tool, `scalardb-cluster-sql-cli-<VERSION>-all.jar`, see the [Releases](https://github.com/scalar-labs/scalardb/releases) of ScalarDB and download the version that you want to use.
+To download the SQL CLI tool, `scalardb-cluster-sql-cli-<X.Y.Z>-all.jar`, see the [Releases](https://github.com/scalar-labs/scalardb/releases) of ScalarDB and download the version that you want to use.
 
 ```console
-java -jar scalardb-cluster-sql-cli-<VERSION>-all.jar --config scalardb-sql.properties --file schema.sql
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-sql.properties --file schema.sql
 ```
 
 ### Load initial data

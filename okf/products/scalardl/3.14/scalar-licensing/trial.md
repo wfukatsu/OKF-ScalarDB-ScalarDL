@@ -19,20 +19,20 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-19T03:33:17Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalar-licensing/trial.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/ab50260c7f47836bf097214504c93c86e6c2430d/docs/scalar-licensing/trial.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-16T03:36:21Z'
 ---
 
 # How to Configure a Trial License Key
 
 You can use the following trial license keys for ScalarDL Enterprise. If you have a commercial license key, please refer to [Configure a Commercial License Key](./commercial.md) to configure your license key.
 
-To run ScalarDL Enterprise, you must create a `.properties` file and add the trial license key and the certificate to the file. In your `.properties` file, copy one of the following configurations, based on the product you're using, and paste the contents in the `.properties` file.
+To run ScalarDL Enterprise, you must create a configuration file and add the trial license key and the certificate to the file. In your configuration file, copy one of the following configurations, based on the product you're using, and paste the contents in the configuration file.
 
 :::warning
 
@@ -53,13 +53,25 @@ ScalarDL Ledger is also available as open-source software under the Apache 2.0 L
 :::
 
 ```properties
-scalar.dl.licensing.license_key={"organization_name":"Trial","product_name":"ScalarDL Ledger","product_version":3,"license_type":"trial","signature":"MEUCIQCgm34eIa+MB+wrunr5XAw7TYuP47t8OrH4sAWFlnMMwQIgYUBxTea/m4JIYibVG4eFSZJeHil/2J2SzenPs45Aa0s=","expiration_date_time":"2026-10-31T10:25:13.902+09:00[Asia/Tokyo]"}
+scalar.dl.licensing.license_key={"organization_name":"Trial","product_name":"ScalarDL Ledger","product_version":3,"license_type":"trial","signature":"MEYCIQCVdGHRMjVJV4ShSW8SxbUgKkkCCSkpLoeLdVo+MIZRPQIhAPwmrEfgNKmXQKsTYk9x6Q26wOKEMqiI9x5dVxyaFOgM","expiration_date_time":"2026-11-30T10:32:36.026+09:00[Asia/Tokyo]"}
 scalar.dl.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
 ```
+
+:::note
+
+If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Deploy ScalarDL in a Cloud-Based Kubernetes Environment](../deploy-managed-kubernetes-environment-overview.md).
+
+:::
 
 ## ScalarDL Auditor
 
 ```properties
-scalar.dl.licensing.license_key={"organization_name":"Trial","product_name":"ScalarDL Auditor","product_version":3,"license_type":"trial","signature":"MEQCIDOegn5Zo2zxwcnp45s7Wkg8DmgfdBBzOlLTWy9EICiXAiAtJ07vy8lBZ9U8/p+juSTbyu5pOpqtrVC0kUHB7SfUbA==","expiration_date_time":"2026-10-31T10:25:15.294+09:00[Asia/Tokyo]"}
+scalar.dl.licensing.license_key={"organization_name":"Trial","product_name":"ScalarDL Auditor","product_version":3,"license_type":"trial","signature":"MEYCIQC9sQRcubGy6PDr+bv0mKad0rh7TdsvcQ1gVEroZi+N/wIhAK8ql/KHKyEP0GXPsIU8/diu0xxfUerubGTBYTvTJWsT","expiration_date_time":"2026-11-30T10:32:37.561+09:00[Asia/Tokyo]"}
 scalar.dl.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
 ```
+
+:::note
+
+If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Deploy ScalarDL in a Cloud-Based Kubernetes Environment](../deploy-managed-kubernetes-environment-overview.md).
+
+:::

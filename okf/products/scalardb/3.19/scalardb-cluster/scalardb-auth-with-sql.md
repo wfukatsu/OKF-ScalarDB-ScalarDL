@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/scalardb-auth-with-sql.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-cluster/scalardb-auth-with-sql.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Authenticate and Authorize Users
@@ -34,7 +34,8 @@ ScalarDB Cluster can authenticate and authorize users in a coarse-grained manner
 
 :::tip
 
-You can also do authentication and authorization by using the primitive interface. For details, see [`ClusterClientTransactionAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb-cluster-java-client-sdk/3.19.1/com/scalar/db/cluster/client/ClusterClientTransactionAdmin.html), which implements [`AuthAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb/3.19.1/com/scalar/db/api/AuthAdmin.html).
+You can also do authentication and authorization by using the primitive interface. For details, see [Authentication and authorization API](./api-guide.md#authentication-and-authorization-api).
+
 :::
 
 ## Authentication methods
@@ -316,7 +317,7 @@ This tutorial explains how to use authentication and authorization.
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -346,7 +347,7 @@ scalar.db.cluster.node.licensing.license_check_cert_pem=<LICENSE_CHECK_CERT_PEM>
 
 ### 2. Create the Docker Compose file
 
-Create the following configuration file as `docker-compose.yaml`.
+Create the following configuration file as `docker-compose.yaml`, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you want to use.
 
 ```yaml
 services:
@@ -366,7 +367,7 @@ services:
 
   scalardb-cluster-standalone:
     container_name: "scalardb-cluster-node"
-    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:3.19.0"
+    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:<X.Y.Z>"
     ports:
       - 60053:60053
       - 9080:9080
@@ -389,7 +390,7 @@ It may take a few minutes for ScalarDB Cluster to fully start.
 
 ### 4. Connect to ScalarDB Cluster
 
-To connect to ScalarDB Cluster, this tutorial uses the SQL CLI, a tool for connecting to ScalarDB Cluster and executing SQL queries. You can download the SQL CLI from the [ScalarDB releases page](https://github.com/scalar-labs/scalardb/releases).
+To connect to ScalarDB Cluster, this tutorial uses the SQL CLI, a tool for connecting to ScalarDB Cluster and executing SQL queries. Download the version of the SQL CLI that matches the version of ScalarDB Cluster that you're using from the [ScalarDB releases page](https://github.com/scalar-labs/scalardb/releases).
 
 Create a configuration file named `scalardb-cluster-sql-cli.properties`. This file will be used to connect to ScalarDB Cluster by using the SQL CLI.
 
@@ -401,10 +402,10 @@ scalar.db.sql.cluster_mode.contact_points=indirect:localhost
 scalar.db.cluster.auth.enabled=true
 ```
 
-Then, start the SQL CLI by running the following command.
+Then, start the SQL CLI by running the following command, replacing `<X.Y.Z>` with the version that you previously downloaded.
 
 ```console
-java -jar scalardb-cluster-sql-cli-3.19.0-all.jar --config scalardb-cluster-sql-cli.properties
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-sql-cli.properties
 ```
 
 Enter the username and password as `admin` and `admin`, respectively.
@@ -493,7 +494,7 @@ You can see that `user1` has been granted the `SELECT`, `INSERT`, and `UPDATE` p
 Log in as `user1` and execute SQL statements.
 
 ```console
-java -jar scalardb-cluster-sql-cli-3.19.0-all.jar --config scalardb-cluster-sql-cli.properties
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-sql-cli.properties
 ```
 
 Enter the username and password as `user1` and `user1`, respectively.
@@ -541,7 +542,7 @@ You will see the above error message because `user1` doesn't have the `DELETE` p
 Log in as `admin` to create and manage roles.
 
 ```console
-java -jar scalardb-cluster-sql-cli-3.19.0-all.jar --config scalardb-cluster-sql-cli.properties
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-sql-cli.properties
 ```
 
 Enter the username and password as `admin` and `admin`, respectively.
@@ -616,7 +617,7 @@ SHOW GRANTS FOR user1;
 Now, log in as `user1` and try the `DELETE` statement again.
 
 ```console
-java -jar scalardb-cluster-sql-cli-3.19.0-all.jar --config scalardb-cluster-sql-cli.properties
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-sql-cli.properties
 ```
 
 Enter the username and password as `user1` and `user1`, respectively.

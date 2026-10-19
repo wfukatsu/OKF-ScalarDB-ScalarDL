@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-19T03:33:17Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalardl-common-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/ab50260c7f47836bf097214504c93c86e6c2430d/docs/scalardl-common-status-codes.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-16T03:36:21Z'
 ---
 
 # ScalarDL Common Error Codes
@@ -51,7 +51,7 @@ The following are status codes and messages for the validation error category.
 **Message**
 
 ```markdown
-The format of the contract ID is invalid.
+The format of the Contract ID is invalid.
 ```
 
 **Solution**
@@ -265,13 +265,13 @@ Verify that the key store configuration is correct and that all required files a
 **Message**
 
 ```markdown
-Loading the contract failed. Details: %s
+Loading the Contract failed. Details: %s
 ```
 
 **Solution**
 
 ```markdown
-Verify that the contract class is valid and all dependencies are available. Check the error details for specific issues.
+Verify that the Contract class is valid and all dependencies are available. Check the error details for specific issues.
 ```
 
 ### `DL-COMMON-403001`
@@ -293,13 +293,13 @@ Before using the certificate, register it by using the register-cert command.
 **Message**
 
 ```markdown
-The specified contract is not found.
+The specified Contract is not found.
 ```
 
 **Solution**
 
 ```markdown
-Before executing the contract, register it by using the register-contract command.
+Before executing the Contract, register it by using the register-contract command.
 ```
 
 ### `DL-COMMON-405001`
@@ -321,13 +321,13 @@ Use the existing certificate or register it with a new version number.
 **Message**
 
 ```markdown
-The specified contract is already registered.
+The specified Contract is already registered.
 ```
 
 **Solution**
 
 ```markdown
-Use the existing contract or register it with a different contract ID.
+Use the existing Contract or register it with a different Contract ID.
 ```
 
 ### `DL-COMMON-406002`
@@ -335,13 +335,13 @@ Use the existing contract or register it with a different contract ID.
 **Message**
 
 ```markdown
-The specified contract binary name has been already registered with a different byte code.
+The specified Contract binary name has been already registered with a different byte code.
 ```
 
 **Solution**
 
 ```markdown
-Use a different contract ID or class name to register this version of the contract.
+Use a different Contract ID or class name to register this version of the Contract.
 ```
 
 ### `DL-COMMON-407001`
@@ -643,13 +643,13 @@ Provide a valid namespace name that meets the naming requirements.
 **Message**
 
 ```markdown
-Namespace-aware interfaces are not supported in deprecated contracts.
+Namespace-aware interfaces are not supported in deprecated Contracts.
 ```
 
 **Solution**
 
 ```markdown
-Use the non-namespace-aware interfaces or migrate to the newer contract interfaces that support namespaces.
+Use the non-namespace-aware interfaces or migrate to the newer Contract interfaces that support namespaces.
 ```
 
 ### `DL-COMMON-414021`
@@ -801,7 +801,7 @@ Check the database connection and ensure the database is accessible. Review the 
 **Message**
 
 ```markdown
-Binding the contract failed. Details: %s
+Binding the Contract failed. Details: %s
 ```
 
 **Solution**
@@ -815,7 +815,7 @@ Check the database connection and ensure the database is accessible. Review the 
 **Message**
 
 ```markdown
-Getting the contract failed. Details: %s
+Getting the Contract failed. Details: %s
 ```
 
 **Solution**
@@ -829,7 +829,7 @@ Check the database connection and ensure the database is accessible. Review the 
 **Message**
 
 ```markdown
-Scanning the contracts failed. Details: %s
+Scanning the Contracts failed. Details: %s
 ```
 
 **Solution**
@@ -1025,13 +1025,13 @@ Check the error details in the logs and verify the transaction state.
 **Message**
 
 ```markdown
-The contract type or instance is not supported.
+The Contract type or instance is not supported.
 ```
 
 **Solution**
 
 ```markdown
-Check the error details in the logs and verify that the contract type is supported.
+Check the error details in the logs and verify that the Contract type is supported.
 ```
 
 ### `DL-COMMON-502007`

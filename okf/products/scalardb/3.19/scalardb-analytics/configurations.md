@@ -19,13 +19,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-analytics/configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # ScalarDB Analytics Configurations
@@ -418,8 +418,10 @@ scalar.db.analytics.client.server.host=localhost
 
 #### Spark configuration (`spark-defaults.conf`)
 
+Replace `<X.Y.Z>` with the ScalarDB Analytics version you want to use.
+
 ```properties
-spark.jars.packages                         com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:3.19.0
+spark.jars.packages                         com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:<X.Y.Z>
 spark.extraListeners                        com.scalar.db.analytics.spark.metering.ScalarDbAnalyticsListener
 spark.sql.catalog.analytics                 com.scalar.db.analytics.spark.ScalarDbAnalyticsCatalog
 spark.sql.catalog.analytics.server.host     localhost
@@ -543,8 +545,10 @@ scalar.db.analytics.client.server.tls.ca_root_cert_path=/path/to/cert.pem
 
 #### Spark configuration (`spark-defaults.conf`)
 
+Replace `<X.Y.Z>` with the ScalarDB Analytics version you want to use.
+
 ```properties
-spark.jars.packages                                     com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:3.19.0
+spark.jars.packages                                     com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:<X.Y.Z>
 spark.extraListeners                                    com.scalar.db.analytics.spark.metering.ScalarDbAnalyticsListener
 spark.sql.catalog.analytics                             com.scalar.db.analytics.spark.ScalarDbAnalyticsCatalog
 spark.sql.catalog.analytics.server.host                 analytics.example.com

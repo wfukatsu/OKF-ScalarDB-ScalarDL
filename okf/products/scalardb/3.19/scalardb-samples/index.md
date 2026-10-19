@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 ---
 
 # Scalardb Samples
@@ -23,6 +23,7 @@ ScalarDB 3.19 documentation under `scalardb-samples/`.
 
 - [dotnet-microservice-transactions-sample-with-shared-cluster-with-linq](./dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/index.md)
 - [microservice-transaction-sample](./microservice-transaction-sample/index.md)
+- [microservice-transaction-sample-with-cluster](./microservice-transaction-sample-with-cluster/index.md)
 - [microservice-transactions-sample-with-shared-cluster-with-jdbc](./microservice-transactions-sample-with-shared-cluster-with-jdbc/index.md)
 - [multi-storage-transaction-sample](./multi-storage-transaction-sample/index.md)
 - [spring-data-microservice-transaction-sample](./spring-data-microservice-transaction-sample/index.md)

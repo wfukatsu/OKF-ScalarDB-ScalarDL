@@ -23,20 +23,20 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalar-licensing/trial.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalar-licensing/trial.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # How to Configure a Trial License Key
 
 You can use the following trial license keys for ScalarDB Enterprise Standard/Premium and ScalarDB Analytics. If you have a commercial license key, please refer to [How to Configure a Commercial License Key](./commercial.md) to configure your license key.
 
-To run ScalarDB Enterprise Standard/Premium or ScalarDB Analytics, you must create a `.properties` file and add the trial license key and the certificate to the file. In your `.properties` file, copy one of the following configurations, based on the product you're using, and paste the contents in the `.properties` file.
+To run ScalarDB Enterprise Standard/Premium or ScalarDB Analytics, you must create a configuration file and add the trial license key and the certificate to the file. In your configuration file, copy one of the following configurations, based on the product you're using, and paste the contents in the configuration file.
 
 :::warning
 
@@ -57,13 +57,32 @@ ScalarDB Core is available as open-source software under the Apache 2.0 License 
 ## ScalarDB Enterprise Standard/Premium
 
 ```properties
-scalar.db.cluster.node.licensing.license_key={"organization_name":"Trial","product_name":"ScalarDB Cluster","product_version":3,"license_type":"trial","signature":"MEQCICClK07istF28eD2dh8BryiuYHkobfDhkmE+eKstsuJeAiATZkN6KNgWKwqUf6M+X4f+tqKjLrt1r0OwXtv+mXULmw==","expiration_date_time":"2026-10-31T10:25:11.148+09:00[Asia/Tokyo]"}
+scalar.db.cluster.node.licensing.license_key={"organization_name":"Trial","product_name":"ScalarDB Cluster","product_version":3,"license_type":"trial","signature":"MEYCIQCtaAx3bP46XI2DXZHCck2zlKwL93JrW/J+QZY51EgaCgIhAKxEOtEgmWezRKLfSFFCJ/wVFsnpqY82Y+scumkhDoyn","expiration_date_time":"2026-11-30T10:32:32.556+09:00[Asia/Tokyo]"}
 scalar.db.cluster.node.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
 ```
 
-## ScalarDB Analytics
+:::note
+
+If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Set Up ScalarDB Cluster on Kubernetes by Using a Helm Chart](../scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.md#step-2-deploy-scalardb-cluster-on-the-kubernetes-cluster-by-using-a-helm-chart).
+
+:::
+
+## ScalarDB Analytics (library for Spark)
 
 ```apacheconf
-spark.sql.catalog.scalardb_catalog.license.key {"organization_name":"Trial","product_name":"ScalarDB Analytics","product_version":3,"license_type":"trial","signature":"MEUCIQCTtTzmy3Pz+sS6P1jMtYREEQXn4geSGI435U/w9giBIQIgIuwy5iIDGSOBsSiiBtZs4rAi6wVfVPcqAxhz+lx2YRk=","expiration_date_time":"2026-10-31T10:25:12.575+09:00[Asia/Tokyo]"}
+spark.sql.catalog.scalardb_catalog.license.key {"organization_name":"Trial","product_name":"ScalarDB Analytics","product_version":3,"license_type":"trial","signature":"MEQCIGZl8RS+esJubmBa4qYppq7Pd2TgZsWPmpQhfCI06gcYAiBfry/McvINwWtGxi1lz4hyNTk+P4L63LwL16DpckrPUA==","expiration_date_time":"2026-11-30T10:32:34.278+09:00[Asia/Tokyo]"}
 spark.sql.catalog.scalardb_catalog.license.cert_pem -----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
 ```
+
+## ScalarDB Analytics server
+
+```properties
+scalar.db.analytics.server.licensing.license_key={"organization_name":"Trial","product_name":"ScalarDB Analytics","product_version":3,"license_type":"trial","signature":"MEQCIGZl8RS+esJubmBa4qYppq7Pd2TgZsWPmpQhfCI06gcYAiBfry/McvINwWtGxi1lz4hyNTk+P4L63LwL16DpckrPUA==","expiration_date_time":"2026-11-30T10:32:34.278+09:00[Asia/Tokyo]"}
+scalar.db.analytics.server.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
+```
+
+:::note
+
+If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Deploy a ScalarDB Analytics Server](https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/deploy-scalardb-analytics-server.mdx?billing-plan=byol-container-offer#set-the-required-configurations).
+
+:::

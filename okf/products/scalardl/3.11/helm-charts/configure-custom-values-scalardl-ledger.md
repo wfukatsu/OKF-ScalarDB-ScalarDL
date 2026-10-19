@@ -9,11 +9,12 @@ tags:
 - phase:operate
 - section:deploy
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: helm-charts/configure-custom-values-scalardl-ledger
 lifecycle_phase: operate
 breadcrumb:
@@ -24,13 +25,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-19T03:33:18Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/helm-charts/configure-custom-values-scalardl-ledger.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/ab50260c7f47836bf097214504c93c86e6c2430d/versioned_docs/version-3.11/helm-charts/configure-custom-values-scalardl-ledger.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-16T03:36:21Z'
 ---
 
 # Configure a custom values file for ScalarDL Ledger
@@ -69,7 +70,7 @@ For more details on the container repository for Scalar products, see [How to ge
 
 ### Ledger/Database configurations
 
-You must set `ledger.ledgerProperties`. Please set your `ledger.properties` to this parameter. Please refer to the [ledger.properties](https://github.com/scalar-labs/scalar/blob/master/ledger/conf/ledger.properties) for more details on the configuration of ScalarDL Ledger.
+You must set `ledger.ledgerProperties`. Please set your `ledger.properties` to this parameter. Set the configurations according to your environment. For more details, see the [ScalarDL Ledger configurations](../configurations.md#ledger-configurations).
 
 ```yaml
 ledger:

@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-19T03:33:17Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalardl-ledger-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/ab50260c7f47836bf097214504c93c86e6c2430d/docs/scalardl-ledger-status-codes.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-16T03:36:21Z'
 ---
 
 # ScalarDL Ledger Error Codes
@@ -79,7 +79,7 @@ Data or program tampering, or a software bug, may have occurred. Contact your sy
 **Message**
 
 ```markdown
-Validation failed for the contract.
+Validation failed for the Contract.
 ```
 
 **Solution**
@@ -181,13 +181,13 @@ Verify that the certificate used by Auditor is registered and valid.
 **Message**
 
 ```markdown
-The specified contract class is not allowed to be executed.
+The specified Contract class is not allowed to be executed.
 ```
 
 **Solution**
 
 ```markdown
-Verify the contract binary name and ensure it is listed in the configuration file specified by scalar.dl.ledger.executable_contracts.
+Verify the Contract binary name and ensure it is listed in the configuration file specified by scalar.dl.ledger.executable_contracts.
 ```
 
 ### `DL-LEDGER-407002`
@@ -237,13 +237,13 @@ Verify that the Auditor settings in the client and Ledger configurations are con
 **Message**
 
 ```markdown
-Registering a function via a non-privileged port is not allowed. Use a privileged port or enable %s.
+Registering a Function via a non-privileged port is not allowed. Use a privileged port or enable %s.
 ```
 
 **Solution**
 
 ```markdown
-Use a privileged port for function registration, or enable the appropriate configuration property to allow function registration from non-privileged ports.
+Use a privileged port for Function registration, or enable the appropriate configuration property to allow Function registration from non-privileged ports.
 ```
 
 ### `DL-LEDGER-407006`
@@ -251,13 +251,13 @@ Use a privileged port for function registration, or enable the appropriate confi
 **Message**
 
 ```markdown
-Overwriting an existing function is not allowed. Enable %s to allow overwriting.
+Overwriting an existing Function is not allowed. Enable %s to allow overwriting.
 ```
 
 **Solution**
 
 ```markdown
-Enable the function overwrite configuration property to allow overwriting existing functions.
+Enable the Function overwrite configuration property to allow overwriting existing Functions.
 ```
 
 ### `DL-LEDGER-407007`
@@ -293,13 +293,13 @@ Verify the asset ID and namespace are correct and the asset has been created.
 **Message**
 
 ```markdown
-The specified function is not found.
+The specified Function is not found.
 ```
 
 **Solution**
 
 ```markdown
-Register the function first before executing it.
+Register the Function first before executing it.
 ```
 
 ### `DL-LEDGER-411001`
@@ -307,13 +307,13 @@ Register the function first before executing it.
 **Message**
 
 ```markdown
-Loading the function failed. Details: %s
+Loading the Function failed. Details: %s
 ```
 
 **Solution**
 
 ```markdown
-Check the error details and verify that the function class is valid and accessible.
+Check the error details and verify that the Function class is valid and accessible.
 ```
 
 ### `DL-LEDGER-412001`
@@ -321,13 +321,13 @@ Check the error details and verify that the function class is valid and accessib
 **Message**
 
 ```markdown
-The function is not allowed to access the specified namespace.
+The Function is not allowed to access the specified namespace.
 ```
 
 **Solution**
 
 ```markdown
-Functions cannot access system namespaces or namespaces with reserved prefixes. Disallowed namespaces: system, system_schema, system_auth, system_distributed, system_traces, coordinator. Disallowed namespace prefixes: scalar, auditor. Use a different namespace for your function operations.
+Functions cannot access system namespaces or namespaces with reserved prefixes. Disallowed namespaces: system, system_schema, system_auth, system_distributed, system_traces, coordinator. Disallowed namespace prefixes: scalar, auditor. Use a different namespace for your Function operations.
 ```
 
 ### `DL-LEDGER-412002`
@@ -335,7 +335,7 @@ Functions cannot access system namespaces or namespaces with reserved prefixes. 
 **Message**
 
 ```markdown
-The database operation in the function failed. Details: %s
+The database operation in the Function failed. Details: %s
 ```
 
 **Solution**
@@ -349,13 +349,13 @@ Verify that the arguments passed to the database operation are valid and correct
 **Message**
 
 ```markdown
-The function is not allowed to access a namespace that is neither its context namespace nor prefixed by it. Namespace: %s, context namespace: %s
+The Function is not allowed to access a namespace that is neither its context namespace nor prefixed by it. Namespace: %s; Context namespace: %s
 ```
 
 **Solution**
 
 ```markdown
-A function registered in a non-default namespace can only access the ScalarDB namespace with the same name as its context namespace or a namespace whose name starts with the context namespace followed by an underscore. Specify such a namespace explicitly in the database operation, or register the function in the appropriate namespace.
+A Function registered in a non-default namespace can only access the ScalarDB namespace with the same name as its context namespace or a namespace whose name starts with the context namespace followed by an underscore. Specify such a namespace explicitly in the database operation, or register the Function in the appropriate namespace.
 ```
 
 ### `DL-LEDGER-414001`
@@ -521,7 +521,7 @@ The following are status codes and messages for the internal error category.
 **Message**
 
 ```markdown
-Binding the function failed. Details: %s
+Binding the Function failed. Details: %s
 ```
 
 **Solution**
@@ -535,7 +535,7 @@ Check the error details in the logs and verify your database configuration and c
 **Message**
 
 ```markdown
-Unbinding the function failed. Details: %s
+Unbinding the Function failed. Details: %s
 ```
 
 **Solution**
@@ -549,7 +549,7 @@ Check the error details in the logs and verify your database configuration and c
 **Message**
 
 ```markdown
-Getting the function failed. Details: %s
+Getting the Function failed. Details: %s
 ```
 
 **Solution**
@@ -661,7 +661,7 @@ Check the error details in the logs and verify your database configuration and c
 **Message**
 
 ```markdown
-The database operation in the function failed due to a database error. Details: %s
+The database operation in the Function failed due to a database error. Details: %s
 ```
 
 **Solution**
@@ -703,13 +703,13 @@ Check the asset status manually and review the error details in the logs.
 **Message**
 
 ```markdown
-The function type or instance is not supported.
+The Function type or instance is not supported.
 ```
 
 **Solution**
 
 ```markdown
-Check the error details in the logs and verify that the function type is supported.
+Check the error details in the logs and verify that the Function type is supported.
 ```
 
 ### `DL-LEDGER-504001`
@@ -801,7 +801,7 @@ Retry the operation.
 **Message**
 
 ```markdown
-The database operation in the function failed due to a conflict. Details: %s
+The database operation in the Function failed due to a conflict. Details: %s
 ```
 
 **Solution**

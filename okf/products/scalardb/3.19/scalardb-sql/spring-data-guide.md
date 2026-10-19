@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/spring-data-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-sql/spring-data-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Guide of Spring Data JDBC for ScalarDB
@@ -45,28 +45,28 @@ Spring Data JDBC for ScalarDB extends Spring Data JDBC, but full compatibility i
 
 ## Add Spring Data JDBC for ScalarDB to your project
 
-To add the dependencies on Spring Data JDBC for ScalarDB by using Gradle, use the following, replacing `<VERSION>` with the versions of Spring Data JDBC for ScalarDB and the related library, respectively, that you are using:
+To add the dependencies on Spring Data JDBC for ScalarDB by using Gradle, use the following, replacing `<X.Y.Z>` with the versions of Spring Data JDBC for ScalarDB and the related library, respectively, that you are using:
 
 ```gradle
 dependencies {
-    implementation 'com.scalar-labs:scalardb-sql-spring-data:<VERSION>'
-    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<VERSION>'
+    implementation 'com.scalar-labs:scalardb-sql-spring-data:<X.Y.Z>'
+    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<X.Y.Z>'
 }
 ```
 
-To add the dependencies by using Maven, use the following, replacing `...` with the version of Spring Data JDBC for ScalarDB that you are using:
+To add the dependencies by using Maven, use the following, replacing `<X.Y.Z>` with the version of Spring Data JDBC for ScalarDB that you are using:
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-sql-spring-data</artifactId>
-        <version>...</version>
+        <version><X.Y.Z></version>
     </dependency>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-cluster-java-client-sdk</artifactId>
-        <version>...</version>
+        <version><X.Y.Z></version>
     </dependency>
 </dependencies>
 ```
