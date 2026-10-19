@@ -10,11 +10,12 @@ tags:
 - section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: scalar-kubernetes/HowToUseContainerImages
 lifecycle_phase: operate
 breadcrumb:
@@ -26,13 +27,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-19T03:33:18Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/scalar-kubernetes/HowToUseContainerImages.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/ab50260c7f47836bf097214504c93c86e6c2430d/versioned_docs/version-3.11/scalar-kubernetes/HowToUseContainerImages.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-16T03:36:21Z'
 ---
 
 # How to use the container images

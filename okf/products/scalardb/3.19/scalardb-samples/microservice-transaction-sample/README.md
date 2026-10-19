@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/microservice-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-samples/microservice-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Create a Sample Application That Supports Microservice Transactions
@@ -157,18 +157,18 @@ To apply the schema, go to the [ScalarDB Releases](https://github.com/scalar-lab
 
 #### MySQL
 
-To load the schema for [`customer-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/customer-service-schema.json) into MySQL, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`customer-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/customer-service-schema.json) into MySQL, run the following command, replacing `<X.Y.Z>` with the version of the ScalarDB Schema Loader that you downloaded:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database-mysql.properties --schema-file customer-service-schema.json
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database-mysql.properties --schema-file customer-service-schema.json
 ```
 
 #### Cassandra
 
-To load the schema for [`order-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/order-service-schema.json) into Cassandra, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`order-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/order-service-schema.json) into Cassandra, run the following command, replacing `<X.Y.Z>` with the version of the ScalarDB Schema Loader that you downloaded:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database-cassandra.properties --schema-file order-service-schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database-cassandra.properties --schema-file order-service-schema.json --coordinator
 ```
 
 #### Schema details
@@ -273,7 +273,7 @@ Check details about the order by running the following command, replacing `<ORDE
 ./gradlew :client:run --args="GetOrder <ORDER_ID_UUID>"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`:
 
 ```console
 ...
@@ -305,7 +305,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew :client:run --args="GetOrders 1"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
 
 ```console
 ...

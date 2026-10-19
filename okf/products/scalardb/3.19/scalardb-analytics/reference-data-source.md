@@ -19,13 +19,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/reference-data-source.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-analytics/reference-data-source.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Data Source Reference
@@ -34,7 +34,7 @@ This reference guide provides detailed information about data source configurati
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -756,32 +756,32 @@ Columns with data types that are not included in the mapping tables below will b
 
 | **MySQL Data Type**  | **ScalarDB Analytics Data Type** |
 | :------------------- | :------------------------------- |
-| `bit`                | `BOOLEAN`                        |
-| `bit(1)`             | `BOOLEAN`                        |
-| `bit(x)` if _x >= 2_ | `BLOB`                           |
-| `tinyint`            | `SMALLINT`                       |
-| `tinyint(1)`         | `BOOLEAN`                        |
-| `boolean`            | `BOOLEAN`                        |
-| `smallint`           | `SMALLINT`                       |
-| `smallint unsigned`  | `INT`                            |
-| `mediumint`          | `INT`                            |
-| `mediumint unsigned` | `INT`                            |
-| `int`                | `INT`                            |
-| `int unsigned`       | `BIGINT`                         |
-| `bigint`             | `BIGINT`                         |
-| `float`              | `FLOAT`                          |
-| `double`             | `DOUBLE`                         |
-| `real`               | `DOUBLE`                         |
-| `char`               | `TEXT`                           |
-| `varchar`            | `TEXT`                           |
-| `text`               | `TEXT`                           |
-| `binary`             | `BLOB`                           |
-| `varbinary`          | `BLOB`                           |
-| `blob`               | `BLOB`                           |
-| `date`               | `DATE`                           |
-| `time`               | `TIME`                           |
-| `datetime`           | `TIMESTAMP`                      |
-| `timestamp`          | `TIMESTAMPTZ`                    |
+| `BIT`                | `BOOLEAN`                        |
+| `BIT(1)`             | `BOOLEAN`                        |
+| `BIT(x)` if _x >= 2_ | `BLOB`                           |
+| `TINYINT`            | `SMALLINT`                       |
+| `TINYINT(1)`         | `BOOLEAN`                        |
+| `BOOLEAN`            | `BOOLEAN`                        |
+| `SMALLINT`           | `SMALLINT`                       |
+| `SMALLINT UNSIGNED`  | `INT`                            |
+| `MEDIUMINT`          | `INT`                            |
+| `MEDIUMINT UNSIGNED` | `INT`                            |
+| `INT`                | `INT`                            |
+| `INT UNSIGNED`       | `BIGINT`                         |
+| `BIGINT`             | `BIGINT`                         |
+| `FLOAT`              | `FLOAT`                          |
+| `DOUBLE`             | `DOUBLE`                         |
+| `REAL`               | `DOUBLE`                         |
+| `CHAR`               | `TEXT`                           |
+| `VARCHAR`            | `TEXT`                           |
+| `TEXT`               | `TEXT`                           |
+| `BINARY`             | `BLOB`                           |
+| `VARBINARY`          | `BLOB`                           |
+| `BLOB`               | `BLOB`                           |
+| `DATE`               | `DATE`                           |
+| `TIME`               | `TIME`                           |
+| `DATETIME`           | `TIMESTAMP`                      |
+| `TIMESTAMP`          | `TIMESTAMPTZ`                    |
 
 **Oracle**
 

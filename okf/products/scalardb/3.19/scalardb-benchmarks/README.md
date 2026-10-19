@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-benchmarks/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-benchmarks/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # ScalarDB Benchmarking Tools
@@ -87,8 +87,8 @@ To build the benchmarking tools, run the following command:
 ### Load the schema
 
 Before loading the initial data, the tables must be defined by using the [ScalarDB Schema Loader](../schema-loader.md). You can download the ScalarDB Schema Loader on the [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases) page. Select the Schema Loader based on how you access ScalarDB:
-- **Using the ScalarDB Core library (Community edition)?:** Choose `scalardb-schema-loader-<VERSION>.jar` for the version of ScalarDB that you're using. Then, save the `.jar` file in the `scalardb-benchmarks` root directory.
-- **Using ScalarDB Cluster (Enterprise edition)?:** Choose `scalardb-cluster-schema-loader-<VERSION>-all.jar` for the version of ScalarDB Cluster that you're using. Then, save the `.jar` file in the `scalardb-benchmarks` root directory.
+- **Using the ScalarDB Core library (Community edition)?:** Choose `scalardb-schema-loader-<X.Y.Z>.jar` for the version of ScalarDB that you're using. Then, save the `.jar` file in the `scalardb-benchmarks` root directory.
+- **Using ScalarDB Cluster (Enterprise edition)?:** Choose `scalardb-cluster-schema-loader-<X.Y.Z>-all.jar` for the version of ScalarDB Cluster that you're using. Then, save the `.jar` file in the `scalardb-benchmarks` root directory.
 
 In addition, you need a properties file to access ScalarDB via the Java CRUD interface. For details about configuring the ScalarDB properties file, see [ScalarDB Core Configurations](../configurations.md) or the [Java Client SDK configurations section in ScalarDB Cluster Configurations](../scalardb-cluster/scalardb-cluster-configurations.md#java-client-sdk-configurations).
 
@@ -99,13 +99,13 @@ After applying the schema and configuring the properties file, select a benchmar
 To create tables for TPC-C benchmarking ([`tpcc-schema.json`](https://github.com/scalar-labs/scalardb-benchmarks/blob/master/tpcc-schema.json)), run the following command, replacing the contents in the angle brackets as described:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f tpcc-schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f tpcc-schema.json --coordinator
 ```
 
 If you are using ScalarDB Cluster, run the following command instead:
 
 ```console
-java -jar scalardb-cluster-schema-loader-<VERSION>-all.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f tpcc-schema.json --coordinator
+java -jar scalardb-cluster-schema-loader-<X.Y.Z>-all.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f tpcc-schema.json --coordinator
 ```
 
 **YCSB**
@@ -113,13 +113,13 @@ java -jar scalardb-cluster-schema-loader-<VERSION>-all.jar --config <PATH_TO_SCA
 To create tables for YCSB benchmarking ([`ycsb-schema.json`](https://github.com/scalar-labs/scalardb-benchmarks/blob/master/ycsb-schema.json)), run the following command, replacing the contents in the angle brackets as described:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-schema.json --coordinator
 ```
 
 If you are using ScalarDB Cluster, run the following command instead:
 
 ```console
-java -jar scalardb-cluster-schema-loader-<VERSION>-all.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-schema.json --coordinator
+java -jar scalardb-cluster-schema-loader-<X.Y.Z>-all.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-schema.json --coordinator
 ```
 
 **Multi-storage YCSB**
@@ -127,13 +127,13 @@ java -jar scalardb-cluster-schema-loader-<VERSION>-all.jar --config <PATH_TO_SCA
 To create tables for multi-storage YCSB benchmarking ([`ycsb-multi-storage-schema.json`](https://github.com/scalar-labs/scalardb-benchmarks/blob/master/ycsb-multi-storage-schema.json)), run the following command, replacing the contents in the angle brackets as described:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-multi-storage-schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-multi-storage-schema.json --coordinator
 ```
 
 If you are using ScalarDB Cluster, run the following command instead:
 
 ```console
-java -jar scalardb-cluster-schema-loader-<VERSION>-all.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-multi-storage-schema.json --coordinator
+java -jar scalardb-cluster-schema-loader-<X.Y.Z>-all.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f ycsb-multi-storage-schema.json --coordinator
 ```
 
 ### Prepare a benchmarking configuration file

@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # ScalarDB Java API Guide
@@ -147,7 +147,7 @@ TableMetadata tableMetadata =
         .build();
 ```
 
-For details about the data model of ScalarDB, see [Data Model](./design.md#data-model).
+For details about the data model of ScalarDB, see [Model Your Data](./data-modeling.md).
 
 Then, create a table as follows:
 
@@ -353,9 +353,9 @@ You cannot alter a column data type of a table in the following cases:
 
 - The column is part of the partition key, clustering key, or secondary index key.
 - The table is on a non-JDBC database or on SQLite.
-- The conversions other than from INT to BIGINT, FLOAT to DOUBLE, and from any data to TEXT are specified.
-- For Oracle, the conversions except for from INT to BIGINT are specified.
-- For Db2 and TiDB, the conversion from BLOB to TEXT is specified.
+- The conversions other than from `INT` to `BIGINT`, `FLOAT` to `DOUBLE`, and from any data to `TEXT` are specified.
+- For Oracle, the conversions except for from `INT` to `BIGINT` are specified.
+- For Db2 and TiDB, the conversion from `BLOB` to `TEXT` is specified.
 
 :::
 
@@ -531,7 +531,7 @@ admin.importTable("ns", "tbl", options, overrideColumnsType);
 
 When using Consensus Commit, you should carefully plan to import a table to ScalarDB in production because it will add transaction metadata columns to your database tables and the ScalarDB metadata tables. In this case, there would also be several differences between your database and ScalarDB, as well as some limitations. For details, see [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](./schema-loader-import.md).
 
-You can also enable *transaction metadata decoupling* by specifying the `transaction-metadata-decoupling` option to `true` to store transaction metadata in a separate table from application data. For details, see [Transaction Metadata Decoupling](./schema-loader.md#transaction-metadata-decoupling).
+You can also enable *transaction metadata decoupling* by specifying the `transaction-metadata-decoupling` option to `true` to store transaction metadata in a separate table from application data. For details, see [Decoupling transaction metadata](./schema-loader.md#decoupling-transaction-metadata).
 
 :::
 
@@ -602,7 +602,7 @@ When you specify a transaction ID, make sure you specify a unique ID (for exampl
 
 ##### Begin or start a transaction in read-only mode
 
-You can also begin or start a transaction in read-only mode. In this case, the transaction will not allow any write operations, and it will be optimized for read operations.
+You can also begin or start a transaction in read-only mode. In this case, the transaction will not allow any write operations, and ScalarDB may optimize it for read operations.
 
 :::note
 
@@ -699,7 +699,13 @@ For the list of available attributes, see [Operation attributes](#operation-attr
 
 #### Join a transaction
 
-Joining a transaction is particularly useful in a stateful application where a transaction spans multiple client requests. In such a scenario, the application can start a transaction during the first client request. Then, in subsequent client requests, the application can join the ongoing transaction by using the `join()` method.
+:::warning Deprecation notice
+
+The `join()` method is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
+Joining a transaction is for a stateful application where a transaction spans multiple client requests. In such a scenario, the application can start a transaction during the first client request. Then, in subsequent client requests, the application can join the ongoing transaction by using the `join()` method.
 
 You can join an ongoing transaction that has already begun by specifying the transaction ID as follows:
 
@@ -720,7 +726,13 @@ tx.getId();
 
 #### Resume a transaction
 
-Resuming a transaction is particularly useful in a stateful application where a transaction spans multiple client requests. In such a scenario, the application can start a transaction during the first client request. Then, in subsequent client requests, the application can resume the ongoing transaction by using the `resume()` method.
+:::warning Deprecation notice
+
+The `resume()` method is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
+Resuming a transaction is for a stateful application where a transaction spans multiple client requests. In such a scenario, the application can start a transaction during the first client request. Then, in subsequent client requests, the application can resume the ongoing transaction by using the `resume()` method.
 
 You can resume an ongoing transaction that you have already begun by specifying a transaction ID as follows:
 
@@ -822,7 +834,7 @@ You can specify projections to choose which columns are returned.
 
 ###### Use the `WHERE` clause
 
-You can also specify arbitrary conditions by using the `where()` method. If the retrieved record does not match the conditions specified by the `where()` method, `Option.empty()` will be returned. As an argument of the `where()` method, you can specify a condition, an AND-wise condition set, or an OR-wise condition set. After calling the `where()` method, you can add more conditions or condition sets by using the `and()` method or `or()` method as follows:
+You can also specify arbitrary conditions by using the `where()` method. If the retrieved record does not match the conditions specified by the `where()` method, `Optional.empty()` will be returned. As an argument of the `where()` method, you can specify a condition, an AND-wise condition set, or an OR-wise condition set. After calling the `where()` method, you can add more conditions or condition sets by using the `and()` method or `or()` method as follows:
 
 ```java
 // Create a `Get` operation with condition sets.
@@ -1098,7 +1110,7 @@ You can't enable `scalar.db.cross_partition_scan.ordering` in non-JDBC databases
 
 :::
 
-You can call the `where()` and `ordering()` methods after calling the `all()` method to specify arbitrary conditions and orderings as follows:
+You can call the `where()` and `orderings()` methods after calling the `all()` method to specify arbitrary conditions and orderings as follows:
 
 ```java
 // Create a `Scan` operation with arbitrary conditions and orderings.
@@ -1840,7 +1852,7 @@ Upsert upsert =
 transactionManager.upsert(upsert);
 ```
 
-For details about the `Insert` operation, see [`Upsert` operation](#upsert-operation).
+For details about the `Upsert` operation, see [`Upsert` operation](#upsert-operation).
 
 #### Execute `Update` operation
 
@@ -1873,7 +1885,7 @@ For details about the `Update` operation, see [`Update` operation](#update-opera
 
 `Delete` is an operation to delete a record specified by a primary key.
 
-You need to create a `Delete` object first, and then you can execute the object by using the `transaction.delete()` method as follows:
+You need to create a `Delete` object first, and then you can execute the object by using the `transactionManager.delete()` method as follows:
 
 ```java
 // Create a `Delete` operation.
@@ -2002,6 +2014,60 @@ If you don't handle exceptions properly, you may face anomalies or data inconsis
 
 :::
 
+### Exceptions
+
+This section describes each exception that the APIs described in this guide can throw and what the exception indicates.
+
+#### `TransactionException` and `TransactionNotFoundException`
+
+The `begin()` and `beginReadOnly()` APIs could throw `TransactionException` or `TransactionNotFoundException`:
+
+- If you catch `TransactionException`, this exception indicates that the transaction has failed to begin due to transient or non-transient faults. You can retry the transaction, but you may not be able to begin the transaction due to non-transient faults.
+- If you catch `TransactionNotFoundException`, this exception indicates that the transaction has failed to begin due to transient faults. In this case, you can retry the transaction.
+
+The `start()` and `startReadOnly()` methods are aliases of `begin()` and `beginReadOnly()`, respectively, so they throw the same exceptions as the methods that they are aliases of.
+
+#### `CrudException` and `CrudConflictException`
+
+The APIs for CRUD operations (`get()`, `scan()`, `put()`, `delete()`, and `mutate()`) could throw `CrudException` or `CrudConflictException`:
+
+- If you catch `CrudException`, this exception indicates that the transaction CRUD operation has failed due to transient or non-transient faults. You can retry the transaction from the beginning, but the transaction may still fail if the cause is non-transient.
+- If you catch `CrudConflictException`, this exception indicates that the transaction CRUD operation has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
+
+#### `UnsatisfiedConditionException`
+
+The APIs for mutation operations (`put()`, `delete()`, and `mutate()`) could also throw `UnsatisfiedConditionException`.
+
+If you catch `UnsatisfiedConditionException`, this exception indicates that the condition for the mutation operation is not met. You can handle this exception according to your application requirements.
+
+#### `CommitException`, `CommitConflictException`, and `UnknownTransactionStatusException`
+
+The `commit()` API could throw `CommitException`, `CommitConflictException`, or `UnknownTransactionStatusException`:
+
+- If you catch `CommitException`, this exception indicates that committing the transaction fails due to transient or non-transient faults. You can retry the transaction from the beginning, but the transaction may still fail if the cause is non-transient.
+- If you catch `CommitConflictException`, this exception indicates that committing the transaction has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
+- If you catch `UnknownTransactionStatusException`, this exception indicates that the status of the transaction, whether it was successful or not, is unknown. In this case, you need to check if the transaction is committed successfully and retry the transaction if it has failed.
+
+How to identify a transaction status is delegated to users. You may want to create a transaction status table and update it transactionally with other application data so that you can get the status of a transaction from the status table.
+
+#### `RollbackException` and `AbortException`
+
+The `rollback()` API could throw `RollbackException`, and the `abort()` API, which is an alias of `rollback()`, could throw `AbortException`. Both exceptions indicate that rolling back the transaction failed due to transient or non-transient faults.
+
+If you catch either exception, the transaction should eventually recover, so you don't need to do anything further. You can simply log the occurrence.
+
+### Examples
+
+In the following examples, for `UnknownTransactionStatusException`, the transaction is not retried because the application must check if the transaction was successful to avoid potential duplicate operations. For other exceptions, the transaction is retried because the cause of the exception is transient or non-transient. If the cause of the exception is transient, the transaction may succeed if you retry it. However, if the cause of the exception is non-transient, the transaction will still fail even if you retry it. In such a case, you will exhaust the number of retries.
+
+:::note
+
+In the following examples, the transaction is attempted three times maximum and sleeps for 100 milliseconds before each retry. But you can choose a retry policy, such as exponential backoff, according to your application requirements.
+
+:::
+
+#### Transaction API example
+
 The following sample code shows how to handle exceptions:
 
 ```java
@@ -2015,8 +2081,8 @@ public class Sample {
 
     while (true) {
       if (retryCount++ > 0) {
-        // Retry the transaction three times maximum.
-        if (retryCount >= 3) {
+        // Attempt the transaction three times maximum.
+        if (retryCount > 3) {
           // Throw the last exception if the number of retries exceeds the maximum.
           throw lastException;
         }
@@ -2033,7 +2099,7 @@ public class Sample {
         // Execute CRUD operations in the transaction.
         Optional<Result> result = transaction.get(...);
         List<Result> results = transaction.scan(...);
-        transaction.put(...);
+        transaction.insert(...);
         transaction.delete(...);
 
         // Commit the transaction.
@@ -2059,7 +2125,7 @@ public class Sample {
         // retry the transaction if it failed. How to identify a transaction status is delegated to users.
         return;
       } catch (TransactionException e) {
-        // For other exceptions, you can try retrying the transaction.
+        // For other exceptions, you can retry the transaction.
 
         // For `CrudConflictException`, `CommitConflictException`, and `TransactionNotFoundException`,
         // you can basically retry the transaction. However, for the other exceptions, the transaction
@@ -2081,47 +2147,3 @@ public class Sample {
   }
 }
 ```
-
-### `TransactionException` and `TransactionNotFoundException`
-
-The `begin()` API could throw `TransactionException` or `TransactionNotFoundException`:
-
-- If you catch `TransactionException`, this exception indicates that the transaction has failed to begin due to transient or non-transient faults. You can try retrying the transaction, but you may not be able to begin the transaction due to non-transient faults.
-- If you catch `TransactionNotFoundException`, this exception indicates that the transaction has failed to begin due to transient faults. In this case, you can retry the transaction.
-
-The `join()` API could also throw `TransactionNotFoundException`. You can handle this exception in the same way that you handle the exceptions for the `begin()` API.
-
-### `CrudException` and `CrudConflictException`
-
-The APIs for CRUD operations (`get()`, `scan()`, `put()`, `delete()`, and `mutate()`) could throw `CrudException` or `CrudConflictException`:
-
-- If you catch `CrudException`, this exception indicates that the transaction CRUD operation has failed due to transient or non-transient faults. You can try retrying the transaction from the beginning, but the transaction may still fail if the cause is non-transient.
-- If you catch `CrudConflictException`, this exception indicates that the transaction CRUD operation has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
-
-### `UnsatisfiedConditionException`
-
-The APIs for mutation operations (`put()`, `delete()`, and `mutate()`) could also throw `UnsatisfiedConditionException`.
-
-If you catch `UnsatisfiedConditionException`, this exception indicates that the condition for the mutation operation is not met. You can handle this exception according to your application requirements.
-
-### `CommitException`, `CommitConflictException`, and `UnknownTransactionStatusException`
-
-The `commit()` API could throw `CommitException`, `CommitConflictException`, or `UnknownTransactionStatusException`:
-
-- If you catch `CommitException`, this exception indicates that committing the transaction fails due to transient or non-transient faults. You can try retrying the transaction from the beginning, but the transaction may still fail if the cause is non-transient.
-- If you catch `CommitConflictException`, this exception indicates that committing the transaction has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
-- If you catch `UnknownTransactionStatusException`, this exception indicates that the status of the transaction, whether it was successful or not, is unknown. In this case, you need to check if the transaction is committed successfully and retry the transaction if it has failed.
-
-How to identify a transaction status is delegated to users. You may want to create a transaction status table and update it transactionally with other application data so that you can get the status of a transaction from the status table.
-
-### Notes about some exceptions
-
-Although not illustrated in the sample code, the `resume()` API could also throw `TransactionNotFoundException`. This exception indicates that the transaction associated with the specified ID was not found and/or the transaction might have expired. In either case, you can retry the transaction from the beginning since the cause of this exception is basically transient.
-
-In the sample code, for `UnknownTransactionStatusException`, the transaction is not retried because the application must check if the transaction was successful to avoid potential duplicate operations. For other exceptions, the transaction is retried because the cause of the exception is transient or non-transient. If the cause of the exception is transient, the transaction may succeed if you retry it. However, if the cause of the exception is non-transient, the transaction will still fail even if you retry it. In such a case, you will exhaust the number of retries.
-
-:::note
-
-In the sample code, the transaction is retried three times maximum and sleeps for 100 milliseconds before it is retried. But you can choose a retry policy, such as exponential backoff, according to your application requirements.
-
-:::

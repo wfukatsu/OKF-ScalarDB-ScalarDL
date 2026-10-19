@@ -22,13 +22,13 @@ feature_status:
 - Public Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/getting-started-with-vector-search.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-cluster/getting-started-with-vector-search.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # Getting Started with ScalarDB Cluster for Vector Search
@@ -76,7 +76,7 @@ This tutorial explains how to run vector search in ScalarDB Cluster.
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -440,13 +440,13 @@ scalar.db.embedding.models.my_model.open-ai.user=<USER>
 
 ### 2. Create the Docker Compose file
 
-Create the following configuration file as `docker-compose.yaml`.
+Create the following configuration file as `docker-compose.yaml`, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you want to use.
 
 ```yaml
 services:
   scalardb-cluster-standalone:
     container_name: "scalardb-cluster-node"
-    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:3.19.0"
+    image: "ghcr.io/scalar-labs/scalardb-cluster-node-byol-premium:<X.Y.Z>"
     ports:
       - 60053:60053
       - 9080:9080
@@ -472,23 +472,23 @@ Select your build tool, and follow the instructions to add the build dependency 
 
 **Gradle**
 
-To add the build dependency for the ScalarDB Cluster Embedding Java Client SDK by using Gradle, add the following to `build.gradle` in your application:
+To add the build dependency for the ScalarDB Cluster Embedding Java Client SDK by using Gradle, add the following to `build.gradle` in your application, replacing `<X.Y.Z>` with the version of the ScalarDB Cluster Embedding Java Client SDK that you want to use:
 
 ```gradle
 dependencies {
-  implementation 'com.scalar-labs:scalardb-cluster-embedding-java-client-sdk:3.19.0'
+  implementation 'com.scalar-labs:scalardb-cluster-embedding-java-client-sdk:<X.Y.Z>'
 }
 ```
 
 **Maven**
 
-To add the build dependency for the ScalarDB Cluster Embedding Java Client SDK by using Maven, add the following to `pom.xml` in your application:
+To add the build dependency for the ScalarDB Cluster Embedding Java Client SDK by using Maven, add the following to `pom.xml` in your application, replacing `<X.Y.Z>` with the version of the ScalarDB Cluster Embedding Java Client SDK that you want to use:
 
 ```xml
 <dependency>
   <groupId>com.scalar-labs</groupId>
   <artifactId>scalardb-cluster-embedding-java-client-sdk</artifactId>
-  <version>3.19.0</version>
+  <version><X.Y.Z></version>
 </dependency>
 ```
 

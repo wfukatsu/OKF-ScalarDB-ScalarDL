@@ -10,11 +10,12 @@ tags:
 - section:about-scalardl
 - edition:community
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: roadmap
 lifecycle_phase: design
 breadcrumb:
@@ -24,13 +25,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-19T03:33:18Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/roadmap.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/ab50260c7f47836bf097214504c93c86e6c2430d/versioned_docs/version-3.11/roadmap.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-16T03:36:21Z'
 ---
 
 # ScalarDL Roadmap
@@ -49,8 +50,8 @@ If you have a feature request or want to prioritize feature development, please 
 
 #### New capabilities
 
-- **SQL interface for generic contracts for tables**
-- Users will be able to use SQL-like queries to access generic contracts for tables so that they can simplify their application development.
+- **SQL interface for Generic Contracts for tables**
+- Users will be able to use SQL-like queries to access Generic Contracts for tables so that they can simplify their application development.
 
 ### CY2026 Q1
 

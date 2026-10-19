@@ -24,13 +24,13 @@ feature_status:
 - Deprecated
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-19T03:33:17Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalar-kubernetes/ManualDeploymentGuideScalarDBServerOnEKS.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/ab50260c7f47836bf097214504c93c86e6c2430d/docs/scalar-kubernetes/ManualDeploymentGuideScalarDBServerOnEKS.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-16T03:36:21Z'
 ---
 
 # Deploy ScalarDB Server on Amazon Elastic Kubernetes Service (EKS)

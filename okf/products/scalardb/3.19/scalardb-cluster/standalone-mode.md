@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-19T03:33:14Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/standalone-mode.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/6b399124db36f28e35b36906362f803a191cd666/docs/scalardb-cluster/standalone-mode.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-16T03:59:32Z'
 ---
 
 # ScalarDB Cluster Standalone Mode
@@ -46,7 +46,7 @@ This section explains how to start ScalarDB Cluster in standalone mode on Docker
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
