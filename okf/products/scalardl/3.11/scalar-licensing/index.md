@@ -7,12 +7,12 @@ tags:
 - scalardl
 - v3.11
 - index
-status: stable
+status: deprecated
 product: scalardl
 version: '3.11'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-31T09:31:22Z'
 ---
 
 # Scalar Licensing
@@ -21,5 +21,5 @@ ScalarDL 3.11 documentation under `scalar-licensing/`.
 
 ## Concepts
 
-- [How to Configure a Commercial License Key](./commercial.md) — To run ScalarDL Enterprise, you must create a .properties file and add your commercial license key and a certificate to the file. In your .properties file, copy one of the following configurations, based on the product you're using, and...
+- [How to Configure a Commercial License Key](./commercial.md) — To run ScalarDL Enterprise, you must create a configuration file and add your commercial license key and a certificate to the file. In your configuration file, copy one of the following configurations, based on the product you're using,...
 - [How to Configure a Trial License Key](./trial.md) — You can use the following trial license keys for ScalarDL Enterprise. If you have a commercial license key, please refer to Configure a Commercial License Key to configure your license key.

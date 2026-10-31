@@ -2,7 +2,7 @@
 type: Deployment Guide
 title: Deploy ScalarDL Ledger and ScalarDL Auditor on Amazon Elastic Kubernetes Service (EKS)
 description: This guide explains how to deploy ScalarDL Ledger and ScalarDL Auditor on Amazon Elastic Kubernetes Service (EKS).
-resource: https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/ManualDeploymentGuideScalarDLAuditorOnEKS/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalar-kubernetes/ManualDeploymentGuideScalarDLAuditorOnEKS/
 tags:
 - scalardb
 - v3.19
@@ -19,13 +19,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalar-kubernetes/ManualDeploymentGuideScalarDLAuditorOnEKS.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalar-kubernetes/ManualDeploymentGuideScalarDLAuditorOnEKS.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Deploy ScalarDL Ledger and ScalarDL Auditor on Amazon Elastic Kubernetes Service (EKS)
@@ -36,15 +36,15 @@ In this guide, you will create one of the following three environments in your A
 
 * Use different AWS accounts (most recommended way)
 
-  ![image](https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/images/png/EKS_ScalarDL_Auditor_Multi_Account.drawio.png)
+  ![image](https://scalardb.scalar-labs.com/docs/3.19/scalar-kubernetes/images/png/EKS_ScalarDL_Auditor_Multi_Account.drawio.png)
 
 * Use different Amazon Virtual Private Clouds (VPCs) (second recommended way)
 
-  ![image](https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/images/png/EKS_ScalarDL_Auditor_Multi_VPC.drawio.png)
+  ![image](https://scalardb.scalar-labs.com/docs/3.19/scalar-kubernetes/images/png/EKS_ScalarDL_Auditor_Multi_VPC.drawio.png)
 
 * Use different namespaces (third recommended way)
 
-  ![image](https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/images/png/EKS_ScalarDL_Auditor_Multi_Namespace.drawio.png)
+  ![image](https://scalardb.scalar-labs.com/docs/3.19/scalar-kubernetes/images/png/EKS_ScalarDL_Auditor_Multi_Namespace.drawio.png)
 
 **Note:** This guide follows the second recommended way, "Use different VPCs."
 

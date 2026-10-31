@@ -76,6 +76,55 @@ REPO_DOCS: dict[str, list[RepoDoc]] = {
             concept_type="Tutorial",
             phase="implement",
         ),
+        # `guides/` arrived with the 3.20 GA line; the 3.19 alpha branch has
+        # none of these, so they are optional and simply absent there.
+        RepoDoc(
+            out_rel="guides/model-your-workflow.md",
+            sources=("guides/model-your-workflow.md",),
+            concept_type="Development Guide",
+            phase="implement",
+            optional=True,
+        ),
+        RepoDoc(
+            out_rel="guides/run-saga-transactions.md",
+            sources=("guides/run-saga-transactions.md",),
+            concept_type="Development Guide",
+            phase="implement",
+            optional=True,
+        ),
+        RepoDoc(
+            out_rel="guides/rest-api.md",
+            sources=("guides/rest-api.md",),
+            concept_type="Reference",
+            phase="implement",
+            optional=True,
+        ),
+        RepoDoc(
+            out_rel="guides/configurations.md",
+            sources=("guides/configurations.md",),
+            concept_type="Reference",
+            phase="operate",
+            optional=True,
+        ),
+        RepoDoc(
+            out_rel="guides/scalardb-saga-status-codes.md",
+            sources=("guides/scalardb-saga-status-codes.md",),
+            concept_type="Troubleshooting",
+            phase="operate",
+            optional=True,
+        ),
+        RepoDoc(
+            out_rel="releases/release-notes.md",
+            sources=("CHANGELOG.md",),
+            concept_type="Release Notes",
+            phase="operate",
+            title="ScalarDB Saga release notes",
+            description=(
+                "What each ScalarDB Saga release added, changed or fixed, from the "
+                "repository's CHANGELOG."
+            ),
+            optional=True,
+        ),
         RepoDoc(
             out_rel="server-deployment.md",
             sources=("server/docker/README.md",),
@@ -296,7 +345,8 @@ class RepoVersionBuilder:
             found = [(src, text) for src in doc.sources
                      if (text := self._read(src)) is not None]
             if not found:
-                self.missing.append(doc.sources[0])
+                if not doc.optional:
+                    self.missing.append(doc.sources[0])
                 continue
             contents[doc] = found
             self.built.append(doc)

@@ -2,11 +2,12 @@
 type: Concept
 title: ScalarDB Learning Paths
 description: This guide provides learning paths for different roles. Depending on your role, follow the appropriate sequence of documents to gain a comprehensive understanding of ScalarDB.
-resource: https://scalardb.scalar-labs.com/docs/latest/learning-paths/
+resource: https://scalardb.scalar-labs.com/docs/3.19/learning-paths/
 tags:
 - scalardb
 - v3.19
 - phase:design
+- section:about-scalardb
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: learning-paths
 lifecycle_phase: design
+breadcrumb:
+- About ScalarDB
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/learning-paths.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/learning-paths.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Learning Paths

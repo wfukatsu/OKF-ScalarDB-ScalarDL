@@ -1,12 +1,13 @@
 ---
-type: Reference
+type: Development Guide
 title: ScalarDB MCP Server Tools Reference
 description: The ScalarDB MCP Server provides comprehensive database operations through more than 20 specialized MCP tools. You can interact with the LLM by using natural language, and the LLM automatically selects and uses the appropriate tools to...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-mcp-server/tools-reference/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-mcp-server/tools-reference/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,24 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-mcp-server/tools-reference
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- ScalarDB MCP Server
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-mcp-server/tools-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-mcp-server/tools-reference.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB MCP Server Tools Reference

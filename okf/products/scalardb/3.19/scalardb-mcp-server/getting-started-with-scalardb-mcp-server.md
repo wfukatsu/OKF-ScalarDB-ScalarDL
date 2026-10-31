@@ -1,12 +1,13 @@
 ---
-type: Tutorial
+type: Development Guide
 title: Getting Started with ScalarDB MCP Server
 description: ScalarDB MCP Server is a Model Context Protocol (MCP) implementation that enables LLMs to access and manage your data through ScalarDB. By leveraging LLMs, you can use natural language to search and update across multiple, potentially...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-mcp-server/getting-started-with-scalardb-mcp-server/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-mcp-server/getting-started-with-scalardb-mcp-server/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,24 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-mcp-server/getting-started-with-scalardb-mcp-server
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- ScalarDB MCP Server
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-mcp-server/getting-started-with-scalardb-mcp-server.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-mcp-server/getting-started-with-scalardb-mcp-server.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Getting Started with ScalarDB MCP Server
@@ -42,7 +48,7 @@ ScalarDB MCP Server works with both single and multiple storage configurations. 
 
 The following diagram shows how ScalarDB MCP Server differs from traditional approaches. Instead of requiring separate MCP servers for each database, you connect once to ScalarDB MCP Server to access all your databases through ScalarDB.
 
-![ScalarDB MCP server architecture](https://scalardb.scalar-labs.com/docs/latest/images/scalardb-mcp-server-architecture.png)
+![ScalarDB MCP server architecture](https://scalardb.scalar-labs.com/docs/3.19/images/scalardb-mcp-server-architecture.png)
 
 At its core, ScalarDB MCP Server provides the following capabilities.
 
@@ -158,10 +164,10 @@ For MCP clients with command-line server management (for example, the Claude Cod
 
 Docker images are available from the [ScalarDB MCP Server container registry](https://github.com/scalar-labs/scalardb-mcp-server/pkgs/container/scalardb-mcp-server).
 
-You can pull the Docker image from the container registry by running the following command. Be sure to replace `<VERSION>` with the version that you want to use.
+You can pull the Docker image from the container registry by running the following command. Be sure to replace `<X.Y.Z>` with the version that you want to use.
 
 ```bash
-docker pull ghcr.io/scalar-labs/scalardb-mcp-server:<VERSION>
+docker pull ghcr.io/scalar-labs/scalardb-mcp-server:<X.Y.Z>
 ```
 
 #### Step 3: Choose your ScalarDB deployment type
@@ -173,7 +179,7 @@ Run the following command to add the MCP server:
 ```bash
 claude mcp add scalardb -- docker run --rm -i \
   --name scalardb-mcp-server \
-  ghcr.io/scalar-labs/scalardb-mcp-server:<VERSION> \
+  ghcr.io/scalar-labs/scalardb-mcp-server:<X.Y.Z> \
   --scalar.mcp.db.server.tool.mode=SQL \
   --scalar.db.transaction_manager=cluster \
   --scalar.db.contact_points=indirect:host.docker.internal \
@@ -232,7 +238,7 @@ Run the following command to add the MCP server:
 ```bash
 claude mcp add scalardb -- docker run --rm -i \
   --name scalardb-mcp-server \
-  ghcr.io/scalar-labs/scalardb-mcp-server:<VERSION> \
+  ghcr.io/scalar-labs/scalardb-mcp-server:<X.Y.Z> \
   --scalar.mcp.db.server.tool.mode=CRUD \
   --scalar.db.transaction_manager=consensus-commit \
   --scalar.db.storage=multi-storage \
@@ -278,7 +284,7 @@ Run the following command to add the MCP server:
 
 ```bash
 claude mcp add scalardb \
-  -- java -jar /path/to/scalardb-mcp-server-<VERSION>.jar \
+  -- java -jar /path/to/scalardb-mcp-server-<X.Y.Z>.jar \
   --scalar.mcp.db.server.tool.mode=SQL \
   --scalar.db.transaction_manager=cluster \
   --scalar.db.contact_points=indirect:localhost \
@@ -327,7 +333,7 @@ Run the following command to add the MCP server:
 
 ```bash
 claude mcp add scalardb \
-  -- java -jar /path/to/scalardb-mcp-server-<VERSION>.jar \
+  -- java -jar /path/to/scalardb-mcp-server-<X.Y.Z>.jar \
   --scalar.mcp.db.server.tool.mode=CRUD \
   --scalar.db.transaction_manager=consensus-commit \
   --scalar.db.storage=multi-storage \
@@ -362,10 +368,10 @@ The examples below use the configuration format for Claude Desktop, but most MCP
 
 Docker images are available from the [ScalarDB MCP Server container registry](https://github.com/scalar-labs/scalardb-mcp-server/pkgs/container/scalardb-mcp-server).
 
-You can pull the Docker image from the container registry by running the following command. Be sure to replace `<VERSION>` with the version that you want to use.
+You can pull the Docker image from the container registry by running the following command. Be sure to replace `<X.Y.Z>` with the version that you want to use.
 
 ```bash
-docker pull ghcr.io/scalar-labs/scalardb-mcp-server:<VERSION>
+docker pull ghcr.io/scalar-labs/scalardb-mcp-server:<X.Y.Z>
 ```
 
 #### Step 3: Choose your ScalarDB deployment type
@@ -384,7 +390,7 @@ Add the following to your MCP client configuration file:
         "-i",
         "--rm",
         "--name", "scalardb-mcp-server",
-        "ghcr.io/scalar-labs/scalardb-mcp-server:<VERSION>",
+        "ghcr.io/scalar-labs/scalardb-mcp-server:<X.Y.Z>",
         "--scalar.db.transaction_manager=cluster",
         "--scalar.db.contact_points=indirect:host.docker.internal",
         "--scalar.db.contact_port=60053",
@@ -454,7 +460,7 @@ Add the following to your MCP client configuration file:
         "-i",
         "--rm",
         "--name", "scalardb-mcp-server",
-        "ghcr.io/scalar-labs/scalardb-mcp-server:<VERSION>",
+        "ghcr.io/scalar-labs/scalardb-mcp-server:<X.Y.Z>",
         "--scalar.mcp.db.server.tool.mode=CRUD",
         "--scalar.db.transaction_manager=consensus-commit",
         "--scalar.db.storage=multi-storage",
@@ -509,7 +515,7 @@ Add the following to your MCP client configuration file:
       "command": "java",
       "args": [
         "-jar",
-        "/path/to/scalardb-mcp-server-<VERSION>.jar",
+        "/path/to/scalardb-mcp-server-<X.Y.Z>.jar",
         "--scalar.mcp.db.server.tool.mode=SQL",
         "--scalar.db.transaction_manager=cluster",
         "--scalar.db.contact_points=indirect:localhost",
@@ -567,7 +573,7 @@ Add the following to your MCP client configuration file:
       "command": "java",
       "args": [
         "-jar",
-        "/path/to/scalardb-mcp-server-<VERSION>.jar",
+        "/path/to/scalardb-mcp-server-<X.Y.Z>.jar",
         "--scalar.mcp.db.server.tool.mode=CRUD",
         "--scalar.db.transaction_manager=consensus-commit",
         "--scalar.db.storage=multi-storage",

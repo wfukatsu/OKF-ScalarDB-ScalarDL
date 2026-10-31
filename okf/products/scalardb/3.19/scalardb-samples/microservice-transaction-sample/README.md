@@ -1,12 +1,13 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Create a Sample Application That Supports Microservice Transactions
 description: The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transaction-sample/README/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/microservice-transaction-sample/README/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,23 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-samples/microservice-transaction-sample/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/microservice-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-samples/microservice-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Create a Sample Application That Supports Microservice Transactions
@@ -55,7 +60,7 @@ Each service has gRPC endpoints. Clients call the endpoints, and the services ca
 
 The databases that you will be using in the sample application are Cassandra and MySQL. The Customer Service and the Order Service use Cassandra and MySQL, respectively, through ScalarDB.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transaction-sample/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/microservice-transaction-sample/images/overview.png)
 
 As shown in the diagram, both services access a small Coordinator database used for the Consensus Commit protocol. The database is service-independent and exists for managing transaction metadata for Consensus Commit in a highly available manner.
 
@@ -157,18 +162,18 @@ To apply the schema, go to the [ScalarDB Releases](https://github.com/scalar-lab
 
 #### MySQL
 
-To load the schema for [`customer-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/customer-service-schema.json) into MySQL, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`customer-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/customer-service-schema.json) into MySQL, run the following command, replacing `<X.Y.Z>` with the version of the ScalarDB Schema Loader that you downloaded:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database-mysql.properties --schema-file customer-service-schema.json
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database-mysql.properties --schema-file customer-service-schema.json
 ```
 
 #### Cassandra
 
-To load the schema for [`order-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/order-service-schema.json) into Cassandra, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`order-service-schema.json`](https://github.com/scalar-labs/scalardb-samples/blob/main/microservice-transaction-sample/order-service-schema.json) into Cassandra, run the following command, replacing `<X.Y.Z>` with the version of the ScalarDB Schema Loader that you downloaded:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database-cassandra.properties --schema-file order-service-schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database-cassandra.properties --schema-file order-service-schema.json --coordinator
 ```
 
 #### Schema details
@@ -187,7 +192,7 @@ As shown in [`order-service-schema.json`](https://github.com/scalar-labs/scalard
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transaction-sample/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/microservice-transaction-sample/images/ERD.png)
 
 ### Load the initial data by starting the microservices
 
@@ -273,7 +278,7 @@ Check details about the order by running the following command, replacing `<ORDE
 ./gradlew :client:run --args="GetOrder <ORDER_ID_UUID>"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`:
 
 ```console
 ...
@@ -305,7 +310,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew :client:run --args="GetOrders 1"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
 
 ```console
 ...
@@ -410,7 +415,7 @@ The transactions for placing an order, getting a single order, and getting the h
 
 The following sequence diagram shows the transaction for placing an order:
 
-![Microservice transaction sequence diagram](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transaction-sample/images/sequence_diagram.png)
+![Microservice transaction sequence diagram](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/microservice-transaction-sample/images/sequence_diagram.png)
 
 ### 1. Transaction with a two-phase commit interface is started
 

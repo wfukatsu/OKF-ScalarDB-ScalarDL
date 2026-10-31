@@ -2,7 +2,7 @@
 type: Deployment Guide
 title: Configure a custom values file for Scalar Helm Charts
 description: When you deploy Scalar products using Scalar Helm Charts, you must prepare your custom values file based on your environment. Please refer to the following documents for more details on how to a create custom values file for each product.
-resource: https://scalardb.scalar-labs.com/docs/latest/helm-charts/configure-custom-values-file/
+resource: https://scalardb.scalar-labs.com/docs/3.19/helm-charts/configure-custom-values-file/
 tags:
 - scalardb
 - v3.19
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/helm-charts/configure-custom-values-file.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/helm-charts/configure-custom-values-file.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Configure a custom values file for Scalar Helm Charts

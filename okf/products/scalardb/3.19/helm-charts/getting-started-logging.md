@@ -2,11 +2,12 @@
 type: Deployment Guide
 title: Getting Started with Helm Charts (Logging using Loki Stack)
 description: This document explains how to get started with log aggregation for Scalar products on Kubernetes using Grafana Loki (with Promtail).
-resource: https://scalardb.scalar-labs.com/docs/latest/helm-charts/getting-started-logging/
+resource: https://scalardb.scalar-labs.com/docs/3.19/helm-charts/getting-started-logging/
 tags:
 - scalardb
 - v3.19
 - phase:operate
+- section:deploy
 - edition:community
 status: stable
 product: scalardb
@@ -15,17 +16,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: helm-charts/getting-started-logging
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
+- Getting Started Guides
 editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/helm-charts/getting-started-logging.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/helm-charts/getting-started-logging.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Getting Started with Helm Charts (Logging using Loki Stack)
@@ -72,7 +77,7 @@ We will deploy the following components on a Kubernetes cluster as follows.
 
 ## Step 1. Prepare a custom values file
 
-1. Get the sample file [scalar-loki-stack-custom-values.yaml](https://scalardb.scalar-labs.com/docs/latest/helm-charts/conf/scalar-loki-stack-custom-values.yaml) for the `loki-stack` helm chart.
+1. Get the sample file [scalar-loki-stack-custom-values.yaml](https://scalardb.scalar-labs.com/docs/3.19/helm-charts/conf/scalar-loki-stack-custom-values.yaml) for the `loki-stack` helm chart.
 
 ## Step 2. Deploy `loki-stack`
 

@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-31T09:32:49Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/scalardl-client-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/scalardl-client-status-codes.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-26T11:41:49Z'
 ---
 
 # ScalarDL Client Error Codes
@@ -209,13 +209,13 @@ Configure HMAC authentication with the required secret key.
 **Message**
 
 ```markdown
-validateLedger with Auditor is not supported in the intermediary mode. Please execute the ValidateLedger contract to validate assets.
+validateLedger with Auditor is not supported in the intermediary mode. Please execute the ValidateLedger Contract to validate assets.
 ```
 
 **Solution**
 
 ```markdown
-Execute the ValidateLedger contract to validate assets in intermediary mode.
+Execute the ValidateLedger Contract to validate assets in intermediary mode.
 ```
 
 ### `DL-CLIENT-414011`
@@ -237,13 +237,13 @@ Provide a valid client mode in your configuration.
 **Message**
 
 ```markdown
-The contract ID cannot be null.
+The Contract ID cannot be null.
 ```
 
 **Solution**
 
 ```markdown
-Provide a non-null contract ID.
+Provide a non-null Contract ID.
 ```
 
 ### `DL-CLIENT-414013`
@@ -251,13 +251,13 @@ Provide a non-null contract ID.
 **Message**
 
 ```markdown
-The contract name cannot be null.
+The Contract name cannot be null.
 ```
 
 **Solution**
 
 ```markdown
-Provide a non-null contract name.
+Provide a non-null Contract name.
 ```
 
 ### `DL-CLIENT-414014`
@@ -271,7 +271,7 @@ The contractBytes cannot be null.
 **Solution**
 
 ```markdown
-Provide non-null contract bytes.
+Provide non-null Contract bytes.
 ```
 
 ### `DL-CLIENT-414015`
@@ -285,7 +285,7 @@ The contractArgument cannot be null.
 **Solution**
 
 ```markdown
-Provide a non-null contract argument.
+Provide a non-null Contract argument.
 ```
 
 ### `DL-CLIENT-414016`
@@ -299,7 +299,7 @@ The contractPath cannot be null.
 **Solution**
 
 ```markdown
-Provide a non-null contract path.
+Provide a non-null Contract path.
 ```
 
 ### `DL-CLIENT-414017`
@@ -307,13 +307,13 @@ Provide a non-null contract path.
 **Message**
 
 ```markdown
-The function ID cannot be null.
+The Function ID cannot be null.
 ```
 
 **Solution**
 
 ```markdown
-Provide a non-null function ID.
+Provide a non-null Function ID.
 ```
 
 ### `DL-CLIENT-414018`
@@ -321,13 +321,13 @@ Provide a non-null function ID.
 **Message**
 
 ```markdown
-The function name cannot be null.
+The Function name cannot be null.
 ```
 
 **Solution**
 
 ```markdown
-Provide a non-null function name.
+Provide a non-null Function name.
 ```
 
 ### `DL-CLIENT-414019`
@@ -341,7 +341,7 @@ The functionBytes cannot be null.
 **Solution**
 
 ```markdown
-Provide non-null function bytes.
+Provide non-null Function bytes.
 ```
 
 ### `DL-CLIENT-414020`
@@ -355,7 +355,7 @@ The functionPath cannot be null.
 **Solution**
 
 ```markdown
-Provide a non-null function path.
+Provide a non-null Function path.
 ```
 
 ### `DL-CLIENT-414021`

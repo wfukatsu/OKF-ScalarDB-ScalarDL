@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Development Guide
 title: Guide of Spring Data JDBC for ScalarDB
 description: Directly using the ScalarDB API may be difficult because you need to write a lot of code and consider how and when to call the APIs (e.g., rollback() and commit()) for transactions. Since we assume most ScalarDB users develop their...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-sql/spring-data-guide/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-sql/spring-data-guide/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,24 +16,30 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-sql/spring-data-guide
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
+- SQL Interface Guides
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/spring-data-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-sql/spring-data-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Guide of Spring Data JDBC for ScalarDB
 
 Directly using the ScalarDB API may be difficult because you need to write a lot of code and consider how and when to call the APIs (e.g., `rollback()` and `commit()`) for transactions. Since we assume most ScalarDB users develop their applications in Java, you can take advantage of the Spring Framework, which is one of the most popular application frameworks for developing in Java. By using Spring Data JDBC for ScalarDB, you can streamline development by using a familiar framework.
 
-![Rough overall architecture of Spring Data JDBC for ScalarDB](https://scalardb.scalar-labs.com/docs/latest/scalardb-sql/images/spring_data_ingegration_overall_arch.png)
+![Rough overall architecture of Spring Data JDBC for ScalarDB](https://scalardb.scalar-labs.com/docs/3.19/scalardb-sql/images/spring_data_ingegration_overall_arch.png)
 
 The usage of Spring Data JDBC for ScalarDB basically follows [Spring Data JDBC - Reference Documentation](https://docs.spring.io/spring-data/jdbc/docs/3.0.x/reference/html/).
 This guide describes several important topics to use Spring Data JDBC for ScalarDB and its limitations.
@@ -45,28 +52,28 @@ Spring Data JDBC for ScalarDB extends Spring Data JDBC, but full compatibility i
 
 ## Add Spring Data JDBC for ScalarDB to your project
 
-To add the dependencies on Spring Data JDBC for ScalarDB by using Gradle, use the following, replacing `<VERSION>` with the versions of Spring Data JDBC for ScalarDB and the related library, respectively, that you are using:
+To add the dependencies on Spring Data JDBC for ScalarDB by using Gradle, use the following, replacing `<X.Y.Z>` with the versions of Spring Data JDBC for ScalarDB and the related library, respectively, that you are using:
 
 ```gradle
 dependencies {
-    implementation 'com.scalar-labs:scalardb-sql-spring-data:<VERSION>'
-    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<VERSION>'
+    implementation 'com.scalar-labs:scalardb-sql-spring-data:<X.Y.Z>'
+    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<X.Y.Z>'
 }
 ```
 
-To add the dependencies by using Maven, use the following, replacing `...` with the version of Spring Data JDBC for ScalarDB that you are using:
+To add the dependencies by using Maven, use the following, replacing `<X.Y.Z>` with the version of Spring Data JDBC for ScalarDB that you are using:
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-sql-spring-data</artifactId>
-        <version>...</version>
+        <version><X.Y.Z></version>
     </dependency>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-cluster-java-client-sdk</artifactId>
-        <version>...</version>
+        <version><X.Y.Z></version>
     </dependency>
 </dependencies>
 ```

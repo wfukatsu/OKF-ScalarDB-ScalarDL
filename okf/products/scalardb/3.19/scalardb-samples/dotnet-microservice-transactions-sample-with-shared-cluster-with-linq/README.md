@@ -1,12 +1,13 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ
-description: This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for the ScalarDB Cluster .NET Client SDK and LINQ.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README/
+description: The JoinTransactionAsync method that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,20 +16,30 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ
+
+:::warning Deprecation notice
+
+The `JoinTransactionAsync` method that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for the ScalarDB Cluster .NET Client SDK and LINQ.
 
@@ -49,7 +60,7 @@ Each service has gRPC endpoints. Clients call the endpoints, and the services ca
 
 The databases that you will be using in the sample application are Cassandra and MySQL. The Customer Service and the Order Service use Cassandra and MySQL, respectively, through ScalarDB Cluster.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/overview.png)
 
 As shown in the diagram, ScalarDB Cluster has a small Coordinator database used for the Consensus Commit protocol. The database is service independent and exists for managing transaction metadata for Consensus Commit in a highly available manner.
 
@@ -106,7 +117,7 @@ The `GetCustomerInfo` endpoint works as a participant service endpoint when rece
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/scalar-licensing/trial/). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -186,7 +197,7 @@ Also, all the tables for the Order Service are created in the `order_service` na
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/images/ERD.png)
 
 ### Initial data
 
@@ -260,7 +271,7 @@ Check details about the order by running the following command, replacing `<ORDE
 dotnet run --project Client/Client.csproj GetOrder <ORDER_ID_UUID>
 ```
 
-You should see a similar output as below, with different UUIDs for `orderId` and `timestamp`:
+You should see a similar output as below, with a different UUID for `orderId` and a different value for `timestamp`:
 
 ```console
 { "order": { "orderId": "4b076074-797f-4fdb-b357-59531f0aec12", "timestamp": "63825948620680", "customerId": 1, "customerName": "Yamada Taro", "statement": [ { "itemId": 1, "itemName": "Apple", "price": 1000, "count": 3, "total": 3000 }, { "itemId": 2, "itemName": "Orange", "price": 2000, "count": 2, "total": 4000 } ], "total": 7000 } }
@@ -288,7 +299,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 dotnet run --project Client/Client.csproj GetOrders 1
 ```
 
-You should see a similar output as below, with different UUIDs for `orderId` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `orderId` and a different value for `timestamp`, which shows the history of all orders for customer ID `1`:
 
 ```console
 { "order": [ { "orderId": "4b076074-797f-4fdb-b357-59531f0aec12", "timestamp": "63825948620680", "customerId": 1, "customerName": "Yamada Taro", "statement": [ { "itemId": 1, "itemName": "Apple", "price": 1000, "count": 3, "total": 3000 }, { "itemId": 2, "itemName": "Orange", "price": 2000, "count": 2, "total": 4000 } ], "total": 7000 }, { "orderId": "6c7750c8-10ad-4f02-aa3c-e30621d95151", "timestamp": "63825948672045", "customerId": 1, "customerName": "Yamada Taro", "statement": [ { "itemId": 5, "itemName": "Melon", "price": 3000, "count": 1, "total": 3000 } ], "total": 3000 } ] }

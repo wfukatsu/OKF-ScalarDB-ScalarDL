@@ -243,3 +243,20 @@ generated:
 - ScalarDL 3.14 (rebuilt, 139 concepts)
 - ScalarDB Community 3.13 (rebuilt, 35 concepts)
 
+## 2026-10-31T09:31:28Z
+
+- ScalarDB 3.20 (new, 206 concepts)
+- ScalarDB 3.19 (rebuilt, 206 concepts)
+- ScalarDL 3.14 (rebuilt, 139 concepts)
+- ScalarDL 3.11 (rebuilt, 127 concepts)
+- ScalarDB Saga 3.20 (new, 15 concepts)
+- ScalarDB Saga 3.19 (rebuilt, 9 concepts)
+- ScalarDB Community 3.13 (rebuilt, 35 concepts)
+
+## 2026-10-31T09:32:52Z
+
+- ScalarDB 3.20 (rebuilt, 206 concepts)
+- ScalarDB 3.19 (rebuilt, 206 concepts)
+- ScalarDL 3.14 (rebuilt, 139 concepts)
+- ScalarDB Community 3.13 (rebuilt, 35 concepts)
+

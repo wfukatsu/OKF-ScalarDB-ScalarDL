@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Reference
 title: ScalarDB Cluster
 description: ScalarDB Cluster is a clustering solution for ScalarDB that consists of a set of cluster nodes, each of which provides ScalarDB functionality. Each cluster node has a routing mechanism that directs transaction requests to the appropriate...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:reference
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -16,18 +17,20 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/index
 lifecycle_phase: implement
+breadcrumb:
+- Reference
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/index.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/index.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Cluster
@@ -64,7 +67,7 @@ Currently, ScalarDB Cluster supports running on Kubernetes only.
 
 :::
 
-![ScalarDB Cluster architecture](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/images/scalardb-cluster-architecture.png)
+![ScalarDB Cluster architecture](https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/images/scalardb-cluster-architecture.png)
 
 ## Getting started
 
@@ -95,6 +98,7 @@ For details about the configurations for ScalarDB Cluster, refer to the followin
 For details about developing applications that use ScalarDB Cluster with the Java API, refer to the following:
 
 * [Developer Guide for ScalarDB Cluster with the Java API](./developer-guide-for-scalardb-cluster-with-java-api.md)
+* [ScalarDB Cluster Java API Guide](./api-guide.md)
 
 For details about the ScalarDB Cluster gRPC API, refer to the following:
 

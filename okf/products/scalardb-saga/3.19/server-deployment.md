@@ -2,7 +2,7 @@
 type: Deployment Guide
 title: ScalarDB Saga server image
 description: ghcr.io/scalar-labs/scalardb-saga-server runs the saga engine as a service, exposing it over REST (12080) and gRPC (12051). Built for linux/amd64 and linux/arm64.
-resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/server/docker/README.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/server/docker/README.md
 tags:
 - scalardb-saga
 - v3.19
@@ -18,13 +18,13 @@ doc_id: server-deployment
 lifecycle_phase: operate
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-10-31T09:31:26Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/server/docker/README.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/server/docker/README.md
   title: ScalarDB Saga source repository — server/docker/README.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-08-03T21:49:02Z'
+  last_modified: '2026-10-28T20:47:55Z'
 ---
 
 # ScalarDB Saga server image

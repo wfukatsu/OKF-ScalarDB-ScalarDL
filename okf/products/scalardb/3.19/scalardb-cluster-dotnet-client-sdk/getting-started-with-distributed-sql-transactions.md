@@ -1,12 +1,13 @@
 ---
-type: Tutorial
+type: Development Guide
 title: Getting Started with Distributed SQL Transactions in the ScalarDB Cluster .NET Client SDK
 description: The ScalarDB Cluster .NET Client SDK supports the distributed SQL transaction functionality of ScalarDB Cluster. The SDK includes transaction and manager abstractions for easier communication within a cluster.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster-dotnet-client-sdk/getting-started-with-distributed-sql-transactions/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster-dotnet-client-sdk/getting-started-with-distributed-sql-transactions/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,17 +16,22 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster-dotnet-client-sdk/getting-started-with-distributed-sql-transactions
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- .NET Interface Guides
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster-dotnet-client-sdk/getting-started-with-distributed-sql-transactions.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster-dotnet-client-sdk/getting-started-with-distributed-sql-transactions.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Getting Started with Distributed SQL Transactions in the ScalarDB Cluster .NET Client SDK
@@ -133,6 +139,12 @@ You can also resume a transaction that has already been started as follows:
 ```c#
 var transaction = manager.Resume(transactionIdString);
 ```
+
+:::warning Deprecation notice
+
+The `Resume` method is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 :::note
 

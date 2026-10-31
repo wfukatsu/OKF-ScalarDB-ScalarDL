@@ -6,22 +6,24 @@ resource: https://github.com/scalar-labs/scalardb-saga
 tags:
 - scalardb-saga
 - product
-status: draft
+status: stable
 product: scalardb-saga
 versions:
+- '3.20'
 - '3.19'
-latest_version: '3.19'
+latest_version: '3.20'
 supported_versions:
+- '3.20'
 - '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:11Z'
+  at: '2026-10-31T09:32:51Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/tree/ecbd61722adae47620b2032be6974c9af593ecda
+  resource: https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7
   title: ScalarDB Saga source repository
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-08-03T12:49:02Z'
+  last_modified: '2026-10-29T12:59:48Z'
 ---
 
 # ScalarDB Saga
@@ -32,7 +34,8 @@ Saga orchestration engine for microservices. Coordinates eventually consistent d
 
 | Version | Release | Status | Concepts | Source |
 |---|---|---|---|---|
-| [3.19 (latest)](./3.19/index.md) | 3.19.0-alpha.1 | pre-release | 9 | https://github.com/scalar-labs/scalardb-saga/tree/3.19 |
+| [3.20 (latest)](./3.20/index.md) | 3.20.0 | released | 15 | https://github.com/scalar-labs/scalardb-saga/tree/3.20 |
+| [3.19](./3.19/index.md) | 3.19.0-alpha.1 | pre-release | 9 | https://github.com/scalar-labs/scalardb-saga/tree/3.19 |
 
 ## How to pick a version
 

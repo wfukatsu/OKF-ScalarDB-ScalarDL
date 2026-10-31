@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Development Guide
 title: Create a ScalarDB Analytics Catalog
 description: This guide explains how to create a ScalarDB Analytics catalog. The ScalarDB Analytics catalog serves as the central hub that organizes information from various underlying data sources, including database schemas and contact points,...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/create-scalardb-analytics-catalog/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-analytics/create-scalardb-analytics-catalog/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-option
 status: stable
 product: scalardb
@@ -15,17 +16,20 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-analytics/create-scalardb-analytics-catalog
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Analytical Queries
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/create-scalardb-analytics-catalog.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-analytics/create-scalardb-analytics-catalog.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Create a ScalarDB Analytics Catalog
@@ -34,7 +38,7 @@ This guide explains how to create a ScalarDB Analytics catalog. The ScalarDB Ana
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -89,7 +93,7 @@ For production deployments, configure metering storage to use object storage (fo
 
 ### Start the ScalarDB Analytics server
 
-Start the ScalarDB Analytics server with your configuration:
+Start the ScalarDB Analytics server with your configuration, replacing `<X.Y.Z>` with the ScalarDB Analytics version you want to use. You can find available versions at the [container registry page](https://github.com/scalar-labs/scalardb-analytics/pkgs/container/scalardb-analytics-server-byol).
 
 ```console
 docker run -d \
@@ -97,10 +101,8 @@ docker run -d \
   -p 11051:11051 \
   -p 11052:11052 \
   -v /path/to/scalardb-analytics-server.properties:/scalardb-analytics-server/server.properties \
-  ghcr.io/scalar-labs/scalardb-analytics-server:<VERSION>
+  ghcr.io/scalar-labs/scalardb-analytics-server:<X.Y.Z>
 ```
-
-Replace `<VERSION>` with the ScalarDB Analytics version you want to use. You can find available versions at the [container registry page](https://github.com/scalar-labs/scalardb-analytics/pkgs/container/scalardb-analytics-server-byol).
 
 The container uses the configuration file at `/scalardb-analytics-server/server.properties` by default.
 
@@ -140,14 +142,12 @@ For details, see the [ScalarDB Analytics CLI Command Reference](./reference-cli-
 
 ### Install the CLI
 
-The `scalardb-analytics-cli` tool is available as a container image:
+The `scalardb-analytics-cli` tool is available as a container image. Replace `<X.Y.Z>` with the ScalarDB Analytics version you want to use. Available versions can be found at the [container registry page](https://github.com/scalar-labs/scalardb-analytics/pkgs/container/scalardb-analytics-cli).
 
 ```console
 # Pull the CLI image
-docker pull ghcr.io/scalar-labs/scalardb-analytics-cli:<VERSION>
+docker pull ghcr.io/scalar-labs/scalardb-analytics-cli:<X.Y.Z>
 ```
-
-Replace `<VERSION>` with the ScalarDB Analytics version you want to use. Available versions can be found at the [container registry page](https://github.com/scalar-labs/scalardb-analytics/pkgs/container/scalardb-analytics-cli).
 
 To run CLI commands, you'll need to mount your configuration file into the container:
 
@@ -155,7 +155,7 @@ To run CLI commands, you'll need to mount your configuration file into the conta
 # Example: List catalogs
 docker run --rm \
   -v $(pwd)/client.properties:/config/client.properties:ro \
-  ghcr.io/scalar-labs/scalardb-analytics-cli:<VERSION> \
+  ghcr.io/scalar-labs/scalardb-analytics-cli:<X.Y.Z> \
   -c /config/client.properties \
   catalog list
 ```
@@ -183,7 +183,7 @@ For detailed configuration options, see [ScalarDB Analytics Configurations](./co
 For convenience, you can create an alias to avoid typing the long Docker command each time:
 
 ```console
-alias scalardb-analytics-cli='docker run --rm -v $(pwd)/client.properties:/config/client.properties:ro ghcr.io/scalar-labs/scalardb-analytics-cli:<VERSION> -c /config/client.properties'
+alias scalardb-analytics-cli='docker run --rm -v $(pwd)/client.properties:/config/client.properties:ro ghcr.io/scalar-labs/scalardb-analytics-cli:<X.Y.Z> -c /config/client.properties'
 ```
 
 With this alias, you can run commands more simply:

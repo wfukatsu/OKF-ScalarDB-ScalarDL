@@ -1,12 +1,13 @@
 ---
-type: Concept
+type: Development Guide
 title: Model Your Data
 description: Data modeling (or in other words, designing your database schemas) is the process of conceptualizing and visualizing how data will be stored and used by identifying the patterns used to access data and the types of queries to be performed...
-resource: https://scalardb.scalar-labs.com/docs/latest/data-modeling/
+resource: https://scalardb.scalar-labs.com/docs/3.19/data-modeling/
 tags:
 - scalardb
 - v3.19
-- phase:design
+- phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -16,20 +17,23 @@ product_title: ScalarDB
 version: '3.19'
 patch_version: 3.19.1
 doc_id: data-modeling
-lifecycle_phase: design
+lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/data-modeling.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/data-modeling.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Model Your Data
@@ -44,7 +48,7 @@ ScalarDB's data model is an extended key-value model inspired by the Bigtable da
 
 The following diagram shows an example of ScalarDB tables, each of which is a collection of records. This section first explains what objects, such as tables and records, ScalarDB defines and then describes how to locate the records.
 
-![ScalarDB data model](https://scalardb.scalar-labs.com/docs/latest/images/scalardb_data_model.png)
+![ScalarDB data model](https://scalardb.scalar-labs.com/docs/3.19/images/scalardb_data_model.png)
 
 ### Objects in ScalarDB
 
@@ -68,7 +72,7 @@ A record or row is a set of columns that is uniquely identifiable among all othe
 
 #### Column
 
-A column is a fundamental data element and does not need to be broken down any further. Each record is composed of one or more columns. Each column has a data type. For details about the data type, refer to [Database Adapters](./database-adapters.md).
+A column is a fundamental data element and does not need to be broken down any further. Each record is composed of one or more columns. Each column has a data type. For details about the data type, refer to [Learn About Database Adapters](./database-adapters.md).
 
 #### Secondary index
 

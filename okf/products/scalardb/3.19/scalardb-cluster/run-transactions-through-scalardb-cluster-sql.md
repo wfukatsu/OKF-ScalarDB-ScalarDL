@@ -2,11 +2,12 @@
 type: Development Guide
 title: Run Transactions Through ScalarDB Cluster SQL
 description: This guide explains how to configure your ScalarDB properties file and creating schemas to run transactions through a one-phase or a two-phase commit interface by using ScalarDB Cluster SQL.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/run-transactions-through-scalardb-cluster-sql/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/run-transactions-through-scalardb-cluster-sql/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,17 +16,20 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/run-transactions-through-scalardb-cluster-sql
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/run-transactions-through-scalardb-cluster-sql.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/run-transactions-through-scalardb-cluster-sql.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Run Transactions Through ScalarDB Cluster SQL
@@ -34,7 +38,7 @@ This guide explains how to configure your ScalarDB properties file and creating 
 
 :::warning
 
-You need to have a license key (trial license or commercial license) for ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -496,7 +500,7 @@ docker compose up -d scalardb-cluster-node
 
 ScalarDB has its own data model and schema that maps to the implementation-specific data model and schema.
 
-- **Need to create a database schema?** See [SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#sql-cli).
+- **Need to create a database schema?** See [SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-sql-cli).
 - **Need to import an existing database?** See [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](../schema-loader-import.md).
 
 ## Load initial data as necessary

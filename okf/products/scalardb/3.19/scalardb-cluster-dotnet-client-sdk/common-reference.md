@@ -1,12 +1,13 @@
 ---
-type: Reference
+type: Development Guide
 title: ScalarDB Cluster .NET Client SDK Reference
 description: This reference provides details on how the ScalarDB Cluster .NET Client SDK works.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster-dotnet-client-sdk/common-reference/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster-dotnet-client-sdk/common-reference/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -16,18 +17,23 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster-dotnet-client-sdk/common-reference
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- .NET Interface Guides
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster-dotnet-client-sdk/common-reference.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster-dotnet-client-sdk/common-reference.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Cluster .NET Client SDK Reference
@@ -181,17 +187,17 @@ In the following table, you can find how types are converted:
 
 | ScalarDB type | .NET type                  | C# alias |
 |---------------|----------------------------|----------|
-| TEXT          | System.String              | string   |
-| INT           | System.Int32               | int      |
-| BIGINT        | System.Int64               | long     |
-| FLOAT         | System.Single              | float    |
-| DOUBLE        | System.Double              | double   |
-| BOOLEAN       | System.Boolean             | bool     |
-| BLOB          | Google.Protobuf.ByteString |          |
-| DATE          | NodaTime.LocalDate         |          |
-| TIME          | NodaTime.LocalTime         |          |
-| TIMESTAMP     | NodaTime.LocalDateTime     |          |
-| TIMESTAMPTZ   | NodaTime.Instant           |          |
+| `TEXT`        | `System.String`              | `string` |
+| `INT`         | `System.Int32`               | `int`    |
+| `BIGINT`      | `System.Int64`               | `long`   |
+| `FLOAT`       | `System.Single`              | `float`  |
+| `DOUBLE`      | `System.Double`              | `double` |
+| `BOOLEAN`     | `System.Boolean`             | `bool`   |
+| `BLOB`        | `Google.Protobuf.ByteString` |          |
+| `DATE`        | `NodaTime.LocalDate`         |          |
+| `TIME`        | `NodaTime.LocalTime`         |          |
+| `TIMESTAMP`   | `NodaTime.LocalDateTime`     |          |
+| `TIMESTAMPTZ` | `NodaTime.Instant`           |          |
 
 :::note
 
@@ -216,6 +222,6 @@ updatedAt = clockInstance.GetCurrentInstant()
                          .WithScalarDbPrecision();
 ```
 
-For details about value ranges and precision in ScalarDB, see [Database Adapters](../database-adapters.md#value-ranges-and-precision).
+For details about value ranges and precision in ScalarDB, see [Value ranges and precision](../database-adapters.md#value-ranges-and-precision).
 
 :::

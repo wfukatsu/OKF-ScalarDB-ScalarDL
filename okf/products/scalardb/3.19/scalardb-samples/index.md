@@ -2,7 +2,7 @@
 type: Documentation Section
 title: ScalarDB 3.19 — Scalardb Samples
 description: Directory listing for the `scalardb-samples` section of the ScalarDB 3.19 documentation.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/
 tags:
 - scalardb
 - v3.19
@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 ---
 
 # Scalardb Samples
@@ -23,6 +23,7 @@ ScalarDB 3.19 documentation under `scalardb-samples/`.
 
 - [dotnet-microservice-transactions-sample-with-shared-cluster-with-linq](./dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/index.md)
 - [microservice-transaction-sample](./microservice-transaction-sample/index.md)
+- [microservice-transaction-sample-with-cluster](./microservice-transaction-sample-with-cluster/index.md)
 - [microservice-transactions-sample-with-shared-cluster-with-jdbc](./microservice-transactions-sample-with-shared-cluster-with-jdbc/index.md)
 - [multi-storage-transaction-sample](./multi-storage-transaction-sample/index.md)
 - [spring-data-microservice-transaction-sample](./spring-data-microservice-transaction-sample/index.md)

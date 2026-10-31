@@ -2,11 +2,12 @@
 type: Deployment Guide
 title: Getting Started with Helm Charts (Monitoring using Prometheus Operator)
 description: This document explains how to get started with Scalar products monitoring on Kubernetes using Prometheus Operator (kube-prometheus-stack). Here, we assume that you already have a Mac or Linux environment for testing. We use Minikube in...
-resource: https://scalardb.scalar-labs.com/docs/latest/helm-charts/getting-started-monitoring/
+resource: https://scalardb.scalar-labs.com/docs/3.19/helm-charts/getting-started-monitoring/
 tags:
 - scalardb
 - v3.19
 - phase:operate
+- section:deploy
 - edition:community
 status: stable
 product: scalardb
@@ -15,17 +16,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: helm-charts/getting-started-monitoring
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
+- Getting Started Guides
 editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/helm-charts/getting-started-monitoring.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/helm-charts/getting-started-monitoring.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Getting Started with Helm Charts (Monitoring using Prometheus Operator)
@@ -66,7 +71,7 @@ First, you need to prepare a Kubernetes cluster. If you use a **minikube** envir
 
 ## Step 2. Prepare a custom values file
 
-1. Save the sample file [scalar-prometheus-custom-values.yaml](https://scalardb.scalar-labs.com/docs/latest/helm-charts/conf/scalar-prometheus-custom-values.yaml) for `kube-prometheus-stack`.
+1. Save the sample file [scalar-prometheus-custom-values.yaml](https://scalardb.scalar-labs.com/docs/3.19/helm-charts/conf/scalar-prometheus-custom-values.yaml) for `kube-prometheus-stack`.
 
 1. Add custom values in the `scalar-prometheus-custom-values.yaml` as follows.
    * settings

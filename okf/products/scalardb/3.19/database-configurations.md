@@ -1,12 +1,13 @@
 ---
-type: Reference
-title: Configurations for the Underlying Databases of ScalarDB
+type: Development Guide
+title: Configure Databases for ScalarDB
 description: This document explains how to configure the underlying databases of ScalarDB to make applications that use ScalarDB work correctly and efficiently.
-resource: https://scalardb.scalar-labs.com/docs/latest/database-configurations/
+resource: https://scalardb.scalar-labs.com/docs/3.19/database-configurations/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,30 +18,31 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: database-configurations
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/database-configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/database-configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
-# Configurations for the Underlying Databases of ScalarDB
+# Configure Databases for ScalarDB
 
 This document explains how to configure the underlying databases of ScalarDB to make applications that use ScalarDB work correctly and efficiently.
 
 ## General requirements for the underlying databases
 
-ScalarDB requires each underlying database to provide certain capabilities to run transactions and analytics on the databases. This document explains the general requirements and how to configure each database to achieve the requirements.
-
-### Transactions
+ScalarDB requires each underlying database to provide certain capabilities to run transactions on the databases. This document explains the general requirements and how to configure each database to achieve the requirements.
 
 ScalarDB requires each underlying database to provide at least the following capabilities to run transactions on the databases:
 
@@ -48,31 +50,13 @@ ScalarDB requires each underlying database to provide at least the following cap
 - Durability of written database records.
 - Ability to store arbitrary data beside application data in each database record.
 
-### Analytics
-
-ScalarDB requires each underlying database to provide the following capability to run analytics on the databases:
-
-- Ability to return only committed records.
-
-:::note
-
-You need to have database accounts that have enough privileges to access the databases through ScalarDB since ScalarDB runs on the underlying databases not only for CRUD operations but also for performing operations like creating or altering schemas, tables, or indexes. ScalarDB basically requires a fully privileged account to access the underlying databases.
-
-:::
-
-## How to configure databases to achieve the general requirements
+## Configure databases to achieve the general requirements
 
 Select your database for details on how to configure it to achieve the general requirements.
 
 **JDBC databases**
 
-#### Transactions
-
 - Use a single primary server or synchronized multi-primary servers for all operations (no read operations on read replicas that are asynchronously replicated from a primary database).
-- Use read-committed or stricter isolation levels.
-
-#### Analytics
-
 - Use read-committed or stricter isolation levels.
 
 **NoSQL databases**
@@ -81,40 +65,20 @@ Select your NoSQL database.
 
 **Cassandra**
 
-#### Transactions
-
 - Use a single primary cluster for all operations (no read or write operations in non-primary clusters).
 - Use `batch` or `group` for `commitlog_sync`.
 - If you're using Cassandra-compatible databases, those databases must properly support lightweight transactions (LWT).
 
-#### Analytics
-
-- Not applicable. Cassandra always returns committed records, so there are no Cassandra-specific requirements.
-
 **Cosmos DB for NoSQL**
-
-#### Transactions
 
 - Use a single primary region for all operations with `Strong` or `Bounded Staleness` consistency.
 
-#### Analytics
-
-- Not applicable. Cosmos DB always returns committed records, so there are no Cosmos DB–specific requirements.
-
 **DynamoDB**
-
-#### Transactions
 
 - Use a single primary region for all operations. (No read and write operations on global tables in non-primary regions.)
   - There is no concept for primary regions in DynamoDB, so you must designate a primary region by yourself.
 
-#### Analytics
-
-- Not applicable. DynamoDB always returns committed records, so there are no DynamoDB-specific requirements.
-
 **Object Storage**
-
-#### Transactions
 
 - Use a single region for all operations. For Blob Storage, use a single primary region.
 - Choose the following storage classes or access tiers for each storage:
@@ -171,4 +135,4 @@ Since DynamoDB stores data in multiple availability zones by default, you don't 
 **Object Storage**
 
 - Configure a lifecycle rule to delete incomplete multipart uploads as described in [Configuring a bucket lifecycle configuration to delete incomplete multipart uploads](https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpu-abort-incomplete-mpu-lifecycle-config.html) when using S3.
-- For schema design recommendations specific to object storage, see [Database Adapters](./database-adapters.md#key-and-index-mapping-4).
+- For schema design recommendations specific to object storage, see [Key and index mapping for the object storage adapter](./database-adapters.md#key-and-index-mapping-4).

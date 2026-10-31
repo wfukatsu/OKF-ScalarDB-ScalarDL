@@ -1,0 +1,386 @@
+---
+type: Reference
+title: Server configuration reference
+description: Every scalar.db.saga.server.* property the saga server accepts, with its default and the reasoning behind it, as shipped in the image's configuration template.
+resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/server/docker/conf/server.properties
+tags:
+- scalardb-saga
+- v3.20
+- phase:operate
+- section:reference
+status: stable
+product: scalardb-saga
+product_title: ScalarDB Saga
+version: '3.20'
+patch_version: 3.20.0
+prerelease: false
+doc_id: reference/server-configuration
+lifecycle_phase: operate
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-10-31T09:31:26Z'
+sources:
+- id: scalardb-saga
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/server/docker/conf/server.properties
+  title: ScalarDB Saga source repository — server/docker/conf/server.properties
+  author: process:scalar-labs/scalardb-saga
+  last_modified: '2026-10-29T12:59:48Z'
+---
+
+# Server configuration reference
+
+The server image ships this file at `/scalardb-saga/conf/server.properties` and passes it to the process with `--config`. It is a *template*: as shipped it does not start, because a ScalarDB store, at least one saga definition and a security provider are required and cannot be guessed. Commented-out lines show each key's default value, so this file is also the authoritative list of settings and defaults.
+
+A misspelled `scalar.db.saga.server.*` key fails startup rather than being ignored. Any value under `scalar.db.saga.*` may use a secret reference — `${env:NAME}` or `${file:UTF-8:/path}`; plain `scalar.db.*` keys are resolved by ScalarDB itself, which supports `${env:...}` but not `${file:...}`.
+
+## `server/docker/conf/server.properties`
+
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/server/docker/conf/server.properties)
+
+```properties
+# ScalarDB Saga daemon configuration — TEMPLATE.
+#
+# The image ships this file at /scalardb-saga/conf/server.properties and passes it to the server
+# with --config. As shipped it does NOT start: every REPLACE_ME below is a value the daemon
+# requires and cannot guess, and no security provider is selected. Replace it by mounting over
+# /scalardb-saga/conf, or point the server at another path by overriding the container command
+# (`--config /path/to/server.properties`).
+#
+# Every key below is documented on SagaServerConfig, except the security.jwt.* and security.apikey.*
+# keys, which are documented on JwtConfig and ApiKeyConfig. A misspelled scalar.db.saga.server.* key
+# fails startup rather than being ignored: a typo is otherwise indistinguishable from leaving the
+# setting unset, which would serve traffic under a policy you believe you changed. To catch one
+# before a rollout, run the server with --validate-config: it checks this file and the directories
+# it points at, prints what is wrong, and exits 0 or 1 without opening a store connection or binding
+# a port. Commented-out lines below show each key's default value. Any value in the scalar.db.saga.*
+# namespace may use a secret reference — ${env:NAME} or ${file:UTF-8:/path} (a mounted Kubernetes
+# Secret) — which is resolved at startup. Keys in the plain scalar.db.* namespace are resolved by
+# ScalarDB itself, which supports ${env:...} but NOT ${file:...}.
+
+# --- ScalarDB store (required) -----------------------------------------------------------------
+# Where the daemon persists saga state. This is the durable record of every in-flight saga, so it
+# must be a real, backed-up database — not ephemeral container storage.
+scalar.db.storage=jdbc
+scalar.db.contact_points=jdbc:postgresql://REPLACE_ME:5432/scalardb
+scalar.db.username=${env:SCALAR_DB_USERNAME}
+scalar.db.password=${env:SCALAR_DB_PASSWORD}
+
+# The daemon creates the saga's tables at startup when they are missing. To pass ScalarDB creation
+# options to that step, add one scalar.db.saga.store.scalardb.creation_options.<name>=<value> line
+# per option, named as ScalarDB's own creation-options tables name them:
+# https://scalardb.scalar-labs.com/docs/latest/api-guide/#creation-options
+# They apply only to tables created then, never to existing ones; unset, ScalarDB's defaults apply.
+# Cassandra operators: the default is SimpleStrategy with replication-factor 1, so a production
+# cluster must set replication-factor here before the first start; a multi-datacenter layout cannot
+# be expressed this way, so create the saga and coordinator keyspaces beforehand.
+#
+# The number of partitions the saga_sweep table spreads sagas over. Recovery, parked timeouts,
+# retention and admin listings scan them all, so more buckets spread the load on a store that
+# limits throughput per partition. Every saga's bucket is derived from this number, so it must not
+# change once sagas have been written.
+#scalar.db.saga.store.scalardb.num_buckets=16
+
+# --- Saga definitions (required) ---------------------------------------------------------------
+# A file or directory of JSON/YAML saga definitions. The daemon refuses to start with none
+# registered, rather than serving a healthy but useless process. Daemon mode is declarative-only: a
+# definition naming a code step (stepClass) is rejected, since an operator cannot add classes to
+# this image.
+# Defaults to /scalardb-saga/conf/definitions, the directory this image expects a definitions volume
+# to be mounted at, so the key is needed only to read definitions from somewhere else, or outside
+# this image, where that directory does not exist. A path you set must exist; the default is simply
+# unused when nothing is mounted there.
+# scalar.db.saga.server.definitions_path=/scalardb-saga/conf/definitions
+
+# --- Transports -------------------------------------------------------------------------------
+# Both are enabled by default; disabling one leaves its port unbound. At least one must stay enabled,
+# and while both are, they cannot name the same port. `host` is shared by the two listeners.
+scalar.db.saga.server.host=0.0.0.0
+scalar.db.saga.server.http.port=12080
+scalar.db.saga.server.grpc.port=12051
+# scalar.db.saga.server.http.enabled=true
+# scalar.db.saga.server.grpc.enabled=true
+# Jetty's request thread pool, and the queue in front of it.
+# Handlers run on virtual threads, so max_threads bounds how many requests are DISPATCHED at once,
+# not how many can be in flight: a request waiting on its saga parks a virtual thread and returns
+# its OS thread to the pool. A slow request therefore never occupies a pool thread, so neither
+# max_threads nor max_queued_requests sheds a burst of slow sagas — they bound the dispatch
+# backlog, which is memory, not concurrency. Raising or lowering max_threads does not change how
+# many sagas run at once: max_concurrent_saga_starts bounds admitted starts and
+# recovery.max_concurrent_recoveries bounds a recovery pass, while resumes and admin drives are
+# bounded by neither.
+# scalar.db.saga.server.http.max_threads=200
+# scalar.db.saga.server.http.min_threads=8
+# scalar.db.saga.server.http.max_queued_requests=400
+# Raise only if legitimate credentials do not fit — a JWT with many claims is the usual reason. The
+# gRPC *message* cap has no key: it is derived from store.max_event_payload_bytes, so no transport
+# can accept an input the store would then reject.
+# scalar.db.saga.server.grpc.max_inbound_metadata_bytes=8192
+
+# --- TLS ---------------------------------------------------------------------------------------
+# Native TLS on BOTH transports, all-or-nothing; one certificate covers the two listeners. Off by
+# default: terminating TLS at a mesh, ingress, or load balancer remains the recommended setup, so
+# enable this only where no such layer exists. Mount the PEM pair as tls.crt and tls.key under
+# /scalardb-saga/conf/tls/server/ (the names a Kubernetes TLS Secret publishes) and set only
+# tls.enabled=true; the two path keys point at material mounted elsewhere. Material WITHOUT
+# tls.enabled, configured or mounted, fails startup, so certificates cannot sit behind a forgotten
+# switch while the server silently serves plaintext (tls.enabled=false with material present is the
+# legal way to toggle TLS off and leave it mounted). The key must be unencrypted PKCS#8 PEM
+# ("BEGIN PRIVATE KEY"), RSA or EC — cert-manager and Vault emit legacy PKCS#1/SEC1 unless asked:
+# set spec.privateKey.encoding=PKCS8 (cert-manager) / private_key_format=pkcs8 (Vault), or convert
+# with `openssl pkcs8 -topk8 -nocrypt`. Mounted files must be readable by uid 201. Protocols
+# default to TLS 1.3/1.2 and ciphers to each stack's hardened defaults; there are no keys to tune.
+# Rotation needs no restart: both files are re-read on every reload pass (reload.interval_seconds
+# below), and a pair that fails validation is rejected while the previous one keeps serving.
+# scalar.db.saga.server.tls.enabled=true
+# scalar.db.saga.server.tls.cert_chain_path=/scalardb-saga/conf/tls/server/tls.crt
+# scalar.db.saga.server.tls.private_key_path=/scalardb-saga/conf/tls/server/tls.key
+#
+# Outbound trust is separate from the server's own certificate: participant calls and JWKS fetches
+# trust the JVM's default CAs plus, for a service behind a private CA, a PEM bundle of CA
+# certificates (any number, concatenated; certificates only). It needs no switch: mount it as
+# /scalardb-saga/conf/tls/egress/ca.crt (readable by uid 201), or point the key below elsewhere.
+# Validation and hostname checks stay on, but every CA in it can vouch for every participant and
+# the JWKS host, so include only CAs you trust for all of them. A bundled CA's own name constraints
+# are not enforced; to confine one, bundle its root and let a name-constrained intermediate carry
+# the limit. While reload is enabled it is re-read on every reload pass, so a CA rotation (old and
+# new CA in one file, then the old one removed) needs no restart. A bundle that fails validation is
+# rejected and the previous trust stays; deleting the file drops its CAs at the next pass.
+# scalar.db.saga.server.egress.ca_cert_path=/scalardb-saga/conf/tls/egress/ca.crt
+
+# --- Instance identity ---------------------------------------------------------------------------
+# The identity this instance stamps on the sagas it claims during recovery. Defaults to a random
+# UUID per process, which is safe but untraceable: a stuck saga then names a value that matches no
+# pod you can find. Two live instances must never share one — the claim is what stops two replicas
+# from driving the same saga, so use the pod name, not a fixed string.
+# scalar.db.saga.server.owner_id=${env:HOSTNAME}
+
+# --- Security (configure before exposing the daemon) -------------------------------------------
+# No provider is selected, so the daemon falls back to `noop`, which authenticates nothing. Because
+# host is 0.0.0.0 above, that combination REFUSES TO START — a deliberate guard against an
+# unauthenticated coordinator on a reachable interface. Uncomment exactly one of the two real
+# provider blocks below, never both.
+#
+# Fill in every REPLACE_ME while you are there: a placeholder is a syntactically valid value, so the
+# daemon accepts it at startup and fails only later, when a caller first presents a credential.
+#
+# `jwt` makes the daemon an OAuth 2.0 resource server: callers present a Bearer access token, which
+# is validated against your IdP's JWKS. All three keys are required. jwks_url must be https (it is
+# the trust anchor; a loopback host is allowed for local dev). audience is this daemon's own
+# resource identifier as registered with the IdP, which is what stops a token minted for another
+# relying party of the same issuer (including an OIDC ID token) from being replayed here.
+# scalar.db.saga.server.security.provider=jwt
+# scalar.db.saga.server.security.jwt.jwks_url=https://REPLACE_ME/.well-known/jwks.json
+# scalar.db.saga.server.security.jwt.issuer=https://REPLACE_ME/
+# scalar.db.saga.server.security.jwt.audience=REPLACE_ME
+# Optional, defaults shown. Roles come from roles_claim (a space-delimited string or a string
+# array); a value matching a role wire name (saga:read, saga:write, saga:admin) grants that role.
+# Set token_type to at+jwt to require the RFC 9068 access-token `typ`, if your issuer stamps one.
+# scalar.db.saga.server.security.jwt.principal_claim=sub
+# scalar.db.saga.server.security.jwt.roles_claim=scope
+# scalar.db.saga.server.security.jwt.token_type=at+jwt
+#
+# `apikey` is the alternative where there is no IdP: pre-shared keys, one block per key, secret and
+# roles required. Each secret MUST be a secret reference, never an inline literal, so a key never
+# sits in plaintext here. Uncomment this block instead of the jwt one.
+# scalar.db.saga.server.security.provider=apikey
+# scalar.db.saga.server.security.apikey.header=X-API-Key
+# scalar.db.saga.server.security.apikey.key.writer.secret=${env:SAGA_WRITER_KEY}
+# scalar.db.saga.server.security.apikey.key.writer.roles=saga:write
+# scalar.db.saga.server.security.apikey.key.writer.principal=writer@example.com
+
+# --- Local development only --------------------------------------------------------------------
+# Lets the daemon start under `noop` on a reachable interface. Short of binding host to a loopback
+# address, this is the only way to do that, so it is also the shortest way past the startup failure
+# described above. It removes the guard, not the exposure: every request is then served as a
+# full-access administrator holding no credential. Use it on an isolated machine only; to
+# authenticate callers, uncomment a provider block above instead.
+# scalar.db.saga.server.security.insecure_mode.enabled=true
+
+# --- Services a declarative step calls ---------------------------------------------------------
+# Services live in a directory of per-service files: one <service-name>.properties per service
+# named by a definition's "service" field. Inside a file the keys are prefix-free — only base_url
+# is required:
+#   base_url=http://payment:8080
+#   header.Authorization=${file:UTF-8:/run/secrets/payment-token}
+#   allowed_hosts=payment,payment.svc.cluster.local
+#   max_body_bytes=1048576
+# max_body_bytes defaults to 1 MiB and may not exceed 64 MiB: the coordinator buffers a whole
+# response before a step sees it and holds one per in-flight call, so the bound is the daemon's
+# memory rather than the service's.
+# Headers are how a declarative step calls an AUTHENTICATED service. The engine stamps its own
+# headers (X-Saga-Id, X-Saga-Step, and on an async step X-Saga-Callback-Url and X-Saga-Failure-Url)
+# and they always win, so
+# naming one of them is rejected at startup rather than ignored; so are the names the JDK's HTTP
+# client refuses to send, and one header name in two spellings. A header value is trimmed, which
+# is what lets a ${file:...} secret ending in a newline be sent as a header at all. A line break
+# INSIDE a value is rejected at startup rather than at the first request: no HTTP header may carry
+# a control character, so it would fail every call to the service. A secret file with a stray line
+# break in it is the usual cause. The callback
+# secret above is deliberately NOT trimmed — it is key material, not a header value.
+# Defaults to /scalardb-saga/conf/services when that directory exists (a services volume mounted
+# there); otherwise no services. Set it only to read service files from somewhere else.
+# scalar.db.saga.server.services_path=/scalardb-saga/conf/services
+# Seconds between configuration reload passes: service files and definitions are re-read and
+# validated as a complete set, so changes land without a restart. Validation is all or nothing —
+# one bad file rejects the whole set and the previous configuration keeps serving. Applying is not:
+# services swap first, then definitions register one at a time, so a failure part way through can
+# leave some of the set live. The pass logs what it applied and retries the rest next interval (see
+# the image README's Reload section).
+# With TLS on, the certificate and key are re-read on the same schedule.
+# 0 disables reload (startup-only loading, certificate rotation included).
+# scalar.db.saga.server.reload.interval_seconds=30
+# ${file:...} references in SERVICE FILES must resolve inside this directory (after symlink
+# resolution) — service files are a live trust boundary under reload, so their file references are
+# confined to the secrets mounted for that purpose. server.properties itself is unconfined.
+# scalar.db.saga.server.secrets_root=/run/secrets
+# Optional egress ceiling: when set, every service's allowed_hosts must be a non-empty subset of
+# it, so no service file can authorize egress beyond what the operator allowed here.
+# scalar.db.saga.server.egress.allowed_hosts_ceiling=payment,payment.svc.cluster.local
+
+# --- Async callbacks ---------------------------------------------------------------------------
+# The externally reachable base URL an async step hands a participant, and the HMAC secret that
+# authenticates the participant's callback. Set both or neither: one without the other cannot
+# complete an async step, so the daemon rejects it at startup instead of at the first async saga.
+# scalar.db.saga.server.callback.base_url=https://REPLACE_ME
+# scalar.db.saga.server.callback.secret=${env:SAGA_CALLBACK_SECRET}
+# TTL on a callback token, so a leaked callback URL is not a non-expiring credential. 0 (default)
+# disables the check; when set it must exceed the longest a step legitimately stays parked, or a
+# genuine late callback is rejected.
+# scalar.db.saga.server.callback.max_age_seconds=0
+
+# --- Shutdown ----------------------------------------------------------------------------------
+# timeout_millis is the budget for the WHOLE drain: one deadline that the reload stop, both
+# transport drains (side by side) and the saga drain spend in turn. The first three share at most
+# half of it and never more than 15s; the saga drain gets the rest. Past the deadline each saga
+# still active is marked for recovery, one store write each, in parallel, and the store closes. Size
+# terminationGracePeriodSeconds above this value with headroom for that tail (see docker/README.md).
+# WAIT_CURRENT_STEP (default) finishes the running step and leaves the saga for recovery;
+# WAIT_ALL_SAGAS waits for in-flight sagas to reach a terminal state and needs a budget of your
+# longest saga plus 15s (twice the longest saga, if that is shorter), since the front may take that.
+# A timeout of 0 skips every wait but not the marking: in-flight requests are dropped, in-flight
+# work is cancelled at once, marked, and left for the recovery scan on the next boot. That is a
+# valid choice for a fast-restart deployment, not a disabled setting.
+# scalar.db.saga.server.shutdown.mode=WAIT_CURRENT_STEP
+# scalar.db.saga.server.shutdown.timeout_millis=30000
+
+# --- Crash recovery ----------------------------------------------------------------------------
+# Every replica scans for sagas abandoned by a crashed instance and resumes them.
+# staleness_threshold_millis is the one to get right. A saga counts as abandoned when it has made no
+# PROGRESS for this long, judged from its newest event — so a saga running a long step is not
+# mistaken for a dead one.
+#
+# Set it ABOVE the longest a single step can take, which is simply that step's timeout: the step
+# deadline is an absolute instant fixed before the first attempt, so it already bounds every retry
+# and all backoff within it — it is NOT attempts x timeout. A healthy saga emits an event only at
+# step boundaries, so that timeout is the longest silence recovery should tolerate.
+#
+# If a step has NEITHER a step timeout nor a saga timeout it runs until it returns, so there is no
+# envelope to size against and no value here is safe. Configure one of those timeouts if you rely
+# on recovery leaving long steps alone.
+#
+# The trade-off runs the other way too: raising it delays recovery of genuinely crashed sagas by the
+# same amount. This value IS your crash-recovery MTTR.
+#
+# Recovery is at-least-once across replicas. A step attempt sequence that outlives this threshold
+# emits no events while it runs, so a second replica can start recovering the saga while the first
+# is still executing it; the loser is fenced at its next event, but the participant call has
+# already gone out. Size the threshold above the step envelope, and make participants tolerate a
+# duplicate invocation.
+#
+# Watch the recovery pass summary, but not the "skipped" count: a step event does not move the
+# saga's sweep row, so every saga running longer than staleness_threshold_millis is a candidate on
+# every pass for the whole of its life and is correctly passed over each time. A large skipped count
+# is the expected steady state under the sizing rule above, not a sign the threshold is too low.
+# What is worth acting on there is "errors", "driveFailures", and a stop reason of BUDGET, which
+# means max_recoveries_per_sweep ran out before the sweep completed a revolution.
+#
+# A saga this instance has been driving for more than ten times this threshold is named in the log,
+# once per drive. That is a long drive, not necessarily a wedged one; it is worth a look because
+# recovery cannot reclaim a saga while this instance is still holding it.
+# scalar.db.saga.server.recovery.staleness_threshold_millis=60000
+# scalar.db.saga.server.recovery.interval_seconds=30
+# How long recovery keeps retrying a stuck saga before it gives up. A step whose retries keep
+# failing, or a compensation that keeps failing, is escalated for manual intervention. An
+# asynchronous step that keeps timing out is failed: at or before the pivot the saga compensates,
+# and after it the saga is escalated. The period runs from the first step failure, or for an
+# asynchronous step from its first park.
+# scalar.db.saga.server.recovery.escalation_grace_period_seconds=14400
+# A pass makes two sweeps — one for abandoned sagas, one for parked sagas past their deadline — and
+# max_recoveries_per_sweep bounds each separately, so one pass can do up to twice this number. The
+# pass summary reports the two as stale[...] and parked[...]. A sweep stopped by the cap resumes
+# where it left off, so a small value spreads recovery over more passes rather than skipping sagas.
+# Keep it well above 200. A bucket is read as one page per recoverable status, and a sweep stops
+# submitting once its budget runs out, so a budget below 200 truncates the page and the truncation
+# always falls on the trailing status: at or below 100 compensating sagas are never recovered, and
+# between 100 and 200 they are served but throttled behind running ones. 200 is a floor, not a
+# target - the budget is spent across buckets, so a sweep budgeted at 200 covers only one bucket.
+# scalar.db.saga.server.recovery.max_recoveries_per_sweep=1000
+# max_concurrent_recoveries bounds how many sagas are CLAIMED AND DRIVEN at once — the expensive
+# half, participant calls included. Deciding whether a saga needs recovering at all is a single read
+# and runs outside this limit, so raising or lowering it does not change how quickly a pass sifts
+# candidates, only how much saga execution it does concurrently.
+# scalar.db.saga.server.recovery.max_concurrent_recoveries=10
+
+# --- Retention ---------------------------------------------------------------------------------
+# Purges terminal sagas so the tables do not grow without bound. period_seconds is also the window
+# in which a finished saga's history can still be inspected. ESCALATED sagas are never purged —
+# they await an operator. max_purges_per_pass must keep up with the terminal-saga rate over one
+# interval, or the backlog grows.
+# scalar.db.saga.server.retention.period_seconds=604800
+# scalar.db.saga.server.retention.interval_seconds=60
+# scalar.db.saga.server.retention.max_purges_per_pass=10000
+# scalar.db.saga.server.retention.max_concurrent_purges=10
+
+# --- Bounds -----------------------------------------------------------------------------------
+# Left at defaults; see SagaServerConfig for the reasoning behind each.
+# How long a synchronous start waits before answering 202 and letting the saga run on. max_wait is
+# the absolute ceiling and always applies, on both REST and gRPC; timeout_millis only tightens it,
+# so 0 (the default) means "no extra tightening", NOT an unbounded wait. A gRPC client's call
+# deadline tightens it further still.
+#
+# WHEN TO WAIT AT ALL. The wait pays off when the saga has a real chance of settling inside it: the
+# outcome comes back in one round trip, and a saga that finishes on this server is answered the
+# moment it does, without polling. For a saga whose steps routinely outlast the bound the wait
+# cannot succeed — it answers 202 and the caller has to check afterwards regardless — so start
+# those with async=true and check when the work is due. There is deliberately no separate bound for
+# that case; async=true is the answer, and this key is the only wait bound there will be.
+#
+# The axis is the saga's duration RELATIVE TO THIS VALUE, not whether it is "long-running". A
+# deployment whose sagas settle in 90s should raise this rather than change how callers call.
+#
+# CEILING: keep it below your ingress or load-balancer timeout, with margin. A REST wait does not
+# end when a client disconnects, so anything past that timeout is spent answering a socket already
+# closed — and if the two are equal the proxy can cut the connection exactly as the server answers.
+# Note the 60000 default matches a common ingress default (nginx-ingress proxy-read-timeout, ALB
+# idle timeout), so the shipped configuration is already at that edge; GCP backend services and
+# Envoy routes commonly default lower still. Raise the route's timeout, or lower this.
+#
+# A Java client that wants to block for the saga's real duration should not need a long request at
+# all: the client SDK's blocking start() long-polls AwaitSaga in slices, each of which stays well
+# under any proxy timeout. Raw gRPC callers can tighten a single call with AwaitSaga's
+# max_wait_millis or the call deadline.
+# scalar.db.saga.server.sync.max_wait_millis=60000
+# Enforced at execution for definitions that set no timeoutMillis of their own; changing it takes
+# effect for in-flight sagas at their next drive.
+# scalar.db.saga.server.default_saga_timeout_millis=0
+# scalar.db.saga.server.max_start_requests_per_minute=0
+# Maximum sagas starting at once; 0 (the default) means no cap. A start arriving at the cap is
+# refused immediately with HTTP 503 / gRPC UNAVAILABLE and DB-SAGA-20006, before anything is
+# persisted — the saga does not exist and its ID stays free, so the caller can simply retry. A
+# permit is held per drive, so a saga parked on an outside system holds none, and resumes, recovery
+# and admin drives are never refused.
+#
+# Size it from the rate you intend to serve times the saga duration you measure (in-flight
+# population is one times the other), plus burst headroom, bounded so worst-case saga latency stays
+# inside recovery.staleness_threshold_millis — past that, recovery starts claiming sagas that are
+# still running.
+#
+# Size it together with max_start_requests_per_minute above: that bounds how often one principal
+# may ask, this bounds how much work the engine does for everyone, and neither substitutes for the
+# other — a rate limit cannot see duration, so a downstream slowdown multiplies the in-flight
+# population at an unchanged arrival rate. Aggregate admitted arrival times typical duration should
+# sit comfortably below this cap, so the rate limiter does the everyday shaping and this is the
+# backstop. Both are off by default.
+# scalar.db.saga.server.max_concurrent_saga_starts=0
+# scalar.db.saga.server.detail.max_timeline_events=1000
+```

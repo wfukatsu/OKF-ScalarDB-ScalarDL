@@ -2,11 +2,12 @@
 type: Development Guide
 title: Run Non-Transactional Storage Operations Through the SQL Interface
 description: This guide explains how to run non-transactional storage operations through the SQL interface for ScalarDB Cluster.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/run-non-transactional-storage-operations-through-sql-interface/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/run-non-transactional-storage-operations-through-sql-interface/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,17 +16,22 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/run-non-transactional-storage-operations-through-sql-interface
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Advanced Configurations and Operations
+- Run Single-Operation Transactions
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/run-non-transactional-storage-operations-through-sql-interface.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/run-non-transactional-storage-operations-through-sql-interface.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Run Non-Transactional Storage Operations Through the SQL Interface
@@ -34,7 +40,7 @@ This guide explains how to run non-transactional storage operations through the 
 
 :::warning
 
-You need to have a license key (trial license or commercial license) for ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -504,7 +510,7 @@ docker compose up -d scalardb-cluster-node
 
 ScalarDB has its own data model and schema that maps to the implementation-specific data model and schema.
 
-- **Need to create a database schema?** See [SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#sql-cli).
+- **Need to create a database schema?** See [SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-sql-cli).
 - **Need to import an existing database?** See [Importing Existing Tables to ScalarDB by Using ScalarDB Schema Loader](../schema-loader-import.md).
 
 Also, for a list of supported DDLs, see [ScalarDB SQL Grammar](../scalardb-sql/grammar.md).
@@ -532,30 +538,30 @@ Select your build tool, and follow the instructions to add the build dependency 
 
 **Gradle**
 
-To add the build dependency for the ScalarDB JDBC driver by using Gradle, add the following to `build.gradle` in your application:
+To add the build dependency for the ScalarDB JDBC driver by using Gradle, add the following to `build.gradle` in your application, replacing `<X.Y.Z>` with the versions of the ScalarDB JDBC driver and the ScalarDB Cluster Java Client SDK that you want to use:
 
 ```gradle
 dependencies {
-    implementation 'com.scalar-labs:scalardb-sql-jdbc:3.19.0'
-    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:3.19.0'
+    implementation 'com.scalar-labs:scalardb-sql-jdbc:<X.Y.Z>'
+    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<X.Y.Z>'
 }
 ```
 
 **Maven**
 
-To add the build dependency for the ScalarDB SQL API by using Maven, add the following to `pom.xml` in your application:
+To add the build dependency for the ScalarDB JDBC driver by using Maven, add the following to `pom.xml` in your application, replacing `<X.Y.Z>` with the versions of the ScalarDB JDBC driver and the ScalarDB Cluster Java Client SDK that you want to use:
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-sql-jdbc</artifactId>
-        <version>3.19.0</version>
+        <version><X.Y.Z></version>
     </dependency>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-cluster-java-client-sdk</artifactId>
-        <version>3.19.0</version>
+        <version><X.Y.Z></version>
     </dependency>
 </dependencies>
 ```
@@ -597,30 +603,30 @@ Select your build tool, and follow the instructions to add the build dependency 
 
 **Gradle**
 
-To add the build dependency for the ScalarDB SQL API by using Gradle, add the following to `build.gradle` in your application:
+To add the build dependency for the ScalarDB SQL API by using Gradle, add the following to `build.gradle` in your application, replacing `<X.Y.Z>` with the versions of the ScalarDB SQL API and the ScalarDB Cluster Java Client SDK that you want to use:
 
 ```gradle
 dependencies {
-    implementation 'com.scalar-labs:scalardb-sql:3.19.0'
-    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:3.19.0'
+    implementation 'com.scalar-labs:scalardb-sql:<X.Y.Z>'
+    implementation 'com.scalar-labs:scalardb-cluster-java-client-sdk:<X.Y.Z>'
 }
 ```
 
 **Maven**
 
-To add the build dependency for the ScalarDB SQL API by using Maven, add the following to `pom.xml` in your application:
+To add the build dependency for the ScalarDB SQL API by using Maven, add the following to `pom.xml` in your application, replacing `<X.Y.Z>` with the versions of the ScalarDB SQL API and the ScalarDB Cluster Java Client SDK that you want to use:
 
 ```xml
 <dependencies>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-sql</artifactId>
-        <version>3.19.0</version>
+        <version><X.Y.Z></version>
     </dependency>
     <dependency>
         <groupId>com.scalar-labs</groupId>
         <artifactId>scalardb-cluster-java-client-sdk</artifactId>
-        <version>3.19.0</version>
+        <version><X.Y.Z></version>
     </dependency>
 </dependencies>
 ```

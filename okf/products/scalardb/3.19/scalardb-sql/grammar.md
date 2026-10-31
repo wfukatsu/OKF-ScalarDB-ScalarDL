@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Development Guide
 title: ScalarDB SQL Grammar
 description: Each DDL command triggers several write operations, but these operations are not executed atomically, meaning that if the command fails midway, you may encounter inconsistent states. To resolve this inconsistency issue, you can repair the...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-sql/grammar/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-sql/grammar/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,17 +16,23 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-sql/grammar
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
+- SQL Interface Guides
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-sql/grammar.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-sql/grammar.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB SQL Grammar
@@ -809,9 +816,9 @@ You cannot alter a column data type of a table in the following cases:
 
 - The column is part of the partition key, clustering key, or secondary index key.
 - The table is on a non-JDBC database or on SQLite.
-- The conversions other than from INT to BIGINT, FLOAT to DOUBLE, and from any data to TEXT are specified.
-- For Oracle, the conversions except for from INT to BIGINT are specified.
-- For Db2 and TiDB, the conversion from BLOB to TEXT is specified.
+- The conversions other than from `INT` to `BIGINT`, `FLOAT` to `DOUBLE`, and from any data to `TEXT` are specified.
+- For Oracle, the conversions except for from `INT` to `BIGINT` are specified.
+- For Db2 and TiDB, the conversion from `BLOB` to `TEXT` is specified.
 
 :::
 
@@ -2566,7 +2573,7 @@ privilege: SELECT | INSERT | UPDATE | DELETE | CREATE | DROP | TRUNCATE | ALTER 
 ```
 
 - You must grant `INSERT` and `UPDATE` privileges together.
-- To grant a role the `UPDATE` or `DELETE` privilege, the target role must have the `SELECT` privilege.
+- To grant a user the `UPDATE` or `DELETE` privilege, the target user must have the `SELECT` privilege or you must grant `SELECT` in the same statement. Only privileges granted directly to the user on the same table or namespace count. Privileges that the user has through roles don't, and neither do namespace-level privileges when the statement targets a table.
 - If you specify the `WITH GRANT OPTION` option or the `GRANT OPTION` privilege, any user who has the role can grant privileges to other users or roles.
 
 #### Examples
@@ -2628,7 +2635,7 @@ privilege: SELECT | INSERT | UPDATE | DELETE | CREATE | DROP | TRUNCATE | ALTER 
 ```
 
 - You must revoke `INSERT` and `UPDATE` privileges together.
-- If the target role has the `UPDATE` or `DELETE` privilege, you cannot revoke the `SELECT` privilege from it.
+- If the target user has the `UPDATE` or `DELETE` privilege, you cannot revoke the `SELECT` privilege from them unless you revoke those privileges in the same statement. Only privileges granted directly to the user on the same table or namespace are considered. Privileges that the user has through roles aren't, and neither are namespace-level privileges when the statement targets a table.
 
 #### Examples
 
@@ -2685,7 +2692,10 @@ GRANT ROLE <role name> [, <role name>] ... TO [USER] <username> [, <username>] .
 GRANT ROLE <role name> [, <role name>] ... TO ROLE <role name> [, <role name>] ... [WITH ADMIN OPTION]
 ```
 
-- If you specify the `WITH ADMIN OPTION` option, the grantee can grant the role to other users or roles.
+- If you specify the `WITH ADMIN OPTION` option, the grantee can grant the role to other users or roles. If the grantee is a role, all users who have that role, directly or through a role hierarchy, can also grant the role to other users or roles.
+- Granting a role that is already granted doesn't raise an error. If you grant it again with `WITH ADMIN OPTION`, the admin option is added.
+- You can't grant a role to another role if doing so would create a cycle in the role hierarchy.
+- Superusers, or users who have the admin option for the role, can grant the role. For details, see [Roles](../scalardb-cluster/scalardb-auth-with-sql.md#roles).
 
 #### Examples
 
@@ -2955,6 +2965,12 @@ StartTransactionStatement statement4 =
 
 ### JOIN
 
+:::warning Deprecation notice
+
+The `JOIN` command is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
 The `JOIN` command joins a transaction associated with the specified transaction ID.
 
 #### Grammar
@@ -2981,6 +2997,12 @@ JoinStatement statement = StatementBuilder.join("id").build();
 
 ### PREPARE
 
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
 The `PREPARE` command prepares the current transaction.
 
 #### Grammar
@@ -2999,6 +3021,12 @@ PrepareStatement statement = StatementBuilder.prepare().build();
 ```
 
 ### VALIDATE
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 The `VALIDATE` command validates the current transaction.
 
@@ -3085,6 +3113,12 @@ SET MODE transaction_mode
 
 transaction_mode: TRANSACTION | TWO_PHASE_COMMIT_TRANSACTION
 ```
+
+:::warning Deprecation notice
+
+The `TWO_PHASE_COMMIT_TRANSACTION` transaction mode is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 #### Examples
 
@@ -3214,6 +3248,12 @@ DescribeStatement statement2 = StatementBuilder.describe("tbl").build();
 
 ### SUSPEND
 
+:::warning Deprecation notice
+
+The `SUSPEND` command is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
+
 The `SUSPEND` command suspends the ongoing transaction in the current session.
 
 #### Grammar
@@ -3232,6 +3272,12 @@ SuspendStatement statement = StatementBuilder.suspend().build();
 ```
 
 ### RESUME
+
+:::warning Deprecation notice
+
+The `RESUME` command is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 The `RESUME` command resumes the transaction associated with the specified transaction ID in the current session.
 
@@ -3453,7 +3499,7 @@ A text literal is a sequence of characters enclosed in single quotes `'`, such a
 
 ### Numeric
 
-Numeric literals include exact-value (INTEGER and BIGINT) and approximate-value (FLOAT and DOUBLE) literals.
+Numeric literals include exact-value (`INT` and `BIGINT`) and approximate-value (`FLOAT` and `DOUBLE`) literals.
 
 An exact-value literal is a sequence of digits, such as `123` and `-5`.
 
@@ -3461,29 +3507,29 @@ An approximate-value literal is a sequence of digits with a decimal point, such 
 
 ### Date and time
 
-Date and time literals are text literals that follow a specific format to represents DATE, TIME, TIMESTAMP, and TIMESTAMPTZ values.
+Date and time literals are text literals that follow a specific format to represent `DATE`, `TIME`, `TIMESTAMP`, and `TIMESTAMPTZ` values.
 
 | ScalarDB type | Format                             | Note                                                                                                                                                                                                                  | Example                                                                      |
 |---------------|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| DATE          | **'YYYY-MM-DD'**                   |                                                                                                                                                                                                                       | `'2024-05-19'`                                                               |
-| TIME          | **'HH:MM:[SS[.FFFFFF]]'**          | Seconds and fractional seconds are optional. Stores up to microsecond precision (6 digits). Extra fractional digits (up to 9) are silently truncated.                                                                 | `'12:34'`, `'12:34:56'`, `'12:34:56.789123'`                                 |
-| TIMESTAMP     | **'YYYY-MM-DD HH:MM:[SS[.FFF]]'**  | Seconds and fractional seconds are optional. Stores up to millisecond precision (3 digits). Extra fractional digits (up to 9) are silently truncated.                                                                 | `'2024-05-19 12:34'`, `'2024-05-19 12:34:56'`, `'2024-05-19 12:34:56.789'`   |
-| TIMESTAMPTZ   | **'YYYY-MM-DD HH:MM:[SS[.FFF]]Z'** | Seconds and fractional seconds are optional. Stores up to millisecond precision (3 digits). Extra fractional digits (up to 9) are silently truncated. A space before `Z` is also accepted for backward compatibility. | `'2024-05-19 12:34Z'`, `'2024-05-19 12:34:56Z'`, `'2024-05-19 12:34:56.789Z'` |
+| `DATE`          | **'YYYY-MM-DD'**                   |                                                                                                                                                                                                                       | `'2024-05-19'`                                                               |
+| `TIME`          | **'HH:MM:[SS[.FFFFFF]]'**          | Seconds and fractional seconds are optional. Stores up to microsecond precision (6 digits). Extra fractional digits (up to 9) are silently truncated.                                                                 | `'12:34'`, `'12:34:56'`, `'12:34:56.789123'`                                 |
+| `TIMESTAMP`     | **'YYYY-MM-DD HH:MM:[SS[.FFF]]'**  | Seconds and fractional seconds are optional. Stores up to millisecond precision (3 digits). Extra fractional digits (up to 9) are silently truncated.                                                                 | `'2024-05-19 12:34'`, `'2024-05-19 12:34:56'`, `'2024-05-19 12:34:56.789'`   |
+| `TIMESTAMPTZ`   | **'YYYY-MM-DD HH:MM:[SS[.FFF]]Z'** | Seconds and fractional seconds are optional. Stores up to millisecond precision (3 digits). Extra fractional digits (up to 9) are silently truncated. A space before `Z` is also accepted for backward compatibility. | `'2024-05-19 12:34Z'`, `'2024-05-19 12:34:56Z'`, `'2024-05-19 12:34:56.789Z'` |
 
 ### BLOB
 
-A BLOB literal is a sequence of hexadecimal digits enclosed in single quotes (`'`) and prefixed with `X` or `x`, such as `X'48656C6C6F'`. Each pair of hex digits represents 1 byte, so the hex string must contain an even number of digits. An empty hex string `X''` is valid and represents an empty BLOB.
+A `BLOB` literal is a sequence of hexadecimal digits enclosed in single quotes (`'`) and prefixed with `X` or `x`, such as `X'48656C6C6F'`. Each pair of hex digits represents 1 byte, so the hex string must contain an even number of digits. An empty hex string `X''` is valid and represents an empty `BLOB`.
 
-The following examples show valid BLOB literals.
+The following examples show valid `BLOB` literals.
 
 | Literal         | Bytes (hex)      | Note                                     |
 |-----------------|------------------|------------------------------------------|
 | `X'48656C6C6F'` | `48 65 6C 6C 6F` | 5 bytes ("Hello" in ASCII).              |
 | `x'deadbeef'`   | `DE AD BE EF`    | A lowercase `x` prefix is also accepted. |
-| `X''`           | (empty)          | An empty BLOB.                           |
+| `X''`           | (empty)          | An empty `BLOB`.                           |
 
 :::note
 
-BLOB literals can be used only with BLOB columns. Using a BLOB literal with a non-BLOB column results in a type-mismatch error.
+`BLOB` literals can be used only with `BLOB` columns. Using a `BLOB` literal with a non-`BLOB` column results in a type-mismatch error.
 
 :::

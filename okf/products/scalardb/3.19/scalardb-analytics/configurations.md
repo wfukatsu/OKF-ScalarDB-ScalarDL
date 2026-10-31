@@ -1,12 +1,13 @@
 ---
-type: Reference
+type: Development Guide
 title: ScalarDB Analytics Configurations
 description: This page provides a comprehensive reference for configuring all components of ScalarDB Analytics.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/configurations/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-analytics/configurations/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-option
 status: stable
 product: scalardb
@@ -15,17 +16,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-analytics/configurations
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Analytical Queries
+- Reference
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-analytics/configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Analytics Configurations
@@ -418,8 +423,10 @@ scalar.db.analytics.client.server.host=localhost
 
 #### Spark configuration (`spark-defaults.conf`)
 
+Replace `<X.Y.Z>` with the ScalarDB Analytics version you want to use.
+
 ```properties
-spark.jars.packages                         com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:3.19.0
+spark.jars.packages                         com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:<X.Y.Z>
 spark.extraListeners                        com.scalar.db.analytics.spark.metering.ScalarDbAnalyticsListener
 spark.sql.catalog.analytics                 com.scalar.db.analytics.spark.ScalarDbAnalyticsCatalog
 spark.sql.catalog.analytics.server.host     localhost
@@ -543,8 +550,10 @@ scalar.db.analytics.client.server.tls.ca_root_cert_path=/path/to/cert.pem
 
 #### Spark configuration (`spark-defaults.conf`)
 
+Replace `<X.Y.Z>` with the ScalarDB Analytics version you want to use.
+
 ```properties
-spark.jars.packages                                     com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:3.19.0
+spark.jars.packages                                     com.scalar-labs:scalardb-analytics-spark-all-3.5_2.12:<X.Y.Z>
 spark.extraListeners                                    com.scalar.db.analytics.spark.metering.ScalarDbAnalyticsListener
 spark.sql.catalog.analytics                             com.scalar.db.analytics.spark.ScalarDbAnalyticsCatalog
 spark.sql.catalog.analytics.server.host                 analytics.example.com

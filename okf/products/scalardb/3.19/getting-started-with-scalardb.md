@@ -2,11 +2,12 @@
 type: Tutorial
 title: Getting Started with ScalarDB
 description: This getting started tutorial explains how to configure your preferred database in ScalarDB and illustrates the process of creating a sample e-commerce application, where items can be ordered and paid for with a credit card by using...
-resource: https://scalardb.scalar-labs.com/docs/latest/getting-started-with-scalardb/
+resource: https://scalardb.scalar-labs.com/docs/3.19/getting-started-with-scalardb/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:quickstart
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,22 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: getting-started-with-scalardb
 lifecycle_phase: implement
+breadcrumb:
+- Quickstart
+- Try Using the ScalarDB Core Library to Run Transactions
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/getting-started-with-scalardb.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/getting-started-with-scalardb.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Getting Started with ScalarDB
@@ -411,11 +415,11 @@ scalar.db.dynamo.endpoint_override=http://localhost:8000
 
 ## Load the database schema
 
-You need to define the database schema (the method in which the data will be organized) in the application. For details about the supported data types, see [Database Adapters](./database-adapters.md).
+You need to define the database schema (the method in which the data will be organized) in the application. For details about the supported data types, see [Learn About Database Adapters](./database-adapters.md).
 
 For this tutorial, a file named **schema.json** already exists in the `scalardb-samples/scalardb-sample` directory. To apply the schema, go to the [`scalardb` Releases](https://github.com/scalar-labs/scalardb/releases) page and download the ScalarDB Schema Loader that matches the version of ScalarDB that you are using to the `scalardb-samples/scalardb-sample` directory.
 
-Then, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+Then, based on your database, run the following command, replacing `<X.Y.Z>` with the version of the ScalarDB Schema Loader that you downloaded:
 
 **Relational databases**
 
@@ -424,7 +428,7 @@ Select your relational database.
 **Db2**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -432,7 +436,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **MariaDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -440,7 +444,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **MySQL**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -448,7 +452,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **Oracle Database**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -456,7 +460,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **PostgreSQL**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -464,7 +468,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **SQL Server**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -472,7 +476,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **SQLite**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -484,7 +488,7 @@ Select your NewSQL database.
 **AlloyDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -492,7 +496,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **Spanner**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -500,7 +504,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **TiDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -508,7 +512,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **YugabyteDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -520,7 +524,7 @@ Select your NoSQL database.
 **Cassandra**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator --replication-factor=1
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator --replication-factor=1
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -530,7 +534,7 @@ In addition, the `--replication-factor=1` option has an effect only when using C
 **Cosmos DB for NoSQL**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -538,7 +542,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --sc
 **DynamoDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator --no-backup --no-scaling
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator --no-backup --no-scaling
 ```
 
   The `--coordinator` option is specified because a table with `transaction` set to `true` exists in the schema. For details about configuring and loading a schema, see [ScalarDB Schema Loader](./schema-loader.md).
@@ -558,7 +562,7 @@ As shown in [`schema.json`](https://github.com/scalar-labs/scalardb-samples/tree
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/images/getting-started-ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.19/images/getting-started-ERD.png)
 
 ### Load the initial data
 
@@ -638,7 +642,7 @@ Check details about the order by running the following command, replacing `<ORDE
 ./gradlew run --args="GetOrder <ORDER_ID_UUID>"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`:
 
 ```console
 ...
@@ -670,7 +674,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew run --args="GetOrders 1"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`, which shows the history of all orders for customer ID `1`:
 
 ```console
 ...

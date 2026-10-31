@@ -14,7 +14,7 @@ status: stable
 |---|---|---|
 | `scalardb` | ScalarDB | 現行の ScalarDB 全般。Core ライブラリ、Cluster、SQL/GraphQL、Analytics、Data Loader を含む。**新規プロジェクトは原則こちら。** |
 | `scalardl` | ScalarDL | 改竄検知・実行証明が要件にある場合。Ledger / Auditor、Contract / Function。 |
-| `scalardb-saga` | ScalarDB Saga | **サービス間**の結果整合トランザクションを補償（Saga / TCC）で調整する場合。saga 状態は ScalarDB 経由で永続化され、メッセージブローカは不要。**未 GA（アルファ）。** |
+| `scalardb-saga` | ScalarDB Saga | **サービス間**の結果整合トランザクションを補償（Saga / TCC）で調整する場合。saga 状態は ScalarDB 経由で永続化され、メッセージブローカは不要。3.20.0 が最初の GA（Apache-2.0。ストアは Consensus Commit 必須）。3.19 ラインはアルファのまま。 |
 | `scalardb-community` | ScalarDB Community | 3.13 以前の Community 版のみを対象とした旧ドキュメント。既存システムの調査用。新規では使わない。 |
 
 ScalarDB と ScalarDL を併用する構成では、両方の対応バージョンが噛み合うかを
@@ -22,18 +22,23 @@ ScalarDB と ScalarDL を併用する構成では、両方の対応バージョ�
 
 ### ScalarDB の 2PC と ScalarDB Saga の使い分け
 
-| | ScalarDB（2PC を含む） | ScalarDB Saga |
+| | ScalarDB（サービス跨ぎは Microservice Transaction API） | ScalarDB Saga |
 |---|---|---|
 | 一貫性 | 強一貫（ACID） | 結果整合（補償でロールバック） |
-| 適用範囲 | 複数データベース間、複数サービス間（2PC） | 複数サービス間 |
+| 適用範囲 | 複数データベース間、複数サービス間（共有クラスタ、または分離クラスタ + Transaction Coordinator） | 複数サービス間 |
 | ロールバック | トランザクションのアボート | 逆順の補償ステップ実行 |
 | ステップへの要求 | — | **冪等であること**（記録前に中断したステップは再実行される） |
 | 障害時 | 参加者を同期的に拘束する | 別レプリカが引き取り終端状態まで駆動する |
 
-即時の一貫性が正しさの要件なら ScalarDB のトランザクション（必要なら 2PC）を、
-補償付きの結果整合で足りるなら ScalarDB Saga を選びます。両者は排他ではなく、
-1 つのサービス内は ScalarDB のトランザクション、サービスを跨ぐ調整は Saga、
-という組み合わせが典型です。
+即時の一貫性が正しさの要件なら ScalarDB のトランザクションを、補償付きの結果整合で
+足りるなら ScalarDB Saga を選びます。ScalarDB 側でサービスを跨ぐときは、3.19 以降の
+Microservice Transaction API（`GlobalTransactionManager` / `BranchTransaction`。アプリの
+コードは 1 フェーズで、分離クラスタでは Transaction Coordinator が裏で 2PC を駆動する）を
+使います。アプリケーションが `prepare` / `validate` / `commit` を自分で並べる
+2PC インターフェイス（`two-phase-commit-transactions.md`）は **3.19 で非推奨** で、
+3.20 の `releases/release-notes.md` が `join()` / `resume()` の削除を記録しています。
+両者は排他ではなく、1 つのサービス内は ScalarDB のトランザクション、サービスを跨ぐ調整は
+Saga、という組み合わせが典型です。
 
 ## バージョンの決め方
 
@@ -63,14 +68,19 @@ ScalarDB と ScalarDL を併用する構成では、両方の対応バージョ�
 ### ScalarDB Saga のバージョン
 
 ScalarDB Saga はドキュメントサイトを持たず、**マイナーリリースライン = リポジトリの
-ブランチ**です。バンドルの `products/scalardb-saga/3.19/` はブランチ `3.19` に対応します。
+ブランチ**です。バンドルの `products/scalardb-saga/3.20/` はブランチ `3.20` に対応します。
 プロジェクト側では `com.scalar-labs:scalardb-saga-*` の依存バージョン、または
 `ghcr.io/scalar-labs/scalardb-saga-server` のイメージタグで特定できます。
 
+- **新規設計は 3.20（最初の GA、`3.20.0`）を根拠にする。** 3.20 は `guides/`
+  （設定・ワークフローのモデリング・REST API・Saga の実行・ステータスコード）と
+  `releases/release-notes.md` を持ち、設定キーは 3.19 アルファから改名されたものがあります
+  （例: `recovery.staleness_threshold_millis`、`recovery.escalation_grace_period_seconds`）。
+  3.19 ラインの概念を 3.20 の回答に混ぜないこと。
 - `main` や次期マイナーブランチは `-SNAPSHOT` を積むだけの開発ラインなので、
   バンドルには入れていません。
 - GA リリースが無いラインは `status: draft` / `prerelease: true` /
-  `pre-release` タグが付きます。`patch_version`（例 `3.19.0-alpha.1`）が
+  `pre-release` タグが付きます（3.19 = `3.19.0-alpha.1`）。`patch_version` が
   そのブランチがビルドするリリースです。**本番採用の根拠にする前に、
   現時点のリリース状況を必ず確認してください。**
 

@@ -2,7 +2,7 @@
 type: Release Process
 title: Releasing
 description: 'A release publishes two things from one tag: the Java artifacts to Maven Central, and the daemon container image to ghcr.io/scalar-labs/scalardb-saga-server.'
-resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/RELEASING.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/RELEASING.md
 tags:
 - scalardb-saga
 - v3.19
@@ -18,13 +18,13 @@ doc_id: releasing
 lifecycle_phase: operate
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-10-31T09:31:27Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/RELEASING.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/RELEASING.md
   title: ScalarDB Saga source repository — RELEASING.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-08-03T21:49:02Z'
+  last_modified: '2026-10-28T20:47:55Z'
 ---
 
 # Releasing
@@ -119,7 +119,7 @@ after it, live only on that branch and are unreachable from `main` by design.
    ```
 
    A newly cut branch also needs its own Dependabot entries. Dependabot reads
-   [.github/dependabot.yml](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/.github/dependabot.yml) from the default branch only, and every entry
+   [.github/dependabot.yml](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/.github/dependabot.yml) from the default branch only, and every entry
    there targets that branch, so a newly cut line gets no dependency updates until an entry names it.
    **On `main`, through a pull request**, copy the three `updates:` entries already in that file to the
    end of it, adding `target-branch: "1.0"` to each — substituting the branch you just cut — and delete
@@ -254,7 +254,7 @@ succeeded — so nothing reaches Central or `ghcr.io`, and there is nothing to c
 and the branch. A forgotten GPG secret therefore cannot publish unsigned artifacts.
 
 **Snapshot.** Set `version=0.0.1-SNAPSHOT` on the scratch branch and push. That runs
-[release-snapshot.yml](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/.github/workflows/release-snapshot.yml), which exercises the credentials, the
+[release-snapshot.yml](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/.github/workflows/release-snapshot.yml), which exercises the credentials, the
 GPG key and a genuine upload, against the Central snapshot repository, which is mutable and
 expendable. It does not cover the Portal deployment, the arm64 leg, cosign or the GitHub release.
 
@@ -341,8 +341,8 @@ sees them.
    secrets' access list**. Copying rather than moving gains nothing: the organization grant stays
    readable from any ref here.
 4. Add `environment: maven-central` to the publishing job in
-   [release.yml](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/.github/workflows/release.yml) and
-   [release-snapshot.yml](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/.github/workflows/release-snapshot.yml). Without it both jobs lose access
+   [release.yml](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/.github/workflows/release.yml) and
+   [release-snapshot.yml](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/.github/workflows/release-snapshot.yml). Without it both jobs lose access
    to the secrets.
 
 Adding a required reviewer to the environment would also give the release an approval gate, which

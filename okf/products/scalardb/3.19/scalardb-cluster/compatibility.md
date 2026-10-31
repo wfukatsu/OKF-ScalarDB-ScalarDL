@@ -1,12 +1,13 @@
 ---
-type: Concept
+type: Reference
 title: ScalarDB Cluster Compatibility Matrix
 description: This document shows the compatibility of ScalarDB Cluster versions among client SDK versions.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/compatibility/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/compatibility/
 tags:
 - scalardb
 - v3.19
-- phase:design
+- phase:implement
+- section:reference
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -15,19 +16,21 @@ product_title: ScalarDB
 version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/compatibility
-lifecycle_phase: design
+lifecycle_phase: implement
+breadcrumb:
+- Reference
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/compatibility.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/compatibility.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Cluster Compatibility Matrix
@@ -46,7 +49,7 @@ This document shows the compatibility of ScalarDB Cluster versions among client 
 
 :::note
 
-- You can consider the client tools (for example, [ScalarDB Cluster SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#sql-cli) and [ScalarDB Cluster Schema Loader](./developer-guide-for-scalardb-cluster-with-java-api.md#schema-loader-for-cluster)) to be the same as the ScalarDB Cluster Java Client SDK. In other words, you can apply the same compatibility rules to client tools as the ScalarDB Cluster Java Client SDK.
+- You can consider the client tools (for example, [ScalarDB Cluster SQL CLI](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-sql-cli) and [ScalarDB Cluster Schema Loader](./developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-schema-loader)) to be the same as the ScalarDB Cluster Java Client SDK. In other words, you can apply the same compatibility rules to client tools as the ScalarDB Cluster Java Client SDK.
 - When you access backend databases by using ScalarDB Cluster Data Loader, you must use a version of ScalarDB Cluster Data Loader that is compatible with the version of ScalarDB Cluster that you're using. In this case, the supported version of ScalarDB Cluster Data Loader is the same as the version of the ScalarDB Cluster Java Client SDK shown in the matrix above. Note that you can have ScalarDB Cluster Data Loader either access backend databases directly or connect to ScalarDB Cluster to access backend databases.
 - If you use a new feature that ScalarDB Cluster provides in a new minor version, you may need to use the same or a later version of the client tools or re-create (or update) existing schemas. For details, please refer to the relevant documentation about each feature.
 - For Scalar Admin and Scalar Admin for Kubernetes, using the latest versions of these tools is recommended to ensure compatibility with the version of ScalarDB Cluster that you are using.

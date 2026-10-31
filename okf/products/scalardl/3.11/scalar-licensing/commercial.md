@@ -1,7 +1,7 @@
 ---
 type: Reference
 title: How to Configure a Commercial License Key
-description: To run ScalarDL Enterprise, you must create a .properties file and add your commercial license key and a certificate to the file. In your .properties file, copy one of the following configurations, based on the product you're using, and...
+description: To run ScalarDL Enterprise, you must create a configuration file and add your commercial license key and a certificate to the file. In your configuration file, copy one of the following configurations, based on the product you're using,...
 resource: https://scalardl.scalar-labs.com/docs/3.11/scalar-licensing/commercial/
 tags:
 - scalardl
@@ -9,11 +9,12 @@ tags:
 - phase:implement
 - section:reference
 - edition:enterprise
-status: stable
+- unmaintained
+status: deprecated
 product: scalardl
 product_title: ScalarDL
 version: '3.11'
-patch_version: 3.11.3
+patch_version: 3.11.4
 doc_id: scalar-licensing/commercial
 lifecycle_phase: implement
 breadcrumb:
@@ -23,18 +24,18 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:45Z'
+  at: '2026-10-31T09:31:22Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/db1535c35d0f746c5b5d8d9772f54afa0c709a34/versioned_docs/version-3.11/scalar-licensing/commercial.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/versioned_docs/version-3.11/scalar-licensing/commercial.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-08-20T15:35:18Z'
+  last_modified: '2026-10-26T11:41:49Z'
 ---
 
 # How to Configure a Commercial License Key
 
-To run ScalarDL Enterprise, you must create a `.properties` file and add your commercial license key and a certificate to the file. In your `.properties` file, copy one of the following configurations, based on the product you're using, and paste the contents in the `.properties` file, replacing `<YOUR_LICENSE_KEY>` with your license key.
+To run ScalarDL Enterprise, you must create a configuration file and add your commercial license key and a certificate to the file. In your configuration file, copy one of the following configurations, based on the product you're using, and paste the contents in the configuration file, replacing `<YOUR_LICENSE_KEY>` with your license key.
 
 :::note
 
@@ -50,9 +51,21 @@ scalar.dl.licensing.license_key=<YOUR_LICENSE_KEY>
 scalar.dl.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
 ```
 
+:::note
+
+If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Deploy ScalarDL in a Cloud-Based Kubernetes Environment](../deploy-managed-kubernetes-environment-overview.md).
+
+:::
+
 ## ScalarDL Auditor
 
 ```properties
 scalar.dl.licensing.license_key=<YOUR_LICENSE_KEY>
 scalar.dl.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
 ```
+
+:::note
+
+If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Deploy ScalarDL in a Cloud-Based Kubernetes Environment](../deploy-managed-kubernetes-environment-overview.md).
+
+:::

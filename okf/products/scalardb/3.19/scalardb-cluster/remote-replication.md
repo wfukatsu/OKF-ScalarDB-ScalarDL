@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Operations Guide
 title: Replicate Data for High Availability
 description: ScalarDB Cluster can replicate its managed data to remote sites for high availability and workload distribution. The remote replication feature provides near-real-time replication of write operations from a primary site to one or more...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/remote-replication/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/remote-replication/
 tags:
 - scalardb
 - v3.19
-- phase:implement
+- phase:operate
+- section:manage
 - edition:enterprise-premium
 - feature-status:public-preview
 status: stable
@@ -15,20 +16,23 @@ product_title: ScalarDB
 version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/remote-replication
-lifecycle_phase: implement
+lifecycle_phase: operate
+breadcrumb:
+- Manage
+- Manage ScalarDB Cluster
 editions:
 - Enterprise Premium
 feature_status:
 - Public Preview
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/remote-replication.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/remote-replication.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Replicate Data for High Availability
@@ -499,7 +503,7 @@ Replace `<PRIMARY_POD_NAME>` with your actual Pod name. If there are no errors, 
 
 #### 2.3 Create primary site tables
 
-Create a Kubernetes Job to run Schema Loader for the primary site:
+Create a Kubernetes Job to run Schema Loader for the primary site, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you're using:
 
 ```yaml
 # schema-loader-primary.yaml
@@ -542,7 +546,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: schema-loader
-        image: ghcr.io/scalar-labs/scalardb-cluster-schema-loader:<VERSION>
+        image: ghcr.io/scalar-labs/scalardb-cluster-schema-loader:<X.Y.Z>
         args:
           - "--config"
           - "/config/primary-schema-loader.properties"
@@ -563,7 +567,7 @@ spec:
           name: schema-config-primary
 ```
 
-Replace `<PRIMARY_CLUSTER_CONTACT_POINTS>` with your primary site cluster contact points (same format as [ScalarDB Cluster Java Client SDK configurations](./scalardb-cluster-configurations.md#java-client-sdk-configurations)) and `<VERSION>` with the ScalarDB Cluster version that you're using.
+Replace `<PRIMARY_CLUSTER_CONTACT_POINTS>` with your primary site cluster contact points (same format as [ScalarDB Cluster Java Client SDK configurations](./scalardb-cluster-configurations.md#java-client-sdk-configurations)) and `<X.Y.Z>` with the ScalarDB Cluster version that you're using.
 
 Apply and run the Schema Loader job:
 
@@ -639,7 +643,7 @@ Replace:
 
 #### 3.3 Create backup site tables
 
-Create a Kubernetes Job to run Schema Loader for the backup site:
+Create a Kubernetes Job to run Schema Loader for the backup site, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you're using:
 
 ```yaml
 # schema-loader-backup.yaml
@@ -682,7 +686,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: schema-loader
-        image: ghcr.io/scalar-labs/scalardb-cluster-schema-loader:<VERSION>
+        image: ghcr.io/scalar-labs/scalardb-cluster-schema-loader:<X.Y.Z>
         args:
           - "--config"
           - "/config/backup-schema-loader.properties"
@@ -703,7 +707,7 @@ spec:
           name: schema-config-backup
 ```
 
-Replace `<BACKUP_CLUSTER_CONTACT_POINTS>` with your backup site cluster contact points (same format as [ScalarDB Cluster Java Client SDK configurations](./scalardb-cluster-configurations.md#java-client-sdk-configurations)) and `<VERSION>` with the ScalarDB Cluster version that you're using.
+Replace `<BACKUP_CLUSTER_CONTACT_POINTS>` with your backup site cluster contact points (same format as [ScalarDB Cluster Java Client SDK configurations](./scalardb-cluster-configurations.md#java-client-sdk-configurations)) and `<X.Y.Z>` with the ScalarDB Cluster version that you're using.
 
 Apply and run the Schema Loader job:
 
@@ -790,7 +794,7 @@ Replace `<BACKUP_POD_NAME>` with your actual Pod name. Ensure there are no error
 
 #### 4.1 Set up the SQL CLI for the primary site and test replication
 
-To test replication between sites, you should use the ScalarDB SQL CLI. Create a Kubernetes Pod to run the SQL CLI for the primary site:
+To test replication between sites, you should use the ScalarDB SQL CLI. Create a Kubernetes Pod to run the SQL CLI for the primary site, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you're using:
 
 ```yaml
 # sql-cli-primary.yaml
@@ -811,7 +815,7 @@ spec:
   restartPolicy: Never
   containers:
   - name: sql-cli
-    image: ghcr.io/scalar-labs/scalardb-cluster-sql-cli:<VERSION>
+    image: ghcr.io/scalar-labs/scalardb-cluster-sql-cli:<X.Y.Z>
     args:
       - "--config"
       - "/config/primary-sql-cli.properties"
@@ -826,7 +830,7 @@ spec:
       name: sql-cli-config-primary
 ```
 
-Replace `<PRIMARY_CLUSTER_CONTACT_POINTS>` with your primary site cluster contact points and `<VERSION>` with the ScalarDB Cluster version that you're using.
+Replace `<PRIMARY_CLUSTER_CONTACT_POINTS>` with your primary site cluster contact points and `<X.Y.Z>` with the ScalarDB Cluster version that you're using.
 
 Create and connect to the SQL CLI Pod by running the following commands:
 
@@ -847,7 +851,7 @@ INSERT INTO test_namespace.test_table (id, name, value) VALUES (1, 'test_record'
 SELECT * FROM test_namespace.test_table WHERE id = 1;
 ```
 
-Detach from the session by pressing `Ctrl + P`, then `Ctrl + Q`. Then, create a similar Pod for the backup site:
+Detach from the session by pressing `Ctrl + P`, then `Ctrl + Q`. Then, create a similar Pod for the backup site, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you're using:
 
 ```yaml
 # sql-cli-backup.yaml
@@ -868,7 +872,7 @@ spec:
   restartPolicy: Never
   containers:
   - name: sql-cli
-    image: ghcr.io/scalar-labs/scalardb-cluster-sql-cli:<VERSION>
+    image: ghcr.io/scalar-labs/scalardb-cluster-sql-cli:<X.Y.Z>
     args:
       - "--config"
       - "/config/backup-sql-cli.properties"
@@ -883,7 +887,7 @@ spec:
       name: sql-cli-config-backup
 ```
 
-Replace `<BACKUP_CLUSTER_CONTACT_POINTS>` with your backup site cluster contact points and `<VERSION>` with the ScalarDB Cluster version that you're using.
+Replace `<BACKUP_CLUSTER_CONTACT_POINTS>` with your backup site cluster contact points and `<X.Y.Z>` with the ScalarDB Cluster version that you're using.
 
 Create and connect to the SQL CLI Pod by running the following commands:
 
@@ -918,7 +922,7 @@ In this step, you'll monitor the replication status by using Replication CLI and
 
 Replication CLI can get the status of LogApplier. This includes the number of partitions that contain remaining unapplied write operations in the replication database. This information is important because, if there are zero partitions, it means that all write operations have been successfully replicated and applied to the backup site database. In this case, you can use the synchronized backup site database as a new primary site database.
 
-Create a Kubernetes Pod to run Replication CLI for the backup site:
+Create a Kubernetes Pod to run Replication CLI for the backup site, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you're using:
 
 ```yaml
 # repl-cli-backup.yaml
@@ -930,14 +934,14 @@ spec:
   restartPolicy: Never
   containers:
   - name: repl-cli-backup
-    image: ghcr.io/scalar-labs/scalardb-cluster-replication-cli:<VERSION>
+    image: ghcr.io/scalar-labs/scalardb-cluster-replication-cli:<X.Y.Z>
     args:
       - "--contact-points"
       - "<BACKUP_CLUSTER_CONTACT_POINTS>"
       - "status"
 ```
 
-Replace `<BACKUP_CLUSTER_CONTACT_POINTS>` with your backup site cluster contact points (in the same format as [ScalarDB Cluster Java Client SDK configurations](./scalardb-cluster-configurations.md#java-client-sdk-configurations)) and `<VERSION>` with the ScalarDB Cluster version that you're using.
+Replace `<BACKUP_CLUSTER_CONTACT_POINTS>` with your backup site cluster contact points (in the same format as [ScalarDB Cluster Java Client SDK configurations](./scalardb-cluster-configurations.md#java-client-sdk-configurations)) and `<X.Y.Z>` with the ScalarDB Cluster version that you're using.
 
 Ensure no new writes are being made to the primary site database to get an accurate synchronization point. Then, apply and run Replication CLI, and check the output:
 
@@ -968,7 +972,7 @@ kubectl delete -f repl-cli-backup.yaml -n <NAMESPACE>
 
 #### Prometheus metrics
 
-You can monitor LogApplier by using metrics. ScalarDB Cluster exposes many Prometheus format metrics, including LogApplier metrics, which can be monitored by using any tool that supports the format. For example, one option is using [Prometheus Operator (kube-prometheus-stack)](https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/helm-charts/getting-started-monitoring/).
+You can monitor LogApplier by using metrics. ScalarDB Cluster exposes many Prometheus format metrics, including LogApplier metrics, which can be monitored by using any tool that supports the format. For example, one option is using [Prometheus Operator (kube-prometheus-stack)](https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/helm-charts/getting-started-monitoring/).
 
 While LogApplier provides many metrics, the following metric is the most important for monitoring overall replication health:
 

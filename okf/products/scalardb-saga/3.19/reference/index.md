@@ -2,7 +2,7 @@
 type: Documentation Section
 title: ScalarDB Saga 3.19 — Reference
 description: Directory listing for the `reference` section of the ScalarDB Saga 3.19 documentation.
-resource: https://github.com/scalar-labs/scalardb-saga/tree/ecbd61722adae47620b2032be6974c9af593ecda
+resource: https://github.com/scalar-labs/scalardb-saga/tree/9cca1666694b43d63f515636d79c97623e130a5f
 tags:
 - scalardb-saga
 - v3.19
@@ -12,7 +12,7 @@ product: scalardb-saga
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-10-31T09:31:27Z'
 ---
 
 # Reference

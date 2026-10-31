@@ -2,11 +2,12 @@
 type: Deployment Guide
 title: How to Create Private Key and Certificate Files for TLS Connections in Scalar Products
 description: This guide explains how to create private key and certificate files for TLS connections in ScalarDB Cluster and ScalarDL. When you enable the TLS feature, you must prepare private key and certificate files.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/HowToCreateKeyAndCertificateFiles/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalar-kubernetes/HowToCreateKeyAndCertificateFiles/
 tags:
 - scalardb
 - v3.19
 - phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -16,18 +17,22 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalar-kubernetes/HowToCreateKeyAndCertificateFiles
 lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
+- Configuration Guides
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalar-kubernetes/HowToCreateKeyAndCertificateFiles.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalar-kubernetes/HowToCreateKeyAndCertificateFiles.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # How to Create Private Key and Certificate Files for TLS Connections in Scalar Products

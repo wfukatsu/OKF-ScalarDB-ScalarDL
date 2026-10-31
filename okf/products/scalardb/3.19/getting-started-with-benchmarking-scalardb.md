@@ -1,12 +1,13 @@
 ---
-type: Tutorial
+type: Development Guide
 title: Getting Started with Benchmarking ScalarDB
 description: This guide walks you through planning, running, and analyzing benchmarks for ScalarDB. A structured benchmarking methodology produces reliable, meaningful performance measurements that you can use to make informed decisions about system...
-resource: https://scalardb.scalar-labs.com/docs/latest/getting-started-with-benchmarking-scalardb/
+resource: https://scalardb.scalar-labs.com/docs/3.19/getting-started-with-benchmarking-scalardb/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,23 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: getting-started-with-benchmarking-scalardb
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Benchmarking
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/getting-started-with-benchmarking-scalardb.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/getting-started-with-benchmarking-scalardb.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Getting Started with Benchmarking ScalarDB
@@ -144,17 +149,11 @@ Before running benchmarks, configure ScalarDB with the performance parameters th
 
 ### Choose a deployment pattern
 
-:::warning Deprecation notice
-
-The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
-
-:::
-
 Choose a deployment pattern based on how your application uses ScalarDB. ScalarDB supports the following deployment patterns:
 
 - **ScalarDB Core (embedded):** The application or benchmark program embeds ScalarDB as a library. This pattern is the simplest to set up because it requires no separate server infrastructure. Use this pattern when you want to benchmark ScalarDB without the overhead of a cluster deployment.
-- **ScalarDB Cluster with a single cluster:** A single ScalarDB Cluster instance serves the application. This is the most common deployment pattern when using ScalarDB Cluster. Use this pattern for most benchmarking scenarios because it is simpler to manage and requires fewer resources. In microservice use cases, this pattern is called the *shared cluster pattern*, where all services share the single cluster instance and use the one-phase commit interface.
-- **ScalarDB Cluster with multiple clusters:** Each application or service has its own dedicated ScalarDB Cluster instance. Transactions that span multiple clusters use the two-phase commit interface, which adds complexity to transaction handling and error recovery but provides stronger resource isolation. Use this pattern only if you specifically need to evaluate cross-cluster transaction performance with the two-phase commit interface. In microservice use cases, this pattern is called the *separated cluster pattern*.
+- **ScalarDB Cluster with a single cluster:** A single ScalarDB Cluster instance serves the application. This is the most common deployment pattern when using ScalarDB Cluster. Use this pattern for most benchmarking scenarios because it is simpler to manage and requires fewer resources. In microservice use cases, this pattern is called the *shared-cluster pattern*, where all services share the single-cluster instance.
+- **ScalarDB Cluster with multiple clusters:** Each application or service has its own dedicated ScalarDB Cluster instance. Transactions that span multiple clusters need to be coordinated across those instances, which adds deployment and operational overhead but provides stronger resource isolation. Use this pattern only if you specifically need to evaluate cross-cluster transaction performance. In microservice use cases, this pattern is called the *separated-cluster pattern*.
 
 For details on microservice deployment patterns, see [ScalarDB Cluster deployment patterns for microservices](./scalardb-cluster/deployment-patterns-for-microservices.md).
 
@@ -223,6 +222,12 @@ Do not weaken the isolation level solely to improve benchmark throughput. If you
 #### Group commit
 
 Group commit batches multiple transactions' coordinator state writes into a single operation, which is particularly beneficial when the coordinator table resides in a remote or high-latency storage backend. Group commit is incompatible with the two-phase commit interface.
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 | Property | Default | Description |
 |----------|---------|-------------|

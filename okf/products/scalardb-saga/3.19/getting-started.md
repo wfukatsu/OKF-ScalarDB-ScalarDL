@@ -2,7 +2,7 @@
 type: Tutorial
 title: Getting Started with ScalarDB Saga
 description: This getting started tutorial explains how to run ScalarDB Saga as a server and illustrates the process of running a sample order-placement flow, where placing an order charges a payment service, reserves stock in an inventory service, and...
-resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/getting-started/README.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/getting-started/README.md
 tags:
 - scalardb-saga
 - v3.19
@@ -18,13 +18,13 @@ doc_id: getting-started
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-10-31T09:31:26Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/getting-started/README.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/getting-started/README.md
   title: ScalarDB Saga source repository — getting-started/README.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-08-03T21:49:02Z'
+  last_modified: '2026-10-28T20:47:55Z'
 ---
 
 # Getting Started with ScalarDB Saga
@@ -312,10 +312,10 @@ docker compose down -v
 
 | Path | Purpose |
 | --- | --- |
-| [`docker-compose.yaml`](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/getting-started/docker-compose.yaml) | The database, the three services, and the saga server |
-| [`conf/server.properties`](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/getting-started/conf/server.properties) | Server configuration: the store, where definitions live, and each service's base URL |
-| [`conf/definitions/`](https://github.com/scalar-labs/scalardb-saga/tree/ecbd61722adae47620b2032be6974c9af593ecda/getting-started/conf/definitions) | The two saga definitions used in this tutorial |
-| [`services/service.py`](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/getting-started/services/service.py) | The stand-in participant service; all three containers run it with a different name |
+| [`docker-compose.yaml`](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/getting-started/docker-compose.yaml) | The database, the three services, and the saga server |
+| [`conf/server.properties`](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/getting-started/conf/server.properties) | Server configuration: the store, where definitions live, and each service's base URL |
+| [`conf/definitions/`](https://github.com/scalar-labs/scalardb-saga/tree/9cca1666694b43d63f515636d79c97623e130a5f/getting-started/conf/definitions) | The two saga definitions used in this tutorial |
+| [`services/service.py`](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/getting-started/services/service.py) | The stand-in participant service; all three containers run it with a different name |
 
 To go further:
 
