@@ -2,11 +2,12 @@
 type: Concept
 title: Requirements
 description: This page outlines the requirements for using each ScalarDB component, including the programming languages and their versions, supported databases and their versions, and the necessary configurations.
-resource: https://scalardb.scalar-labs.com/docs/latest/requirements/
+resource: https://scalardb.scalar-labs.com/docs/3.19/requirements/
 tags:
 - scalardb
 - v3.19
 - phase:design
+- section:about-scalardb
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: requirements
 lifecycle_phase: design
+breadcrumb:
+- About ScalarDB
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/requirements.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/requirements.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Requirements
@@ -277,7 +280,7 @@ Object Storage support is currently in Private Preview. For more details, please
 
 :::note
 
-For details on how to configure each database, see [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md).
+For details on how to configure each database, see [Configure Databases for ScalarDB](./database-configurations.md).
 
 :::
 
@@ -669,38 +672,9 @@ Since ScalarDB Cluster uses gRPC, you can also create your own client in your pr
 
 Since ScalarDB Cluster uses Core to interact with databases, the requirements for databases are the same as those for Core. For more information, see [Databases](#databases).
 
-### Required ports
+### Network
 
-The following ports need to be accessible. These default port numbers can be configured via the corresponding properties as needed.
-
-#### ScalarDB Cluster nodes
-
-ScalarDB Cluster requires the following ports to be accessible:
-
-- 60053 (Administrative API / Transaction API / SQL API / administrator service; configurable via `scalar.db.cluster.node.port`)
-- 60054 (internal gRPC communication between cluster nodes; configurable via `scalar.db.cluster.internal.node.port`. This port only needs to be reachable between cluster nodes and should typically be restricted from client and public networks.)
-- 8080 (GraphQL; configurable via `scalar.db.graphql.port`)
-- 9080 (metrics; configurable via `scalar.db.cluster.node.prometheus_exporter_port`)
-
-:::note
-
-If you configure `scalar.db.cluster.node.admin.port` to run the administrator service (`pause`, `unpause`, and `checkPaused`) on a dedicated port, that dedicated port will also need to be accessible. In this case, only the administrator service runs on that port instead of the port specified by `scalar.db.cluster.node.port`; the port specified by `scalar.db.cluster.node.port` must still remain accessible for the other gRPC APIs, including the Administrative API, Transaction API, and SQL API.
-
-:::
-
-#### Transaction Coordinator
-
-If you deploy the [Transaction Coordinator](./scalardb-cluster/scalardb-cluster-configurations.md#transaction-coordinator-configurations), it requires the following ports to be accessible:
-
-- 60055 (Transaction API; configurable via `scalar.db.cluster.transaction_coordinator.port`)
-- 9080 (metrics; configurable via `scalar.db.cluster.transaction_coordinator.prometheus_exporter_port`)
-
-:::note
-
-- The Transaction Coordinator nodes communicate with each other by using the port specified by `scalar.db.cluster.transaction_coordinator.port`. Unlike ScalarDB Cluster, the Transaction Coordinator does not have a separate port dedicated to internal communication, so this port cannot be restricted to communication between the Transaction Coordinator nodes.
-- If you configure `scalar.db.cluster.transaction_coordinator.admin.port` to run the administrator service (`pause`, `unpause`, and `checkPaused`) on a dedicated port, that dedicated port will also need to be accessible. In this case, only the administrator service runs on that port instead of the port specified by `scalar.db.cluster.transaction_coordinator.port`; the port specified by `scalar.db.cluster.transaction_coordinator.port` must still remain accessible for the Transaction API.
-
-:::
+ScalarDB Cluster requires certain ports to be accessible. For a list of the connections and ports to allow, see the [Network Requirements for ScalarDB Cluster](./network-requirements.md#scalardb-clusterrelated-connections).
 
 ### Kubernetes
 
@@ -897,13 +871,9 @@ For databases **not** managed under ScalarDB Core and Cluster, make sure you reg
 
 Since ScalarDB Analytics server uses ScalarDB Core to manage catalog information, you need to configure a database user for ScalarDB Analytics server according to the [Database permission requirements](#database-permission-requirements) documentation for ScalarDB Core.
 
-### Required ports
+### Network
 
-ScalarDB Analytics requires the following ports to be accessible. These default port numbers can be configured as needed:
-
-- 11051 (catalog service)
-- 11052 (metering service)
-- The port number that Apache Spark uses depends on how you deploy the Spark cluster. For details on which ports you need to make accessible, please refer to your Spark service provider's documentation.
+ScalarDB Analytics requires certain ports to be accessible. For a list of the connections and ports to allow, see the [Network Requirements for ScalarDB Analytics](./network-requirements.md#scalardb-analyticsrelated-connections).
 
 ### Kubernetes
 

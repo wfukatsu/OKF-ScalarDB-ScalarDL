@@ -2,11 +2,12 @@
 type: Tutorial
 title: Getting Started with Using Python for ScalarDB Cluster
 description: This document explains how to write gRPC client code for ScalarDB Cluster by using Python.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/getting-started-with-using-python-for-scalardb-cluster/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/getting-started-with-using-python-for-scalardb-cluster/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:quickstart
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -16,18 +17,22 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/getting-started-with-using-python-for-scalardb-cluster
 lifecycle_phase: implement
+breadcrumb:
+- Quickstart
+- Try Using ScalarDB Cluster to Run Transactions
+- Reference
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/getting-started-with-using-python-for-scalardb-cluster.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/getting-started-with-using-python-for-scalardb-cluster.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Getting Started with Using Python for ScalarDB Cluster
@@ -42,7 +47,7 @@ This document explains how to write gRPC client code for ScalarDB Cluster by usi
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -100,10 +105,10 @@ For details about the client modes, see [Developer Guide for ScalarDB Cluster wi
 
 ## Step 3. Load a schema
 
-To load a schema via ScalarDB Cluster, you need to use the dedicated Schema Loader for ScalarDB Cluster (Schema Loader for Cluster). Using the Schema Loader for Cluster is basically the same as using the [Schema Loader for ScalarDB](../schema-loader.md) except the name of the JAR file is different. You can download the Schema Loader for Cluster from [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases/tag/v3.19.0). After downloading the JAR file, you can run the Schema Loader for Cluster with the following command:
+To load a schema via ScalarDB Cluster, you need to use the dedicated Schema Loader for ScalarDB Cluster (Schema Loader for Cluster). Using the Schema Loader for Cluster is basically the same as using the [Schema Loader for ScalarDB](../schema-loader.md) except the name of the JAR file is different. Download the version of the Schema Loader for Cluster that matches the version of ScalarDB Cluster that you're using from [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases). After downloading the JAR file, you can run the Schema Loader for Cluster with the following command, replacing `<X.Y.Z>` with that version:
 
 ```console
-java -jar scalardb-cluster-schema-loader-3.19.0-all.jar --config database.properties -f schema.json --coordinator
+java -jar scalardb-cluster-schema-loader-<X.Y.Z>-all.jar --config database.properties -f schema.json --coordinator
 ```
 
 ## Step 4. Set up a Python environment

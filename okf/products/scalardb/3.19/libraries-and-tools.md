@@ -2,11 +2,12 @@
 type: Reference
 title: Libraries and Tools for ScalarDB
 description: ScalarDB provides various libraries and tools to help you build and operate scalable and reliable applications. Below are some key libraries and tools available.
-resource: https://scalardb.scalar-labs.com/docs/latest/libraries-and-tools/
+resource: https://scalardb.scalar-labs.com/docs/3.19/libraries-and-tools/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:reference
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -18,6 +19,8 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: libraries-and-tools
 lifecycle_phase: implement
+breadcrumb:
+- Reference
 editions:
 - Community
 - Enterprise Standard
@@ -25,13 +28,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/libraries-and-tools.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/libraries-and-tools.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Libraries and Tools for ScalarDB
@@ -61,10 +64,10 @@ The following tools are available for ScalarDB Core and Cluster.
 | Tool                             | Edition                                              | Maven Package                                                                                                 | JAR File                                                            | Container Image                                                                                           | Reference                                                                                                            |
 |----------------------------------|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | ScalarDB Schema Loader           | Community, Enterprise Standard, & Enterprise Premium | [Maven Central Repository](https://central.sonatype.com/artifact/com.scalar-labs/scalardb-schema-loader)      | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-schema-loader)           | [Documentation](./schema-loader.md)                                                                                 |
-| ScalarDB Cluster Schema Loader   | Enterprise Standard & Enterprise Premium             | N/A                                                                                                           | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-cluster-schema-loader)   | [Documentation](./scalardb-cluster/developer-guide-for-scalardb-cluster-with-java-api.md#schema-loader-for-cluster) |
+| ScalarDB Cluster Schema Loader   | Enterprise Standard & Enterprise Premium             | N/A                                                                                                           | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-cluster-schema-loader)   | [Documentation](./scalardb-cluster/developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-schema-loader) |
 | ScalarDB Data Loader CLI         | Community, Enterprise Standard, & Enterprise Premium | [Maven Central Repository](https://central.sonatype.com/artifact/com.scalar-labs/scalardb-data-loader-cli)    | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-data-loader-cli)         | [Documentation](./data-loader.md)                                                                                   |
 | ScalarDB Cluster Data Loader CLI | Enterprise Standard, & Enterprise Premium            | N/A                                                                                                           | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-cluster-data-loader-cli) | [Documentation](./data-loader.md)                                                                                   |
-| ScalarDB Cluster SQL CLI         | Enterprise Premium                                   | N/A                                                                                                           | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-cluster-sql-cli)         | [Documentation](./scalardb-cluster/developer-guide-for-scalardb-cluster-with-java-api.md#sql-cli)                   |
+| ScalarDB Cluster SQL CLI         | Enterprise Premium                                   | N/A                                                                                                           | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-cluster-sql-cli)         | [Documentation](./scalardb-cluster/developer-guide-for-scalardb-cluster-with-java-api.md#scalardb-cluster-sql-cli)                   |
 | Replication CLI                  | Enterprise Premium                                   | N/A                                                                                                           | [GitHub Releases](https://github.com/scalar-labs/scalardb/releases) | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-cluster-replication-cli) | [Documentation](./scalardb-cluster/remote-replication.md#replication-cli)                                           |
 | ScalarDB MCP Server              | Community, Enterprise Standard, & Enterprise Premium | N/A                                                                                                           | N/A                                                                 | [GitHub](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-mcp-server)              | [Documentation](./scalardb-mcp-server/getting-started-with-scalardb-mcp-server.md)                                  |
 | Helm Charts                      | Community, Enterprise Standard, & Enterprise Premium | N/A                                                                                                           | N/A                                                                 | N/A                                                                                                       | [Documentation](./helm-charts/getting-started-scalar-helm-charts.md)                                                |

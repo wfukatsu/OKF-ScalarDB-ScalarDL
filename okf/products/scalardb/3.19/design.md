@@ -2,11 +2,12 @@
 type: Concept
 title: ScalarDB Design
 description: This document briefly explains the design and implementation of ScalarDB. For what ScalarDB is and its use cases, see ScalarDB Overview.
-resource: https://scalardb.scalar-labs.com/docs/latest/design/
+resource: https://scalardb.scalar-labs.com/docs/3.19/design/
 tags:
 - scalardb
 - v3.19
 - phase:design
+- section:about-scalardb
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: design
 lifecycle_phase: design
+breadcrumb:
+- About ScalarDB
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/design.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/design.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Design
@@ -40,7 +43,7 @@ This document briefly explains the design and implementation of ScalarDB. For wh
 
 ScalarDB is hybrid transaction/analytical processing (HTAP) middleware that sits in between applications and databases. As shown in the following figure, ScalarDB consists of three components: Core, Cluster, and Analytics. ScalarDB basically employs a layered architecture, so the Cluster and Analytics components use the Core component to interact with underlying databases but sometimes bypass the Core component for performance optimization without sacrificing correctness. Likewise, each component also consists of several layers.
 
-![ScalarDB architecture](https://scalardb.scalar-labs.com/docs/latest/images/scalardb-architecture.png)
+![ScalarDB architecture](https://scalardb.scalar-labs.com/docs/3.19/images/scalardb-architecture.png)
 
 ## Components
 
@@ -67,7 +70,7 @@ ScalarDB manages various types of metadata in the underlying databases to provid
 | Core      | `scalardb.metadata`                                                                                    | For database schema information                                                       | In all the databases under ScalarDB                                         |
 | Core      | `coordinator.state`                                                                                    | For transaction statuses                                                              | In one designated database specified to store the Coordinator table         |
 | Core      | Application-managed tables                                                                             | For WAL information                                                                   | In all the tables accessed by Consensus Commit                              |
-| Cluster   | `scalardb.users`, `scalardb.namespace_privileges`, `scalardb.table_privileges`, `scalardb.auth_tokens` | For [authentication and authorization](./scalardb-cluster/scalardb-auth-with-sql.md) | In one designated database specified to store the scalardb system namespace |
+| Cluster   | `scalardb.users`, `scalardb.namespace_privileges`, `scalardb.table_privileges`, `scalardb.roles`, `scalardb.user_roles`, `scalardb.role_hierarchies`, `scalardb.role_namespace_privileges`, `scalardb.role_table_privileges`, `scalardb.auth_tokens` | For [authentication and authorization](./scalardb-cluster/scalardb-auth-with-sql.md) | In one designated database specified to store the scalardb system namespace |
 | Cluster   | `scalardb.encrypted_columns`                                                                           | For [encryption at rest](./scalardb-cluster/encrypt-data-at-rest.md)                 | In one designated database specified to store the scalardb system namespace |
 | Cluster   | `scalardb.abac_*`                                                                                      | For [attribute-based access control](./scalardb-cluster/authorize-with-abac.md)      | In one designated database specified to store the scalardb system namespace |
 | Cluster   | Remote replication-managed tables (`transaction_groups`)                                               | For buffering write operations from the primary site in the [remote replication](./scalardb-cluster/remote-replication.md)                      | In the replication database                                                 |

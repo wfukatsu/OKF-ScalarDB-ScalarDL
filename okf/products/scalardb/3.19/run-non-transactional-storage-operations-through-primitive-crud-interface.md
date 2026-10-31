@@ -2,11 +2,12 @@
 type: Development Guide
 title: Run Non-Transactional Storage Operations Through the Primitive CRUD Interface
 description: This page explains how to run non-transactional storage operations through the primitive CRUD interface, also known as the Storage API. This guide assumes that you have an advanced understanding of ScalarDB.
-resource: https://scalardb.scalar-labs.com/docs/latest/run-non-transactional-storage-operations-through-primitive-crud-interface/
+resource: https://scalardb.scalar-labs.com/docs/3.19/run-non-transactional-storage-operations-through-primitive-crud-interface/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 status: stable
 product: scalardb
@@ -15,24 +16,29 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: run-non-transactional-storage-operations-through-primitive-crud-interface
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Advanced Configurations and Operations
+- Run Single-Operation Transactions
 editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Run Non-Transactional Storage Operations Through the Primitive CRUD Interface
 
 This page explains how to run non-transactional storage operations through the primitive CRUD interface, also known as the Storage API. This guide assumes that you have an advanced understanding of ScalarDB.
 
-One of the keys to achieving storage-agnostic or database-agnostic ACID transactions on top of existing storage and database systems is the storage abstraction capabilities that ScalarDB provides. Storage abstraction defines a [data model](./design.md#data-model) and the APIs (Storage API) that issue operations on the basis of the data model.
+One of the keys to achieving storage-agnostic or database-agnostic ACID transactions on top of existing storage and database systems is the storage abstraction capabilities that ScalarDB provides. Storage abstraction defines a [data model](./data-modeling.md) and the APIs (Storage API) that issue operations on the basis of the data model.
 
 Although you will likely use the [Transaction API](./api-guide.md#transaction-api) in most cases, another option is to use the Storage API.
 
@@ -67,7 +73,7 @@ With that in mind, this Storage API example assumes that the configuration file 
 
 ### Set up the database schema
 
-You need to define the database schema (the method in which the data will be organized) in the application. For details about the supported data types, see [Database Adapters](./database-adapters.md).
+You need to define the database schema (the method in which the data will be organized) in the application. For details about the supported data types, see [Learn About Database Adapters](./database-adapters.md).
 
 For this example, create a file named `emoney-storage.json` in the `scalardb/docs/getting-started` directory. Then, add the following JSON code to define the schema.
 
@@ -95,10 +101,10 @@ In the following JSON, the `transaction` field is set to `false`, which indicate
 
 To apply the schema, go to the [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases) page and download the ScalarDB Schema Loader that matches the version of ScalarDB that you are using to the `getting-started` folder.
 
-Then, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+Then, run the following command, replacing `<X.Y.Z>` with the version of the ScalarDB Schema Loader that you downloaded:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config scalardb.properties -f emoney-storage.json
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config scalardb.properties -f emoney-storage.json
 ```
 
 ### Example code
@@ -296,7 +302,7 @@ TableMetadata tableMetadata =
         .build();
 ```
 
-For details about the data model of ScalarDB, see [Data Model](./design.md#data-model).
+For details about the data model of ScalarDB, see [Model Your Data](./data-modeling.md).
 
 Then, create a table as follows:
 

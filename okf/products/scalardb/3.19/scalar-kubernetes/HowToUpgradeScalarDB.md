@@ -1,12 +1,13 @@
 ---
-type: Deployment Guide
+type: Operations Guide
 title: How to Upgrade ScalarDB
 description: This guide explains how to upgrade to a newer version of ScalarDB.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/HowToUpgradeScalarDB/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalar-kubernetes/HowToUpgradeScalarDB/
 tags:
 - scalardb
 - v3.19
 - phase:operate
+- section:manage
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,22 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalar-kubernetes/HowToUpgradeScalarDB
 lifecycle_phase: operate
+breadcrumb:
+- Manage
+- Manage ScalarDB Cluster
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalar-kubernetes/HowToUpgradeScalarDB.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalar-kubernetes/HowToUpgradeScalarDB.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # How to Upgrade ScalarDB
@@ -99,7 +103,7 @@ ScalarDB Core is provided as a Java library. So, you can update the dependencies
 
 Patch versions keep backward compatibility. So, you can upgrade ScalarDB from one patch version to another patch version in the same major version and minor version without doing any special operations. For example, you don't need to update the database schema on the backend database side or update the API in your application.
 
-The method for upgrading to a patch version is the same as for upgrading to a minor version. For details on how to upgrade, see the [Upgrade to a minor version](https://scalardb.scalar-labs.com/docs/latest/scalar-kubernetes/?versions=upgrade-minor-version) tab.
+The method for upgrading to a patch version is the same as for upgrading to a minor version. For details on how to upgrade, see the [Upgrade to a minor version](https://scalardb.scalar-labs.com/docs/3.19/scalar-kubernetes/?versions=upgrade-minor-version) tab.
 
 :::warning
 

@@ -1,12 +1,13 @@
 ---
-type: Concept
+type: Reference
 title: Consensus Commit Protocol
 description: Consensus Commit is the transaction protocol used in ScalarDB and is designed for executing transactions spanning multiple diverse databases. Its uniqueness is that the protocol achieves ACID transactions without relying on the transaction...
-resource: https://scalardb.scalar-labs.com/docs/latest/consensus-commit/
+resource: https://scalardb.scalar-labs.com/docs/3.19/consensus-commit/
 tags:
 - scalardb
 - v3.19
-- phase:design
+- phase:implement
+- section:reference
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -16,20 +17,22 @@ product_title: ScalarDB
 version: '3.19'
 patch_version: 3.19.1
 doc_id: consensus-commit
-lifecycle_phase: design
+lifecycle_phase: implement
+breadcrumb:
+- Reference
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/consensus-commit.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/consensus-commit.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Consensus Commit Protocol
@@ -124,7 +127,7 @@ ScalarDB stores transaction logs (transaction metadata), which are for write-ahe
 
 ScalarDB also manages transaction states separately from the application records in the Coordinator table. The Coordinator table determines and manages transaction states as a single source of truth. The Coordinator table can be collocated with application-managed tables or located in a separate dedicated database.
 
-![Distributed WAL](https://scalardb.scalar-labs.com/docs/latest/images/scalardb-metadata.png)
+![Distributed WAL](https://scalardb.scalar-labs.com/docs/3.19/images/scalardb-metadata.png)
 
 :::note
 
@@ -203,7 +206,7 @@ As described above, serializable is preferable from a correctness perspective, b
 
 :::note
 
-The Consensus Commit protocol of ScalarDB requires each underlying database to provide linearizable operations, as described in [Configurations for the Underlying Databases of ScalarDB](./database-configurations.md#transactions); thus, it guarantees strict serializability.
+The Consensus Commit protocol of ScalarDB requires each underlying database to provide linearizable operations, as described in [General requirements for the underlying databases](./database-configurations.md#general-requirements-for-the-underlying-databases); thus, it guarantees strict serializability.
 
 :::
 

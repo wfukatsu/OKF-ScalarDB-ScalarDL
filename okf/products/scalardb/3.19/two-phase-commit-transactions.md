@@ -2,11 +2,12 @@
 type: Development Guide
 title: Transactions with a Two-Phase Commit Interface
 description: The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
-resource: https://scalardb.scalar-labs.com/docs/latest/two-phase-commit-transactions/
+resource: https://scalardb.scalar-labs.com/docs/3.19/two-phase-commit-transactions/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,24 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: two-phase-commit-transactions
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- Java Interface Guides
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/two-phase-commit-transactions.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/two-phase-commit-transactions.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Transactions with a Two-Phase Commit Interface
@@ -559,7 +565,7 @@ public class Sample {
         // retry the transaction if it failed. How to identify a transaction status is delegated to users.
         return;
       } catch (TransactionException e) {
-        // For other exceptions, you can try retrying the transaction.
+        // For other exceptions, you can retry the transaction.
 
         // For `CrudConflictException`, `PreparationConflictException`, `ValidationConflictException`,
         // `CommitConflictException`, and `TransactionNotFoundException`, you can basically retry the
@@ -686,7 +692,7 @@ public class Sample {
 
 The `begin()` API could throw `TransactionException` or `TransactionNotFoundException`:
 
-- If you catch `TransactionException`, this exception indicates that the transaction has failed to begin due to transient or non-transient faults. You can try retrying the transaction, but you may not be able to begin the transaction due to non-transient faults.
+- If you catch `TransactionException`, this exception indicates that the transaction has failed to begin due to transient or non-transient faults. You can retry the transaction, but you may not be able to begin the transaction due to non-transient faults.
 - If you catch `TransactionNotFoundException`, this exception indicates that the transaction has failed to begin due to transient faults. In this case, you can retry the transaction.
 
 The `join()` API could also throw `TransactionNotFoundException`. You can handle this exception in the same way that you handle the exceptions for the `begin()` API.
@@ -695,28 +701,28 @@ The `join()` API could also throw `TransactionNotFoundException`. You can handle
 
 The APIs for CRUD operations (`get()`, `scan()`, `put()`, `delete()`, and `mutate()`) could throw `CrudException` or `CrudConflictException`:
 
-- If you catch `CrudException`, this exception indicates that the transaction CRUD operation has failed due to transient or non-transient faults. You can try retrying the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
+- If you catch `CrudException`, this exception indicates that the transaction CRUD operation has failed due to transient or non-transient faults. You can retry the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
 - If you catch `CrudConflictException`, this exception indicates that the transaction CRUD operation has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
 
 ### `PreparationException` and `PreparationConflictException`
 
 The `prepare()` API could throw `PreparationException` or `PreparationConflictException`:
 
-- If you catch `PreparationException`, this exception indicates that preparing the transaction fails due to transient or non-transient faults. You can try retrying the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
+- If you catch `PreparationException`, this exception indicates that preparing the transaction fails due to transient or non-transient faults. You can retry the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
 - If you catch `PreparationConflictException`, this exception indicates that preparing the transaction has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
 
 ### `ValidationException` and `ValidationConflictException`
 
 The `validate()` API could throw `ValidationException` or `ValidationConflictException`:
 
-- If you catch `ValidationException`, this exception indicates that validating the transaction fails due to transient or non-transient faults. You can try retrying the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
+- If you catch `ValidationException`, this exception indicates that validating the transaction fails due to transient or non-transient faults. You can retry the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
 - If you catch `ValidationConflictException`, this exception indicates that validating the transaction has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
 
 ### `CommitException`, `CommitConflictException`, and `UnknownTransactionStatusException`
 
 The `commit()` API could throw `CommitException`, `CommitConflictException`, or `UnknownTransactionStatusException`:
 
-- If you catch `CommitException`, this exception indicates that committing the transaction fails due to transient or non-transient faults. You can try retrying the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
+- If you catch `CommitException`, this exception indicates that committing the transaction fails due to transient or non-transient faults. You can retry the transaction from the beginning, but the transaction will still fail if the cause is non-transient.
 - If you catch `CommitConflictException`, this exception indicates that committing the transaction has failed due to transient faults (for example, a conflict error). In this case, you can retry the transaction from the beginning.
 - If you catch `UnknownTransactionStatusException`, this exception indicates that the status of the transaction, whether it was successful or not, is unknown. In this case, you need to check if the transaction is committed successfully and retry the transaction if it has failed.
 
@@ -740,11 +746,11 @@ In addition, in the sample code, the transaction is retried three times maximum 
 
 Services that use transactions with a two-phase commit interface usually execute a transaction by exchanging multiple requests and responses, as shown in the following diagram:
 
-![Sequence diagram for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/latest/images/two_phase_commit_sequence_diagram.png)
+![Sequence diagram for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/3.19/images/two_phase_commit_sequence_diagram.png)
 
 In addition, each service typically has multiple servers (or hosts) for scalability and availability and uses server-side (proxy) or client-side load balancing to distribute requests to the servers. In such a case, since transaction processing in transactions with a two-phase commit interface is stateful, requests in a transaction must be routed to the same servers while different transactions need to be distributed to balance the load, as shown in the following diagram:
 
-![Load balancing for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/latest/images/two_phase_commit_load_balancing.png)
+![Load balancing for transactions with a two-phase commit interface](https://scalardb.scalar-labs.com/docs/3.19/images/two_phase_commit_load_balancing.png)
 
 There are several approaches to achieve load balancing for transactions with a two-phase commit interface depending on the protocol between the services. Some approaches for this include using gRPC, HTTP/1.1, and [ScalarDB Cluster](./scalardb-cluster/section-home.md), which is a component that is available only in the ScalarDB Enterprise edition.
 

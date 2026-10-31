@@ -2,7 +2,7 @@
 type: Contributor Guide
 title: ScalarDB Saga codebase conventions
 description: 'Conventions for changing the ScalarDB Saga codebase itself: Java and Gradle setup, code style, static analysis, package naming, design principles and testing. Not guidance for applications that use ScalarDB Saga.'
-resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/CLAUDE.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/CLAUDE.md
 tags:
 - scalardb-saga
 - v3.19
@@ -20,13 +20,13 @@ doc_id: contributing-conventions
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-10-31T09:31:26Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/CLAUDE.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/CLAUDE.md
   title: ScalarDB Saga source repository — CLAUDE.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-08-03T21:49:02Z'
+  last_modified: '2026-10-28T20:47:55Z'
 ---
 
 > **バンドル注記:** これは **ScalarDB Saga 本体のコードに手を入れる場合** の規約です （上流リポジトリの `CLAUDE.md`）。ScalarDB Saga を利用する アプリケーション側の規約ではありません。アプリの実装指針は `overview.md` / `getting-started.md` / `reference/` を参照してください。本文中の `~/git/scalardb-saga-design/` は上流メンテナのローカルパスで、公開されていません。

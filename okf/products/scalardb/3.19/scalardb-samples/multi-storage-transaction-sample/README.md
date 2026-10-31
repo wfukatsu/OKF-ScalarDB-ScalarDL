@@ -1,12 +1,13 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Create a Sample Application That Supports Multi-Storage Transactions
 description: This tutorial describes how to create a sample application that supports the multi-storage transactions feature in ScalarDB.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/multi-storage-transaction-sample/README/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/multi-storage-transaction-sample/README/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,23 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-samples/multi-storage-transaction-sample/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/multi-storage-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-samples/multi-storage-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Create a Sample Application That Supports Multi-Storage Transactions
@@ -42,7 +47,7 @@ This tutorial illustrates the process of creating a sample e-commerce applicatio
 
 In this tutorial, you will build an application that uses both Cassandra and MySQL. By using the multi-storage transactions feature in ScalarDB, you can execute a transaction that spans both Cassandra and MySQL.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/multi-storage-transaction-sample/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/multi-storage-transaction-sample/images/overview.png)
 
 :::note
 
@@ -62,6 +67,8 @@ The sample application supports the following types of transactions:
 - Get order information by customer ID.
 - Make a payment.
   - Reduces the amount the customer has spent.
+
+Placing an order and getting order information span both Cassandra and MySQL, the latter because the result includes the customer's name. Getting customer information and making a payment use only MySQL.
 
 ## Prerequisites for this sample application
 
@@ -112,10 +119,10 @@ The database schema (the method in which the data will be organized) for the sam
 
 To apply the schema, go to the [ScalarDB Releases](https://github.com/scalar-labs/scalardb/releases) page and download the ScalarDB Schema Loader that matches the version of ScalarDB that you want to use to the `scalardb-samples/multi-storage-transaction-sample` folder.
 
-Then, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+Then, run the following command, replacing `<X.Y.Z>` with the version of the ScalarDB Schema Loader that you downloaded:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config database.properties --schema-file schema.json --coordinator
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config database.properties --schema-file schema.json --coordinator
 ```
 
 #### Schema details
@@ -131,7 +138,7 @@ As shown in [`schema.json`](https://github.com/scalar-labs/scalardb-samples/tree
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/multi-storage-transaction-sample/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/multi-storage-transaction-sample/images/ERD.png)
 
 ### Load the initial data
 
@@ -211,7 +218,7 @@ Check details about the order by running the following command, replacing `<ORDE
 ./gradlew run --args="GetOrder <ORDER_ID_UUID>"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`:
 
 ```console
 ...
@@ -243,7 +250,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew run --args="GetOrders 1"
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `order_id` and a different value for `timestamp`, which shows the history of all orders for customer ID `1`:
 
 ```console
 ...

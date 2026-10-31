@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Development Guide
 title: Data Source Reference
 description: This reference guide provides detailed information about data source configuration formats, provider-specific settings, and data type mappings for ScalarDB Analytics.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/reference-data-source/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-analytics/reference-data-source/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-option
 status: stable
 product: scalardb
@@ -15,17 +16,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-analytics/reference-data-source
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Analytical Queries
+- Reference
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/reference-data-source.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-analytics/reference-data-source.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Data Source Reference
@@ -34,7 +39,7 @@ This reference guide provides detailed information about data source configurati
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Analytics. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -756,32 +761,32 @@ Columns with data types that are not included in the mapping tables below will b
 
 | **MySQL Data Type**  | **ScalarDB Analytics Data Type** |
 | :------------------- | :------------------------------- |
-| `bit`                | `BOOLEAN`                        |
-| `bit(1)`             | `BOOLEAN`                        |
-| `bit(x)` if _x >= 2_ | `BLOB`                           |
-| `tinyint`            | `SMALLINT`                       |
-| `tinyint(1)`         | `BOOLEAN`                        |
-| `boolean`            | `BOOLEAN`                        |
-| `smallint`           | `SMALLINT`                       |
-| `smallint unsigned`  | `INT`                            |
-| `mediumint`          | `INT`                            |
-| `mediumint unsigned` | `INT`                            |
-| `int`                | `INT`                            |
-| `int unsigned`       | `BIGINT`                         |
-| `bigint`             | `BIGINT`                         |
-| `float`              | `FLOAT`                          |
-| `double`             | `DOUBLE`                         |
-| `real`               | `DOUBLE`                         |
-| `char`               | `TEXT`                           |
-| `varchar`            | `TEXT`                           |
-| `text`               | `TEXT`                           |
-| `binary`             | `BLOB`                           |
-| `varbinary`          | `BLOB`                           |
-| `blob`               | `BLOB`                           |
-| `date`               | `DATE`                           |
-| `time`               | `TIME`                           |
-| `datetime`           | `TIMESTAMP`                      |
-| `timestamp`          | `TIMESTAMPTZ`                    |
+| `BIT`                | `BOOLEAN`                        |
+| `BIT(1)`             | `BOOLEAN`                        |
+| `BIT(x)` if _x >= 2_ | `BLOB`                           |
+| `TINYINT`            | `SMALLINT`                       |
+| `TINYINT(1)`         | `BOOLEAN`                        |
+| `BOOLEAN`            | `BOOLEAN`                        |
+| `SMALLINT`           | `SMALLINT`                       |
+| `SMALLINT UNSIGNED`  | `INT`                            |
+| `MEDIUMINT`          | `INT`                            |
+| `MEDIUMINT UNSIGNED` | `INT`                            |
+| `INT`                | `INT`                            |
+| `INT UNSIGNED`       | `BIGINT`                         |
+| `BIGINT`             | `BIGINT`                         |
+| `FLOAT`              | `FLOAT`                          |
+| `DOUBLE`             | `DOUBLE`                         |
+| `REAL`               | `DOUBLE`                         |
+| `CHAR`               | `TEXT`                           |
+| `VARCHAR`            | `TEXT`                           |
+| `TEXT`               | `TEXT`                           |
+| `BINARY`             | `BLOB`                           |
+| `VARBINARY`          | `BLOB`                           |
+| `BLOB`               | `BLOB`                           |
+| `DATE`               | `DATE`                           |
+| `TIME`               | `TIME`                           |
+| `DATETIME`           | `TIMESTAMP`                      |
+| `TIMESTAMP`          | `TIMESTAMPTZ`                    |
 
 **Oracle**
 

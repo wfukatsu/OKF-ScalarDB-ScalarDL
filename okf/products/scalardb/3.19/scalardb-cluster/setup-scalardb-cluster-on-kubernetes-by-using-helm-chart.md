@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Deployment Guide
 title: How to Deploy ScalarDB Cluster Locally
 description: This guide provides instructions on how to deploy ScalarDB Cluster by using a Helm Chart on a local Kubernetes cluster, specifically designed for a test environment.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart/
 tags:
 - scalardb
 - v3.19
-- phase:implement
+- phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -15,19 +16,22 @@ product_title: ScalarDB
 version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart
-lifecycle_phase: implement
+lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Deploy ScalarDB Cluster
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # How to Deploy ScalarDB Cluster Locally
@@ -43,7 +47,7 @@ This guide provides instructions on how to deploy ScalarDB Cluster by using a He
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -124,7 +128,7 @@ postgresql-scalardb-cluster-0   1/1     Running   0          17s
 helm repo add scalar-labs https://scalar-labs.github.io/helm-charts
 ```
 
-2. Set your license key and certificate as environment variables. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact). For details about the value for `<CERT_PEM_FOR_YOUR_LICENSE_KEY>`, see [How to Configure a Product License Key](../scalar-licensing/section-home.md).
+2. Set your license key and certificate as environment variables. For details about the value for `<CERT_PEM_FOR_YOUR_LICENSE_KEY>`, see [How to Configure a Product License Key](../scalar-licensing/section-home.md).
 
 ```console
 SCALAR_DB_CLUSTER_LICENSE_KEY='<YOUR_LICENSE_KEY>'
@@ -194,10 +198,10 @@ kubectl create secret generic scalardb-credentials-secret \
 -n default
 ```
 
-5. Set the chart version of ScalarDB Cluster.
+5. Set the chart version of ScalarDB Cluster, replacing `<X.Y.Z>` with the version of ScalarDB Cluster that you want to use.
 
 ```console
-SCALAR_DB_CLUSTER_VERSION=3.19.0
+SCALAR_DB_CLUSTER_VERSION=<X.Y.Z>
 SCALAR_DB_CLUSTER_CHART_VERSION=$(helm search repo scalar-labs/scalardb-cluster -l | grep -F "${SCALAR_DB_CLUSTER_VERSION}" | awk '{print $2}' | sort --version-sort -r | head -n 1)
 ```
 

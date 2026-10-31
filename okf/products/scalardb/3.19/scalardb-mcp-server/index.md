@@ -2,7 +2,7 @@
 type: Documentation Section
 title: ScalarDB 3.19 — Scalardb Mcp Server
 description: Directory listing for the `scalardb-mcp-server` section of the ScalarDB 3.19 documentation.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-mcp-server/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-mcp-server/
 tags:
 - scalardb
 - v3.19
@@ -12,7 +12,7 @@ product: scalardb
 version: '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 ---
 
 # Scalardb Mcp Server

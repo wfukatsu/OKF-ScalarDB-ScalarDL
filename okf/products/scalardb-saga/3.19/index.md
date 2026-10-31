@@ -16,17 +16,17 @@ patch_version: 3.19.0-alpha.1
 prerelease: true
 url_path: '3.19'
 maintenance: supported
-is_latest: true
+is_latest: false
 concept_count: 9
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-10-31T09:31:27Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/tree/ecbd61722adae47620b2032be6974c9af593ecda
+  resource: https://github.com/scalar-labs/scalardb-saga/tree/9cca1666694b43d63f515636d79c97623e130a5f
   title: ScalarDB Saga source repository
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-08-03T21:49:02Z'
+  last_modified: '2026-10-28T20:47:55Z'
 ---
 
 # ScalarDB Saga 3.19
@@ -39,7 +39,7 @@ sources:
 | Version line | 3.19 |
 | Release the branch builds | 3.19.0-alpha.1 |
 | Source branch | `3.19` |
-| Upstream source | https://github.com/scalar-labs/scalardb-saga @ `ecbd61722ada` |
+| Upstream source | https://github.com/scalar-labs/scalardb-saga @ `9cca1666694b` |
 | Concepts in this version | 9 |
 
 ## By lifecycle phase

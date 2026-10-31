@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Development Guide
 title: Exception Handling in the ScalarDB Cluster .NET Client SDK
 description: When executing a transaction, you will also need to handle exceptions properly.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster-dotnet-client-sdk/exception-handling/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster-dotnet-client-sdk/exception-handling/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -16,18 +17,23 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster-dotnet-client-sdk/exception-handling
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Reference
+- .NET Interface Guides
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster-dotnet-client-sdk/exception-handling.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster-dotnet-client-sdk/exception-handling.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Exception Handling in the ScalarDB Cluster .NET Client SDK
@@ -67,7 +73,7 @@ while (true)
 {
     if (retryCount++ > 0)
     {
-        // Retry the transaction three times maximum in this sample code
+        // Attempt the transaction three times maximum in this sample code
         if (retryCount > 3)
             // Throw the last exception if the number of retries exceeds the maximum
             throw lastException!;
@@ -127,7 +133,7 @@ while (true)
     }
     catch (TransactionException ex)
     {
-        // For other exceptions, you can try retrying the transaction.
+        // For other exceptions, you can retry the transaction.
 
         // For `TransactionConflictException` and `TransactionNotFoundException`,
         // you can basically retry the transaction. However, for the other exceptions,
@@ -167,7 +173,7 @@ public class Item
 
 :::note
 
-In the sample code, the transaction is retried a maximum of three times and sleeps for 100 milliseconds before it is retried. You can choose a retry policy, such as exponential backoff, according to your application requirements.
+In the sample code, the transaction is attempted a maximum of three times and sleeps for 100 milliseconds before each retry. You can choose a retry policy, such as exponential backoff, according to your application requirements.
 
 :::
 
@@ -182,7 +188,7 @@ The table below shows transaction exceptions that can occur when communicating w
 | HopLimitExceededException         | All                                                          | The hop limit was exceeded. This occurs when the routing information between cluster nodes is inconsistent. The error is usually resolved in a short amount of time, so you can retry the transaction from the beginning after some time has passed since encountering this error.                                                                                                                                                                                                                          |
 | IllegalArgumentException          | All                                                          | The argument in the request message is invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | IllegalStateException             | All                                                          | The RPC was called in an invalid state.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| InternalErrorException            | All                                                          | The operation failed due to transient or nontransient faults. You can try retrying the transaction from the beginning, but the transaction may still fail if the cause is nontransient.                                                                                                                                                                                                                                                                                                                     |
+| InternalErrorException            | All                                                          | The operation failed due to transient or nontransient faults. You can retry the transaction from the beginning, but the transaction may still fail if the cause is nontransient.                                                                                                                                                                                                                                                                                                                            |
 | TransactionConflictException      | All except Begin, Join, Rollback                             | A transaction conflict occurred. If you encounter this error, please retry the transaction from the beginning.                                                                                                                                                                                                                                                                                                                                                                                              |
 | TransactionNotFoundException      | All except Begin, Join                                       | The transaction associated with the specified transaction ID was not found. This error indicates that the transaction has expired or the routing information has been updated due to cluster topology changes. In this case, please retry the transaction from the beginning.                                                                                                                                                                                                                               |
 | UnavailableException              | All                                                          | ScalarDB Cluster is unavailable even after trying to connect multiple times.                                                                                                                                                                                                                                                                                                                                                                                                                                |

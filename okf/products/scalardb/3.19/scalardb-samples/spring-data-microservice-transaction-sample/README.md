@@ -1,12 +1,13 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions
-description: This tutorial describes how to create a sample Spring Boot application for microservice transactions by using Spring Data JDBC for ScalarDB.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/README/
+description: The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/spring-data-microservice-transaction-sample/README/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,20 +16,30 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-samples/spring-data-microservice-transaction-sample/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/spring-data-microservice-transaction-sample/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-samples/spring-data-microservice-transaction-sample/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Sample application of Spring Data JDBC for ScalarDB with Microservice Transactions
+
+:::warning Deprecation notice
+
+The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 This tutorial describes how to create a sample Spring Boot application for microservice transactions by using Spring Data JDBC for ScalarDB.
 
@@ -45,13 +56,7 @@ For details about these features, see [Two-phase Commit Transactions](../../two-
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
-
-:::
-
-:::warning Deprecation notice
-
-The two-phase commit (2PC) interface is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/scalar-licensing/trial/). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 
@@ -68,7 +73,7 @@ The Order Service is responsible for order operations like placing an order and 
 Each service has gRPC endpoints. Clients call the endpoints, and the services call the endpoints each other as well.
 The Customer Service and the Order Service use MySQL and Cassandra through ScalarDB, respectively.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/spring-data-microservice-transaction-sample/images/overview.png)
 
 Each service accesses the databases through its own dedicated ScalarDB Cluster.
 
@@ -227,18 +232,18 @@ To apply the schema, go to the [ScalarDB Releases](https://github.com/scalar-lab
 
 #### MySQL
 
-To load the schema for [`schema-for-customer-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-customer-service.sql) into MySQL, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`schema-for-customer-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-customer-service.sql) into MySQL, run the following command, replacing `<X.Y.Z>` with the version of the SQL CLI tool that you downloaded:
 
 ```console
-java -jar scalardb-cluster-sql-cli-<VERSION>-all.jar --config scalardb-cluster-node-for-customer-service-client.properties --file schema-for-customer-service.sql
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-node-for-customer-service-client.properties --file schema-for-customer-service.sql
 ```
 
 #### Cassandra
 
-To load the schema for [`schema-for-order-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-order-service.sql) into Cassandra, run the following command, replacing `<VERSION>` with the version of the ScalarDB Schema Loader that you downloaded:
+To load the schema for [`schema-for-order-service.sql`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/schema-for-order-service.sql) into Cassandra, run the following command, replacing `<X.Y.Z>` with the version of the SQL CLI tool that you downloaded:
 
 ```console
-java -jar scalardb-cluster-sql-cli-<VERSION>-all.jar --config scalardb-cluster-node-for-order-service-client.properties --file schema-for-order-service.sql
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-node-for-order-service-client.properties --file schema-for-order-service.sql
 ```
 
 #### Schema details
@@ -257,7 +262,7 @@ As shown in [`schema-for-order-service.sql`](https://github.com/scalar-labs/scal
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/spring-data-microservice-transaction-sample/images/ERD.png)
 
 ### Start Microservices
 
@@ -405,7 +410,7 @@ The transactions for placing an order, getting a single order, and getting the h
 
 The following sequence diagram shows the transaction for placing an order:
 
-![Sequence Diagram](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/sequence_diagram.png)
+![Sequence Diagram](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/spring-data-microservice-transaction-sample/images/sequence_diagram.png)
 
 ### 1. Transaction with a two-phase commit interface is started
 
@@ -510,7 +515,7 @@ TwoPcResult<PlaceOrderResponse> result = orderRepository.executeTwoPcTransaction
 );
 ```
 
-![Sequence Diagram of High Level 2PC API](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/spring-data-microservice-transaction-sample/images/seq-diagram-high-level-2pc-api.png)
+![Sequence Diagram of High Level 2PC API](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/spring-data-microservice-transaction-sample/images/seq-diagram-high-level-2pc-api.png)
 
 In the `prepare` endpoint of the Customer Service, the endpoint resumes and prepares the transaction by using `ScalarDbTwoPcRepository.prepareTransactionOnParticipant()`. For reference, see [`CustomerService.java`](https://github.com/scalar-labs/scalardb-samples/blob/main/spring-data-microservice-transaction-sample/customer-service/src/main/java/sample/customer/CustomerService.java).
 

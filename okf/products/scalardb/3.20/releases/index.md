@@ -1,0 +1,25 @@
+---
+type: Documentation Section
+title: ScalarDB 3.20 — Releases
+description: Directory listing for the `releases` section of the ScalarDB 3.20 documentation.
+resource: https://scalardb.scalar-labs.com/docs/latest/releases/
+tags:
+- scalardb
+- v3.20
+- index
+status: stable
+product: scalardb
+version: '3.20'
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-10-31T09:32:43Z'
+---
+
+# Releases
+
+ScalarDB 3.20 documentation under `releases/`.
+
+## Concepts
+
+- [Release Support Policy](./release-support-policy.md) — This page describes Scalar's support policy for major and minor version releases of ScalarDB.
+- [ScalarDB 3.20 Release Notes](./release-notes.md) — This page includes a list of release notes for ScalarDB 3.20.

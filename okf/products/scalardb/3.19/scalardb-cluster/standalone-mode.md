@@ -1,12 +1,13 @@
 ---
-type: Documentation Page
+type: Deployment Guide
 title: ScalarDB Cluster Standalone Mode
 description: Instead of setting up a Kubernetes cluster and deploying ScalarDB Cluster on top of it by using a Helm Chart, you can run ScalarDB Cluster in standalone mode, which simplifies development and testing processes. A primary use case for this...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-cluster/standalone-mode/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-cluster/standalone-mode/
 tags:
 - scalardb
 - v3.19
-- phase:implement
+- phase:operate
+- section:deploy
 - edition:enterprise-standard
 - edition:enterprise-premium
 status: stable
@@ -15,19 +16,22 @@ product_title: ScalarDB
 version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-cluster/standalone-mode
-lifecycle_phase: implement
+lifecycle_phase: operate
+breadcrumb:
+- Deploy
+- Reference
 editions:
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-cluster/standalone-mode.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-cluster/standalone-mode.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Cluster Standalone Mode
@@ -46,7 +50,7 @@ This section explains how to start ScalarDB Cluster in standalone mode on Docker
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](../scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 

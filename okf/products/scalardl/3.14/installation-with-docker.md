@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:09Z'
+  at: '2026-10-31T09:32:49Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/65cde245dc475500d48ccf7a4d460a7965759c95/docs/installation-with-docker.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/installation-with-docker.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-09-09T05:36:42Z'
+  last_modified: '2026-10-26T11:41:49Z'
 ---
 
 # How to Install ScalarDL in Your Local Environment with Docker
@@ -36,7 +36,7 @@ This document shows how to set up a local environment that runs ScalarDL along w
 
 :::warning
 
-You need to have a license key (trial license or commercial license) to use ScalarDL. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact-us).
+You need to have a license key (trial license or commercial license) to use ScalarDL. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](./scalar-licensing/trial.md). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
 
 :::
 

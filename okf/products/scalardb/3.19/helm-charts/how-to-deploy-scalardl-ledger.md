@@ -2,7 +2,7 @@
 type: Deployment Guide
 title: How to deploy ScalarDL Ledger
 description: This document explains how to deploy ScalarDL Ledger using Scalar Helm Charts. You must prepare your custom values file. Please refer to the following document for more details on the custom values file for ScalarDL Ledger and ScalarDL...
-resource: https://scalardb.scalar-labs.com/docs/latest/helm-charts/how-to-deploy-scalardl-ledger/
+resource: https://scalardb.scalar-labs.com/docs/3.19/helm-charts/how-to-deploy-scalardl-ledger/
 tags:
 - scalardb
 - v3.19
@@ -19,13 +19,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/helm-charts/how-to-deploy-scalardl-ledger.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/helm-charts/how-to-deploy-scalardl-ledger.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # How to deploy ScalarDL Ledger

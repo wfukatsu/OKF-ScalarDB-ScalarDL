@@ -1,12 +1,13 @@
 ---
-type: Sample Application
+type: Development Guide
 title: Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using ScalarDB JDBC
-description: This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for ScalarDB Cluster by using ScalarDB JDBC.
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README/
+description: The JOIN statement that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-premium
 status: stable
 product: scalardb
@@ -15,20 +16,30 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Run Sample Applications
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using ScalarDB JDBC
+
+:::warning Deprecation notice
+
+The `JOIN` statement that this sample relies on is deprecated as of ScalarDB 3.19 and will be removed in a future release.
+
+:::
 
 This tutorial describes how to create a sample e-commerce application that supports microservice transactions and follows the shared-cluster pattern for ScalarDB Cluster by using ScalarDB JDBC.
 
@@ -47,7 +58,7 @@ Each service has gRPC endpoints. Clients call the endpoints, and the services ca
 
 The databases that you will be using in the sample application are Cassandra and MySQL. The Customer Service and the Order Service use Cassandra and MySQL, respectively, through ScalarDB Cluster.
 
-![Overview](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/images/overview.png)
+![Overview](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/images/overview.png)
 
 As shown in the diagram, ScalarDB Cluster has a small Coordinator database used for the Consensus Commit protocol. The database is service-independent and exists for managing transaction metadata for Consensus Commit in a highly available manner.
 
@@ -101,7 +112,11 @@ The `getCustomerInfo` endpoint works as a participant service endpoint when rece
 
 - [Docker](https://www.docker.com/get-started/) 20.10 or later with [Docker Compose](https://docs.docker.com/compose/install/) V2 or later
 
-Also, you need to have a license key (trial license or commercial license) for ScalarDB Cluster. If you don't have a license key, please [contact us](https://www.scalar-labs.com/contact).
+:::warning
+
+You need to have a license key (trial license or commercial license) to use ScalarDB Cluster. If you don't have a license key, you can use a ready-to-use trial license key by following [How to Configure a Trial License Key](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/scalar-licensing/trial/). To obtain a commercial license, please [contact us](https://www.scalar-labs.com/contact-us).
+
+:::
 
 ## Set up ScalarDB Cluster
 
@@ -157,12 +172,12 @@ Starting the Docker container may take more than one minute depending on your de
 
 The database schema (the method in which the data will be organized) for the sample application has already been defined in [`schema.sql`](https://github.com/scalar-labs/scalardb-samples/tree/main/microservice-transaction-sample-with-shared-cluster-with-jdbc/schema.sql).
 
-To apply the schema, go to the [Releases](https://github.com/scalar-labs/scalardb/releases) of ScalarDB and download the SQL CLI tool (`scalardb-cluster-sql-cli-<VERSION>-all.jar`) for the version of ScalarDB Cluster that you want to use.
+To apply the schema, go to the [Releases](https://github.com/scalar-labs/scalardb/releases) of ScalarDB and download the SQL CLI tool (`scalardb-cluster-sql-cli-<X.Y.Z>-all.jar`) for the version of ScalarDB Cluster that you want to use.
 
-Then, run the following command, replacing `<VERSION>` with the version of the SQL CLI tool that you downloaded:
+Then, run the following command, replacing `<X.Y.Z>` with the version of the SQL CLI tool that you downloaded:
 
 ```console
-java -jar scalardb-cluster-sql-cli-<VERSION>-all.jar --config scalardb-cluster-sql-cli.properties --file schema.sql
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-sql-cli.properties --file schema.sql
 ```
 
 #### Schema details
@@ -181,16 +196,16 @@ Also, all the tables for the Order Service are created in the `order_service` na
 
 The Entity Relationship Diagram for the schema is as follows:
 
-![ERD](https://scalardb.scalar-labs.com/docs/latest/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/images/ERD.png)
+![ERD](https://scalardb.scalar-labs.com/docs/3.19/scalardb-samples/microservice-transactions-sample-with-shared-cluster-with-jdbc/images/ERD.png)
 
 ### Create users for the services and grant privileges to them
 
 To implement access control for each microservice, you need to create users for the services and grant privileges to them.
 
-Run the following command, replacing `<VERSION>` with the version of the SQL CLI tool that you downloaded:
+Run the following command, replacing `<X.Y.Z>` with the version of the SQL CLI tool that you downloaded:
 
 ```console
-java -jar scalardb-cluster-sql-cli-<VERSION>-all.jar --config scalardb-cluster-sql-cli.properties --file user-privileges.sql
+java -jar scalardb-cluster-sql-cli-<X.Y.Z>-all.jar --config scalardb-cluster-sql-cli.properties --file user-privileges.sql
 ```
 
 As shown in [`user-privileges.sql`](https://github.com/scalar-labs/scalardb-samples/tree/main/microservice-transaction-sample-with-shared-cluster-with-jdbc/user-privileges.sql), you create users for Customer Service and Order Service and grant privileges to them.
@@ -251,7 +266,7 @@ You should see the following output:
 }
 ```
 
-At this time, `credit_total` isn't shown, which means the current value of `credit_total` is `0`.
+At this time, `creditTotal` isn't shown, which means the current value of `creditTotal` is `0`.
 
 ### Place an order
 
@@ -267,7 +282,7 @@ The order format in this command is `./gradlew run --args="PlaceOrder <CUSTOMER_
 ./gradlew :client:run --args="PlaceOrder 1 1:3,2:2" -q
 ```
 
-You should see a similar output as below, with a different UUID for `order_id`, which confirms that the order was successful:
+You should see a similar output as below, with a different UUID for `orderId`, which confirms that the order was successful:
 
 ```console
 {
@@ -277,13 +292,13 @@ You should see a similar output as below, with a different UUID for `order_id`, 
 
 ### Check the order details
 
-Check details about the order by running the following command, replacing `<ORDER_ID_UUID>` with the UUID for the `order_id` that was shown after running the previous command:
+Check details about the order by running the following command, replacing `<ORDER_ID_UUID>` with the UUID for the `orderId` that was shown after running the previous command:
 
 ```console
 ./gradlew :client:run --args="GetOrder <ORDER_ID_UUID>" -q
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`:
+You should see a similar output as below, with a different UUID for `orderId` and a different value for `timestamp`:
 
 ```console
 {
@@ -312,13 +327,13 @@ You should see a similar output as below, with different UUIDs for `order_id` an
 
 ### Place another order
 
-Place an order for one melon that uses the remaining amount in `credit_total` for customer ID `1` by running the following command:
+Place an order for one melon that uses the remaining amount in `creditTotal` for customer ID `1` by running the following command:
 
 ```console
 ./gradlew :client:run --args="PlaceOrder 1 5:1" -q
 ```
 
-You should see a similar output as below, with a different UUID for `order_id`, which confirms that the order was successful:
+You should see a similar output as below, with a different UUID for `orderId`, which confirms that the order was successful:
 
 ```console
 {
@@ -334,7 +349,7 @@ Get the history of all orders for customer ID `1` by running the following comma
 ./gradlew :client:run --args="GetOrders 1" -q
 ```
 
-You should see a similar output as below, with different UUIDs for `order_id` and `timestamp`, which shows the history of all orders for customer ID `1` in descending order by timestamp:
+You should see a similar output as below, with a different UUID for `orderId` and a different value for `timestamp`, which shows the history of all orders for customer ID `1`:
 
 ```console
 {
@@ -382,7 +397,7 @@ Get the credit total for customer ID `1` by running the following command:
 ./gradlew :client:run --args="GetCustomerInfo 1" -q
 ```
 
-You should see the following output, which shows that customer ID `1` has reached their `credit_limit` in `credit_total` and cannot place anymore orders:
+You should see the following output, which shows that customer ID `1` has reached their `creditLimit` in `creditTotal` and cannot place anymore orders:
 
 ```console
 {
@@ -399,7 +414,7 @@ Try to place an order for one grape and one mango by running the following comma
 ./gradlew :client:run --args="PlaceOrder 1 3:1,4:1" -q
 ```
 
-You should see the following output, which shows that the order failed because the `credit_total` amount would exceed the `credit_limit` amount:
+You should see the following output, which shows that the order failed because the `creditTotal` amount would exceed the `creditLimit` amount:
 
 ```console
 io.grpc.StatusRuntimeException: FAILED_PRECONDITION: Credit limit exceeded
@@ -422,7 +437,7 @@ io.grpc.StatusRuntimeException: FAILED_PRECONDITION: Credit limit exceeded
 
 ### Make a payment
 
-To continue making orders, customer ID `1` must make a payment to reduce the `credit_total` amount.
+To continue making orders, customer ID `1` must make a payment to reduce the `creditTotal` amount.
 
 Make a payment by running the following command:
 
@@ -430,13 +445,13 @@ Make a payment by running the following command:
 ./gradlew :client:run --args="Repayment 1 8000" -q
 ```
 
-Then, check the `credit_total` amount for customer ID `1` by running the following command:
+Then, check the `creditTotal` amount for customer ID `1` by running the following command:
 
 ```console
 ./gradlew :client:run --args="GetCustomerInfo 1" -q
 ```
 
-You should see the following output, which shows that a payment was applied to customer ID `1`, reducing the `credit_total` amount:
+You should see the following output, which shows that a payment was applied to customer ID `1`, reducing the `creditTotal` amount:
 
 ```console
 {
@@ -453,7 +468,7 @@ Now that customer ID `1` has made a payment, place an order for one grape and on
 ./gradlew :client:run --args="PlaceOrder 1 3:1,4:1" -q
 ```
 
-You should see a similar output as below, with a different UUID for `order_id`, which confirms that the order was successful:
+You should see a similar output as below, with a different UUID for `orderId`, which confirms that the order was successful:
 
 ```console
 {

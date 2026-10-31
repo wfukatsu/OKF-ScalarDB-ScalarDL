@@ -188,8 +188,11 @@ class DocVersion:
         return "stable" if self.supported else "deprecated"
 
 
+# Version keys are quoted either way upstream ("3.18" and '3.19' sit side by
+# side in docs-scalardb); a key the regex misses falls back to versions.json and
+# is wrongly reported unmaintained, so both quote styles must match.
 _VERSION_ENTRY = re.compile(
-    r"""(?P<key>current|"(?P<num>[0-9]+\.[0-9]+)")\s*:\s*\{(?P<body>[^{}]*)\}""",
+    r"""(?P<key>current|["'](?P<num>[0-9]+\.[0-9]+)["'])\s*:\s*\{(?P<body>[^{}]*)\}""",
     re.S,
 )
 

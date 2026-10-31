@@ -2,7 +2,7 @@
 type: Concept
 title: ScalarDB Saga
 description: ScalarDB Saga is a modern saga orchestration engine for microservices. It coordinates eventually consistent distributed transactions across services using the Saga pattern (steps with compensations) and TCC (try/confirm/cancel), keeping...
-resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/README.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/README.md
 tags:
 - scalardb-saga
 - v3.19
@@ -18,13 +18,13 @@ doc_id: overview
 lifecycle_phase: design
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-08-24T00:15:46Z'
+  at: '2026-10-31T09:31:26Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/README.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/README.md
   title: ScalarDB Saga source repository — README.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-08-03T21:49:02Z'
+  last_modified: '2026-10-28T20:47:55Z'
 ---
 
 # ScalarDB Saga
@@ -206,4 +206,4 @@ enforced by Spotless, and is checked by Error Prone, NullAway, and SpotBugs. See
 
 ## License
 
-Licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/scalar-labs/scalardb-saga/blob/ecbd61722adae47620b2032be6974c9af593ecda/LICENSE).
+Licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/scalar-labs/scalardb-saga/blob/9cca1666694b43d63f515636d79c97623e130a5f/LICENSE).

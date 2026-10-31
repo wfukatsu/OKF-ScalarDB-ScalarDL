@@ -1,12 +1,13 @@
 ---
-type: Reference
+type: Development Guide
 title: Authenticate and Authorize Users in ScalarDB Analytics
 description: ScalarDB Analytics can authenticate and authorize users with resource-level access control. You can create users and grant or revoke permissions on catalogs, data sources, namespaces, and tables. Roles can also be created to group...
-resource: https://scalardb.scalar-labs.com/docs/latest/scalardb-analytics/authentication-and-authorization/
+resource: https://scalardb.scalar-labs.com/docs/3.19/scalardb-analytics/authentication-and-authorization/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:enterprise-option
 status: stable
 product: scalardb
@@ -15,17 +16,21 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: scalardb-analytics/authentication-and-authorization
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Analytical Queries
+- Advanced Configurations and Operations
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/scalardb-analytics/authentication-and-authorization.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/scalardb-analytics/authentication-and-authorization.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # Authenticate and Authorize Users in ScalarDB Analytics

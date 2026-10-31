@@ -1,12 +1,13 @@
 ---
-type: Reference
+type: Development Guide
 title: ScalarDB Schema Loader
 description: ScalarDB has its own data model and schema that maps to the implementation-specific data model and schema. In addition, ScalarDB stores internal metadata, such as transaction IDs, record versions, and transaction statuses, to manage...
-resource: https://scalardb.scalar-labs.com/docs/latest/schema-loader/
+resource: https://scalardb.scalar-labs.com/docs/3.19/schema-loader/
 tags:
 - scalardb
 - v3.19
 - phase:implement
+- section:develop
 - edition:community
 - edition:enterprise-standard
 - edition:enterprise-premium
@@ -17,19 +18,23 @@ version: '3.19'
 patch_version: 3.19.1
 doc_id: schema-loader
 lifecycle_phase: implement
+breadcrumb:
+- Develop
+- Run Transactions
+- Tools
 editions:
 - Community
 - Enterprise Standard
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-09-11T05:23:06Z'
+  at: '2026-10-31T09:32:46Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/c882c4103fe6e0aedff74e7afa67c2587a78ec9b/docs/schema-loader.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/versioned_docs/version-3.19/schema-loader.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-09-09T05:43:01Z'
+  last_modified: '2026-10-30T13:58:08Z'
 ---
 
 # ScalarDB Schema Loader
@@ -62,12 +67,12 @@ You can download the release versions of Schema Loader from the [ScalarDB Releas
 You can pull the Docker image from the [Scalar container registry](https://github.com/orgs/scalar-labs/packages/container/package/scalardb-schema-loader) by running the following command, replacing the contents in the angle brackets as described:
 
 ```console
-docker run --rm -v <PATH_TO_YOUR_LOCAL_SCALARDB_PROPERTIES_FILE>:/scalardb.properties -v <PATH_TO_YOUR_LOCAL_SCHEMA_FILE>:/schema.json ghcr.io/scalar-labs/scalardb-schema-loader:<VERSION> --config /scalardb.properties --schema-file /schema.json <OTHER_COMMAND_ARGUMENTS>
+docker run --rm -v <PATH_TO_YOUR_LOCAL_SCALARDB_PROPERTIES_FILE>:/scalardb.properties -v <PATH_TO_YOUR_LOCAL_SCHEMA_FILE>:/schema.json ghcr.io/scalar-labs/scalardb-schema-loader:<X.Y.Z> --config /scalardb.properties --schema-file /schema.json <OTHER_COMMAND_ARGUMENTS>
 ```
 
 :::note
 
-You can specify the same command arguments even if you use the fat JAR or the container. In the [Available commands](#available-commands) section, the JAR is used, but you can run the commands by using the container in the same way by replacing `java -jar scalardb-schema-loader-<VERSION>.jar` with `docker run --rm -v <PATH_TO_YOUR_LOCAL_SCHEMA_FILE>:<PATH_TO_SCHEMA_FILE_DOCKER> [-v <PATH_TO_LOCAL_SCALARDB_PROPERTIES_FILE>:<PATH_TO_SCALARDB_PROPERTIES_FILE_IN_DOCKER>] ghcr.io/scalar-labs/scalardb-schema-loader:<VERSION>`.
+You can specify the same command arguments even if you use the fat JAR or the container. In the [Available commands](#available-commands) section, the JAR is used, but you can run the commands by using the container in the same way by replacing `java -jar scalardb-schema-loader-<X.Y.Z>.jar` with `docker run --rm -v <PATH_TO_YOUR_LOCAL_SCHEMA_FILE>:<PATH_TO_SCHEMA_FILE_DOCKER> [-v <PATH_TO_LOCAL_SCALARDB_PROPERTIES_FILE>:<PATH_TO_SCALARDB_PROPERTIES_FILE_IN_DOCKER>] ghcr.io/scalar-labs/scalardb-schema-loader:<X.Y.Z>`.
 
 :::
 
@@ -82,7 +87,7 @@ Select how you would like to configure Schema Loader for your database. The pref
 The following commands are available when using the properties file:
 
 ```console
-Usage: java -jar scalardb-schema-loader-<VERSION>.jar [-D] [--coordinator]
+Usage: java -jar scalardb-schema-loader-<X.Y.Z>.jar [-D] [--coordinator]
        [--no-backup] [--no-scaling] -c=<configPath>
        [--compaction-strategy=<compactionStrategy>] [-f=<schemaFile>]
        [--replication-factor=<replicaFactor>]
@@ -127,7 +132,7 @@ The following database-specific methods have been deprecated. Please use the [co
 **JDBC databases**
 
 ```console
-Usage: java -jar scalardb-schema-loader-<VERSION>.jar --jdbc [-D]
+Usage: java -jar scalardb-schema-loader-<X.Y.Z>.jar --jdbc [-D]
       -f=<schemaFile> -j=<url> -p=<password> -u=<user>
 Create/Delete JDBC schemas
   -A, --alter         Alter tables : it will add new columns and create/delete
@@ -149,7 +154,7 @@ Create/Delete JDBC schemas
 **DynamoDB**
 
 ```console
-Usage: java -jar scalardb-schema-loader-<VERSION>.jar --dynamo [-D]
+Usage: java -jar scalardb-schema-loader-<X.Y.Z>.jar --dynamo [-D]
       [--no-backup] [--no-scaling] [--endpoint-override=<endpointOverride>]
       -f=<schemaFile> -p=<awsSecKey> [-r=<ru>] --region=<awsRegion>
       -u=<awsKeyId>
@@ -178,7 +183,7 @@ Create/Delete DynamoDB schemas
 **Cosmos DB for NoSQL**
 
 ```console
-Usage: java -jar scalardb-schema-loader-<VERSION>.jar --cosmos [-D]
+Usage: java -jar scalardb-schema-loader-<X.Y.Z>.jar --cosmos [-D]
       [--no-scaling] -f=<schemaFile> -h=<uri> -p=<key> [-r=<ru>]
 Create/Delete Cosmos DB schemas
   -A, --alter         Alter tables : it will add new columns and create/delete
@@ -201,7 +206,7 @@ Create/Delete Cosmos DB schemas
 **Cassandra**
 
 ```console
-Usage: java -jar scalardb-schema-loader-<VERSION>.jar --cassandra [-D]
+Usage: java -jar scalardb-schema-loader-<X.Y.Z>.jar --cassandra [-D]
       [-c=<compactionStrategy>] -f=<schemaFile> -h=<hostIp>
       [-n=<replicationStrategy>] [-p=<password>] [-P=<port>]
       [-R=<replicationFactor>] [-u=<user>]
@@ -237,7 +242,7 @@ Create/Delete Cassandra schemas
 To create namespaces and tables by using a properties file, run the following command, replacing the contents in the angle brackets as described:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator]
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator]
 ```
 
 If `--coordinator` is specified, a [Coordinator table](./api-guide.md#specify-operations-for-the-coordinator-table) will be created. When [group commit](./consensus-commit.md#group-commit) or [Coordinator write set logging](./consensus-commit.md#coordinator-write-set-logging) is enabled, this command creates a Coordinator table with the additional column that each enabled feature requires.
@@ -249,13 +254,13 @@ The following database-specific CLI arguments have been deprecated. Please use t
 **JDBC databases**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE>
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE>
 ```
 
 **DynamoDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> -f <PATH_TO_SCHEMA_FILE> [-r BASE_RESOURCE_UNIT]
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> -f <PATH_TO_SCHEMA_FILE> [-r BASE_RESOURCE_UNIT]
 ```
 
 - `<REGION>` should be a string to specify an AWS region like `ap-northeast-1`.
@@ -264,7 +269,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -
 **Cosmos DB for NoSQL**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> [-r BASE_RESOURCE_UNIT]
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> [-r BASE_RESOURCE_UNIT]
 ```
 
 - `<COSMOS_DB_FOR_NOSQL_KEY>` you can use a primary key or a secondary key.
@@ -273,7 +278,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_
 **Cassandra**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> [-n <NETWORK_STRATEGY>] [-R <REPLICATION_FACTOR>]
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> [-n <NETWORK_STRATEGY>] [-R <REPLICATION_FACTOR>]
 ```
 
 - If `-P <CASSANDRA_PORT>` is not supplied, it defaults to `9042`.
@@ -290,7 +295,7 @@ You can use a command to add new columns to and create or delete a secondary ind
 To add new columns to and create or delete a secondary index for existing tables, run the following command, replacing the contents in the angle brackets as described:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> --alter
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> --alter
 ```
 
 :::note
@@ -300,25 +305,25 @@ The following database-specific CLI arguments have been deprecated. Please use t
 **JDBC databases**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE> --alter
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE> --alter
 ```
 
 **DynamoDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> -f <PATH_TO_SCHEMA_FILE> --alter
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> -f <PATH_TO_SCHEMA_FILE> --alter
 ```
 
 **Cosmos DB for NoSQL**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> --alter
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> --alter
 ```
 
 **Cassandra**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> --alter
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> --alter
 ```
 
 :::
@@ -328,7 +333,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --cassandra -h <CASSANDRA_IP> [-P
 You can delete tables by using the properties file. To delete tables, run the following command, replacing the contents in the angle brackets as described:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator] -D
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator] -D
 ```
 
 If `--coordinator` is specified, the Coordinator table will be deleted as well.
@@ -340,25 +345,25 @@ The following database-specific CLI arguments have been deprecated. Please use t
 **JDBC databases**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE> -D
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE> -D
 ```
 
 **DynamoDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> -f <PATH_TO_SCHEMA_FILE> -D
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> -f <PATH_TO_SCHEMA_FILE> -D
 ```
 
 **Cosmos DB for NoSQL**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> -D
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> -D
 ```
 
 **Cassandra**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> -D
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> -D
 ```
 
 :::
@@ -368,7 +373,7 @@ java -jar scalardb-schema-loader-<VERSION>.jar --cassandra -h <CASSANDRA_IP> [-P
 You can repair the table metadata of existing tables by using the properties file. To repair table metadata of existing tables, run the following command, replacing the contents in the angle brackets as described:
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator] --repair-all
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator] --repair-all
 ```
 
 :::warning
@@ -388,25 +393,25 @@ The following database-specific CLI arguments have been deprecated. Please use t
 **JDBC databases**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE> --repair-all
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --jdbc -j <JDBC_URL> -u <USER> -p <PASSWORD> -f <PATH_TO_SCHEMA_FILE> --repair-all
 ```
 
 **DynamoDB**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> [--no-backup] -f <PATH_TO_SCHEMA_FILE> --repair-all
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --dynamo -u <AWS_ACCESS_KEY_ID> -p <AWS_ACCESS_SECRET_KEY> --region <REGION> [--no-backup] -f <PATH_TO_SCHEMA_FILE> --repair-all
 ```
 
 **Cosmos DB for NoSQL**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> --repair-all
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cosmos -h <COSMOS_DB_FOR_NOSQL_ACCOUNT_URI> -p <COSMOS_DB_FOR_NOSQL_KEY> -f <PATH_TO_SCHEMA_FILE> --repair-all
 ```
 
 **Cassandra**
 
 ```console
-java -jar scalardb-schema-loader-<VERSION>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> --repair-all
+java -jar scalardb-schema-loader-<X.Y.Z>.jar --cassandra -h <CASSANDRA_IP> [-P <CASSANDRA_PORT>] [-u <CASSANDRA_USER>] [-p <CASSANDRA_PASSWORD>] -f <PATH_TO_SCHEMA_FILE> --repair-all
 ```
 
 :::
@@ -634,11 +639,11 @@ Currently, when using transaction metadata decoupling, the following operations 
 
 ## Use Schema Loader in your application
 
-You can check the version of Schema Loader from the [Maven Central Repository](https://mvnrepository.com/artifact/com.scalar-labs/scalardb-schema-loader). For example in Gradle, you can add the following dependency to your `build.gradle` file, replacing `<VERSION>` with the version of Schema Loader that you want to use:
+You can check the version of Schema Loader from the [Maven Central Repository](https://mvnrepository.com/artifact/com.scalar-labs/scalardb-schema-loader). For example in Gradle, you can add the following dependency to your `build.gradle` file, replacing `<X.Y.Z>` with the version of Schema Loader that you want to use:
 
 ```gradle
 dependencies {
-    implementation 'com.scalar-labs:scalardb-schema-loader:<VERSION>'
+    implementation 'com.scalar-labs:scalardb-schema-loader:<X.Y.Z>'
 }
 ```
 
