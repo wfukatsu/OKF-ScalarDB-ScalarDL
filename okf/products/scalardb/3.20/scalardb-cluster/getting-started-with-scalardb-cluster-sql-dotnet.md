@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-02T04:45:26Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-cluster/getting-started-with-scalardb-cluster-sql-dotnet.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/309d86916db466e9fe8eb10de1cec77eb290c817/docs/scalardb-cluster/getting-started-with-scalardb-cluster-sql-dotnet.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-02T04:11:20Z'
 ---
 
 # Getting Started with ScalarDB Cluster SQL via .NET
