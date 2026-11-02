@@ -17,13 +17,13 @@ supported_versions:
 - '3.19'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:51Z'
+  at: '2026-11-02T04:45:30Z'
 sources:
 - id: scalardb-saga
   resource: https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7
   title: ScalarDB Saga source repository
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-10-29T03:59:48Z'
 ---
 
 # ScalarDB Saga

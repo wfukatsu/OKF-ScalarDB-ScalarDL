@@ -12,7 +12,7 @@ product: scalardb
 version: '3.20'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-02T04:45:26Z'
 ---
 
 # Microservice Transaction Sample With Cluster

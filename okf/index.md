@@ -13,7 +13,7 @@ status: stable
 concept_count: 2370
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:52Z'
+  at: '2026-11-02T04:45:32Z'
 ---
 
 # ScalarDB / ScalarDL Knowledge Bundle

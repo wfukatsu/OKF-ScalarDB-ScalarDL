@@ -2,8 +2,8 @@
   "products": {
     "scalardb": {
       "repo": "docs-scalardb",
-      "repo_sha": "e492bf010d9ca2699301d485735f6b13d0dec7fa",
-      "repo_committed_at": "2026-10-30T13:58:08Z",
+      "repo_sha": "309d86916db466e9fe8eb10de1cec77eb290c817",
+      "repo_committed_at": "2026-11-02T04:11:20Z",
       "latest": "3.20",
       "version_order": [
         "3.20",
@@ -62,8 +62,8 @@
     },
     "scalardl": {
       "repo": "docs-scalardl",
-      "repo_sha": "e6bd82bcb84116982f2d3e64c710ea4dfde52427",
-      "repo_committed_at": "2026-10-26T11:41:49Z",
+      "repo_sha": "7d46df95c1c8ac4fd24d893413375ab25a0c3c24",
+      "repo_committed_at": "2026-11-02T04:00:55Z",
       "latest": "3.14",
       "version_order": [
         "3.14",
@@ -108,7 +108,7 @@
     "scalardb-community": {
       "repo": "docs-scalardb-community",
       "repo_sha": "71d199cb0df1c638bd7e305b64fa09fc7236e5c4",
-      "repo_committed_at": "2025-04-07T11:32:02Z",
+      "repo_committed_at": "2025-04-07T02:32:02Z",
       "latest": "3.13",
       "version_order": [
         "3.13",
@@ -189,7 +189,7 @@
       "repo": "scalardb-saga",
       "kind": "repo",
       "repo_sha": "5765e9e6b1d499dc92627b387a711d306bdc6ce7",
-      "repo_committed_at": "2026-10-29T12:59:48Z",
+      "repo_committed_at": "2026-10-29T03:59:48Z",
       "latest": "3.20",
       "version_order": [
         "3.20",
@@ -215,5 +215,5 @@
   },
   "okf_version": "0.2",
   "generator": "process:okf-build/1.0.0",
-  "last_run": "2026-10-31T09:32:52Z"
+  "last_run": "2026-11-02T04:45:32Z"
 }

@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-02T04:45:28Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/scalardl-benchmarks/README.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/7d46df95c1c8ac4fd24d893413375ab25a0c3c24/docs/scalardl-benchmarks/README.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-02T04:00:55Z'
 ---
 
 # ScalarDL Benchmarking Tools
