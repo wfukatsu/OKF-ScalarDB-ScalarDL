@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-09T04:56:13Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-cluster/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/a0321eb196d4a344fc06da59d81a202ae1ab7a2a/docs/scalardb-cluster/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-09T04:40:42Z'
 ---
 
 # ScalarDB Cluster Java API Guide
@@ -40,10 +40,10 @@ This section explains how to execute administrative operations programmatically 
 
 :::warning
 
-When an Administrative API call writes to the underlying databases, it triggers several write operations. However, these operations are not executed atomically, meaning that if the call fails midway, you may encounter inconsistent states. To resolve this inconsistency issue, you can repair the namespace or table. For details, see the following pages:
+When an Administrative API call writes to the underlying databases, it triggers several write operations. However, these operations are not executed atomically, meaning that if the call fails midway, you may encounter inconsistent states. To resolve this inconsistency issue, you can repair the table. For details, see the following pages:
 
-- [Repair a namespace](#repair-a-namespace) and [Repair a table](#repair-a-table) by using the Java API
-- [Repair namespaces and tables](../schema-loader.md#repair-namespaces-and-tables) by using ScalarDB Schema Loader
+- [Repair a table](#repair-a-table) by using the Java API
+- [Repair tables](../schema-loader.md#repair-tables) by using ScalarDB Schema Loader
 
 :::
 
@@ -445,18 +445,6 @@ You can get table metadata as follows:
 TableMetadata tableMetadata = admin.getTableMetadata("ns", "tbl");
 ```
 
-### Repair a namespace
-
-If a namespace is in an unknown state, such as the namespace exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the namespace and its metadata if necessary.
-
-You can repair the namespace as follows:
-
-```java
-// Repair the namespace "ns" with options.
-Map<String, String> options = ...;
-admin.repairNamespace("ns", options);
-```
-
 ### Repair a table
 
 If a table is in an unknown state, such as the table exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the table, its secondary indexes, and their metadata if necessary.
@@ -478,16 +466,6 @@ admin.repairTable("ns", "tbl", tableMetadata, options);
 When using Consensus Commit, after upgrading to ScalarDB 3.16.5, 3.17.3, or 3.18.0 from an earlier version, you must run `repairTable()` on each existing table to create the companion before-image secondary indexes that index-based reads require. For details, see [Correctness of index-based reads](../consensus-commit.md#correctness-of-index-based-reads).
 
 :::
-
-### Upgrade the environment to support the latest ScalarDB API
-
-You can upgrade the ScalarDB environment to support the latest version of the ScalarDB API. Typically, as indicated in the release notes, you will need to run this method after updating the ScalarDB version that your application environment uses.
-
-```java
-// Upgrade the ScalarDB environment.
-Map<String, String> options = ...;
-admin.upgrade(options);
-```
 
 ### Specify operations for the Coordinator table
 

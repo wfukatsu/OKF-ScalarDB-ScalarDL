@@ -260,3 +260,10 @@ generated:
 - ScalarDL 3.14 (rebuilt, 139 concepts)
 - ScalarDB Community 3.13 (rebuilt, 35 concepts)
 
+## 2026-11-09T04:56:20Z
+
+- ScalarDB 3.20 (rebuilt, 206 concepts)
+- ScalarDL 3.14 (rebuilt, 140 concepts)
+- ScalarDB Saga 3.20 (rebuilt, 15 concepts)
+- ScalarDB Community 3.13 (rebuilt, 35 concepts)
+

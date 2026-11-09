@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-09T04:56:13Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalar-kubernetes/HowToScaleScalarDB.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/a0321eb196d4a344fc06da59d81a202ae1ab7a2a/docs/scalar-kubernetes/HowToScaleScalarDB.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-09T04:40:42Z'
 ---
 
 # How to Scale ScalarDB Cluster

@@ -19,13 +19,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-09T04:56:16Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/releases/release-support-policy.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/f053b0cad86a0e843ac287b2b4ac6dc625dc38fc/docs/releases/release-support-policy.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-06T04:58:20Z'
 ---
 
 # Release Support Policy

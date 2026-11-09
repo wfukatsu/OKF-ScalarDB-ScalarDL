@@ -2,7 +2,7 @@
 type: Reference
 title: Admin gRPC API
 description: The AdminService gRPC contract — listing, recovering, force-completing and resetting sagas that need operator intervention.
-resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/rpc/src/main/proto/admin.proto
+resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/rpc/src/main/proto/admin.proto
 tags:
 - scalardb-saga
 - v3.20
@@ -18,13 +18,13 @@ doc_id: reference/grpc-admin-api
 lifecycle_phase: operate
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-09T04:56:18Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/rpc/src/main/proto/admin.proto
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/rpc/src/main/proto/admin.proto
   title: ScalarDB Saga source repository — rpc/src/main/proto/admin.proto
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 ---
 
 # Admin gRPC API
@@ -35,7 +35,7 @@ Reach for it when a saga has been escalated after repeated compensation failure;
 
 ## `rpc/src/main/proto/admin.proto`
 
-[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/rpc/src/main/proto/admin.proto)
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/rpc/src/main/proto/admin.proto)
 
 ```protobuf
 syntax = "proto3";

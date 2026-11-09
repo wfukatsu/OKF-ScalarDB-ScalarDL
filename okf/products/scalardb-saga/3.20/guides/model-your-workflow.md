@@ -2,7 +2,7 @@
 type: Development Guide
 title: Model Your Workflow
 description: 'This page explains how to model a business workflow as a ScalarDB Saga definition: which steps to create, what each one calls, how to order them, and how they behave when something fails. It assumes you have run the getting started guide,...'
-resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/guides/model-your-workflow.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/guides/model-your-workflow.md
 tags:
 - scalardb-saga
 - v3.20
@@ -18,13 +18,13 @@ doc_id: guides/model-your-workflow
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-09T04:56:18Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/guides/model-your-workflow.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/guides/model-your-workflow.md
   title: ScalarDB Saga source repository — guides/model-your-workflow.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 ---
 
 # Model Your Workflow

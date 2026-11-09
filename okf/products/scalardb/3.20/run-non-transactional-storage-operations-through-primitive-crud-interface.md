@@ -19,13 +19,13 @@ editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-09T04:56:13Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/a0321eb196d4a344fc06da59d81a202ae1ab7a2a/docs/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-09T04:40:42Z'
 ---
 
 # Run Non-Transactional Storage Operations Through the Primitive CRUD Interface
@@ -435,7 +435,9 @@ TableMetadata tableMetadata = admin.getTableMetadata("ns", "tbl");
 
 #### Repair a table
 
-You can repair the table metadata of an existing table as follows:
+If a table is in an unknown state, such as the table exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the table, its secondary indexes, and their metadata if necessary.
+
+You can repair the table as follows:
 
 ```java
 // Repair the table "ns.tbl" with options.

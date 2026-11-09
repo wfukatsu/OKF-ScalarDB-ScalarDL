@@ -2,7 +2,7 @@
 type: Reference
 title: Saga definition examples
 description: 'Working saga definitions from the repository: declarative service steps in JSON, and code steps (stepClass) in YAML and JSON.'
-resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/conf/definitions/order-saga.json
+resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/conf/definitions/order-saga.json
 tags:
 - scalardb-saga
 - v3.20
@@ -18,28 +18,28 @@ doc_id: reference/saga-definitions
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-09T04:56:18Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/conf/definitions/order-saga.json
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/conf/definitions/order-saga.json
   title: ScalarDB Saga source repository — getting-started/conf/definitions/order-saga.json
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/conf/definitions/order-saga-failing.json
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/conf/definitions/order-saga-failing.json
   title: ScalarDB Saga source repository — getting-started/conf/definitions/order-saga-failing.json
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/core/src/test/resources/sagas/transfer.yaml
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/core/src/test/resources/sagas/transfer.yaml
   title: ScalarDB Saga source repository — core/src/test/resources/sagas/transfer.yaml
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/core/src/test/resources/sagas/minimal.json
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/core/src/test/resources/sagas/minimal.json
   title: ScalarDB Saga source repository — core/src/test/resources/sagas/minimal.json
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 ---
 
 # Saga definition examples
@@ -52,7 +52,7 @@ These are the definitions the repository ships, reproduced verbatim.
 
 ## `getting-started/conf/definitions/order-saga.json`
 
-[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/conf/definitions/order-saga.json)
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/conf/definitions/order-saga.json)
 
 ```json
 {
@@ -114,7 +114,7 @@ These are the definitions the repository ships, reproduced verbatim.
 
 ## `getting-started/conf/definitions/order-saga-failing.json`
 
-[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/conf/definitions/order-saga-failing.json)
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/conf/definitions/order-saga-failing.json)
 
 ```json
 {
@@ -171,7 +171,7 @@ These are the definitions the repository ships, reproduced verbatim.
 
 ## `core/src/test/resources/sagas/transfer.yaml`
 
-[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/core/src/test/resources/sagas/transfer.yaml)
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/core/src/test/resources/sagas/transfer.yaml)
 
 ```yaml
 # Transfer money saga definition
@@ -190,7 +190,7 @@ steps:
 
 ## `core/src/test/resources/sagas/minimal.json`
 
-[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/core/src/test/resources/sagas/minimal.json)
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/core/src/test/resources/sagas/minimal.json)
 
 ```json
 {
