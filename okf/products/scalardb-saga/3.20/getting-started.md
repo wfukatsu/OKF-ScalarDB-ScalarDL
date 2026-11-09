@@ -2,7 +2,7 @@
 type: Tutorial
 title: Getting Started with ScalarDB Saga
 description: This getting started tutorial explains how to run ScalarDB Saga as a server and illustrates the process of running a sample order-placement flow, where placing an order charges a payment service, reserves stock in an inventory service, and...
-resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/README.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/README.md
 tags:
 - scalardb-saga
 - v3.20
@@ -17,13 +17,13 @@ doc_id: getting-started
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-09T04:56:18Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/README.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/README.md
   title: ScalarDB Saga source repository — getting-started/README.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 ---
 
 # Getting Started with ScalarDB Saga
@@ -95,7 +95,7 @@ second terminal while you run sagas, so you can watch a saga drive them:
 docker compose logs -f payment inventory shipping
 ```
 
-If you use tmux, [`tmux-demo.sh`](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/tmux-demo.sh) opens a ready-made cockpit instead: the three
+If you use tmux, [`tmux-demo.sh`](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/tmux-demo.sh) opens a ready-made cockpit instead: the three
 services' logs across the top, and a control pane for the curl commands below — next to the saga
 server's own log, so you can watch the engine and the participants react to each command you run.
 
@@ -399,14 +399,14 @@ docker compose down -v
 
 | Path | Purpose |
 | --- | --- |
-| [`docker-compose.yaml`](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/docker-compose.yaml) | The database, the three services, the saga server, and the dashboard |
-| [`conf/server.properties`](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/conf/server.properties) | Server configuration: the store, where definitions live, and each service's base URL |
-| [`conf/definitions/`](https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/conf/definitions) | The saga definitions: the two used in the walkthrough, plus seven demo variants (four saga, three TCC) |
-| [`services/service.py`](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/services/service.py) | The stand-in participant service; all three containers run it with a different name |
-| [`dashboard/`](https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/dashboard) | The live dashboard: a dependency-free Python server and a plain-JavaScript page |
-| [`tmux-demo.sh`](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/tmux-demo.sh) | A tmux cockpit: service logs on top, curl control pane and server log below |
-| [`COMMANDS.md`](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/COMMANDS.md) | A copy-paste cheat sheet of the curl commands for starting, listing, and unsticking sagas |
-| [`client-example/`](https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/client-example) | A minimal Java program driving the same flows through the client SDK over gRPC |
+| [`docker-compose.yaml`](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/docker-compose.yaml) | The database, the three services, the saga server, and the dashboard |
+| [`conf/server.properties`](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/conf/server.properties) | Server configuration: the store, where definitions live, and each service's base URL |
+| [`conf/definitions/`](https://github.com/scalar-labs/scalardb-saga/tree/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/conf/definitions) | The saga definitions: the two used in the walkthrough, plus seven demo variants (four saga, three TCC) |
+| [`services/service.py`](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/services/service.py) | The stand-in participant service; all three containers run it with a different name |
+| [`dashboard/`](https://github.com/scalar-labs/scalardb-saga/tree/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/dashboard) | The live dashboard: a dependency-free Python server and a plain-JavaScript page |
+| [`tmux-demo.sh`](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/tmux-demo.sh) | A tmux cockpit: service logs on top, curl control pane and server log below |
+| [`COMMANDS.md`](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/COMMANDS.md) | A copy-paste cheat sheet of the curl commands for starting, listing, and unsticking sagas |
+| [`client-example/`](https://github.com/scalar-labs/scalardb-saga/tree/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/client-example) | A minimal Java program driving the same flows through the client SDK over gRPC |
 
 To go further:
 
@@ -414,7 +414,7 @@ To go further:
   `docker compose restart saga-server`. Definitions are immutable once registered, so editing one in
   place without bumping the version stops the server on its next start. The dashboard picks the
   change up within a few seconds and can start the new definition.
-- Drive sagas from Java instead of curl: [`client-example/`](https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7/getting-started/client-example) runs the same flows
+- Drive sagas from Java instead of curl: [`client-example/`](https://github.com/scalar-labs/scalardb-saga/tree/74cba12613a5e0458223791177151c6eb4bf491f/getting-started/client-example) runs the same flows
   through the `scalardb-saga-java-client-sdk` over gRPC — with the stack up, run
   `../../gradlew run` from that directory (this one needs a JDK).
 - [server/docker/README.md](./server-deployment.md) — running the server for real: configuration,

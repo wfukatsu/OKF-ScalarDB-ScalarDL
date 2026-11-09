@@ -2,7 +2,7 @@
 type: Reference
 title: ScalarDB Saga REST API
 description: This page lists every route of the ScalarDB Saga server's REST API, with its request, its response, and the status codes it answers with. The REST API lets applications in any language start and check sagas without an SDK. Java...
-resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/guides/rest-api.md
+resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/guides/rest-api.md
 tags:
 - scalardb-saga
 - v3.20
@@ -18,13 +18,13 @@ doc_id: guides/rest-api
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-09T04:56:18Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/guides/rest-api.md
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/guides/rest-api.md
   title: ScalarDB Saga source repository — guides/rest-api.md
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 ---
 
 # ScalarDB Saga REST API

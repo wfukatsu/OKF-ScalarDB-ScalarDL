@@ -2,7 +2,7 @@
 type: Reference
 title: Server configuration reference
 description: Every scalar.db.saga.server.* property the saga server accepts, with its default and the reasoning behind it, as shipped in the image's configuration template.
-resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/server/docker/conf/server.properties
+resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/server/docker/conf/server.properties
 tags:
 - scalardb-saga
 - v3.20
@@ -18,13 +18,13 @@ doc_id: reference/server-configuration
 lifecycle_phase: operate
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-09T04:56:18Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/server/docker/conf/server.properties
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/server/docker/conf/server.properties
   title: ScalarDB Saga source repository — server/docker/conf/server.properties
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-09T03:51:30Z'
 ---
 
 # Server configuration reference
@@ -35,7 +35,7 @@ A misspelled `scalar.db.saga.server.*` key fails startup rather than being ignor
 
 ## `server/docker/conf/server.properties`
 
-[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/server/docker/conf/server.properties)
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/74cba12613a5e0458223791177151c6eb4bf491f/server/docker/conf/server.properties)
 
 ```properties
 # ScalarDB Saga daemon configuration — TEMPLATE.

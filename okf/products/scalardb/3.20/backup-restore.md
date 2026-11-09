@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-09T04:56:12Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/backup-restore.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/a0321eb196d4a344fc06da59d81a202ae1ab7a2a/docs/backup-restore.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-09T04:40:42Z'
 ---
 
 # How to Back Up and Restore Databases Used Through ScalarDB
@@ -216,7 +216,7 @@ To do this procedure:
 
 **MySQL**
 
-If you used `mysqldump` to create the backup file, use the `mysql` command to restore the backup as specified in [Reloading SQL-Format Backups](https://dev.mysql.com/doc/mysql-backup-excerpt/8.0/en/reloading-sql-format-dumps.html).
+If you used `mysqldump` to create the backup file, use the `mysql` command to restore the backup as specified in [Reloading SQL-Format Backups](https://dev.mysql.com/doc/refman/8.0/en/reloading-sql-format-dumps.html).
 
 **PostgreSQL**
 

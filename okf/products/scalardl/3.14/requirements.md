@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-09T04:56:16Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/requirements.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/f053b0cad86a0e843ac287b2b4ac6dc625dc38fc/docs/requirements.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-06T04:58:20Z'
 ---
 
 # Requirements
@@ -226,25 +226,9 @@ The following list shows the versions of ScalarDB used in ScalarDL internally. T
 
 :::
 
-## Required ports
+## Network
 
-ScalarDL requires the following ports to be accessible. These default port numbers can be configured as needed:
-
-- **ScalarDL Ledger**
-  - 50051 (normal request)
-  - 50052 (privileged request)
-  - 50053 (pause request)
-  - 8080 (metrics)
-- **ScalarDL Auditor**
-  - 40051 (normal request)
-  - 40052 (privileged request)
-  - 40053 (pause request)
-  - 8080 (metrics)
-- **ScalarDL Gateway**
-  - 30051 (normal request)
-  - 30052 (privileged request)
-  - 30053 (pause request)
-  - 8080 (metrics)
+ScalarDL requires certain ports to be accessible. For a list of the connections and ports to allow, see [Network Requirements](./network-requirements.md).
 
 ## Kubernetes
 
