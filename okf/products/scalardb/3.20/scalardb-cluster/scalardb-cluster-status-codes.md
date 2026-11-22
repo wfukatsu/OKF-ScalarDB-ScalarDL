@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-cluster/scalardb-cluster-status-codes
 lifecycle_phase: operate
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-cluster/scalardb-cluster-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-cluster/scalardb-cluster-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Cluster Error Codes
@@ -302,14 +302,6 @@ The update condition type is unspecified
 The update condition type is unrecognized
 ```
 
-### `DB-CLUSTER-10037`
-
-**Message**
-
-```markdown
-The two-phase commit interface is not supported
-```
-
 ### `DB-CLUSTER-10039`
 
 **Message**
@@ -372,22 +364,6 @@ The operation is not set
 
 ```markdown
 The batch result is not set
-```
-
-### `DB-CLUSTER-10059`
-
-**Message**
-
-```markdown
-Resuming a transaction is not allowed when piggyback-begin is enabled
-```
-
-### `DB-CLUSTER-10060`
-
-**Message**
-
-```markdown
-Resuming a transaction is not allowed when write-buffering is enabled
 ```
 
 ### `DB-CLUSTER-10061`
@@ -526,22 +502,6 @@ The cluster is not configured. Cluster ID: %s; Configured clusters: %s
 The cluster IDs in 'scalar.db.cluster.transaction_coordinator.clusters' must be unique. Duplicate cluster ID: %s
 ```
 
-### `DB-CLUSTER-10078`
-
-**Message**
-
-```markdown
-Joining a transaction is not allowed when piggyback-begin is enabled
-```
-
-### `DB-CLUSTER-10079`
-
-**Message**
-
-```markdown
-Joining a transaction is not allowed when write-buffering is enabled
-```
-
 ### `DB-CLUSTER-10080`
 
 **Message**
@@ -558,20 +518,12 @@ Joining a transaction is not allowed when write-buffering is enabled
 The cluster connection is not configured, so this operation is not available. A transaction coordinator client without a cluster connection can only begin, commit, and roll back transactions
 ```
 
-### `DB-CLUSTER-10082`
+### `DB-CLUSTER-10084`
 
 **Message**
 
 ```markdown
-Joining a transaction is not allowed when authentication is enabled
-```
-
-### `DB-CLUSTER-10083`
-
-**Message**
-
-```markdown
-Resuming a transaction is not allowed when authentication is enabled
+'scalar.db.cluster.id' must be configured when 'scalar.db.sql.cluster_mode.transaction_coordinator.enabled' is enabled
 ```
 
 ## `DB-CLUSTER-2xxxx` status codes

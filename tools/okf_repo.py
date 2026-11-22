@@ -260,6 +260,164 @@ REPO_DOCS: dict[str, list[RepoDoc]] = {
             ),
         ),
     ],
+    "scalardb-postgres-frontend": [
+        RepoDoc(
+            out_rel="overview.md",
+            sources=("README.md",),
+            concept_type="Concept",
+            phase="design",
+        ),
+        RepoDoc(
+            out_rel="limitations.md",
+            sources=("LIMITATIONS.md",),
+            concept_type="Reference",
+            phase="design",
+            title="ScalarDB PostgreSQL Frontend limitations",
+            description=(
+                "What the PostgreSQL frontend cannot do, what it accepts but only partly honors, and the results that can differ from PostgreSQL without an error."
+            ),
+        ),
+        RepoDoc(
+            out_rel="getting-started.md",
+            sources=("getting-started/README.md",),
+            concept_type="Tutorial",
+            phase="implement",
+        ),
+        RepoDoc(
+            out_rel="user/overview.md",
+            sources=("docs/user/README.md",),
+            concept_type="Concept",
+            phase="implement",
+            title="ScalarDB PostgreSQL Frontend user documentation",
+            description=(
+                "Entry point of the user documentation: deployment choices and where to read about clients, SQL, transactions, security and operations."
+            ),
+        ),
+        RepoDoc(
+            out_rel="user/quick-start.md",
+            sources=("docs/user/quick-start.md",),
+            concept_type="Tutorial",
+            phase="implement",
+        ),
+        RepoDoc(
+            out_rel="user/clients.md",
+            sources=("docs/user/clients.md",),
+            concept_type="Development Guide",
+            phase="implement",
+        ),
+        RepoDoc(
+            out_rel="user/schema-and-queries.md",
+            sources=("docs/user/schema-and-queries.md",),
+            concept_type="Development Guide",
+            phase="implement",
+        ),
+        RepoDoc(
+            out_rel="user/transactions.md",
+            sources=("docs/user/transactions.md",),
+            concept_type="Development Guide",
+            phase="implement",
+        ),
+        RepoDoc(
+            out_rel="user/sql-reference.md",
+            sources=("docs/user/sql-reference.md",),
+            concept_type="Reference",
+            phase="implement",
+        ),
+        RepoDoc(
+            out_rel="user/configuration.md",
+            sources=("docs/user/configuration.md",),
+            concept_type="Reference",
+            phase="operate",
+        ),
+        RepoDoc(
+            out_rel="user/security.md",
+            sources=("docs/user/security.md",),
+            concept_type="Development Guide",
+            phase="operate",
+        ),
+        RepoDoc(
+            out_rel="user/operations.md",
+            sources=("docs/user/operations.md",),
+            concept_type="Development Guide",
+            phase="operate",
+        ),
+        RepoDoc(
+            out_rel="reference/type-encoding.md",
+            sources=("docs/type-encoding.md",),
+            concept_type="Reference",
+            phase="implement",
+        ),
+        RepoDoc(
+            out_rel="releases/release-notes.md",
+            sources=("CHANGELOG.md",),
+            concept_type="Release Notes",
+            phase="operate",
+            title="ScalarDB PostgreSQL Frontend release notes",
+            description=(
+                "What each ScalarDB PostgreSQL Frontend release added, changed or fixed, from the repository's CHANGELOG."
+            ),
+            optional=True,
+        ),
+    ],
+}
+
+
+# Product-specific prose for the product index: how to match a bundle version to
+# what a project runs, and how the product relates to ScalarDB.
+REPO_PRODUCT_NOTES: dict[str, list[str]] = {
+    "scalardb-saga": [
+        "## How to pick a version",
+        "",
+        "1. ScalarDB Saga keeps one branch per minor line, and that branch is the "
+        "version here. Match it to the `com.scalar-labs:scalardb-saga-*` version the "
+        "project declares, or to the tag of the "
+        "`ghcr.io/scalar-labs/scalardb-saga-server` image it runs.",
+        "2. Development lines (`main`, and the next minor branch) build `-SNAPSHOT` "
+        "versions that nobody runs in production, so they are not in this bundle.",
+        "3. A line marked *pre-release* has no GA release. Its API and configuration "
+        "keys can still change between builds; confirm against the branch before "
+        "committing to them.",
+        "",
+        "## Relationship to ScalarDB",
+        "",
+        "ScalarDB gives strongly consistent ACID transactions **across databases**. "
+        "ScalarDB Saga coordinates operations **across services**, where a single ACID "
+        "transaction is not possible, trading strong consistency for compensation-based "
+        "rollback and eventual convergence. It stores its own saga state through "
+        "ScalarDB, so it runs on any database ScalarDB supports and needs no message "
+        "broker.",
+        "",
+        "Use ScalarDB transactions where correctness requires immediate consistency, and "
+        "ScalarDB Saga where eventual consistency with compensation is sufficient. See "
+        "`products/scalardb/<version>/two-phase-commit-transactions.md` for the "
+        "strongly consistent alternative across microservices.",
+    ],
+    "scalardb-postgres-frontend": [
+        "## How to pick a version",
+        "",
+        "1. The product keeps one branch per minor line, and that branch is the version "
+        "here. The line follows the ScalarDB line it is released with: `3.20` belongs "
+        "with ScalarDB Cluster 3.20.",
+        "2. `main` builds against an unreleased ScalarDB (`4.0.0-SNAPSHOT`), so it is not "
+        "in this bundle.",
+        "3. `patch_version` is the latest **released** patch of the line. The branch "
+        "itself builds the next `-SNAPSHOT`, so documentation for an unreleased fix "
+        "can appear before the release that ships it.",
+        "",
+        "## Relationship to ScalarDB",
+        "",
+        "ScalarDB already offers SQL through ScalarDB SQL (JDBC / Spring Data JDBC) and "
+        "the Core CRUD API. The PostgreSQL frontend is a **third interface**: it lets "
+        "unmodified PostgreSQL clients and tools issue SQL, which it parses, plans into "
+        "ScalarDB Get / Scan / mutation operations, and runs as ScalarDB transactions. "
+        "It is **not PostgreSQL**: the supported SQL subset, type handling and result "
+        "differences are stated in `limitations.md` and `reference/`. Read "
+        "`limitations.md` before promising PostgreSQL compatibility to anyone.",
+        "",
+        "Authentication and TLS exist only when it runs inside, or in front of, ScalarDB "
+        "Cluster. As a standalone server on ScalarDB core it has none and belongs on a "
+        "trusted network only.",
+    ],
 }
 
 # Repo paths that became concepts; links pointing at them are rewritten to the
@@ -586,35 +744,7 @@ def write_repo_product_index(product: Product, versions: list[RepoVersion],
             f"{state} | {counts.get(v.name, 0)} | "
             f"{product.repo_url}/tree/{v.name} |"
         )
-    lines += [
-        "",
-        "## How to pick a version",
-        "",
-        f"1. {product.title} keeps one branch per minor line, and that branch is the "
-        "version here. Match it to the `com.scalar-labs:scalardb-saga-*` version the "
-        "project declares, or to the tag of the "
-        "`ghcr.io/scalar-labs/scalardb-saga-server` image it runs.",
-        "2. Development lines (`main`, and the next minor branch) build `-SNAPSHOT` "
-        "versions that nobody runs in production, so they are not in this bundle.",
-        "3. A line marked *pre-release* has no GA release. Its API and configuration "
-        "keys can still change between builds; confirm against the branch before "
-        "committing to them.",
-        "",
-        "## Relationship to ScalarDB",
-        "",
-        "ScalarDB gives strongly consistent ACID transactions **across databases**. "
-        "ScalarDB Saga coordinates operations **across services**, where a single ACID "
-        "transaction is not possible, trading strong consistency for compensation-based "
-        "rollback and eventual convergence. It stores its own saga state through "
-        "ScalarDB, so it runs on any database ScalarDB supports and needs no message "
-        "broker.",
-        "",
-        "Use ScalarDB transactions where correctness requires immediate consistency, and "
-        "ScalarDB Saga where eventual consistency with compensation is sufficient. See "
-        "`products/scalardb/<version>/two-phase-commit-transactions.md` for the "
-        "strongly consistent alternative across microservices.",
-        "",
-    ]
+    lines += ["", *REPO_PRODUCT_NOTES[product.key], ""]
 
     fm = {
         "type": "Product",

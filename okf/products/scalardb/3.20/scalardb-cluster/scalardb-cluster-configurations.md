@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-cluster/scalardb-cluster-configurations
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-cluster/scalardb-cluster-configurations.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Cluster Configurations
@@ -1744,6 +1744,61 @@ LogApplier configurations control how replication data is processed and applied 
 - **Field:** `scalar.db.replication.log_applier.coordinator_state_cache.size`
 - **Description:** Maximum number of entries in the coordinator state cache. This cache stores transaction states to optimize lookups to the Coordinator database.
 - **Default value:** `1000`
+
+### OpenTelemetry configurations
+
+The following configurations are available for exporting telemetry data (traces and metrics) from ScalarDB Cluster nodes by using the OpenTelemetry Protocol (OTLP) over HTTP.
+
+To export telemetry data, set `scalar.db.cluster.node.opentelemetry.enabled` to `true`, and then specify the endpoint for each type of telemetry data that you want to export. You only need to specify the endpoints for the types of telemetry data that you want to receive. For example, to export only traces, specify only `scalar.db.cluster.node.opentelemetry.traces.endpoint`.
+
+:::note
+
+- If you enable OpenTelemetry but don't specify any endpoints, no telemetry data is exported.
+- Exporting logs is not implemented yet. We are planning to support it in a future version. Please monitor the container's stdout to check the ScalarDB Cluster logs.
+
+:::
+
+#### `cluster.node.opentelemetry.enabled`
+
+- **Field:** `scalar.db.cluster.node.opentelemetry.enabled`
+- **Description:** Whether OpenTelemetry is enabled. If this is set to `false`, no telemetry data is exported, even if you specify endpoints.
+- **Default value:** `false`
+
+#### `cluster.node.opentelemetry.service_name`
+
+- **Field:** `scalar.db.cluster.node.opentelemetry.service_name`
+- **Description:** The service name that identifies ScalarDB Cluster in your observability backend. This value is attached to all exported telemetry data as the `service.name` resource attribute.
+- **Default value:** `scalardb-cluster-node`
+
+#### `cluster.node.opentelemetry.traces.endpoint`
+
+- **Field:** `scalar.db.cluster.node.opentelemetry.traces.endpoint`
+- **Description:** The OTLP HTTP endpoint to export traces to, for example, `http://otel-collector:4318/v1/traces`. If not specified, traces are not exported.
+- **Default value:** empty
+
+#### `cluster.node.opentelemetry.metrics.endpoint`
+
+- **Field:** `scalar.db.cluster.node.opentelemetry.metrics.endpoint`
+- **Description:** The OTLP HTTP endpoint to export metrics to, for example, `http://otel-collector:4318/v1/metrics`. If not specified, metrics are not exported.
+- **Default value:** empty
+
+#### `cluster.node.opentelemetry.metrics.export_interval_seconds`
+
+- **Field:** `scalar.db.cluster.node.opentelemetry.metrics.export_interval_seconds`
+- **Description:** The interval in seconds at which metrics are exported. This value must be a positive number. If you specify `0` or a negative number, the default value is used.
+- **Default value:** `60`
+
+#### `cluster.node.opentelemetry.storage_health_check.enabled`
+
+- **Field:** `scalar.db.cluster.node.opentelemetry.storage_health_check.enabled`
+- **Description:** Whether the periodic health check of the backend storage is enabled. The result of the health check is exported as a metric. The health check runs only if OpenTelemetry is enabled and `scalar.db.cluster.node.opentelemetry.metrics.endpoint` is specified.
+- **Default value:** `true`
+
+#### `cluster.node.opentelemetry.storage_health_check.interval_seconds`
+
+- **Field:** `scalar.db.cluster.node.opentelemetry.storage_health_check.interval_seconds`
+- **Description:** The interval in seconds between health checks of the backend storage.
+- **Default value:** `30`
 
 ### Other ScalarDB Cluster configurations
 

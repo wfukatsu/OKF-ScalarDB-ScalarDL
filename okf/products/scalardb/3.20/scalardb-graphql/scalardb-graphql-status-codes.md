@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-graphql/scalardb-graphql-status-codes
 lifecycle_phase: operate
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-graphql/scalardb-graphql-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-graphql/scalardb-graphql-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB GraphQL Error Codes
@@ -103,7 +103,7 @@ The type is not supported. Type: %s
 **Message**
 
 ```markdown
-The field `%s` requires a `@transaction` or `@twoPhaseCommit` directive with proper arguments
+The field `%s` requires a `@transaction` directive with proper arguments
 ```
 
 ### `DB-GRAPHQL-10009`
@@ -112,30 +112,6 @@ The field `%s` requires a `@transaction` or `@twoPhaseCommit` directive with pro
 
 ```markdown
 The field `%s` cannot be used together with other fields
-```
-
-### `DB-GRAPHQL-10010`
-
-**Message**
-
-```markdown
-The `@twoPhaseCommit` directive with the `id` argument is required to `%s` the transaction
-```
-
-### `DB-GRAPHQL-10011`
-
-**Message**
-
-```markdown
-`%s` and `prepare` cannot be run simultaneously
-```
-
-### `DB-GRAPHQL-10012`
-
-**Message**
-
-```markdown
-`%s` and `join` cannot be run simultaneously
 ```
 
 ### `DB-GRAPHQL-10013`
@@ -152,30 +128,6 @@ The `@transaction` directive with the `id` argument is required to `%s` the tran
 
 ```markdown
 `%s` and `commit` cannot be run simultaneously
-```
-
-### `DB-GRAPHQL-10015`
-
-**Message**
-
-```markdown
-An object cannot be annotated with both `@transaction` and `@twoPhaseCommit` directives
-```
-
-### `DB-GRAPHQL-10016`
-
-**Message**
-
-```markdown
-The `join` argument of the `@twoPhaseCommit` directive requires a transaction `id` argument
-```
-
-### `DB-GRAPHQL-10017`
-
-**Message**
-
-```markdown
-`%s` requires the mutation object to be annotated with a `@twoPhaseCommit` directive
 ```
 
 ### `DB-GRAPHQL-10018`

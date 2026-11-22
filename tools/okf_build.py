@@ -551,7 +551,7 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "",
         "An OKF bundle containing the ScalarDB and ScalarDL product documentation "
         "published at developers.scalar-labs.com, plus the documentation ScalarDB Saga "
-        "keeps in its source repository, split by product and by version so that an AI "
+        "and the ScalarDB PostgreSQL Frontend keep in their source repositories, split by product and by version so that an AI "
         "agent can be pointed at exactly the release a project runs.",
         "",
         "## Start here",
@@ -594,8 +594,9 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "`sources[]` pointing at the exact upstream commit it was generated from. "
         "`lifecycle_phase` is one of `design`, `implement`, `operate`.",
         "",
-        "ScalarDB Saga has no documentation site yet, so its concepts are generated from "
-        "the Markdown and contract files in `scalar-labs/scalardb-saga`, one release "
+        "ScalarDB Saga and the ScalarDB PostgreSQL Frontend have no documentation site, so "
+        "their concepts are generated from the Markdown and contract files in "
+        "`scalar-labs/scalardb-saga` and `scalar-labs/scalardb-postgres-frontend`, one release "
         "branch per version; their `resource` points at the file on GitHub, pinned to the "
         "commit they were built from. A version with no GA release is marked "
         "`status: draft` and tagged `pre-release`.",
@@ -614,11 +615,11 @@ def write_bundle_index(bundle: Path, summary: dict) -> None:
         "title": "ScalarDB / ScalarDL Knowledge Bundle",
         "okf_version": OKF_VERSION,
         "description": (
-            "ScalarDB, ScalarDL and ScalarDB Saga documentation organised per product "
+            "ScalarDB, ScalarDL, ScalarDB Saga and ScalarDB PostgreSQL Frontend documentation organised per product "
             "and per version for AI-assisted design, implementation and operations."
         ),
         "resource": "https://developers.scalar-labs.com/",
-        "tags": ["scalardb", "scalardl", "scalardb-saga", "bundle-root"],
+        "tags": ["scalardb", "scalardl", "scalardb-saga", "scalardb-postgres-frontend", "bundle-root"],
         "status": "stable",
         "concept_count": summary["total_concepts"],
         "generated": {"by": GENERATOR, "at": now()},

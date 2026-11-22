@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: api-guide
 lifecycle_phase: implement
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Java API Guide
@@ -454,7 +454,9 @@ TableMetadata tableMetadata = admin.getTableMetadata("ns", "tbl");
 ```
 ### Repair a table
 
-You can repair the table metadata of an existing table as follows:
+If a table is in an unknown state, such as the table exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the table, its secondary indexes, and their metadata if necessary.
+
+You can repair the table as follows:
 
 ```java
 // Repair the table "ns.tbl" with options.
@@ -861,7 +863,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Handle `Result` objects
 
@@ -914,7 +916,7 @@ And if you need to check if a value of a column is null, you can use the `isNull
 boolean isNull = result.isNull("<COLUMN_NAME>");
 ```
 
-For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/Result.html) page in the Javadoc.
+For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/Result.html) page in the Javadoc.
 
 ###### Execute `Get` by using a secondary index
 
@@ -1023,7 +1025,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Execute `Scan` by using a secondary index
 
@@ -1648,7 +1650,7 @@ The following attributes apply to a cross-partition `Scan` operation (a `Scan` o
 - **`db-cross-partition-scan-filtering-enabled`:** Whether cross-partition scan with filtering is enabled for the operation. The value must be `true` or `false`.
 - **`db-cross-partition-scan-ordering-enabled`:** Whether cross-partition scan with ordering is enabled for the operation. The value must be `true` or `false`. This attribute is available only for JDBC databases.
 
-You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
+You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
 
 ###### Consensus Commit attributes
 
@@ -1662,7 +1664,7 @@ Unlike the other operation attributes, `cc-transaction-isolation` cannot be appl
 
 :::
 
-You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
+You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
 
 #### Commit a transaction
 

@@ -2,7 +2,7 @@
 type: Documentation Section
 title: ScalarDB Saga 3.20 — Guides
 description: Directory listing for the `guides` section of the ScalarDB Saga 3.20 documentation.
-resource: https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7
+resource: https://github.com/scalar-labs/scalardb-saga/tree/0b5c62f55d5e68bc82e9cccdc4443960116ea46a
 tags:
 - scalardb-saga
 - v3.20
@@ -12,7 +12,7 @@ product: scalardb-saga
 version: '3.20'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-22T03:58:43Z'
 ---
 
 # Guides

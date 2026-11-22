@@ -15,6 +15,7 @@ status: stable
 | `scalardb` | ScalarDB | 現行の ScalarDB 全般。Core ライブラリ、Cluster、SQL/GraphQL、Analytics、Data Loader を含む。**新規プロジェクトは原則こちら。** |
 | `scalardl` | ScalarDL | 改竄検知・実行証明が要件にある場合。Ledger / Auditor、Contract / Function。 |
 | `scalardb-saga` | ScalarDB Saga | **サービス間**の結果整合トランザクションを補償（Saga / TCC）で調整する場合。saga 状態は ScalarDB 経由で永続化され、メッセージブローカは不要。3.20.0 が最初の GA（Apache-2.0。ストアは Consensus Commit 必須）。3.19 ラインはアルファのまま。 |
+| `scalardb-postgres-frontend` | ScalarDB PostgreSQL Frontend | **PostgreSQL クライアント（psql / PostgreSQL JDBC / ORM）から ScalarDB を使いたい**場合。PostgreSQL ワイヤプロトコルで受けた SQL を ScalarDB トランザクションとして実行する第 3 のインターフェイス（Core CRUD API / ScalarDB SQL と並ぶ）。**PostgreSQL そのものではない**ため、`limitations.md` を先に確認する。認証・TLS は ScalarDB Cluster 配下のみ。最新は 3.20（Apache-2.0）。 |
 | `scalardb-community` | ScalarDB Community | 3.13 以前の Community 版のみを対象とした旧ドキュメント。既存システムの調査用。新規では使わない。 |
 
 ScalarDB と ScalarDL を併用する構成では、両方の対応バージョンが噛み合うかを
@@ -64,6 +65,15 @@ Saga、という組み合わせが典型です。
 `archived` は上流にもう元データが無い状態です。バンドルに残っているのは削除直前の
 スナップショットで、再生成されず、`resource` のリンクは 404 します。検証可能な出典は
 `sources[]` のコミットパーマリンクだけです。引用する際は必ずアーカイブ済みである旨を添えてください。
+
+### ScalarDB PostgreSQL Frontend のバージョン
+
+ScalarDB Saga と同じく、**マイナーリリースライン = リポジトリのブランチ**です
+（`products/scalardb-postgres-frontend/3.20/` = ブランチ `3.20`）。ライン番号は組み合わせる
+ScalarDB Cluster のラインに対応します。`patch_version` は**リリース済みの最新パッチ**で、
+ブランチ自体は次の `-SNAPSHOT` を積んでいるため、未リリースの修正がドキュメントに
+先行して現れることがあります。`main` は未リリースの ScalarDB（`4.0.0-SNAPSHOT`）に対して
+ビルドされるため収録していません。
 
 ### ScalarDB Saga のバージョン
 

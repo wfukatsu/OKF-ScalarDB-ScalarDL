@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-analytics/scalardb-analytics-status-codes
 lifecycle_phase: operate
 editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-analytics/scalardb-analytics-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-analytics/scalardb-analytics-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Analytics Error Codes
@@ -300,6 +300,22 @@ The user still has linked backend users, role assignments, or direct permission 
 
 Remove the linked backend users, role assignments, and permission grants before deleting the user, or use a cascading delete.
 
+### `DB-ANALYTICS-10204`
+
+**Message**
+
+```markdown
+Resource is under ACL delegation
+```
+
+**Cause**
+
+Authorization for the resource is delegated to ScalarDB Cluster, so Analytics permissions granted on it would be ignored.
+
+**Action**
+
+Grant the corresponding privilege in ScalarDB Cluster instead.
+
 ### `DB-ANALYTICS-10300`
 
 **Message**
@@ -347,6 +363,22 @@ One or more arguments do not satisfy the validation rules (format, range, or req
 **Action**
 
 Inspect the metadata for the offending field and provide a valid value, then retry.
+
+### `DB-ANALYTICS-10401`
+
+**Message**
+
+```markdown
+Data source schema contains a prohibited character
+```
+
+**Cause**
+
+A namespace, table, column, or column type name in the data source schema contains a control character (such as a line break or ESC) or a bidirectional formatting character, which could alter logs or terminal output.
+
+**Action**
+
+Rename the object identified by the field and path in the metadata, or correct the name in the manual schema, then retry. The value in the metadata shows the prohibited characters escaped.
 
 ## `DB-ANALYTICS-3xxxx` status codes
 

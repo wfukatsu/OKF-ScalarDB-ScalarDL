@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-core-status-codes
 lifecycle_phase: operate
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-core-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-core-status-codes.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Core Error Codes
@@ -391,14 +391,6 @@ Invalid ID specified. ID: %d
 
 ```markdown
 The transaction is not active. Status: %s
-```
-
-### `DB-CORE-10044`
-
-**Message**
-
-```markdown
-The transaction has already been committed. Status: %s
 ```
 
 ### `DB-CORE-10045`
@@ -846,15 +838,7 @@ Put cannot have a condition when the target record is unread and implicit pre-re
 **Message**
 
 ```markdown
-Scanning data already-written or already-deleted by the same transaction is not allowed
-```
-
-### `DB-CORE-10107`
-
-**Message**
-
-```markdown
-The transaction is not validated. When using the SERIALIZABLE isolation level, you need to call validate() before calling commit()
+Scanning data already-written or already-deleted by the same transaction is not allowed. Record: %s
 ```
 
 ### `DB-CORE-10108`
@@ -935,22 +919,6 @@ Multiple mutations are not supported in single CRUD operation transactions
 
 ```markdown
 Beginning a transaction is not allowed in single CRUD operation transactions
-```
-
-### `DB-CORE-10140`
-
-**Message**
-
-```markdown
-Resuming a transaction is not allowed in single CRUD operation transactions
-```
-
-### `DB-CORE-10141`
-
-**Message**
-
-```markdown
-Using the group commit feature on the Coordinator table with a two-phase commit interface is not allowed
 ```
 
 ### `DB-CORE-10142`
@@ -1079,14 +1047,6 @@ The replication feature is not enabled. To use this feature, you must enable it.
 
 ```markdown
 Some scanners were not closed. All scanners must be closed before committing the transaction
-```
-
-### `DB-CORE-10206`
-
-**Message**
-
-```markdown
-Some scanners were not closed. All scanners must be closed before preparing the transaction
 ```
 
 ### `DB-CORE-10211`
@@ -1817,6 +1777,30 @@ Branches are not supported by this coordinator-only global transaction manager b
 Some scanners were not closed. All scanners must be closed before ending the branch. Transaction ID: %s
 ```
 
+### `DB-CORE-10302`
+
+**Message**
+
+```markdown
+The RDB engine is not supported with the AWS Advanced JDBC Wrapper. Only Aurora PostgreSQL and Aurora MySQL are supported. JDBC connection URL: %s
+```
+
+### `DB-CORE-10303`
+
+**Message**
+
+```markdown
+The HikariCP exceptionOverrideClassName setting is not supported. ScalarDB determines whether a failed commit left the transaction in an unknown state by checking whether the connection survived, which relies on HikariCP discarding a connection that reports a connection exception. An override that keeps such a connection alive would make an unknown outcome be reported as a definite failure, which the caller is told is safe to retry. Configured class: %s
+```
+
+### `DB-CORE-10304`
+
+**Message**
+
+```markdown
+The condition is not properly specified. Table: %s; Expressions: %s
+```
+
 ## `DB-CORE-2xxxx` status codes
 
 The following are status codes and messages for the concurrency error category.
@@ -1930,7 +1914,7 @@ The %s condition of the %s operation is not satisfied. Targeting column(s): %s
 **Message**
 
 ```markdown
-The record being prepared already exists. Details: %s
+A conflict occurred. Either a record being inserted already exists or is being written by another transaction, or a record being updated or deleted has been modified by another transaction. Details: %s
 ```
 
 ### `DB-CORE-20014`
@@ -2067,6 +2051,14 @@ Resolving an uncommitted record exceeded the retry limit during recovery. Transa
 
 ```markdown
 A transaction associated with the specified transaction ID is not found. The transaction might have expired
+```
+
+### `DB-CORE-20032`
+
+**Message**
+
+```markdown
+A conflict occurred when recovering records. Details: %s
 ```
 
 ## `DB-CORE-3xxxx` status codes
@@ -2401,22 +2393,6 @@ Reading a record from the underlying storage failed. Details: %s
 Scanning records from the underlying storage failed. Details: %s
 ```
 
-### `DB-CORE-30041`
-
-**Message**
-
-```markdown
-Rollback failed because the transaction has already been committed
-```
-
-### `DB-CORE-30042`
-
-**Message**
-
-```markdown
-Rollback failed
-```
-
 ### `DB-CORE-30043`
 
 **Message**
@@ -2577,6 +2553,14 @@ Finishing the transaction failed. Transaction ID: %s; Details: %s
 Recovering the record failed. Table: %s; Partition Key: %s; Clustering Key: %s; Details: %s
 ```
 
+### `DB-CORE-30070`
+
+**Message**
+
+```markdown
+The mutation may have been applied because the AWS SDK retried the request, so its outcome is unknown. Details: %s
+```
+
 ## `DB-CORE-4xxxx` status codes
 
 The following are status codes and messages for the unknown transaction status error category.
@@ -2619,4 +2603,11 @@ Aborting state failed with NoMutationException, but the coordinator status does 
 
 ```markdown
 One-phase committing records failed. Details: %s
+```
+### `DB-CORE-40006`
+
+**Message**
+
+```markdown
+The committing state in the coordinator conflicted after the write was retried. An earlier attempt may have been applied, so the transaction may have been committed. Details: %s
 ```

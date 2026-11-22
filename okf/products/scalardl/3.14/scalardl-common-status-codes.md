@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 doc_id: scalardl-common-status-codes
 lifecycle_phase: operate
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/scalardl-common-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/scalardl-common-status-codes.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # ScalarDL Common Error Codes
@@ -545,7 +545,7 @@ Set the secret version to a value greater than zero.
 **Message**
 
 ```markdown
-The grpc deadline duration must be greater than or equal to zero.
+The gRPC deadline duration must be greater than or equal to zero.
 ```
 
 **Solution**
@@ -559,7 +559,7 @@ Set the gRPC deadline duration to a value greater than or equal to zero in your 
 **Message**
 
 ```markdown
-The grpc max inbound message size must be greater than or equal to zero.
+The gRPC max inbound message size must be greater than or equal to zero.
 ```
 
 **Solution**
@@ -573,7 +573,7 @@ Set the gRPC max inbound message size to a value greater than or equal to zero i
 **Message**
 
 ```markdown
-The grpc max inbound metadata size must be greater than or equal to zero.
+The gRPC max inbound metadata size must be greater than or equal to zero.
 ```
 
 **Solution**
@@ -664,6 +664,20 @@ The specified namespace is reserved and cannot be created or deleted. Name: %s
 
 ```markdown
 Use a different namespace name that is not reserved. Reserved namespaces are managed by the system and cannot be modified.
+```
+
+### `DL-COMMON-414022`
+
+**Message**
+
+```markdown
+The format of the nonce is invalid. Nonce: %s
+```
+
+**Solution**
+
+```markdown
+Specify the nonce in the canonical UUID format.
 ```
 
 ### `DL-COMMON-415001`

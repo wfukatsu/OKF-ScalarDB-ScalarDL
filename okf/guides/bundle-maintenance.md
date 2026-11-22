@@ -24,6 +24,7 @@ status: stable
 | ScalarDL | `scalar-labs/docs-scalardl` | Docusaurus | https://scalardl.scalar-labs.com/docs/ |
 | ScalarDB Community | `scalar-labs/docs-scalardb-community` | Docusaurus | https://scalardb-community.scalar-labs.com/docs/ |
 | ScalarDB Saga | `scalar-labs/scalardb-saga` | ソースリポジトリ | （ドキュメントサイト無し） |
+| ScalarDB PostgreSQL Frontend | `scalar-labs/scalardb-postgres-frontend` | ソースリポジトリ | （ドキュメントサイト無し） |
 
 前者 3 つは developers.scalar-labs.com から辿れる公式ドキュメントサイトの生成元です。
 上流は Docusaurus の MDX なので、生成時に以下を平文 Markdown へ展開しています。
@@ -34,15 +35,17 @@ status: stable
 - `<CodeBlock>` → コードフェンス
 - 相対リンク `foo.mdx` → バンドル内の `./foo.md`、バンドル外はドキュメントサイトの絶対 URL
 
-## ソースリポジトリ由来の製品（ScalarDB Saga）
+## ソースリポジトリ由来の製品（ScalarDB Saga / ScalarDB PostgreSQL Frontend）
 
-ScalarDB Saga はドキュメントサイトを持たないため、別経路（`tools/okf_repo.py`）で
+ScalarDB Saga と ScalarDB PostgreSQL Frontend はドキュメントサイトを持たないため、別経路（`tools/okf_repo.py`）で
 生成しています。Docusaurus 側と違うのは次の点です。
 
 - **バージョン = リリースブランチ。** `^\d+\.\d+$` に一致するブランチ（`3.20`、`3.19`）だけを
   バージョンとして取り込みます。`main` や次期マイナーブランチは `-SNAPSHOT` を積む
   開発ラインなので除外します。`patch_version` はそのブランチの
-  `gradle.properties` の `version` です。
+  `gradle.properties` の `version` です。ただし `X.Y.Z-SNAPSHOT`（Z ≥ 1）は、そのラインが
+  `X.Y.(Z-1)` として既にリリース済みで次のパッチを開発中という意味なので、
+  リリース済みの `X.Y.(Z-1)` を `patch_version` にします（`X.Y.0-SNAPSHOT` は未 GA のまま）。
 - **概念の対象は宣言されている。** サイドバーが無いので、どのファイルが概念になるかは
   `tools/okf_repo.py` の `REPO_DOCS` に列挙してあります。上流にドキュメントが増えても、
   ここに追記するまで概念は増えません（設計ノートの追加でバンドルの形が勝手に変わるのを

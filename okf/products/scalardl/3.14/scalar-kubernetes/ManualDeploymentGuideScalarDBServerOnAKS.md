@@ -14,7 +14,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 doc_id: scalar-kubernetes/ManualDeploymentGuideScalarDBServerOnAKS
 lifecycle_phase: operate
 editions:
@@ -24,13 +24,13 @@ feature_status:
 - Deprecated
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/scalar-kubernetes/ManualDeploymentGuideScalarDBServerOnAKS.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/scalar-kubernetes/ManualDeploymentGuideScalarDBServerOnAKS.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # [Deprecated] Deploy ScalarDB Server on Azure Kubernetes Service (AKS)

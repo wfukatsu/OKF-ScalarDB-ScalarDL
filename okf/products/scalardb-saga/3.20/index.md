@@ -19,13 +19,13 @@ is_latest: true
 concept_count: 15
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-22T03:58:43Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/tree/5765e9e6b1d499dc92627b387a711d306bdc6ce7
+  resource: https://github.com/scalar-labs/scalardb-saga/tree/0b5c62f55d5e68bc82e9cccdc4443960116ea46a
   title: ScalarDB Saga source repository
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-11T09:22:04Z'
 ---
 
 # ScalarDB Saga 3.20
@@ -38,7 +38,7 @@ Supported release.
 | Version line | 3.20 |
 | Release the branch builds | 3.20.0 |
 | Source branch | `3.20` |
-| Upstream source | https://github.com/scalar-labs/scalardb-saga @ `5765e9e6b1d4` |
+| Upstream source | https://github.com/scalar-labs/scalardb-saga @ `0b5c62f55d5e` |
 | Concepts in this version | 15 |
 
 ## By lifecycle phase

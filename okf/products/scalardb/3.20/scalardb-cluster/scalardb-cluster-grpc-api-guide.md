@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-cluster/scalardb-cluster-grpc-api-guide
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-cluster/scalardb-cluster-grpc-api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-cluster/scalardb-cluster-grpc-api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Cluster gRPC API Guide
@@ -243,7 +243,7 @@ The `DistributedTransactionAdmin` service provides the following RPCs:
 - `CreateIndex`: Creates an index.
 - `DropIndex`: Drops an index.
 - `IndexExists`: Returns whether the specified index exists or not.
-- `RepairTable`: Repairs a namespace that may be in an unknown state.
+- `RepairTable`: Repairs a table that may be in an unknown state.
 - `AddNewColumnToTable`: Adds a new column to a table.
 - `CreateCoordinatorTables`: Creates the Coordinator tables.
 - `DropCoordinatorTables`: Drops the Coordinator tables.

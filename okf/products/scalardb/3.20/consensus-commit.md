@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: consensus-commit
 lifecycle_phase: design
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/consensus-commit.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/consensus-commit.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # Consensus Commit Protocol
@@ -209,7 +209,7 @@ The Consensus Commit protocol of ScalarDB requires each underlying database to p
 
 :::warning
 
-Scanning records without specifying a partition key (for example, [`ScanAll`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ScanAll.html) or `SELECT * FROM table`) for non-JDBC databases does not always guarantee serializability, even if `SERIALIZABLE` is specified. Therefore, you should do so at your own discretion and consider updating the schemas if possible. For more details, refer to [Cross-partition scan configurations](./configurations.md#cross-partition-scan-configurations).
+Scanning records without specifying a partition key (for example, [`ScanAll`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ScanAll.html) or `SELECT * FROM table`) for non-JDBC databases does not always guarantee serializability, even if `SERIALIZABLE` is specified. Therefore, you should do so at your own discretion and consider updating the schemas if possible. For more details, refer to [Cross-partition scan configurations](./configurations.md#cross-partition-scan-configurations).
 
 :::
 
@@ -352,7 +352,7 @@ When [Coordinator write set logging](#coordinator-write-set-logging) is enabled,
 
 ## See also
 
-You can learn more about the Consesnus Commit protocol by seeing the following presentation and YouTube video, which summarizes, visually, how the protocol works:
+You can learn more about the Consensus Commit protocol by seeing the following presentation and YouTube video, which summarizes, visually, how the protocol works:
 
 - **Speaker Deck presentation:** [ScalarDB: Universal Transaction Manager](https://speakerdeck.com/scalar/scalar-db-universal-transaction-manager)
 - **YouTube (Japanese):** [How ScalarDB runs transactions (a part of DBSJ lecture)](https://www.youtube.com/watch?v=s6Q7QQccDTc)

@@ -2,7 +2,7 @@
 type: Reference
 title: Saga gRPC API
 description: The SagaService gRPC contract — starting a saga, awaiting it, and reading its snapshot and event history — as defined in saga.proto.
-resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/rpc/src/main/proto/saga.proto
+resource: https://github.com/scalar-labs/scalardb-saga/blob/0b5c62f55d5e68bc82e9cccdc4443960116ea46a/rpc/src/main/proto/saga.proto
 tags:
 - scalardb-saga
 - v3.20
@@ -18,13 +18,13 @@ doc_id: reference/grpc-saga-api
 lifecycle_phase: implement
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:31:26Z'
+  at: '2026-11-22T03:58:43Z'
 sources:
 - id: scalardb-saga
-  resource: https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/rpc/src/main/proto/saga.proto
+  resource: https://github.com/scalar-labs/scalardb-saga/blob/0b5c62f55d5e68bc82e9cccdc4443960116ea46a/rpc/src/main/proto/saga.proto
   title: ScalarDB Saga source repository — rpc/src/main/proto/saga.proto
   author: process:scalar-labs/scalardb-saga
-  last_modified: '2026-10-29T12:59:48Z'
+  last_modified: '2026-11-11T09:22:04Z'
 ---
 
 # Saga gRPC API
@@ -35,7 +35,7 @@ The generated stubs ship as `com.scalar-labs:scalardb-saga-rpc`; the client SDK 
 
 ## `rpc/src/main/proto/saga.proto`
 
-[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/5765e9e6b1d499dc92627b387a711d306bdc6ce7/rpc/src/main/proto/saga.proto)
+[View on GitHub](https://github.com/scalar-labs/scalardb-saga/blob/0b5c62f55d5e68bc82e9cccdc4443960116ea46a/rpc/src/main/proto/saga.proto)
 
 ```protobuf
 syntax = "proto3";

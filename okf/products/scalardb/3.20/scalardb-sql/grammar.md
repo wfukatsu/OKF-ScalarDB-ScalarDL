@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-sql/grammar
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-sql/grammar.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-sql/grammar.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB SQL Grammar
@@ -2371,7 +2371,7 @@ privilege: SELECT | INSERT | UPDATE | DELETE | CREATE | DROP | TRUNCATE | ALTER 
 ```
 
 - You must grant `INSERT` and `UPDATE` privileges together.
-- To grant a user the `UPDATE` or `DELETE` privilege, the target user must have the `SELECT` privilege.
+- To grant a user the `UPDATE` or `DELETE` privilege, the target user must have the `SELECT` privilege or you must grant `SELECT` in the same statement. Only privileges granted directly to the user on the same table or namespace count. Privileges that the user has through roles don't, and neither do namespace-level privileges when the statement targets a table.
 - If you specify the `WITH GRANT OPTION` option or the `GRANT OPTION` privilege, the user can grant privileges to other users or roles.
 
 #### Examples
@@ -2444,7 +2444,7 @@ privilege: SELECT | INSERT | UPDATE | DELETE | CREATE | DROP | TRUNCATE | ALTER 
 ```
 
 - You must revoke `INSERT` and `UPDATE` privileges together.
-- If the target user has the `UPDATE` or `DELETE` privilege, you cannot revoke the `SELECT` privilege from them.
+- If the target user has the `UPDATE` or `DELETE` privilege, you cannot revoke the `SELECT` privilege from them unless you revoke those privileges in the same statement. Only privileges granted directly to the user on the same table or namespace are considered. Privileges that the user has through roles aren't, and neither are namespace-level privileges when the statement targets a table.
 
 #### Examples
 
@@ -2566,7 +2566,7 @@ privilege: SELECT | INSERT | UPDATE | DELETE | CREATE | DROP | TRUNCATE | ALTER 
 ```
 
 - You must grant `INSERT` and `UPDATE` privileges together.
-- To grant a user the `UPDATE` or `DELETE` privilege, the target user must have the `SELECT` privilege or you must grant `SELECT` in the same statement. Only privileges granted directly to the user on the same table or namespace count. Privileges that the user has through roles don't, and neither do namespace-level privileges when the statement targets a table.
+- To grant a role the `UPDATE` or `DELETE` privilege, the target role must have the `SELECT` privilege or you must grant `SELECT` in the same statement. Only privileges granted directly to the role on the same table or namespace count. Privileges that the role inherits from its member roles don't, and neither do namespace-level privileges when the statement targets a table.
 - If you specify the `WITH GRANT OPTION` option or the `GRANT OPTION` privilege, any user who has the role can grant privileges to other users or roles.
 
 #### Examples
@@ -2628,7 +2628,7 @@ privilege: SELECT | INSERT | UPDATE | DELETE | CREATE | DROP | TRUNCATE | ALTER 
 ```
 
 - You must revoke `INSERT` and `UPDATE` privileges together.
-- If the target user has the `UPDATE` or `DELETE` privilege, you cannot revoke the `SELECT` privilege from them unless you revoke those privileges in the same statement. Only privileges granted directly to the user on the same table or namespace are considered. Privileges that the user has through roles aren't, and neither are namespace-level privileges when the statement targets a table.
+- If the target role has the `UPDATE` or `DELETE` privilege, you cannot revoke the `SELECT` privilege from it unless you revoke those privileges in the same statement. Only privileges granted directly to the role on the same table or namespace are considered. Privileges that the role inherits from its member roles aren't, and neither are namespace-level privileges when the statement targets a table.
 
 #### Examples
 

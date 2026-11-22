@@ -83,6 +83,20 @@ PRODUCTS: list[Product] = [
         ),
     ),
     Product(
+        key="scalardb-postgres-frontend",
+        title="ScalarDB PostgreSQL Frontend",
+        repo="scalardb-postgres-frontend",
+        site="https://github.com/scalar-labs/scalardb-postgres-frontend",
+        kind="repo",
+        summary=(
+            "PostgreSQL-compatible SQL interface for ScalarDB. psql, the PostgreSQL "
+            "JDBC driver and ORMs connect over the PostgreSQL wire protocol, and "
+            "their SQL runs as ScalarDB transactions on the databases ScalarDB "
+            "manages. Runs inside ScalarDB Cluster nodes (recommended) or as a "
+            "standalone server."
+        ),
+    ),
+    Product(
         key="scalardb-community",
         title="ScalarDB Community",
         repo="docs-scalardb-community",
@@ -383,6 +397,7 @@ def index_sidebar(tree: dict) -> dict[str, list[str]]:
 # versions anyone can run and are left out of the bundle.
 _MINOR_BRANCH = re.compile(r"^\d+\.\d+$")
 _PRERELEASE = re.compile(r"-(alpha|beta|rc|snapshot)", re.I)
+_PATCH_SNAPSHOT = re.compile(r"^(\d+)\.(\d+)\.([1-9]\d*)-SNAPSHOT$")
 
 
 @dataclass
@@ -438,7 +453,17 @@ def repo_path_kind(repo_dir: Path, ref: str, path: str) -> str | None:
 def _release_version(repo_dir: Path, ref: str) -> str | None:
     text = read_repo_file(repo_dir, ref, "gradle.properties") or ""
     m = re.search(r"^version\s*=\s*(.+)$", text, re.M)
-    return m.group(1).strip() if m else None
+    if not m:
+        return None
+    version = m.group(1).strip()
+    # `X.Y.Z-SNAPSHOT` with Z > 0 is the next patch of a line already released as
+    # X.Y.(Z-1); report the released version.  A -SNAPSHOT of the first patch
+    # (X.Y.0) really is not GA yet, so it stays as is.
+    snap = _PATCH_SNAPSHOT.match(version)
+    if snap:
+        major, minor, patch = (int(x) for x in snap.groups())
+        return f"{major}.{minor}.{patch - 1}"
+    return version
 
 
 def sync_repo_versions(product: Product, cache_dir: Path, *,

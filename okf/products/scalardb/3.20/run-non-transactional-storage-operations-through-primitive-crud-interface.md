@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: run-non-transactional-storage-operations-through-primitive-crud-interface
 lifecycle_phase: implement
 editions:
 - Community
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/run-non-transactional-storage-operations-through-primitive-crud-interface.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # Run Non-Transactional Storage Operations Through the Primitive CRUD Interface
@@ -435,7 +435,9 @@ TableMetadata tableMetadata = admin.getTableMetadata("ns", "tbl");
 
 #### Repair a table
 
-You can repair the table metadata of an existing table as follows:
+If a table is in an unknown state, such as the table exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the table, its secondary indexes, and their metadata if necessary.
+
+You can repair the table as follows:
 
 ```java
 // Repair the table "ns.tbl" with options.

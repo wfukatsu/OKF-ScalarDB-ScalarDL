@@ -12,20 +12,20 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-sql/spring-data-guide
 lifecycle_phase: implement
 editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-sql/spring-data-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-sql/spring-data-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # Guide of Spring Data JDBC for ScalarDB
@@ -339,7 +339,7 @@ Spring Data JDBC for ScalarDB can throw the following exceptions.
 - com.scalar.db.sql.springdata.exception.ScalarDbUnknownTransactionStateException
   - This is a subclass of `ScalarDbNonTransientException` and the transaction should not be retried as well
   - This is thrown when a transaction commit fails and the final state is unknown
-  - Whether the transaction is actually committed or not needs to be decided by the application side (e.g. check if the target record is expectedly updated)
+  - Whether the transaction is actually committed or not needs to be decided by the application side (e.g. check if the target record is updated as expected)
 
 These exceptions include the transaction ID, which can be useful for troubleshooting purposes.
 
@@ -1036,4 +1036,4 @@ In order to use Spring Data JDBC for ScalarDB, the following features are implem
 
 - [Spring Data JDBC - Reference Documentation](https://docs.spring.io/spring-data/jdbc/docs/3.0.x/reference/html/)
 - [ScalarDB JDBC Guide](./jdbc-guide.md)
-- [Javadoc for Spring Data JDBC for ScalarDB](https://javadoc.io/doc/com.scalar-labs/scalardb-sql-spring-data/3.19.0/index.html)
+- [Javadoc for Spring Data JDBC for ScalarDB](https://javadoc.io/doc/com.scalar-labs/scalardb-sql-spring-data/3.20.1/index.html)
