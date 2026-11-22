@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalar-licensing/commercial
 lifecycle_phase: operate
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalar-licensing/commercial.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalar-licensing/commercial.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # How to Configure a Commercial License Key
@@ -55,13 +55,6 @@ scalar.db.cluster.node.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE--
 If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Set Up ScalarDB Cluster on Kubernetes by Using a Helm Chart](../scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.md#step-2-deploy-scalardb-cluster-on-the-kubernetes-cluster-by-using-a-helm-chart).
 
 :::
-
-## ScalarDB Analytics (library for Spark)
-
-```apacheconf
-spark.sql.catalog.scalardb_catalog.license.key <YOUR_LICENSE_KEY>
-spark.sql.catalog.scalardb_catalog.license.cert_pem -----BEGIN CERTIFICATE-----\nMIICKzCCAdKgAwIBAgIIBXxj3s8NU+owCgYIKoZIzj0EAwIwbDELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMSMwIQYDVQQDExplbnRlcnByaXNlLnNjYWxhci1sYWJzLmNv\nbTAeFw0yMzExMTYwNzExNTdaFw0yNDAyMTUxMzE2NTdaMGwxCzAJBgNVBAYTAkpQ\nMQ4wDAYDVQQIEwVUb2t5bzERMA8GA1UEBxMIU2hpbmp1a3UxFTATBgNVBAoTDFNj\nYWxhciwgSW5jLjEjMCEGA1UEAxMaZW50ZXJwcmlzZS5zY2FsYXItbGFicy5jb20w\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATJx5gvAr+GZAHcBpUvDFDsUlFo4GNw\npRfsntzwStIP8ac3dew7HT4KbGBWei0BvIthleaqpv0AEP7JT6eYAkNvo14wXDAO\nBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwG\nA1UdEwEB/wQCMAAwHQYDVR0OBBYEFMIe+XuuZcnDX1c3TmUPlu3kNv/wMAoGCCqG\nSM49BAMCA0cAMEQCIGGlqKpgv+KW+Z1ZkjfMHjSGeUZKBLwfMtErVyc9aTdIAiAy\nvsZyZP6Or9o40x3l3pw/BT7wvy93Jm0T4vtVQH6Zuw==\n-----END CERTIFICATE-----
-```
 
 ## ScalarDB Analytics server
 

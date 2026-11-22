@@ -12,20 +12,20 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 doc_id: scalardl-auditor-status-codes
 lifecycle_phase: operate
 editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/scalardl-auditor-status-codes.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/scalardl-auditor-status-codes.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # ScalarDL Auditor Error Codes
@@ -50,6 +50,20 @@ The following are status codes and messages for the validation error category.
 
 ```markdown
 The nonce has already been used.
+```
+
+**Solution**
+
+```markdown
+Data or program tampering, or a software bug, may have occurred. Contact your system administrator to check for any signs of malicious activity.
+```
+
+### `DL-AUDITOR-304002`
+
+**Message**
+
+```markdown
+The specified nonce cannot be stored as a lock owner because it is missing, empty, or contains a comma. Such a nonce should have been rejected by the validation performed when the request was received.
 ```
 
 **Solution**
@@ -269,7 +283,7 @@ Verify the asset ID and namespace are correct and the asset has been created.
 **Solution**
 
 ```markdown
-Set 'scalar.dl.auditor.authentication.hmac.cipher_key' in the Auditor configuration file (e.g., auditor.properties). Use an unpredictable and long value for security.
+Set 'scalar.dl.auditor.authentication.hmac.cipher_key' in the Auditor configuration file (for example, auditor.properties). Use an unpredictable and long value for security.
 ```
 
 ### `DL-AUDITOR-414002`
@@ -442,6 +456,20 @@ Calling Ledger failed. Status code: %s; Details: %s
 
 ```markdown
 Ledger may be temporarily unavailable. Check the error details in the logs, the availability of Ledger, and the connection and authentication settings between Ledger and Auditor.
+```
+
+### `DL-AUDITOR-503002`
+
+**Message**
+
+```markdown
+Checking the connection to Ledger failed within the startup check timeout. Ledger: %s:%d; Timeout: %d seconds; Details: %s
+```
+
+**Solution**
+
+```markdown
+Check the connection settings to Ledger (e.g., scalar.dl.auditor.ledger.host and scalar.dl.auditor.ledger.port) and the availability of Ledger. Auditor requires Ledger to be reachable at startup.
 ```
 
 ### `DL-AUDITOR-504001`

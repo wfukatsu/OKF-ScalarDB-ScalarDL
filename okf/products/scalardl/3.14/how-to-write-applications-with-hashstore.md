@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 doc_id: how-to-write-applications-with-hashstore
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/how-to-write-applications-with-hashstore.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/how-to-write-applications-with-hashstore.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # Write a ScalarDL Application with the HashStore Abstraction
@@ -51,7 +51,7 @@ dependencies {
 }
 ```
 
-The Client SDK APIs for HashStore are provided by a service class called [`HashStoreClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-hashstore-java-client-sdk/3.14.1/com/scalar/dl/hashstore/client/service/HashStoreClientService.html). The following is a code snippet that shows how to use `HashStoreClientService` to manage objects and collections. `HashStoreClientService` provides the same functionalities as the HashStore client commands shown in [Get Started with ScalarDL HashStore](./getting-started-hashstore.md).
+The Client SDK APIs for HashStore are provided by a service class called [`HashStoreClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-hashstore-java-client-sdk/3.14.2/com/scalar/dl/hashstore/client/service/HashStoreClientService.html). The following is a code snippet that shows how to use `HashStoreClientService` to manage objects and collections. `HashStoreClientService` provides the same functionalities as the HashStore client commands shown in [Get Started with ScalarDL HashStore](./getting-started-hashstore.md).
 
 ```java
   // HashStoreClientServiceFactory should always be reused.
@@ -89,7 +89,7 @@ If an error occurs in your application, the Client SDK will return an exception 
 
 ### Implement error handling
 
-The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
+The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.2/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
 
 ```java
 HashStoreClientService service = ...;

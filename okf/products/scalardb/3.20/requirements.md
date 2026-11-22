@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: requirements
 lifecycle_phase: design
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/requirements.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/requirements.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # Requirements
@@ -65,6 +65,7 @@ ScalarDB runs on top of the following databases and their versions.
 
 |      Version      | Db2 12.1 | Db2 11.5 |
 | :---------------- | :------- | :------- |
+| **ScalarDB 3.20** | ✅        | ✅        |
 | **ScalarDB 3.19** | ✅        | ✅        |
 | **ScalarDB 3.18** | ✅        | ✅        |
 | **ScalarDB 3.17** | ✅        | ✅        |
@@ -81,6 +82,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 |      Version      | MariaDB 11.4 | MariaDB 10.11 |
 | :---------------- | :----------- | :------------ |
+| **ScalarDB 3.20** | ✅            | ✅             |
 | **ScalarDB 3.19** | ✅            | ✅             |
 | **ScalarDB 3.18** | ✅            | ✅             |
 | **ScalarDB 3.17** | ✅            | ✅             |
@@ -91,6 +93,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 |      Version      | MySQL 8.4 | MySQL 8.0 |
 | :---------------- | :-------- | :-------- |
+| **ScalarDB 3.20** | ✅         | ✅         |
 | **ScalarDB 3.19** | ✅         | ✅         |
 | **ScalarDB 3.18** | ✅         | ✅         |
 | **ScalarDB 3.17** | ✅         | ✅         |
@@ -101,6 +104,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 |      Version      | Oracle Database 23ai | Oracle Database 21c | Oracle Database 19c |
 | :---------------- | :------------------- | :------------------ | :------------------ |
+| **ScalarDB 3.20** | ✅                    | ✅                   | ✅                   |
 | **ScalarDB 3.19** | ✅                    | ✅                   | ✅                   |
 | **ScalarDB 3.18** | ✅                    | ✅                   | ✅                   |
 | **ScalarDB 3.17** | ✅                    | ✅                   | ✅                   |
@@ -111,6 +115,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 |      Version      | PostgreSQL 17 | PostgreSQL 16 | PostgreSQL 15 | PostgreSQL 14 | PostgreSQL 13 |
 | :---------------- | :------------ | :------------ | :------------ | :------------ | ------------- |
+| **ScalarDB 3.20** | ✅             | ✅             | ✅             | ✅             | ✅             |
 | **ScalarDB 3.19** | ✅             | ✅             | ✅             | ✅             | ✅             |
 | **ScalarDB 3.18** | ✅             | ✅             | ✅             | ✅             | ✅             |
 | **ScalarDB 3.17** | ✅             | ✅             | ✅             | ✅             | ✅             |
@@ -119,18 +124,20 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 **SQL Server**
 
-|      Version      | SQL Server 2022 | SQL Server 2019 | SQL Server 2017 |
-| :---------------- | :-------------- | :-------------- | :-------------- |
-| **ScalarDB 3.19** | ✅               | ✅               | ✅               |
-| **ScalarDB 3.18** | ✅               | ✅               | ✅               |
-| **ScalarDB 3.17** | ✅               | ✅               | ✅               |
-| **ScalarDB 3.16** | ✅               | ✅               | ✅               |
-| **ScalarDB 3.15** | ✅               | ✅               | ✅               |
+|      Version      | SQL Server 2025 | SQL Server 2022 | SQL Server 2019 | SQL Server 2017 |
+| :---------------- | :-------------- | :-------------- | :-------------- | :-------------- |
+| **ScalarDB 3.20** | ✅               | ✅               | ✅               | ❌               |
+| **ScalarDB 3.19** | ✅               | ✅               | ✅               | ❌               |
+| **ScalarDB 3.18** | ✅               | ✅               | ✅               | ❌               |
+| **ScalarDB 3.17** | ✅               | ✅               | ✅               | ❌               |
+| **ScalarDB 3.16** | ✅               | ✅               | ✅               | ❌               |
+| **ScalarDB 3.15** | ❌               | ✅               | ✅               | ✅               |
 
 **SQLite**
 
 |      Version      | SQLite 3 |
 | :---------------- | :------- |
+| **ScalarDB 3.20** | ✅        |
 | **ScalarDB 3.19** | ✅        |
 | **ScalarDB 3.18** | ✅        |
 | **ScalarDB 3.17** | ✅        |
@@ -143,6 +150,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 | Version           | AlloyDB 16 | AlloyDB 15 |
 |:------------------|:-----------|:-----------|
+| **ScalarDB 3.20** | ✅          | ✅          |
 | **ScalarDB 3.19** | ✅          | ✅          |
 | **ScalarDB 3.18** | ✅          | ✅          |
 | **ScalarDB 3.17** | ✅          | ✅          |
@@ -153,6 +161,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 |      Version      | Aurora MySQL 3 | Aurora MySQL 2 |
 | :---------------- | :------------- | :------------- |
+| **ScalarDB 3.20** | ✅              | ✅              |
 | **ScalarDB 3.19** | ✅              | ✅              |
 | **ScalarDB 3.18** | ✅              | ✅              |
 | **ScalarDB 3.17** | ✅              | ✅              |
@@ -163,6 +172,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 | Version           | Aurora PostgreSQL 17 | Aurora PostgreSQL 16 | Aurora PostgreSQL 15 | Aurora PostgreSQL 14 | Aurora PostgreSQL 13 |
 |:------------------|:---------------------|:---------------------|:---------------------|:---------------------|:---------------------|
+| **ScalarDB 3.20** | ✅                    | ✅                    | ✅                    | ✅                    | ✅                    |
 | **ScalarDB 3.19** | ✅                    | ✅                    | ✅                    | ✅                    | ✅                    |
 | **ScalarDB 3.18** | ✅                    | ✅                    | ✅                    | ✅                    | ✅                    |
 | **ScalarDB 3.17** | ✅                    | ✅                    | ✅                    | ✅                    | ✅                    |
@@ -173,6 +183,7 @@ Only Linux, UNIX, and Windows versions of Db2 are supported. The z/OS version is
 
 | Version           | Spanner (PostgreSQL dialect) |
 |:------------------|:--------|
+| **ScalarDB 3.20** | ✅       |
 | **ScalarDB 3.19** | ✅       |
 | **ScalarDB 3.18** | ✅       |
 | **ScalarDB 3.17** | ❌       |
@@ -189,6 +200,7 @@ ScalarDB works only for [Spanner database with the PostgreSQL dialect](https://d
 
 | Version           | TiDB 8.5 | TiDB 7.5 | TiDB 6.5 |
 |:------------------|:---------|:---------|----------|
+| **ScalarDB 3.20** | ✅        | ✅        | ✅        |
 | **ScalarDB 3.19** | ✅        | ✅        | ✅        |
 | **ScalarDB 3.18** | ✅        | ✅        | ✅        |
 | **ScalarDB 3.17** | ✅        | ✅        | ✅        |
@@ -199,6 +211,7 @@ ScalarDB works only for [Spanner database with the PostgreSQL dialect](https://d
 
 |      Version      | YugabyteDB 2025.2 |
 | :---------------- | :---------------- |
+| **ScalarDB 3.20** | ✅                 |
 | **ScalarDB 3.19** | ✅                 |
 | **ScalarDB 3.18** | ✅                 |
 | **ScalarDB 3.17** | ✅                 |
@@ -211,6 +224,7 @@ ScalarDB works only for [Spanner database with the PostgreSQL dialect](https://d
 
 |      Version      | DynamoDB |
 | :---------------- | :------- |
+| **ScalarDB 3.20** | ✅        |
 | **ScalarDB 3.19** | ✅        |
 | **ScalarDB 3.18** | ✅        |
 | **ScalarDB 3.17** | ✅        |
@@ -221,6 +235,7 @@ ScalarDB works only for [Spanner database with the PostgreSQL dialect](https://d
 
 |      Version      | Cassandra 5.0 | Cassandra 4.1 | Cassandra 3.11 | Cassandra 3.0 |
 | :---------------- |:--------------|:--------------| :------------- | :------------ |
+| **ScalarDB 3.20** | ✅             | ✅             | ✅              | ✅             |
 | **ScalarDB 3.19** | ✅             | ✅             | ✅              | ✅             |
 | **ScalarDB 3.18** | ✅             | ✅             | ✅              | ✅             |
 | **ScalarDB 3.17** | ✅             | ✅             | ✅              | ✅             |
@@ -231,6 +246,7 @@ ScalarDB works only for [Spanner database with the PostgreSQL dialect](https://d
 
 |      Version      | Cosmos DB for NoSQL |
 | :---------------- | :------------------ |
+| **ScalarDB 3.20** | ✅                   |
 | **ScalarDB 3.19** | ✅                   |
 | **ScalarDB 3.18** | ✅                   |
 | **ScalarDB 3.17** | ✅                   |
@@ -249,6 +265,7 @@ Object Storage support is currently in Private Preview. For more details, please
 
 |      Version      | S3 |
 | :---------------- | :------------------ |
+| **ScalarDB 3.20** | ✅                   |
 | **ScalarDB 3.19** | ✅                   |
 | **ScalarDB 3.18** | ✅                   |
 | **ScalarDB 3.17** | ✅                   |
@@ -259,6 +276,7 @@ Object Storage support is currently in Private Preview. For more details, please
 
 |      Version      | Blob Storage |
 | :---------------- | :------------------ |
+| **ScalarDB 3.20** | ✅                   |
 | **ScalarDB 3.19** | ✅                   |
 | **ScalarDB 3.18** | ✅                   |
 | **ScalarDB 3.17** | ✅                   |
@@ -269,6 +287,7 @@ Object Storage support is currently in Private Preview. For more details, please
 
 |      Version      | Cloud Storage |
 | :---------------- | :------------------ |
+| **ScalarDB 3.20** | ✅                   |
 | **ScalarDB 3.19** | ✅                   |
 | **ScalarDB 3.18** | ✅                   |
 | **ScalarDB 3.17** | ✅                   |
@@ -451,6 +470,12 @@ If you're using PostgreSQL, the following database privilege must be granted.
 **SQL Server**
 
 If you're using SQL Server, the following database permissions must be granted.
+
+**SQL Server 2025**
+
+- `CREATE SCHEMA`
+- `CREATE TABLE`
+- `CREATE VIEW`
 
 **SQL Server 2022**
 
@@ -706,6 +731,7 @@ ScalarDB Analytics uses [Apache Spark](https://spark.apache.org/) for the query 
 
 | ScalarDB Analytics Version | Spark Versions | Scala Versions |
 | :------------------------- | :------------- | :------------- |
+| 3.20                       | 3.5, 3.4       | 2.13, 2.12     |
 | 3.19                       | 3.5, 3.4       | 2.13, 2.12     |
 | 3.18                       | 3.5, 3.4       | 2.13, 2.12     |
 | 3.17                       | 3.5, 3.4       | 2.13, 2.12     |
@@ -758,6 +784,7 @@ ScalarDB Analytics can run analytical queries on the databases managed by Scalar
 
 | ScalarDB Analytics version | ScalarDB Core version |
 | :------------------------- | :-------------------- |
+| 3.20                       | 3.20                  |
 | 3.19                       | 3.19                  |
 | 3.18                       | 3.18                  |
 | 3.17                       | 3.17                  |
@@ -774,6 +801,7 @@ ScalarDB Analytics can run analytical queries on the following relational databa
 
 |           Version           | MySQL 8.4 | MySQL 8.0 |
 | :-------------------------- | :-------- | :-------- |
+| **ScalarDB Analytics 3.20** | ✅        | ✅        |
 | **ScalarDB Analytics 3.19** | ✅        | ✅        |
 | **ScalarDB Analytics 3.18** | ✅        | ✅        |
 | **ScalarDB Analytics 3.17** | ✅        | ✅        |
@@ -784,6 +812,7 @@ ScalarDB Analytics can run analytical queries on the following relational databa
 
 |      Version                | Oracle Database 23ai | Oracle Database 21c | Oracle Database 19c |
 | :-------------------------- | :------------------- | :------------------ | :------------------ |
+| **ScalarDB Analytics 3.20** | ✅                   | ✅                  | ✅                  |
 | **ScalarDB Analytics 3.19** | ✅                   | ✅                  | ✅                  |
 | **ScalarDB Analytics 3.18** | ✅                   | ✅                  | ✅                  |
 | **ScalarDB Analytics 3.17** | ✅                   | ✅                  | ✅                  |
@@ -794,6 +823,7 @@ ScalarDB Analytics can run analytical queries on the following relational databa
 
 |           Version           | PostgreSQL 18 | PostgreSQL 17 | PostgreSQL 16 |
 | :-------------------------- | :------------ | :------------ | :------------ |
+| **ScalarDB Analytics 3.20** | ✅            | ✅            | ✅            |
 | **ScalarDB Analytics 3.19** | ✅            | ✅            | ✅            |
 | **ScalarDB Analytics 3.18** | ✅            | ✅            | ✅            |
 | **ScalarDB Analytics 3.17** | ✅            | ✅            | ✅            |
@@ -804,6 +834,7 @@ ScalarDB Analytics can run analytical queries on the following relational databa
 
 |           Version           | SQL Server 2022 | SQL Server 2019 | SQL Server 2017 |
 | :-------------------------- | :-------------- | :-------------- | :-------------- |
+| **ScalarDB Analytics 3.20** | ✅              | ✅              | ✅              |
 | **ScalarDB Analytics 3.19** | ✅              | ✅              | ✅              |
 | **ScalarDB Analytics 3.18** | ✅              | ✅              | ✅              |
 | **ScalarDB Analytics 3.17** | ✅              | ✅              | ✅              |
@@ -818,6 +849,7 @@ ScalarDB Analytics can run analytical queries on the following NoSQL databases *
 
 |           Version           | DynamoDB |
 | :-------------------------- | :------- |
+| **ScalarDB Analytics 3.20** | ✅        |
 | **ScalarDB Analytics 3.19** | ✅        |
 | **ScalarDB Analytics 3.18** | ✅        |
 | **ScalarDB Analytics 3.17** | ✅        |
@@ -832,6 +864,7 @@ ScalarDB Analytics can run analytical queries on the following analytical platfo
 
 |           Version           | Databricks |
 | :-------------------------- | :--------- |
+| **ScalarDB Analytics 3.20** | ✅         |
 | **ScalarDB Analytics 3.19** | ✅         |
 | **ScalarDB Analytics 3.18** | ✅         |
 | **ScalarDB Analytics 3.17** | ✅         |
@@ -848,6 +881,7 @@ ScalarDB Analytics supports running queries on Databricks by using both SQL ware
 
 |           Version           | Snowflake |
 | :-------------------------- | :-------- |
+| **ScalarDB Analytics 3.20** | ✅        |
 | **ScalarDB Analytics 3.19** | ✅        |
 | **ScalarDB Analytics 3.18** | ✅        |
 | **ScalarDB Analytics 3.17** | ✅        |

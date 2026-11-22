@@ -13,11 +13,12 @@ AI に設計・実装・運用のコンテキストを与えるために使い�
 | 製品 | 最新 | 収録バージョン | 概念数 |
 |---|---|---|---|
 | ScalarDB | 3.20 | 3.20, 3.19, 3.18, 3.17, 3.16, 3.15, 3.14※ | 1,395 |
-| ScalarDL | 3.14 | 3.14, 3.13, 3.12, 3.11, 3.10 | 682 |
+| ScalarDL | 3.14 | 3.14, 3.13, 3.12, 3.11, 3.10 | 683 |
 | ScalarDB Saga | 3.20 | 3.20（GA / `3.20.0`）, 3.19（アルファ / `3.19.0-alpha.1`） | 24 |
+| ScalarDB PostgreSQL Frontend | 3.20 | 3.20（`3.20.1`） | 14 |
 | ScalarDB Community | 3.13 | 3.13 〜 3.4 | 269 |
 
-合計 **2,370 概念 / 24 バージョン**。
+合計 **2,385 概念 / 25 バージョン**。
 ※ ScalarDB 3.14 は上流がドキュメントサイトから削除したため `archived` 扱いです（下記「バージョンの廃止」）。
 
 これに加えて、上流ドキュメントには公開されていない**価格・ライセンス条件**を
@@ -162,6 +163,7 @@ Actions タブから手動実行も可能です。詳細は
 | ScalarDL | `scalar-labs/docs-scalardl` | Docusaurus | https://scalardl.scalar-labs.com/docs/ |
 | ScalarDB Community | `scalar-labs/docs-scalardb-community` | Docusaurus | https://scalardb-community.scalar-labs.com/docs/ |
 | ScalarDB Saga | `scalar-labs/scalardb-saga` | ソースリポジトリ | （無し） |
+| ScalarDB PostgreSQL Frontend | `scalar-labs/scalardb-postgres-frontend` | ソースリポジトリ | （無し） |
 
 developers.scalar-labs.com は前者 3 サイトへのハブで、実体はこの Docusaurus リポジトリ群です。
 HTML をスクレイピングするのではなく、サイトの生成元である MDX を直接取り込んでいます。
@@ -181,6 +183,14 @@ HTML をスクレイピングするのではなく、サイトの生成元であ
 
 ナビゲーション用コンポーネントのみのページやリダイレクトスタブ（全体で 14 ページ）は、
 空概念になるため取り込まず、生成した `index.md` の目次が代わりになっています。
+
+### ScalarDB PostgreSQL Frontend（ソースリポジトリ由来）
+
+PostgreSQL ワイヤプロトコルで ScalarDB を使う SQL インターフェイスです。Saga と同じ経路
+（`tools/okf_repo.py`）で、リリースブランチ `3.20` の README・`docs/user/`・`LIMITATIONS.md`・
+`CHANGELOG.md` などを概念にしています。`patch_version` は**リリース済みの最新パッチ**
+（ブランチが `3.20.2-SNAPSHOT` でも `3.20.1`）です。PostgreSQL 互換ではなく独自の SQL サブセットなので、
+利用前に `limitations.md` を確認させてください。
 
 ### ScalarDB Saga（ソースリポジトリ由来）
 

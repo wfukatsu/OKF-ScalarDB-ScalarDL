@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 doc_id: manage-contract-and-function-lifecycle
 lifecycle_phase: operate
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/manage-contract-and-function-lifecycle.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/manage-contract-and-function-lifecycle.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # Manage the Contract and Function Lifecycle
@@ -38,7 +38,7 @@ This document explains the lifecycle of Contracts and Functions in ScalarDL—fr
 
 In ScalarDL, you implement business logic as two types of Java programs: Contracts and Functions. Contracts manage tamper-evident asset records in the Ledger, while Functions work alongside Contracts to manage mutable records in an external database through ScalarDB.
 
-To create a Contract or Function, write a Java class that extends one of the predefined base classes, such as [`JacksonBasedContract`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/contract/JacksonBasedContract.html) for Contracts or [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/function/JacksonBasedFunction.html) for Functions.
+To create a Contract or Function, write a Java class that extends one of the predefined base classes, such as [`JacksonBasedContract`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.2/com/scalar/dl/ledger/contract/JacksonBasedContract.html) for Contracts or [`JacksonBasedFunction`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.2/com/scalar/dl/ledger/function/JacksonBasedFunction.html) for Functions.
 
 For details on how to write Contracts and Functions, see the following:
 
@@ -105,7 +105,7 @@ scalardl register-contract --properties client.properties --contract-id StateUpd
 
 #### Update your application code
 
-After registering the new Contract version, update your application code to use the new Contract ID. For example, if you use [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/ClientService.html), update the Contract ID passed to the `executeContract` method.
+After registering the new Contract version, update your application code to use the new Contract ID. For example, if you use [`ClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.2/com/scalar/dl/client/service/ClientService.html), update the Contract ID passed to the `executeContract` method.
 
 :::note
 

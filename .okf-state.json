@@ -2,8 +2,8 @@
   "products": {
     "scalardb": {
       "repo": "docs-scalardb",
-      "repo_sha": "e492bf010d9ca2699301d485735f6b13d0dec7fa",
-      "repo_committed_at": "2026-10-30T13:58:08Z",
+      "repo_sha": "9231f95a362b78bc3430cca43e0cb4cc9d286cf4",
+      "repo_committed_at": "2026-11-18T16:06:53Z",
       "latest": "3.20",
       "version_order": [
         "3.20",
@@ -16,31 +16,31 @@
       ],
       "versions": {
         "3.20": {
-          "patch": "3.20.0",
+          "patch": "3.20.1",
           "url_path": "latest",
           "maintenance": "supported",
           "concepts": 206
         },
         "3.19": {
-          "patch": "3.19.1",
+          "patch": "3.19.3",
           "url_path": "3.19",
           "maintenance": "supported",
           "concepts": 206
         },
         "3.18": {
-          "patch": "3.18.2",
+          "patch": "3.18.4",
           "url_path": "3.18",
           "maintenance": "supported",
           "concepts": 206
         },
         "3.17": {
-          "patch": "3.17.5",
+          "patch": "3.17.7",
           "url_path": "3.17",
           "maintenance": "supported",
           "concepts": 202
         },
         "3.16": {
-          "patch": "3.16.7",
+          "patch": "3.16.9",
           "url_path": "3.16",
           "maintenance": "supported",
           "concepts": 204
@@ -62,8 +62,8 @@
     },
     "scalardl": {
       "repo": "docs-scalardl",
-      "repo_sha": "e6bd82bcb84116982f2d3e64c710ea4dfde52427",
-      "repo_committed_at": "2026-10-26T11:41:49Z",
+      "repo_sha": "a626b55c89abbf9750c2be19ad779fbf73db50a5",
+      "repo_committed_at": "2026-11-19T12:01:08Z",
       "latest": "3.14",
       "version_order": [
         "3.14",
@@ -74,25 +74,25 @@
       ],
       "versions": {
         "3.14": {
-          "patch": "3.14.1",
+          "patch": "3.14.2",
           "url_path": "latest",
           "maintenance": "supported",
-          "concepts": 139
+          "concepts": 140
         },
         "3.13": {
-          "patch": "3.13.1",
+          "patch": "3.13.2",
           "url_path": "3.13",
           "maintenance": "supported",
           "concepts": 143
         },
         "3.12": {
-          "patch": "3.12.4",
+          "patch": "3.12.5",
           "url_path": "3.12",
           "maintenance": "supported",
           "concepts": 141
         },
         "3.11": {
-          "patch": "3.11.4",
+          "patch": "3.11.5",
           "url_path": "3.11",
           "maintenance": "unmaintained",
           "concepts": 127
@@ -188,8 +188,8 @@
     "scalardb-saga": {
       "repo": "scalardb-saga",
       "kind": "repo",
-      "repo_sha": "5765e9e6b1d499dc92627b387a711d306bdc6ce7",
-      "repo_committed_at": "2026-10-29T12:59:48Z",
+      "repo_sha": "0b5c62f55d5e68bc82e9cccdc4443960116ea46a",
+      "repo_committed_at": "2026-11-11T09:22:04Z",
       "latest": "3.20",
       "version_order": [
         "3.20",
@@ -198,7 +198,7 @@
       "versions": {
         "3.20": {
           "patch": "3.20.0",
-          "sha": "5765e9e6b1d499dc92627b387a711d306bdc6ce7",
+          "sha": "0b5c62f55d5e68bc82e9cccdc4443960116ea46a",
           "url_path": "3.20",
           "maintenance": "supported",
           "concepts": 15
@@ -211,9 +211,28 @@
           "concepts": 9
         }
       }
+    },
+    "scalardb-postgres-frontend": {
+      "repo": "scalardb-postgres-frontend",
+      "kind": "repo",
+      "repo_sha": "d28a3ad131f99cc7a8f8f92bdff9621671d1dee8",
+      "repo_committed_at": "2026-11-20T09:17:04Z",
+      "latest": "3.20",
+      "version_order": [
+        "3.20"
+      ],
+      "versions": {
+        "3.20": {
+          "patch": "3.20.1",
+          "sha": "d28a3ad131f99cc7a8f8f92bdff9621671d1dee8",
+          "url_path": "3.20",
+          "maintenance": "supported",
+          "concepts": 14
+        }
+      }
     }
   },
   "okf_version": "0.2",
   "generator": "process:okf-build/1.0.0",
-  "last_run": "2026-10-31T09:32:52Z"
+  "last_run": "2026-11-22T03:58:45Z"
 }

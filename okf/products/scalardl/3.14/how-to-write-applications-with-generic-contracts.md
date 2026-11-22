@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 doc_id: how-to-write-applications-with-generic-contracts
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/how-to-write-applications-with-generic-contracts.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/how-to-write-applications-with-generic-contracts.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # Write a ScalarDL Application with Generic Contracts
@@ -57,7 +57,7 @@ dependencies {
 }
 ```
 
-The Client SDK APIs for Generic Contracts are provided by a service class called [`GenericContractClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/service/GenericContractClientService.html). The following is a code snippet that shows how to use `GenericContractClientService` to execute a Contract.
+The Client SDK APIs for Generic Contracts are provided by a service class called [`GenericContractClientService`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.2/com/scalar/dl/client/service/GenericContractClientService.html). The following is a code snippet that shows how to use `GenericContractClientService` to execute a Contract.
 
 ```java
   // ClientServiceFactory should always be reused.
@@ -97,7 +97,7 @@ If an error occurs in your application, the Client SDK will return an exception 
 
 ### Implement error handling
 
-The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
+The SDK throws [`ClientException`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.2/com/scalar/dl/client/exception/ClientException.html) when an error occurs. You can handle errors by catching the exception as follows:
 
 ```java
 GenericContractClientService clientService = ...;

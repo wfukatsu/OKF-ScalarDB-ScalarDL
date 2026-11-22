@@ -15,7 +15,7 @@ doc_id: overview
 lifecycle_phase: design
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:52Z'
+  at: '2026-11-22T03:58:45Z'
 sources:
 - id: docs-scalardb-community
   resource: https://github.com/scalar-labs/docs-scalardb-community/blob/71d199cb0df1c638bd7e305b64fa09fc7236e5c4/docs/overview.mdx

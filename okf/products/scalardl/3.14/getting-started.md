@@ -13,7 +13,7 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 doc_id: getting-started
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/blob/e6bd82bcb84116982f2d3e64c710ea4dfde52427/docs/getting-started.mdx
+  resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/getting-started.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # Get Started with ScalarDL Ledger
@@ -750,7 +750,7 @@ Note that you can only add new certs and cannot update existing certs in place f
 
 You can interact with ScalarDL through a Contract, which is a Java program that implements single business logic. In this tutorial, you can see how a Contract is written, built, and works by using a basic Contract example, which creates an asset and associates some states with it.
 
-Below, you can see a sample Contract, [StateUpdater.java](https://github.com/scalar-labs/scalardl-samples/blob/master/src/main/java/com/org1/contract/StateUpdater.java). A Contract is simply a Java class that extends the predefined base Contract classes (such as [`JacksonBasedContract`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.1/com/scalar/dl/ledger/contract/JacksonBasedContract.html) class) and overrides the `invoke` method. The business logic is implemented in the `invoke` method.
+Below, you can see a sample Contract, [StateUpdater.java](https://github.com/scalar-labs/scalardl-samples/blob/master/src/main/java/com/org1/contract/StateUpdater.java). A Contract is simply a Java class that extends the predefined base Contract classes (such as [`JacksonBasedContract`](https://javadoc.io/static/com.scalar-labs/scalardl-java-client-sdk/3.14.2/com/scalar/dl/ledger/contract/JacksonBasedContract.html) class) and overrides the `invoke` method. The business logic is implemented in the `invoke` method.
 
 Specifically, the `invoke` method will extract a client-defined asset ID (`asset_id`) and state (`state`) from the argument, and then associate the asset ID with the state in the ledger if the given state is different from the asset's current state.
 

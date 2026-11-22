@@ -39,14 +39,14 @@ status: stable
 okf/products/<product>/index.md
 ```
 
-`scalardb` / `scalardl` / `scalardb-saga` / `scalardb-community` の 4 製品があります。
+`scalardb` / `scalardl` / `scalardb-saga` / `scalardb-postgres-frontend` / `scalardb-community` の 5 製品があります。
 バージョン一覧・最新版・サポート状況が表になっています。
 判断基準は [製品・エディション・バージョンの選び方](./product-and-version-selection.md) を参照。
 
-`scalardb-saga` だけはドキュメントサイトを持たず、ソースリポジトリ内の
+`scalardb-saga` と `scalardb-postgres-frontend` はドキュメントサイトを持たず、ソースリポジトリ内の
 ドキュメント（README、getting-started、3.20 以降は `guides/`）と契約ファイル（proto、
-設定テンプレート、saga 定義）から生成されています。バージョンはリリースブランチ
-（`3.20`、`3.19`）に対応します。
+設定テンプレート、saga 定義。PostgreSQL フロントエンドは README・`docs/user/`・LIMITATIONS）から
+生成されています。バージョンはリリースブランチ（Saga は `3.20`・`3.19`、PostgreSQL フロントエンドは `3.20`）に対応します。
 
 ### Step 2 — バージョンのハブを読む
 
@@ -111,6 +111,20 @@ ScalarDB Saga（`products/scalardb-saga/<version>/`）は構成が異なり、�
   （Java/Gradle、コードスタイル、静的解析、パッケージ命名、テスト方針）。
   タグ `contributor` / `upstream-development` が付いています。
   **Saga を利用するアプリケーション側の実装規約として適用しないこと。**
+
+ScalarDB PostgreSQL Frontend（`products/scalardb-postgres-frontend/<version>/`）も同様に
+リポジトリ由来で、次の概念を持ちます。
+
+- `overview.md` / `limitations.md` — 概要と**制約の全量**（設計）。PostgreSQL との非互換、
+  エラーなく結果が異なるケースはここに書かれているので、「PostgreSQL 互換」と答える前に必ず読む。
+- `getting-started.md` / `user/quick-start.md` — スタンドアロン / Cluster 組み込みの動かし方（実装）
+- `user/clients.md` / `schema-and-queries.md` / `transactions.md` / `sql-reference.md` — 利用側の指針（実装）
+- `reference/type-encoding.md` — 型の記録方式（実装）
+- `user/configuration.md` / `security.md` / `operations.md` — 設定・認証/TLS・運用（運用）
+- `releases/release-notes.md` — リリースノート
+
+**認証と TLS は ScalarDB Cluster 配下でのみ使える。** ScalarDB core 上のスタンドアロンは
+無認証なので、信頼ネットワーク限定であることを回答に含めること。
 
 ## アーカイブ済みバージョン
 

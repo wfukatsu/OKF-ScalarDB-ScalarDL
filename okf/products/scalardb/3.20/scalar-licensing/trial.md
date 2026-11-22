@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalar-licensing/trial
 lifecycle_phase: operate
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Option
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalar-licensing/trial.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalar-licensing/trial.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # How to Configure a Trial License Key
@@ -66,13 +66,6 @@ scalar.db.cluster.node.licensing.license_check_cert_pem=-----BEGIN CERTIFICATE--
 If you're deploying by using a Helm Chart, these configurations must be placed inside your custom values file. For details, see [Set Up ScalarDB Cluster on Kubernetes by Using a Helm Chart](../scalardb-cluster/setup-scalardb-cluster-on-kubernetes-by-using-helm-chart.md#step-2-deploy-scalardb-cluster-on-the-kubernetes-cluster-by-using-a-helm-chart).
 
 :::
-
-## ScalarDB Analytics (library for Spark)
-
-```apacheconf
-spark.sql.catalog.scalardb_catalog.license.key {"organization_name":"Trial","product_name":"ScalarDB Analytics","product_version":3,"license_type":"trial","signature":"MEQCIGZl8RS+esJubmBa4qYppq7Pd2TgZsWPmpQhfCI06gcYAiBfry/McvINwWtGxi1lz4hyNTk+P4L63LwL16DpckrPUA==","expiration_date_time":"2026-11-30T10:32:34.278+09:00[Asia/Tokyo]"}
-spark.sql.catalog.scalardb_catalog.license.cert_pem -----BEGIN CERTIFICATE-----\nMIICIzCCAcigAwIBAgIIKT9LIGX1TJQwCgYIKoZIzj0EAwIwZzELMAkGA1UEBhMC\nSlAxDjAMBgNVBAgTBVRva3lvMREwDwYDVQQHEwhTaGluanVrdTEVMBMGA1UEChMM\nU2NhbGFyLCBJbmMuMR4wHAYDVQQDExV0cmlhbC5zY2FsYXItbGFicy5jb20wHhcN\nMjMxMTE2MDcxMDM5WhcNMjQwMjE1MTMxNTM5WjBnMQswCQYDVQQGEwJKUDEOMAwG\nA1UECBMFVG9reW8xETAPBgNVBAcTCFNoaW5qdWt1MRUwEwYDVQQKEwxTY2FsYXIs\nIEluYy4xHjAcBgNVBAMTFXRyaWFsLnNjYWxhci1sYWJzLmNvbTBZMBMGByqGSM49\nAgEGCCqGSM49AwEHA0IABBSkIYAk7r5FRDf5qRQ7dbD3ib5g3fb643h4hqCtK+lC\nwM4AUr+PPRoquAy+Ey2sWEvYrWtl2ZjiYyyiZw8slGCjXjBcMA4GA1UdDwEB/wQE\nAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIw\nADAdBgNVHQ4EFgQUbFyOWFrsjkkOvjw6vK3gGUADGOcwCgYIKoZIzj0EAwIDSQAw\nRgIhAKwigOb74z9BdX1+dUpeVG8WrzLTIqdIU0w+9jhAueXoAiEA6cniJ3qsP4j7\nsck62kHnFpH1fCUOc/b/B8ZtfeXI2Iw=\n-----END CERTIFICATE-----
-```
 
 ## ScalarDB Analytics server
 

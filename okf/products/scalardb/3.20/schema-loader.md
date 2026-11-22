@@ -14,7 +14,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: schema-loader
 lifecycle_phase: implement
 editions:
@@ -23,13 +23,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/schema-loader.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/schema-loader.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Schema Loader
@@ -365,7 +365,7 @@ java -jar scalardb-schema-loader-<X.Y.Z>.jar --cassandra -h <CASSANDRA_IP> [-P <
 
 ### Repair tables
 
-You can repair the table metadata of existing tables by using the properties file. To repair table metadata of existing tables, run the following command, replacing the contents in the angle brackets as described:
+You can repair tables by using the properties file. The reason for repairing tables is because they can be in an unknown state, such as a table exists in the underlying storage but not its ScalarDB metadata or vice versa. Repairing the tables, the secondary indexes, and their metadata requires re-creating them if necessary. To repair them, run the following command, replacing the contents in the angle brackets as described:
 
 ```console
 java -jar scalardb-schema-loader-<X.Y.Z>.jar --config <PATH_TO_SCALARDB_PROPERTIES_FILE> -f <PATH_TO_SCHEMA_FILE> [--coordinator] --repair-all
@@ -377,7 +377,7 @@ Before executing this command, you should confirm the schema configuration is th
 
 :::
 
-If `--coordinator` is specified, the Coordinator table will be repaired as well. In addition, if you're using Cosmos DB for NoSQL, running this command will also repair stored procedures attached to each table.
+If `--coordinator` is specified, the Coordinator table will be repaired as well. If the Coordinator namespace or table doesn't exist, it will be re-created. In addition, if you're using Cosmos DB for NoSQL, running this command will also repair stored procedures attached to each table.
 
 If you enable [group commit](./consensus-commit.md#group-commit) or [Coordinator write set logging](./consensus-commit.md#coordinator-write-set-logging) after creating the Coordinator table, running this command with `--coordinator` also adds the additional column that each enabled feature requires.
 
@@ -672,7 +672,7 @@ public class SchemaLoaderSample {
     indexCreationOptions.put(DynamoAdmin.NO_SCALING, "true");
 
     Map<String, String> tableReparationOptions = new HashMap<>();
-    indexCreationOptions.put(DynamoAdmin.NO_BACKUP, "true");
+    tableReparationOptions.put(DynamoAdmin.NO_BACKUP, "true");
 
     // Create tables.
     SchemaLoader.load(configFilePath, schemaFilePath, tableCreationOptions, createCoordinatorTables);

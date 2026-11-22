@@ -1,0 +1,118 @@
+---
+type: Concept
+title: ScalarDB PostgreSQL Frontend
+description: A PostgreSQL-compatible SQL interface for ScalarDB. PostgreSQL clients and tools, such as psql, the PostgreSQL JDBC driver and ORMs, connect over the PostgreSQL wire protocol, and their SQL runs on the databases ScalarDB manages, as...
+resource: https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/README.md
+tags:
+- scalardb-postgres-frontend
+- v3.20
+- phase:design
+status: stable
+product: scalardb-postgres-frontend
+product_title: ScalarDB PostgreSQL Frontend
+version: '3.20'
+patch_version: 3.20.1
+prerelease: false
+doc_id: overview
+lifecycle_phase: design
+generated:
+  by: process:okf-build/1.0.0
+  at: '2026-11-22T03:58:44Z'
+sources:
+- id: scalardb-postgres-frontend
+  resource: https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/README.md
+  title: ScalarDB PostgreSQL Frontend source repository — README.md
+  author: process:scalar-labs/scalardb-postgres-frontend
+  last_modified: '2026-11-20T09:17:04Z'
+---
+
+# ScalarDB PostgreSQL Frontend
+
+A PostgreSQL-compatible SQL interface for [ScalarDB](https://github.com/scalar-labs/scalardb). PostgreSQL
+clients and tools, such as psql, the PostgreSQL JDBC driver and ORMs, connect over the PostgreSQL wire
+protocol, and their SQL runs on the databases ScalarDB manages, as ScalarDB transactions: each statement
+outside `BEGIN` is one transaction, and `BEGIN ... COMMIT` is one transaction. It runs inside ScalarDB
+Cluster nodes or as a standalone server.
+
+SQL is parsed with JSQLParser and planned into ScalarDB Get, Scan and mutation operations, pushing
+keys, conditions, ordering and limits down to ScalarDB. The rest runs in an in-memory operator tree:
+joins, aggregates, window functions, subqueries, CTEs (including recursive ones) and set operations.
+It also emulates enough of `pg_catalog` for psql's meta-commands, and supports DDL, `RETURNING`,
+`ON CONFLICT`, `EXPLAIN [ANALYZE]` and transactions.
+
+**What to know first.** Authentication and TLS only with ScalarDB Cluster (see [Deployment](#deployment)),
+whose users and privileges then apply (see [Connect as a user](./getting-started.md#connect-as-a-user)), as do its encryption and
+ABAC ([Encrypted columns and row-level access](./getting-started.md#encrypted-columns-and-row-level-access));
+no `COPY`; `NUMERIC` exact but filtered in the frontend beyond 18 digits, and declared types recorded in a
+metadata table of the frontend's ([docs/type-encoding.md](./reference/type-encoding.md)); text compared in ScalarDB's
+byte order, which the backing database must be set up to match (on PostgreSQL and MySQL, the frontend
+refuses to start on a mismatch unless `scalar.db.postgres.backend_collation_check=false`); and no
+scan of rows a transaction has itself written. [LIMITATIONS.md](./limitations.md) has the full list, including the
+results that can differ from PostgreSQL without an error.
+
+## Deployment
+
+| Where the frontend runs | Authentication and TLS | Use |
+|---|---|---|
+| In each ScalarDB Cluster node (`scalar.db.postgres.enabled=true` in the node's configuration) | Cluster's | recommended |
+| As the standalone server, in front of ScalarDB Cluster | Cluster's | works, but not for production: every ScalarDB call takes an extra network hop |
+| As the standalone server, on ScalarDB core | none | a trusted network only |
+
+Without authentication (the default for the standalone server, and the only mode on ScalarDB core), anyone
+who can reach the port has the configured ScalarDB user's full access: keep the frontend on a trusted
+network, or set `scalar.db.postgres.listen_address=127.0.0.1`.
+
+## Quick start
+
+Requires JDK 25 to build (Java 17 or later to run). The frontend builds against ScalarDB `3.20.0`, from
+Maven Central. A core of the same version that you install from a ScalarDB checkout with
+`./gradlew :core:publishToMavenLocal` takes precedence.
+
+```sh
+./gradlew shadowJar
+java -jar server/build/libs/scalardb-postgres-frontend.jar scalardb.properties 15432
+```
+
+`scalardb.properties` is an ordinary ScalarDB configuration. The database name a client connects
+with is the ScalarDB namespace. [`getting-started/`](./getting-started.md) walks through the
+whole setup with sample data, psql and JDBC, and through the container image
+(`./gradlew :server:dockerBuild`). The [user documentation](./user/overview.md) starts with running the
+frontend in a ScalarDB Cluster node.
+
+## Layout
+
+| Path | What |
+|---|---|
+| `engine/` | the frontend as a library: the PostgreSQL wire protocol, the SQL parser and planner, and the in-memory operators, with the unit tests. A ScalarDB Cluster node can embed it. |
+| `server/` | the standalone server: `main`, the fat jar, and the container image (`server/src/docker`) |
+| `build-logic/`, `gradle/libs.versions.toml` | shared Gradle conventions and the dependency versions |
+| [`getting-started/`](./getting-started.md) | setup guide, sample schema and data, and a tour of what the frontend does |
+| [`LIMITATIONS.md`](./limitations.md) | what the frontend refuses, announces with a `NOTICE`, or does differently from PostgreSQL |
+| [`CHANGELOG.md`](./releases/release-notes.md) | changes per release, generated by changie from `.changes/` (see `RELEASING.md`) |
+| [`difftest/`](https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/difftest/README.md) | differential tests against native PostgreSQL, and a concurrency test |
+| [`bench/`](https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/bench/README.md) | benchmarks against native PostgreSQL, including BenchBase TPC-C |
+| [`compat/`](https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/compat/README.md) | small client programs for other languages' PostgreSQL drivers |
+| [`docs/user/`](./user/overview.md) | user documentation: quick start, configuration, SQL reference, transactions, security, clients and operations |
+| `docs/` | design notes: [running in ScalarDB Cluster nodes](https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/docs/integration-design.md), [authentication](https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/docs/auth-design.md) and [declared types](./reference/type-encoding.md) |
+
+Changes the frontend needs in ScalarDB core itself are described in design notes kept with ScalarDB
+(`scan-read-your-writes-design.md`, `text-collation-design.md`, `core-todo.md`), currently on the
+`postgres-frontend` branch of the ScalarDB repository.
+
+## Development
+
+The build compiles with the JDK 25 toolchain and `--release 17`, because the engine runs inside
+ScalarDB Cluster nodes, whose baseline is Java 17.
+
+```sh
+./gradlew check        # unit tests, javadoc, Spotless, SpotBugs with FindSecBugs, Error Prone, NullAway
+./gradlew spotlessApply
+```
+
+The engine is published as `com.scalar-labs:scalardb-postgres-frontend-engine`: snapshots to the Maven
+Central snapshot repository from every commit on `main` and the version branches, and releases to Maven
+Central from 3.20.0. [RELEASING.md](https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/RELEASING.md) describes the branches and how to cut a release.
+
+## License
+
+Apache License 2.0; see [LICENSE](https://github.com/scalar-labs/scalardb-postgres-frontend/blob/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8/LICENSE).

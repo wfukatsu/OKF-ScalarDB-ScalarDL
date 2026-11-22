@@ -1,7 +1,7 @@
 ---
 type: Product Version
 title: ScalarDL 3.14
-description: Documentation set for ScalarDL 3.14 (newest patch 3.14.1).
+description: Documentation set for ScalarDL 3.14 (newest patch 3.14.2).
 resource: https://scalardl.scalar-labs.com/docs/latest/
 tags:
 - scalardl
@@ -11,20 +11,20 @@ status: stable
 product: scalardl
 product_title: ScalarDL
 version: '3.14'
-patch_version: 3.14.1
+patch_version: 3.14.2
 url_path: latest
 maintenance: supported
 is_latest: true
-concept_count: 139
+concept_count: 140
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:49Z'
+  at: '2026-11-22T03:58:40Z'
 sources:
 - id: docs-scalardl
-  resource: https://github.com/scalar-labs/docs-scalardl/tree/e6bd82bcb84116982f2d3e64c710ea4dfde52427
+  resource: https://github.com/scalar-labs/docs-scalardl/tree/a626b55c89abbf9750c2be19ad779fbf73db50a5
   title: ScalarDL documentation repository
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-10-26T11:41:49Z'
+  last_modified: '2026-11-19T12:01:08Z'
 ---
 
 # ScalarDL 3.14
@@ -35,10 +35,10 @@ Supported release.
 |---|---|
 | Product | ScalarDL |
 | Documentation version | 3.14 |
-| Newest patch release described | 3.14.1 |
+| Newest patch release described | 3.14.2 |
 | Docs site | https://scalardl.scalar-labs.com/docs/latest/ |
-| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `e6bd82bcb841` |
-| Concepts in this version | 139 |
+| Upstream source | https://github.com/scalar-labs/docs-scalardl @ `a626b55c89ab` |
+| Concepts in this version | 140 |
 
 ## By lifecycle phase
 
@@ -56,7 +56,7 @@ Start here when you know which phase of the project you are in.
 - [ScalarDL Overview](./overview.md)
 - [ScalarDL Roadmap](./roadmap.md)
 
-### 実装 / Implement (34)
+### 実装 / Implement (35)
 
 - [A Guide on How to Write a Good Contract for ScalarDL](./how-to-write-contract.md)
 - [A Guide on How to Write Functions for ScalarDL](./how-to-write-function.md)
@@ -68,6 +68,7 @@ Start here when you know which phase of the project you are in.
 - [Get Started with ScalarDL Ledger](./getting-started.md)
 - [Get Started with ScalarDL TableStore](./getting-started-tablestore.md)
 - [Libraries and Tools for ScalarDL](./libraries-and-tools.md)
+- [Network Requirements](./network-requirements.md)
 - [Purge the Residual Transaction State](./purge-residual-transaction-state.md)
 - [Quickstart Overview](./quickstart-overview.md)
 - [Run a ScalarDL Application Through ScalarDL Ledger](./how-to-run-applications.md)
@@ -227,6 +228,7 @@ Start here when you know which phase of the project you are in.
 - [Manage the Contract and Function Lifecycle](./manage-contract-and-function-lifecycle.md) — This document explains the lifecycle of Contracts and Functions in ScalarDL—from creating and registering them to updating them when bug fixes or feature additions are needed.
 - [Model Your Data](./data-modeling.md) — Data modeling (or in other words, organizing your data) is the process of conceptualizing and visualizing how data will be stored and used by identifying the patterns used to access data and the types of queries to be performed within...
 - [Monitor Overview](./manage-monitor-overview.md) — Monitoring is essential for maintaining the health and performance of your ScalarDL deployment. This section provides guidance on monitoring ScalarDL in Kubernetes cluster environments, including checking system availability, collecting...
+- [Network Requirements](./network-requirements.md) — Before you deploy ScalarDL, you typically need to configure firewall rules so that the required network traffic between clients, ScalarDL components, and related Scalar products is allowed. This page lists the connections that you need to...
 - [Purge the Residual Transaction State](./purge-residual-transaction-state.md) — When using ScalarDL Ledger and Auditor, each transaction produces a transaction state that ScalarDL uses to process and, if necessary, recover the transaction. After a transaction has fully served this purpose, the state that it leaves...
 - [Quickstart Overview](./quickstart-overview.md) — In this category, you can follow quickstart tutorials for how to get started with ScalarDL.
 - [Requirements](./requirements.md) — This page describes the required tools and their versions to use ScalarDL correctly.

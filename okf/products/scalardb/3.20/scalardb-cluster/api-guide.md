@@ -13,7 +13,7 @@ status: stable
 product: scalardb
 product_title: ScalarDB
 version: '3.20'
-patch_version: 3.20.0
+patch_version: 3.20.1
 doc_id: scalardb-cluster/api-guide
 lifecycle_phase: implement
 editions:
@@ -21,13 +21,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-10-31T09:32:43Z'
+  at: '2026-11-22T03:58:37Z'
 sources:
 - id: docs-scalardb
-  resource: https://github.com/scalar-labs/docs-scalardb/blob/e492bf010d9ca2699301d485735f6b13d0dec7fa/docs/scalardb-cluster/api-guide.mdx
+  resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-cluster/api-guide.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-10-30T13:58:08Z'
+  last_modified: '2026-11-18T16:06:53Z'
 ---
 
 # ScalarDB Cluster Java API Guide
@@ -40,10 +40,10 @@ This section explains how to execute administrative operations programmatically 
 
 :::warning
 
-When an Administrative API call writes to the underlying databases, it triggers several write operations. However, these operations are not executed atomically, meaning that if the call fails midway, you may encounter inconsistent states. To resolve this inconsistency issue, you can repair the namespace or table. For details, see the following pages:
+When an Administrative API call writes to the underlying databases, it triggers several write operations. However, these operations are not executed atomically, meaning that if the call fails midway, you may encounter inconsistent states. To resolve this inconsistency issue, you can repair the table. For details, see the following pages:
 
-- [Repair a namespace](#repair-a-namespace) and [Repair a table](#repair-a-table) by using the Java API
-- [Repair namespaces and tables](../schema-loader.md#repair-namespaces-and-tables) by using ScalarDB Schema Loader
+- [Repair a table](#repair-a-table) by using the Java API
+- [Repair tables](../schema-loader.md#repair-tables) by using ScalarDB Schema Loader
 
 :::
 
@@ -445,18 +445,6 @@ You can get table metadata as follows:
 TableMetadata tableMetadata = admin.getTableMetadata("ns", "tbl");
 ```
 
-### Repair a namespace
-
-If a namespace is in an unknown state, such as the namespace exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the namespace and its metadata if necessary.
-
-You can repair the namespace as follows:
-
-```java
-// Repair the namespace "ns" with options.
-Map<String, String> options = ...;
-admin.repairNamespace("ns", options);
-```
-
 ### Repair a table
 
 If a table is in an unknown state, such as the table exists in the underlying storage but not its ScalarDB metadata or vice versa, this method will re-create the table, its secondary indexes, and their metadata if necessary.
@@ -478,16 +466,6 @@ admin.repairTable("ns", "tbl", tableMetadata, options);
 When using Consensus Commit, after upgrading to ScalarDB 3.16.5, 3.17.3, or 3.18.0 from an earlier version, you must run `repairTable()` on each existing table to create the companion before-image secondary indexes that index-based reads require. For details, see [Correctness of index-based reads](../consensus-commit.md#correctness-of-index-based-reads).
 
 :::
-
-### Upgrade the environment to support the latest ScalarDB API
-
-You can upgrade the ScalarDB environment to support the latest version of the ScalarDB API. Typically, as indicated in the release notes, you will need to run this method after updating the ScalarDB version that your application environment uses.
-
-```java
-// Upgrade the ScalarDB environment.
-Map<String, String> options = ...;
-admin.upgrade(options);
-```
 
 ### Specify operations for the Coordinator table
 
@@ -554,7 +532,7 @@ You can also enable *transaction metadata decoupling* by specifying the `transac
 
 ### Authentication and authorization API
 
-ScalarDB Cluster supports authentication and authorization. To manage users, roles, and privileges programmatically via Java, use [`ClusterClientTransactionAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb-cluster-java-client-sdk/3.20.0/com/scalar/db/cluster/client/ClusterClientTransactionAdmin.html), which implements [`AuthAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/AuthAdmin.html).
+ScalarDB Cluster supports authentication and authorization. To manage users, roles, and privileges programmatically via Java, use [`ClusterClientTransactionAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb-cluster-java-client-sdk/3.20.1/com/scalar/db/cluster/client/ClusterClientTransactionAdmin.html), which implements [`AuthAdmin`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/AuthAdmin.html).
 
 For authentication and authorization concepts, including users, roles, and privileges, see [Authenticate and authorize users](./scalardb-auth-with-sql.md).
 
@@ -1324,7 +1302,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Handle `Result` objects
 
@@ -1377,7 +1355,7 @@ And if you need to check if a value of a column is null, you can use the `isNull
 boolean isNull = result.isNull("<COLUMN_NAME>");
 ```
 
-For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/Result.html) page in the Javadoc.
+For more details, see the [`Result`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/Result.html) page in the Javadoc.
 
 ###### Execute `Get` by using a secondary index
 
@@ -1486,7 +1464,7 @@ In the `where()` condition method chain, the conditions must be an AND-wise junc
 
 :::
 
-For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
+For more details about available conditions and condition sets, see the [`ConditionBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionBuilder.html) and [`ConditionSetBuilder`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/ConditionSetBuilder.html) pages in the Javadoc.
 
 ###### Execute `Scan` by using a secondary index
 
@@ -2111,7 +2089,7 @@ The following attributes apply to a cross-partition `Scan` operation (a `Scan` o
 - **`db-cross-partition-scan-filtering-enabled`:** Whether cross-partition scan with filtering is enabled for the operation. The value must be `true` or `false`.
 - **`db-cross-partition-scan-ordering-enabled`:** Whether cross-partition scan with ordering is enabled for the operation. The value must be `true` or `false`. This attribute is available only for JDBC databases.
 
-You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
+You can use the [`DatabaseOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/DatabaseOperationAttributes.html) utility class to set these attributes.
 
 ###### Consensus Commit attributes
 
@@ -2125,7 +2103,7 @@ Unlike the other operation attributes, `cc-transaction-isolation` cannot be appl
 
 :::
 
-You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
+You can use the [`ConsensusCommitOperationAttributes`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/transaction/consensuscommit/ConsensusCommitOperationAttributes.html) utility class to set this attribute.
 
 #### Commit a transaction
 
@@ -2478,7 +2456,7 @@ A global transaction has two kinds of handles:
 - **`GlobalTransaction`:** The overall handle that drives the outcome of the transaction. This handle does not execute CRUD operations.
 - **`BranchTransaction`:** The handle for one branch of the transaction, which executes the CRUD operations for that branch.
 
-For more details, see the [`GlobalTransactionManager`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/GlobalTransactionManager.html), [`GlobalTransaction`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/GlobalTransaction.html), and [`BranchTransaction`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.0/com/scalar/db/api/BranchTransaction.html) pages in the Javadoc.
+For more details, see the [`GlobalTransactionManager`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/GlobalTransactionManager.html), [`GlobalTransaction`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/GlobalTransaction.html), and [`BranchTransaction`](https://javadoc.io/static/com.scalar-labs/scalardb/3.20.1/com/scalar/db/api/BranchTransaction.html) pages in the Javadoc.
 
 ### Get a `GlobalTransactionManager` instance
 
