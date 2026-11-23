@@ -21,13 +21,13 @@ editions:
 - Enterprise
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-11-22T03:58:40Z'
+  at: '2026-11-23T06:04:11Z'
 sources:
 - id: docs-scalardl
   resource: https://github.com/scalar-labs/docs-scalardl/blob/a626b55c89abbf9750c2be19ad779fbf73db50a5/docs/how-to-write-applications-with-generic-contracts.mdx
   title: ScalarDL documentation source (MDX)
   author: process:scalar-labs/docs-scalardl
-  last_modified: '2026-11-19T12:01:08Z'
+  last_modified: '2026-11-19T03:01:08Z'
 ---
 
 # Write a ScalarDL Application with Generic Contracts
