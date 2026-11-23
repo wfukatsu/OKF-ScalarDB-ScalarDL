@@ -19,13 +19,13 @@ editions:
 - Enterprise Premium
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-11-22T03:58:37Z'
+  at: '2026-11-23T06:04:08Z'
 sources:
 - id: docs-scalardb
   resource: https://github.com/scalar-labs/docs-scalardb/blob/9231f95a362b78bc3430cca43e0cb4cc9d286cf4/docs/scalardb-samples/dotnet-microservice-transactions-sample-with-shared-cluster-with-linq/README.mdx
   title: ScalarDB documentation source (MDX)
   author: process:scalar-labs/docs-scalardb
-  last_modified: '2026-11-18T16:06:53Z'
+  last_modified: '2026-11-18T07:06:53Z'
 ---
 
 # Create an Application That Supports Microservice Transactions in a Shared ScalarDB Cluster Environment by Using LINQ

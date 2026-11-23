@@ -15,13 +15,13 @@ supported_versions:
 - '3.20'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-11-22T03:58:44Z'
+  at: '2026-11-23T06:04:15Z'
 sources:
 - id: scalardb-postgres-frontend
   resource: https://github.com/scalar-labs/scalardb-postgres-frontend/tree/d28a3ad131f99cc7a8f8f92bdff9621671d1dee8
   title: ScalarDB PostgreSQL Frontend source repository
   author: process:scalar-labs/scalardb-postgres-frontend
-  last_modified: '2026-11-20T09:17:04Z'
+  last_modified: '2026-11-20T00:17:04Z'
 ---
 
 # ScalarDB PostgreSQL Frontend

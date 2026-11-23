@@ -12,7 +12,7 @@ product: scalardl
 version: '3.14'
 generated:
   by: process:okf-build/1.0.0
-  at: '2026-11-22T03:58:40Z'
+  at: '2026-11-23T06:04:11Z'
 ---
 
 # Applications

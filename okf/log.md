@@ -268,3 +268,9 @@ generated:
 - ScalarDB PostgreSQL Frontend 3.20 (new, 14 concepts)
 - ScalarDB Community 3.13 (rebuilt, 35 concepts)
 
+## 2026-11-23T06:04:18Z
+
+- ScalarDB 3.20 (rebuilt, 206 concepts)
+- ScalarDL 3.14 (rebuilt, 140 concepts)
+- ScalarDB Community 3.13 (rebuilt, 35 concepts)
+
